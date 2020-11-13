@@ -1,0 +1,142 @@
+# Structure of data
+We will use `mtcars` to illustrate the structure of data.
+
+<br>
+
+## Classify variables
+
+- Recall there are 2 main types of variables: qualitative and quantitative, which R calls `Factor` and `num`.
+
+- View the data.
+```{r,results='hide'}
+mtcars
+head(mtcars)
+tail(mtcars, n=3)
+help(mtcars)
+```
+
+- Calculate the `dim`ensions of the data set.
+```{r,results='hide'}
+dim(mtcars)
+```
+This means that there are 32 rows (the types of cars) and 11 variables (properties of the cars).
+
+<br>
+
+- List the `names` of the variables.
+```{r,results='hide'}
+names(mtcars)
+```
+
+<br>
+
+- See how R has classified the variables by viewing the `str`ucture of the data.
+```{r,eval=F}
+str(mtcars)
+```
+
+where 'num' is a quantitative (numerical) variable and 'Factor' is a qualitative (categorical) variable.
+
+<br>
+
+## Isolate a variable
+
+- Choose one variable from the data frame by using `DataName$VariableName` and store the result in a vector.
+
+```{r,eval=F}
+mpg= mtcars$mpg
+```
+
+Note that RStudio has code completion, so will auto-predict your commands. When you type `mtcars$`, the names of the all the variables will come up.
+
+<br>
+
+- See the `class`ification of 1 variable.
+```{r,eval=F}
+class(mpg)
+str(mpg)
+```
+
+<br>
+
+- See the `length` of 1 variable.
+```{r,eval=F}
+length(mpg)
+```
+
+<br>
+
+- Calculate the `sum` of a (quantitative) variable.
+```{r,eval=F}
+sum(mpg)
+```
+
+- If at any command you get the answer NA, it means that you need to specify what to do with missing values. 
+See <i class="fa fa-link"></i>[Resource](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sum.html) on how to solve this.
+
+<br>
+
+- `Sort` the data in increasing order.
+```{r,eval=F}
+sort(mpg)
+```
+
+<br>
+
+- [Work out](https://stat.ethz.ch/R-manual/R-devel/library/base/html/sort.html) how to sort the data in decreasing order.
+
+```{r,eval=F}
+sort(mpg, decreasing = T)
+```
+
+<br>
+
+- Sum the 5 lowest values of the variable.
+```{r,eval=F}
+sum(sort(mpg)[1:5])
+```
+
+<br>
+
+## Select subset 
+
+- Pick the 1st and 5th elements of the vector `mpg`
+
+```{r,eval=F}
+mpg[1]
+mpg[5]
+mpg[c(1,5)]
+mtcars$mpg[c(1,5)]
+mtcars[1,1]  
+mtcars[5,1]   #mpg is 1st column.
+```
+
+<br>
+
+## Change classification
+
+- You may not agree with R's initial classification, and want to change it.
+
+```{r,results='hide'}
+str(mtcars)
+```
+
+- For example, note that the number of carburetors `carb` is classified as `num`. Reclassify `carb` as a `factor`.
+```{r,results='hide'}
+class(mtcars$carb)
+carbF = factor(mtcars$carb)
+class(carbF)
+```
+
+- To change from a `factor` to a `num`:
+```{r,results='hide'}
+ageCanVote = factor(setNames(c(16, 18, 18, "Unknown"), c("Austria", "Australia", "Afghanistam", "Zambia")))
+as.numeric(ageCanVote)  # This is a mistake, as it converts to the rank of the factor level
+as.numeric(as.character(ageCanVote))  # This converts properly
+```
+
+Note: 
+(1) The warning message is not a problem - it is just alerting you to the introduction of NAs.
+(2) The mistake above if you just use `as'numeric()`.
+
+<br><br>

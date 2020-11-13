@@ -1,0 +1,147 @@
+# Sample surveys {#samplesurveys}
+
+```{r, include=F}
+library(multicon) # Need to load this for the popsd function
+
+```
+
+
+
+- Simulate a survey of 25 people taken from a population of size 200 with 2 types of people in the proportion 1:3.
+
+- This is equivalent to taking 25 draws from a box containing 50 1's and 150 0's.
+
+- Note: A survey is technically without replacement, but here we will approximate by the box model which assumes replacement.
+
+<br>
+
+## Box model (assuming replacement) 
+
+- Draw the model (Ext)
+
+```{r, results='hide'}
+library("DiagrammeR")
+
+grViz(" 
+  digraph CFA {
+
+  # All
+  node [fontname = Helvetica, fontcolor = White]
+
+    # Box
+    node [shape = box, style=filled, color=SteelBlue4, width=2 label='50x1s  150x0s'][fillcolor = SteelBlue4]
+    a ; 
+
+    # Sample
+    node [shape = circle, style=filled, color=IndianRed, width=0.5, label='-'][fillcolor = IndianRed]
+    b ; 
+
+    # Draws
+    a -> b [fontname = Helvetica,label = '25 draws',fontsize=8]
+    b -> a  [fontname = Helvetica,color=grey,arrowsize = 0.5]
+  }
+
+")
+```
+
+- Define the box (mean, SD) 
+```{r, results='hide'}
+box=c(rep(1,50),rep(0,150))  # Define the box/population
+n = 25 # Number of draws (sample size)
+
+# mean & SD of box
+meanbox = mean(box)
+sdbox = popsd(box)
+```
+
+- The Sample Sum =  number of 1's in the sample.
+
+```{r, results='hide'}
+n*meanbox  # EV
+sqrt(n)*sdbox  # SE
+```
+
+- The Sample Mean = proportion of 1's in the sample (EV & SE)
+
+```{r, results='hide'}
+meanbox  # EV
+sdbox/sqrt(n)  # SE
+```
+
+<br>
+
+## Bootstrapping a box model
+
+- A survey of 10 people is taken from a population of size 200 with 2 types of people, resulting in 4 0's and 6 1's.
+- In practise, we don't normally know the proportions within the population, and so we can't define the "box". 
+- So one approach is to "bootstrap": we substitute the proportions of 0's and 1's in the sample for the 0's and 1's in the population (box).
+- This estimate is good when the sample is reasonably large.
+
+```{r, results='hide'}
+# Bootstrap box model
+boxest0 = 200*4/10
+boxest1 = 200*6/10
+box = c(rep(1, boxest1), rep(0, boxest0))
+n = 10 # Size of sample (= number of draws)
+
+# Mean & SD of box
+meanbox = mean(box)  # population proportion of 1's
+sdbox = popsd(box)
+
+# EV & SE of Sample Mean (= sample proportion of 1's)
+meanbox
+sdbox/sqrt(n)
+```
+
+- Note the expected value of sample proportion of 1's (0.6), is equal to the population proportion of 1s (0.6), as it should be.
+
+- Hence, we expect 60% 1s in the sample with a SE of around 15 percentage points.
+
+<br>
+
+## Confidence Intervals for population proportion
+
+- A survey of 30 people is taken from a population of size 600 with 2 types of people in the proportion 1:2.
+
+- This is equivalent to taking 30 draws from a box containing 200 1's and 400 0's (assuming replacement).
+
+- Define the box (mean, SD) 
+```{r, results='hide'}
+box=c(rep(1,200),rep(0,400))  # Define the box/population
+n = 30 # Number of draws (sample size)
+
+# mean & SD of box
+meanbox = mean(box)
+sdbox = popsd(box)
+```
+
+- An approximate 68% confidence interval (CI) for the population proportion is
+\[\mbox{sample proportion} \pm 1 \times \mbox{SE for sample proportion} \]
+
+```{r, results='hide'}
+# EV & SE of sample proportion of 1's
+ev = meanbox
+se = sdbox/sqrt(n)
+
+# 68% CI
+c(ev - 1*se,ev + 1*se)
+```
+
+- An approximate 95% confidence interval (CI) for the population percentage is
+\[\mbox{sample proportion} \pm 2 \times \mbox{SE for sample proportion} \]
+
+```{r, results='hide'}
+# 95% CI
+c(ev - 2*se,ev + 2*se)
+```
+
+
+- An approximate 99.7% confidence interval (CI) for the population percentage is
+\[\mbox{sample proportion} \pm 3 \times \mbox{SE for sample proportion} \]
+
+```{r, results='hide'}
+# 99.7% CI
+c(ev - 3*se,ev + 3*se)
+```
+
+<br><br>

@@ -1,0 +1,31 @@
+# Non-Linear Model {#nonlinearmodel}
+
+If a linear model is not appropriate, as evidenced by either the scatter plot (non-linear) or residual plot (non-random), we can either try a transformation or directly fit a more complex model.
+
+## Transformation
+
+```{r,results='hide', fig.show='hide'}
+x = mtcars$wt
+y = mtcars$mpg
+plot(x,y)
+cor(x,y)
+plot(log(x),log(y))  # scatterplot of log of data
+cor(log(x),log(y))
+```
+
+## Fit non-linear model (Ext)
+
+```{r,results='hide', fig.show='hide'}
+plot(x,y)
+# Set seed for fixing 1 simulation
+set.seed(1)
+# Simulate the x values
+simx=seq(min(x),max(x),length.out=length(x))
+# Model the y values y=12+ke^(-x), with a starting value of k 
+model = nls(y~12+k*exp(-simx), start=list(k=500))
+summary(model)
+# Add model to scatter plot
+lines(simx,predict(model),lty=2,col="green",lwd=3)
+```
+
+<br><br>

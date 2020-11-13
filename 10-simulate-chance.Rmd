@@ -1,0 +1,121 @@
+# Simulate chance {#simulatechance}
+
+## Set seed
+
+Setting a seed is a way to simulate the same results each time (eg for sharing with a collaborator).
+
+- Notice what happens below if we don't set a seed.
+
+```{r,results='hide'}
+sample(c("H", "T"), 5, replace = T)
+sample(c("H", "T"), 5, replace = T)
+```
+
+- Now set a seed.
+
+```{r,results='hide'}
+set.seed(1)  # ensures the same simulation, "1" can be whatever you choose
+sample(c("H", "T"), 5, replace = T)
+set.seed(1)
+sample(c("H", "T"), 5, replace = T)
+```
+
+## Sample (Coin)
+
+- To simulate 1 fair coin toss
+
+```{r,results='hide'}
+set.seed(1) 
+sample(c("H", "T"), 1, replace = T)
+```
+
+- To simulate 1 biased coin toss
+
+```{r,results='hide'}
+set.seed(1)
+sample(c("H", "T"), 1, replace = T,prob = c(0.9, 0.1))
+```
+
+- To simulate 10 fair coin tosses, and summarise chances in a table:
+
+```{r,results='hide'}
+set.seed(1)
+sample1 = sample(c("H", "T"), 10,replace=T)
+table(sample1)/10
+```
+
+- Alternatively, you could use
+```{r,results='hide'}
+set.seed(1)
+replicate(10, sample(c("H", "T"),1,replace=T))
+```
+
+- Alternatively, you could use the Binomial *,
+```{r,results='hide'}
+set.seed(1)
+rbinom(n = 10, 1, 0.5)
+```
+
+## Sample (Dice)
+
+- To simulate 1 fair die toss
+
+```{r,results='hide'}
+set.seed(1)
+sample(c(1:6), 1, replace = T)
+```
+
+- To simulate 1 biased die toss
+
+```{r,results='hide'}
+set.seed(1)
+sample(c(1:6), 1, replace = T,prob = c(0.1,0.2,0.3,0.2,0.1,0.1))
+```
+
+- To simulate 10 fair dice tosses, and summarise chances in a table:
+
+```{r,results='hide',fig.show='hide'}
+set.seed(1)
+sample(c(1:6), 10, replace = T)
+table(sample(c(1:6), 10, replace = T))/10
+barplot(table(sample(c(1:6), 10, replace = T))/10, xlab="dice face", ylab="chance")
+```
+
+- Alternatively, you could use
+```{r,results='hide'}
+set.seed(1)
+table(replicate(10, sample(c(1:6), 10, replace = T)))
+```
+
+## Function **
+
+To toss a die 10 times, and find the chance of getting a 6:
+
+```{r,results='hide'}
+tossdie = function() {
+    rolls = sample(1:6, size = 10, replace = TRUE)
+    condition = sum(rolls == 6) > 0
+    return(condition)
+}
+# Simulate 10000 times
+sim = replicate(10000, tossdie())
+sum(sim)/length(sim)
+```
+
+<br> 
+
+## Binomial Model *
+
+Suppose we have 10 trials with P(event) = 0.3.
+
+The chance of getting 4 events:
+```{r,results='hide'}
+dbinom(4,10,0.3)
+```
+
+The chance of getting less than or equal to 5 events:
+```{r,results='hide'}
+pbinom(5,10,0.3)
+```
+
+<br><br>

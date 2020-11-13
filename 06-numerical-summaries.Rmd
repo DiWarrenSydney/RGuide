@@ -1,0 +1,126 @@
+# Numerical Summaries {#numericalsummaries}
+
+The numerical summary must match up with the type of variable(s).
+
+|Variable|Type of summary|
+|----------|------------------------|
+|1 Qualitative|frequency table, most common category|
+|1 Quantitative|mean, median, SD, IQR etc|
+|2 Qualitative|contingency table|
+|2 Quantitative|correlation, linear model|
+|1 Quantitative, 1 Qualitative|mean, median, SD, IQR etc across categories|
+
+<br>
+We'll keep working with the `mtcars` dataset.
+So again remind yourself what it is like.
+```{r,fig.show='hide'}
+str(mtcars)
+dim(mtcars)
+head(mtcars)
+help(mtcars)
+```
+
+<br>
+
+## Frequency and contingency tables
+
+- A frequency table summarises **1** qualitative variable.
+
+```{r,results='hide'}
+table(mtcars$gear)
+```
+
+- A contingency table summarises **2** qualitative variable. 
+
+```{r,results='hide'}
+table(mtcars$gear, mtcars$am)
+```
+
+<br>
+
+## Mean and median
+
+- The mean and median measure centre for quantitative variables.
+<br>
+```{r,results='hide'}
+mean(mtcars$gear)
+median(mtcars$gear)
+```
+
+<br>
+
+## Standard deviation (SD)
+
+- The standard deviation measures spread for quantitative variables.
+
+- The `sd` command calculates the **sample** standard deviation. The squared SD is the variance.
+
+```{r,results='hide'}
+sd(mtcars$gear)
+sd(mtcars$gear)^2
+var(mtcars$gear)
+```
+
+- The `popsd` command calculates the **population** standard deviation, but requires the `multicon` package.
+<br>
+```{r,results='hide', message=F, warning = F}
+#install.packages(multicon)   # a package only needs to be installed once.
+library(multicon)
+popsd(mtcars$gear)
+
+# Longer way
+N = length(mtcars$gear)
+sd(mtcars$gear)*sqrt((N-1)/N)
+```
+
+- Note: When we model a population by the box model [Section 8 and following], we will require the population SD.
+
+<br>
+
+## Interquartile range (IQR)
+
+- The quickest method is to use `IQR`. 
+```{r,results='hide'}
+IQR(mtcars$gear)
+```
+
+- There are lots of different methods of working out the quartiles. We can use the `quantile` command, and then work out the IQR.
+```{r,results='hide'}
+quantile(mtcars$gear)
+quantile(mtcars$gear)[4]-quantile(mtcars$gear)[2]
+```
+What is the 50% quantile equivalent to?
+
+<br>
+
+## Summary
+
+- The numerical summaries for quantitative variables can all be produced with `summary`, which is an expanded version of the 5 number summary. Sometimes these values will vary from using `quantile` as there are different conventions for calculating quartiles.
+```{r,results='hide'}
+summary(mtcars$mpg)  # 1 variable
+summary(mtcars)  # All variables
+```
+
+- We can consider a subset of the data.
+Here, we choose the mpg of cars which have a weight greater or equal to 3.
+
+```{r,results='hide'}
+summary(mtcars$mpg[mtcars$wt>=3])
+```
+
+Here we take all the data from mtcars dataset for a specific cylinder e.g. 6. 
+
+```{r,results='hide'}
+mtcars[ which(mtcars$cyl==6), ]
+```
+
+
+<br>
+
+## Linear Correlation
+
+- We can consider the linear correlation between pairs of quantitative variables.
+```{r,results='hide'}
+cor(mtcars)
+```
+<br><br>

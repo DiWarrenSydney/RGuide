@@ -1,0 +1,59 @@
+# Linear model {#linearmodel}
+
+## Scatter plot
+
+- To produce a scatter plot, use `plot(<x variable>, <y variable>)`.
+
+```{r,results='hide', fig.show='hide'}
+plot(mtcars$mpg,mtcars$wt)
+plot(mtcars$mpg,mtcars$wt, xlab="mpg", ylab="weight", main="Scatter plot of weight vs mpg")
+```
+
+<br>
+
+## Correlation coefficient
+
+- To calculate the correlation coefficient, use `cor(<x variable>, <y variable>)`.
+
+
+```{r,results='hide'}
+cor(mtcars$mpg,mtcars$wt)
+```
+
+<br>
+
+## Regression line
+
+- To produce the regression line, use `lm(<y variable>~<x variable>)`.
+
+```{r,results='hide'}
+lm(mtcars$wt~mtcars$mpg)
+#Or
+L=lm(mtcars$wt~mtcars$mpg)
+L$coeff
+#Or
+lm(wt~mpg,data=mtcars)
+```
+
+- Now you can add this line to the scatter plot.
+
+```{r,results='hide', fig.show='hide'}
+plot(mtcars$mpg,mtcars$wt)
+abline(L)
+```
+
+<br>
+
+## Residual plot 
+
+- The residual plot helps to detect any pattern not captured by the linear model.
+
+    - If it is a random scatter, then the linear model seems appropriate.
+    - If it shows a pattern (eg quadratic), then another model should be considered.
+
+- To produce a residual plot:
+
+```{r,results='hide', fig.show='hide'}
+plot(mtcars$mpg,L$residuals, xlab = "mpg", ylab = "Residuals")
+abline(h = 0, col = "blue")
+```

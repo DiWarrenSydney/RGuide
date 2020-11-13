@@ -1,0 +1,142 @@
+# Tests for a mean {#testformean}
+
+- Suppose we have a sample of size $n$ from a population with unknown $\mu$.
+
+- We want to test a null hypothesis for the value of $\mu$, by modelling $H_{0}$ by a box model with $n$ draws.
+
+<br><br>
+
+## 1 sample t-test
+
+In [2013](https://www.washingtonpost.com/news/wonk/wp/2013/12/13/cars-in-the-u-s-are-more-fuel-efficient-than-ever-heres-how-it-happened/?utm_term=.fa2ecb3afa4d), the average miles per gallon (mpg) for cars sold in the US was 23.6. We want to see if this is a significant difference from the `mtcars` data.
+
+<br> 
+
+### H: Hypotheses
+
+- Formally, we write $H_0: Î¼=23.6$ vs $H_1: Î¼ \neq 23.6$.
+
+- Have a quick look to see if $H_0: Î¼=23.6$ seems to fit with data (eg right units and size etc).
+
+```{r, results='hide'}
+mean(mtcars$mpg)  # sample mean
+length(mtcars$mpg) # size of sample 
+```
+
+- Now we model $H_0: Î¼=23.6$ by a box with population mean 23.6, giving the EV of the sample mean as 23.6. We compare this to the observed sample mean of 20.1.
+
+<br>
+
+### A: Check the Assumptions
+
+For a $t$ test (or $Z$ test), we need to check the assumption of normality. 
+
+- First, look at the shape of the data. 
+
+```{r, hidden='true', fig.show='hide'}
+hist(mtcars$mpg)
+boxplot(mtcars$mpg)
+```
+
+Notice the boxplot looks symmetric, which is consistent with normality. Note the histogram shows some light right skewing.
+
+<br>
+
+- Next, try some more formal diagnostics.
+
+```{r, hidden='true', eval=F}
+qqnorm(mtcars$mpg)
+shapiro.test(mtcars$mpg)
+```
+
+Check to see if the Q-Q Plot looks linear, as this indicates normality. The Shapiro test tests the null hypothesis that  the sample comes from a Normal distribution. Here the p-value is quite big (0.1229) hence we would retain $H_0$ which suggests normality.
+
+<br>
+
+- Note: you can combine all 4 graphics in 2x2 window, for easy comparison.
+```{r, hidden='true', eval=F}
+par(mfrow=c(2,2))
+qqnorm(mtcars$mpg)
+shapiro.test(mtcars$mpg)
+hist(mtcars$mpg)
+boxplot(mtcars$mpg)
+```
+
+<br>
+
+### T: Calculate the Test Statistic
+
+- The formula for the $t$-test statistic is $t_{obs} = \frac{\mbox{observed value - hypothesised value}}{\mbox{standard error}}$. 
+
+- We use the SD of the data as an approximation of the SD of the population, so we can calculate the SE of the Sample Mean.
+
+```{r, hidden='true'}
+tobs = (mean(mtcars$mpg)-23.6)/(sd(mtcars$mpg)/sqrt(32))
+```
+
+<br>
+
+- The degrees of freedom of the $T$ test statistic is $\mbox{sample size} - 1$.
+
+```{r, eval=F}
+length(mtcars$mpg)-1
+```
+
+<br>
+
+### P: Calculate the p-value
+
+- The p-value is the probability of getting a value of $t_{obs}$ or more extreme in either tail of the $T$ distribution.
+
+```{r, eval=F}
+2*(1-pt(abs(tobs),31))
+```
+
+- Note the use of `abs` here, allows for test statistic to be in either tail.
+
+<br>
+
+### C: Conclusion
+
+- We compare the p-value (0.002476) to the significance level (0.05), and so we reject the null hypothesis. This is the **statistical conclusion**.
+- We then write a **context specific conclusion** on cars: ie the mpg of current cars appears to have changed from the US older cars in `mtcars`.
+
+<br>
+
+## The speedy way!
+
+- We can do all this quickly in R!
+```{r, eval=F}
+t.test(mtcars$mpg, mu = 23.6)
+```
+
+- Match up this output with the calculations above. Note it also gives us the 95% CI and the mean of the sample. 
+
+<br>
+
+## 1 sample Z-Test (Ext)
+
+- The $Z$-Test is not in base R. This is because the $Z$-Test requires us to know the population variance $\sigma$. Hence the  $t$-Test is much more common. 
+- However, we could create a function called `z.test` ourselves.
+- Assume the population variance of `mtcars$mpg` is the same as the sample variance (this of course is only a guess).
+
+```{r, hidden=T, eval=F}
+v = var(mtcars$mpg)
+# This creates a function called z.test, with data, mu and var as the inputs, and zobs as the output.
+z.test = function(data, mu, var){
+   zobs = (mean(data) - mu) / (sqrt(var / length(data)))
+   return(zobs)
+}
+# Run the function with inputs
+z.test(mtcars$mpg,23.6,v)
+```
+
+- Hence, the observed value of $Z$ Test is -3.293877, which will give a tiny p-value and it is more than 3 standard deviations away from the mean.
+
+```{r, hidden=T, eval=F}
+2*(1-pnorm(abs(-3.293877)))
+```
+
+- Hence again we conclude that the mpg of current cars appears to have changed significantly from the US older cars in `mtcars`.
+
+<br><br>

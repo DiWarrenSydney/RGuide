@@ -1,0 +1,94 @@
+# Test for a proportion (using simulation) {#testforproportion}
+
+- Suppose we have a sample of size $n$ from a population with proportion $p$ of a certain trait. 
+
+- We want to test a null hypothesis for the value of $p$, by modelling $H_{0}$ by a box model (with "1" representing the trait) with $n$ draws.
+- We simulate samples from the box model, and then compare our actual sample to these results - ie how common is our sample?
+
+<br>
+
+## Simple balanced box
+
+- We want to test $H_{0}$: $p = 0.5$.
+
+- We can produce a picture of the box model modelling $H_{0}$ (Ext).
+
+```{r, results='hide'}
+library("DiagrammeR")
+  
+DiagrammeR::grViz(" 
+digraph rmarkdown {
+  
+graph [fontsize = 16, fontname = Arial, nodesep = .1, ranksep = .8]
+node [fontsize = 16, fontname = Arial, fontcolor = White]
+edge [fontsize = 12, fontname = Arial, width = 2]
+
+Box [shape=oval,style=filled, color=SteelBlue3,width=5, label='1    0']
+
+Sample [shape=oval, style=filled, color=SteelBlue2, label='']
+
+Box -> Sample [label='   n draws']
+
+}
+")
+detach(package:DiagrammeR)
+```
+
+- Now simulate draws from the box, and compare to your sample. Here, suppose that $n=20$, and choose a simulation size of 100.
+
+```{r, results='hide', fig.show='hide', warning=F}
+set.seed(1)
+
+# Define box (modelling Ho)
+box=c(0,1)
+
+# # Simulate 100 samples of size 20 from the box
+totals = replicate(100, sum(sample(box, 20, rep = T)))
+table(totals)
+hist(totals)
+```
+
+<br> 
+
+## Unbalanced box
+
+- We want to test $H_{0}$: $p = 0.2$.
+
+- We can produce a picture of the box model modelling $H_{0}$ (Ext).
+
+```{r, results='hide', warning=F}
+library("DiagrammeR")
+  
+DiagrammeR::grViz(" 
+digraph rmarkdown {
+  
+graph [fontsize = 16, fontname = Arial, nodesep = .1, ranksep = .8]
+node [fontsize = 16, fontname = Arial, fontcolor = White]
+edge [fontsize = 12, fontname = Arial, width = 2]
+
+Box [shape=oval,style=filled, color=SteelBlue3,width=5, label='100p x 1    100(1-p) x 0']
+
+Sample [shape=oval, style=filled, color=SteelBlue2, label='']
+
+Box -> Sample [label='   n draws']
+
+}
+")
+detach(package:DiagrammeR)
+```
+
+- Now simulate draws from the box, and compare to your sample. Here, suppose that $n=30$, and choose a simulation size of 1000
+
+```{r, results='hide', fig.show='hide', warning=F}
+set.seed(1)
+
+# Define box (modelling Ho)
+box=c(0,1)
+
+# Simulate 1000 samples of size 30 from the box
+totals = replicate(1000, sum(sample(box, 30, prob=c(0.8,0.2), rep = T)))
+table(totals)
+hist(totals)
+```
+
+<br><br>

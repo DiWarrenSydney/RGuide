@@ -1,0 +1,150 @@
+# Simulate chance variability (box model) {#boxmodel}
+
+Suppose we have a "box" (or population) containing 0 and 1, from which we draw 10 times creating a sample. We have formal theory which gives the expected value (EV) and standard error (SE) of both the Sample Sum (sum of the sample values and Sample Mean (mean of the sample values).
+
+|Focus|EV|SE|
+|---------|---------------|-----------------|
+|Sample Sum| number of draws * mean of box  |$\sqrt{\mbox{number of draws}}$ * SD of box |
+|Sample Mean| mean of box  |$\frac{SD}{\sqrt{\mbox{number of draws}}}$|
+
+<br>
+
+## Draw the box model in R (Ext)
+
+- What matters most is being able to draw a box model by hand. But below is some code for those who are interested.
+
+- Install the package `DiagrammeR`. If you have trouble installing, you can just use it on the uni labs.
+
+- Draw a box model in R.
+
+```{r, fig.height=3, results='hide', warning=F}
+library("DiagrammeR")
+
+grViz(" 
+  digraph CFA {
+
+  # All
+  node [fontname = Helvetica, fontcolor = White]
+
+    # Box
+    node [shape = box, style=filled, color=SteelBlue4, width=2 label='0  1'][fillcolor = SteelBlue4]
+    a ; 
+
+    # Sample
+    node [shape = circle, style=filled, color=IndianRed, width=0.5, label='-'][fillcolor = IndianRed]
+    b ; 
+
+    # Draws
+    a -> b [fontname = Helvetica,label = '10 draws',fontsize=8]
+    b -> a  [fontname = Helvetica,color=grey,arrowsize = 0.5]
+  }
+
+")
+```
+
+- Define the box (mean, SD).
+
+```{r, results='hide'}
+box=c(0,1) # Define the box
+n = 10  # Define the sample size (number of draws)
+
+# mean & SD of box
+meanbox=mean(box)
+library(multicon)
+sdbox=popsd(box)
+
+# Other calculations of the population SD.
+
+# (1) RMS formula
+sqrt(mean((box - mean(box))^2))
+
+# (2) short cut for binary box
+(max(box) - min(box)) * sqrt(length(box[box == max(box)]) * length(box[box == 
+    min(box)])/length(box)^2)
+```
+
+<br>
+
+## Sample Sum (EV & SE)
+
+```{r, results='hide'}
+# EV & SE of Sample Sum
+n * meanbox  # EV
+sqrt(n) * sdbox  # SE
+```
+
+<br>
+
+## Simulate the Sample Sum
+
+```{r, fig.height=3, results='hide', fig.show='hide'}
+set.seed(1)
+totals = replicate(20, sum(sample(box, 10, rep = T)))
+table(totals)
+mean(totals)
+sd(totals)
+hist(totals)
+```
+
+How do the simulations compare to the exact results?
+
+<br>
+
+
+## Use Normal model for Sample Sum
+
+- What is the chance that the sample sum is between 4 and 5?
+
+- Draw the curve (Ext).
+
+```{r, fig.height=3, results='hide', fig.show='hide'}
+m = n * meanbox
+s = sqrt(n) * sdbox
+threshold1 = 4
+threshold2 = 5
+xlimits1=seq(round(-4*s+m, digit=-1),round(4*s+m, digit=-1),1)
+curve(dnorm(x, mean=m, sd=s), m-4*s,m+4*s, col="indianred", lwd=2, xlab="", ylab="", main ="P(sum is between 4 and 5)",axes=F)
+sequence <- seq(threshold1, threshold2, 0.1)
+polygon(x = c(sequence,threshold2,threshold1),
+        y = c(dnorm(c(sequence),m,s),0,0),
+        col = "indianred")
+axis(1,xlimits1,line=1,col="black",col.ticks="black",col.axis="black")
+mtext("sum of box",1,line=1,at=-2,col="black")
+axis(1,xlimits1,labels=round((xlimits1-m)/s,2),line=3.3,col="indianred1",col.ticks="indianred1",col.axis="indianred1")
+mtext("Z score",1,line=3.3,at=-2,col="indianred1")
+```
+
+- Find the chance.
+
+```{r, fig.height=3, results='hide'}
+m = n * meanbox  # Use EV as the mean of the Normal
+s = sqrt(n) * sdbox   # Use SE as the SD of the Normal
+pnorm(5, m, s)-pnorm(4, m, s)
+```
+
+<br> 
+
+
+## Sample Mean (EV & SE)
+
+```{r, results='hide'}
+# EV & SE of Sample Mean
+meanbox  # EV
+sdbox/sqrt(n)  # SE
+```
+
+<br>
+
+## Use Normal model for Sample Mean
+
+- What is the chance that the sample mean is between 0.4 and 0.6?
+
+- Find the chance.
+
+```{r, fig.height=3, results='hide'}
+m = meanbox  # Use EV as the mean of the Normal
+s = sdbox/sqrt(n)  # Use SE as the SD of the Normal
+pnorm(0.6, m, s)-pnorm(0.4, m, s)
+```
+
+<br><br>

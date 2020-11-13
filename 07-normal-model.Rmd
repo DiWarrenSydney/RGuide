@@ -1,0 +1,90 @@
+# Normal model {#normalmodel}
+
+<br>
+
+## Plot curve
+
+- To plot a normal curve, we use `dnorm' for a range of $x$ values.
+
+```{r,results='hide', fig.show='hide'}
+par(mfrow=c(1,2)) # plots 2 plots on same row
+curve(dnorm(x),-1,1)
+curve(dnorm(x),-5,5)
+```
+
+When does the Normal curve start to disappear?
+
+<br>
+
+## Plot area under curve (Ext)
+
+- To plot an area under the curve, we use `polygon`.
+
+```{r,results='hide', fig.height=4, fig.show='hide'}
+curve(dnorm(x), xlim = c(-2, 2),ylab="",axes=FALSE)
+abline(h = 0)
+sequence = seq(-2, 0.8, 0.1)
+polygon(x = c(sequence,0.8,-2),
+        y = c(dnorm(c(sequence)),0,0),
+        col = "purple")
+axis(1, at=c(-2,-1,0,0.8,1,2), pos=0)
+```
+
+<br>
+
+## Add normal to a histogram
+
+```{r,results='hide', fig.show='hide'}
+hist(mtcars$wt,prob=T)
+m=mean(mtcars$wt)
+s=sd(mtcars$wt)
+curve(dnorm(x, mean=m, sd=s), 
+col="darkgreen", lwd=2, add=TRUE)
+```
+
+<br>
+
+## Probabilities: Standard normal
+
+### Lower tail
+
+To calculate P(Z < 0.8) use `pnorm`.
+
+```{r,results='hide'}
+pnorm(0.8)
+```
+
+<br>
+
+### Upper tail
+
+To calculate P(Z > 0.8):
+
+```{r,results='hide'}
+pnorm(0.8,lower.tail=F)
+1-pnorm(0.8)
+```
+
+<br>
+
+
+### Interval
+
+To calculate P(0.3 < Z < 0.7):
+
+```{r,results='hide'}
+pnorm(0.7)-pnorm(0.3)
+```
+
+<br>
+
+## Probabilities: General normal
+
+If $X \sim N(5, 4^2)$, then to calculate P(X < 8), we use `pnorm(8,mean,sd)`.
+
+```{r,results='hide'}
+pnorm(8,mean=5,sd=4)
+pnorm(8,5,4)
+```
+
+<br>

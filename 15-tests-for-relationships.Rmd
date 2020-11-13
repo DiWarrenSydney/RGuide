@@ -1,0 +1,349 @@
+# Tests for relationships {#testsforrelationships}
+
+<br>
+
+## More t-tests
+
+The choice of the t-test depends both on the design of the experiment and the nature of the data.
+
+|Type|Context|Data|
+|--------|---------------------------|-------------|
+|1 sample t-test|Consider 1 population with unknown mean|1 sample|
+|1 sample t-test (paired data)|Compare 2 dependent samples (eg Before and After treatment)|1 sample of differences|
+|2 sample t-test|Compare 2 populations with unknown means|2 independent samples|
+
+<!-- TThere are two assumptions we need to consider. Firstly, whether the data is normally distributed and secondly whether the variance is equal between the two sample populations.
+
+Think about why the data must be normally distributed and why the variances need to be equal?
+--->
+
+- The `t.test` command in R allows you to perform different 1 and 2 sample t-tests, by specifying different arguments.
+    - *paired*
+    - *var.equal* 
+    - *alternative* - We use this to specify if we are doing a 1 sided or 2 sided test (based on hypotheses). We will mostly focus on the 2 sided alternative.
+
+```{r}
+help(t.test)
+```
+
+<br>
+
+### Sleep data zzzzzzz
+
+- Let's consider the `sleep` data provided in R. 
+
+```{r, hidden='true', eval=F}
+help(sleep)
+dim(sleep)
+class(sleep)
+head(sleep)
+```
+
+- The dataset `sleep` represents the effect of 2 soporific drugs ("group") on sleep time compared to a control (drug - no drug). 
+
+<br>
+
+### 2 sample t-test
+
+- Initially we are going to ignore the ID column (which shows patients trialed both drugs) and assume that the 2 groups are independent.  ie That drug1 was administered to 10 patients and drug2 was administered to 10 different patients.
+
+- **H: Hypotheses** 
+
+    - Let $\mu_1$ = mean net sleep of study participants taking drug1, and $\mu_2$ = mean net sleep of study participants taking drug2.
+
+    - $H_{0}$ : There is no difference between the 2 drugs: $\mu_1=\mu_2$.
+    
+    - $H_{1}$ : There is a difference betwen the 2 drugs: $\mu_1 \neq \mu_2$. 
+    
+- Being a medical study we are going to consider a more conservative significance level of  $\alpha = 0.01$.
+
+- **A: Assumptions** We assume the 2 samples are independent, and the 2 populations are both Normally distributed with the same SD.
+
+- **T & P: Test statistic and P-value**
+
+```{r, hidden='true', eval=F}
+t.test(extra~group, data = sleep, var.equal = TRUE, conf.level = 0.99)
+```
+
+- **C: Conclusion**
+    - Statistical conclusion:  The p-value is = 0.07919 > 0.01. Furthermore, 0 is contained within the confidence intervals. Therefore we retain our null hypothesis.
+
+    - Scientific conclusion: The data seems consistent with no difference in sleep time between patients taking drug1 and drug2.
+
+<br>
+
+- Note: If we had found the spread of the 2 samples were significantly different from each other, we would have performed a 2 sample t-test for unequal variances (Welch 2 sample t-test) in this case we set the argument 'var.equal = FALSE'
+
+```{r, hidden='true', eval=F}
+t.test(extra~group, data = sleep, var.equal = FALSE, conf.level = 0.99)
+```
+
+- In this case, we see that the result is "similar" to the equal variance test. In fact many stats guru's argue that you can almost [always use Welch's test](http://daniellakens.blogspot.com.au/2015/01/always-use-welchs-t-test-instead-of.html) except when the sample size is really small. 
+
+
+
+<br>
+
+### 1 sample t-test (paired data)
+
+- Looking at the description of the `sleep` dataset we can see that the data is actually NOT independent. 
+
+- Sleep was measured in 10 patients who were given both drug1 and drug2 at different times. A [crossover study](https://en.wikipedia.org/wiki/Crossover_study) is a typical experimental design that would generate this type of data. When we only have 2 treatments, we call this paired data. 
+
+- Therefore we need to perform a  1 sample t-test for paired data: a "paired t-test". This is the same as a  1 sample t-test on the difference between the two treatments (i.e. drug1 - drug2). Therefore the assumptions for this test are equivalent to those for a  1 sample t-test (ie the data must be approximately normally distributed).
+
+```{r, hidden='true',eval=F}
+sleep_diff <- sleep$extra[sleep$group == 1]-sleep$extra[sleep$group == 2]
+qqnorm(sleep_diff)
+qqline(sleep_diff)
+boxplot(sleep_diff)
+```
+
+- The normal quantile-quantile plot and the boxplot show that there may be an outlier in the dataset. 
+
+- However, for the purpose of this analysis and keeping in mind that these tests are reasonably robust to non-normal data, we will go ahead and test the data. 
+
+```{r, hidden='true', eval=F}
+t.test(extra~group, data = sleep, paired = T)
+```
+
+- The p-value is <0.05 and zero is not contained within the confidence intervals. Therefore we reject the null hypothesis and conclude that there is a significant difference in extra sleep hours between the 2 drugs. Looking at the earlier boxplot, we see that drug2 is more effective in inducing extra sleep than drug1.
+
+- Note: this demonstrates how important it is to use the correct analysis as this conclusion is different to when the 2 samples were assumed to be independent.
+
+<br>
+
+## Chi-squared tests *
+
+- Chi-squared tests are used for qualitative data.
+
+- Qualitative data is divided into groups, like hair colour or gender. Even height and income can be analysed as qualitative data, if the quantitative data (eg 165cm, 170cm) is grouped into intervals (eg 150-160cm, 160-170cm, 170-180cm).
+
+- The Pearson's chi-squared test is a very versatile test which compares the observed frequencies over the categories with the observed frequencies over the categories, under some model (null hypothesis).
+
+    - Test the goodness of fit of a model for the categories of 1 variable. (Eg: This is similar to the Shapiro-Wilks test for normality).
+    
+    - Test for independence of 2 variables
+    
+    - Test for homogeneity of 2 variables
+
+- The test is done quickly in R using `chisq.test`.
+
+
+<br>
+
+### Goodness of Fit Test (1 variable)
+
+- Two tomato varieties (dominant tall cut-leaf tomatoes and dwarf potato-leaf tomatoes) were genetically crossed, yielding 1006 offspring. 
+
+- According to genetic theory, the 4 phenotypes should occur with an approximate ratio of 9:3:3:1.
+
+- Therefore we would expect:
+    - 9/16 $\times$ 1611 Tall cut-leaf plants = 906.1875
+    - 3/16 $\times$ 1611 Tall potato-leaf = 302.0625
+    - 3/16 $\times$ 1611 Dwarf cut-leaf = 302.0625
+    - 1/16 $\times$ 1611 Dwarf potato-leaf = 100.6875
+
+- **H: Hypotheses**
+    - $H_0$: $p_1=9/16$; $p_2=3/16$; $p_3=3/16$; $p_4=1/16$, where $p_{i}$ = expected proportion in category $i$.
+    - $H_1$: at least one proportion is not equal to the expected proportion.
+
+- **Data**
+
+Phenotype|Observed frequency|Expected frequency|O-E|(O-E)^2/E
+---|---|---|---|---
+Tall cut-leaf|926|906.1875|19.8125|0.4332
+Tall potato-leaf|288|302.0625|-14.0625|0.6547
+Dwarf cut-leaf|293|302.0625|-9.0625|0.2719
+Dwarf potato-leaf|104|100.6875|3.3125|0.1090
+Total|1611|1611|0|1.4688
+
+- **T,P&C**
+
+    - The test statistic is $\chi^2$=1.4688 with degrees of freedom 4-1 = 3. The p-value is 0.69.
+
+```{r, warning=F, eval=F}
+pchisq(1.4688,3,lower.tail=F)
+```
+
+Note: we are only interested in the upper tail probability. As the p-value is 0.6895, we retain the null hypothesis and conclude that the model proposed by genetic theory fits the genetic outcome well.
+
+- **The speedy way** 
+  
+```{r,eval=F}
+observedfreq = c(926,288,293,104)  # observed frequencies
+expectedprop = c(9/16,3/16,3/16,1/16)  # expected proportions
+
+chisq.test(x = observedfreq,
+           p = expectedprop)
+```
+
+
+
+<br>
+
+### Test for independence (2 variables; 1 sample)
+
+- Is age independent of the desire to ride a bicycle? 
+- A random sample of 395 people were surveyed. Each person was asked their interest in riding a bicycle (yes/no) and their age (age group). The data that resulted from the survey is summarized in the following table:
+
+Observed|18-24|25-34|35-49|50-64|Total
+---|---|---|---
+Yes|60|54|46|41|201
+No|40|44|53|57|194
+Total|100|98|99|98|395
+
+- The research question is: Is the desire to ride a bicycle dependent on the age group?
+
+- **H: Hypotheses**
+
+    - $H_0$ = Age is independent of desire to ride a bicycle.
+
+    - $H_1$ = Desire to ride a bicycle is dependent on age. 
+  
+- **Data**
+
+```{r,hidden=T,eval=F}
+Bicycle <- matrix(c(60,54,46,41,40,44,53,57), nrow = 2, ncol = 4, byrow = TRUE, dimnames = list(c("Yes", "No"), c("18-24", "25-34", "35-49", "50-64")))
+Bicycle
+chisq.test(Bicycle)
+```
+
+- **T&P**
+    - From the output, the test statistic is 8.0061.
+    
+    - The p-value is 0.04589 (just less than 0.05) there is evidence against $H_0$, so it appears the desire to ride a bicycle is dependent on age group. 
+  
+- **Interpret further**
+
+    - We can look at the mosaic plot with shading to help interpret this.
+
+```{r, hidden=T,eval=F}
+mosaicplot(Bicycle, shade = TRUE, las=1)
+```
+
+Note: There is no shading, but we see that the boxes are slightly bigger than expected for the "yes" answer in the youngest group and slightly bigger than expected for the "no" answer in the oldest group. This suggests that cyling is more popular with younger people.
+
+<br>
+
+### 2. Test for Homogeneity (2 variables; 2 samples) 
+
+- The test for homogeneity looks the same as the test for independence, but instead of testing whether 2 qualitative variables on 1 sample are independent, we test whether 2 samples have the same proportions and so suggest the same population.
+
+<!--
+Though they use the same test, points 2 and 3 are harder to seperate: in a nutshell, the difference is in how the data was collected. If we sample a population (ENVX1002 & DATA1001 students) at random and recorded certain traits like education level versus political affiliation, we consider a test for independence. When test for homogeneity we are testing whether the distributions of frequencies of political affiliation of two independent random samples, say a random sample from 50 females and a random sample from 50 males, are the same.
+
+The hypothesis for the test for homgeneity is:
+
+$H_0$ = proportions are the same (p1= p2= p3= .).
+
+$H_1$ = at least one proportion is different the stated proportions.
+
+The hypothesis for the test for independence is:
+
+$H_0$ = there is no association between the two variables ( independent) .
+
+$H_1$ = there is an association between the two variables. 
+
+As with the t-test, the $(\chi^2)$ has some assumptions
+
+1. The data must be independent (not paired such as before and after treatment white blood cell counts in a patient). This is guarenteed if a simple random sampling design is used.
+2. The sample size should be reasonably large. Importantly, no more than 20% of the cell frequencies can be less than 5 and none can be zero. If this assumption is violated we need to either a. combine categories or, b. perform a Fisher's exact test.
+
+-->
+
+- The head surgeon at the University of Sydney medical center was concerned that trainee (resident) physicians were applying blood transfusions at a different rate than attending physicians. 
+
+- Therefore, she ordered a study of the 49 attending physicians and 71 residents. For each of the 120 physicians, the number of blood transfusions prescribed unnecessarily in a one-year period was recorded. The number of uneccessary blood transfusions was grouped into four groups: Frequently, Occasionally, Rarely, or Never. 
+
+- The contingency table is given below:
+
+Physician|Frequent|Occasionally|Rarely|Never|Total
+---|---|---|---|---|---|
+Attending|2|3|31|13|49
+Resident|15|28|23|5|71
+Total|17|31|54|18|120
+
+- The research question is: Are the number of unecessary blood transfusions distributed equally amongst attending physicians and resident physicians?
+
+- **H**
+    - $H_0$ = $p_{resFreq}=p_{attFreq}$ and $p_{resOcc}=p_{attOcc}$ and $p_{resRar}=p_{attRar}$ and $p_{resNev}=p_{attNev}$
+
+    - $H_1$ = at least one of the proportions is not equal
+
+- **Data,T,P&C**
+
+```{r, hidden=T,eval=F}
+BloodT <- matrix(c(2,3,31,13,15,28,23,5), nrow = 2, ncol = 4, byrow = TRUE, dimnames = list(c("Attending", "Resident"), c("Frequent", "Occasionally", "Rarely", "Never")))
+BloodT
+chisq.test(BloodT)
+```
+
+Note: The p-value is very small, therefore we reject the null hypothesis and conclude that at least one of the proportions is not equal. 
+ 
+- **Interpret further**
+ 
+    - To get a "rough" idea of which of the proportions are not equal we can take a look at the mosaic plot. 
+    
+    ```{r, hidden=T,eval=F}
+mosaicplot(BloodT, shade = TRUE, las=1)
+```
+    - Note: the mosaic plot also shows the standardised residuals which are calculated as follows: $\frac{\mbox{Observed Frequency - Expected Frequency}}{\sqrt{\mbox{Expected Frequency}}}$ 
+    
+    - Note: The Attending physicians have less counts than expected in the "Occasional" group and the Resident (training) physicians have more than expected in the "Occasional" group. Furthermore, the Attending physicians have more counts than expected in the "Never" group.
+
+<br>
+
+**Mosaic Plot: Residuals**
+
+As a general rule of thumb:
+
+- If the residual is less than -2: the cell's observed frequency is less than the expected frequency.
+
+- If the residual is greater than 2: the observed frequency is greater than the expected frequency.
+
+- The `shade = TRUE` argument demonstrates our rule of thumb using colours on the mosaic plot. The blue indicates more counts than expected (>2) and the red indicates less counts than expected (<-2).
+
+  
+
+<br>
+
+## Regression test *
+
+- Earlier, we considered a linear model.
+
+```{r,results='hide'}
+L = lm(mtcars$wt~mtcars$mpg)
+```
+
+- Now we use this output to perform a hypothesis test.
+
+- **H**
+    - $H_0:  \beta_1=0$ [Or: There is not a linear trend.]
+    - $H_0:  \beta_1 \neq 0$ [Or: There is a linear trend.]
+
+- **A**
+
+(1) The residuals should be independent, normal, with constant variance (homoscedasicity). Check: Residual Plot
+    
+```{r,results='hide', fig.show='hide'}
+lm(mtcars$wt~mtcars$mpg)
+plot(mtcars$mpg,L$residuals, xlab = "mpg", ylab = "Residuals")
+abline(h = 0, col = "blue")
+```
+
+(2) The relationship between the dependent and independent variable should look linear. Check; Scatter Plot
+    
+```{r,results='hide',fig.show='hide'}
+plot(mtcars$mpg, mtcars$wt)
+```
+ 
+- **T,P&C**
+
+```{r,results='hide'}
+summary(L)
+```
+
+The test statistic for slope is -9.559 with p-value 1.29e-10. Hence we strongly reject $H_{0}$ and conclude that a linear model seems very appropriate for weight on mpg.
+
+<br><br>

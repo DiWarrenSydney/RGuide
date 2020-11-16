@@ -35,7 +35,7 @@ qqline(mtcars$wt, col = "blue")
 
 <br>
 
-(3) Test usin the **Shapiro-Wilks Test**
+(3) Test using the **Shapiro-Wilks Test**
 
 - Warning! [The Shapiro-Wilks normality test](https://academic.oup.com/biomet/article-abstract/52/3-4/591/336553?redirectedFrom=fulltext) is sensitive to sample size. Small samples will nearly always pass normality tests. Therefore, it is recomended to use both visual inspection and a significance test to decide whether a dataset is normally distributed.
 

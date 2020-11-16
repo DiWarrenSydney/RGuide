@@ -13,7 +13,7 @@ The numerical summary must match up with the type of variable(s).
 <br>
 We'll keep working with the `mtcars` dataset.
 So again remind yourself what it is like.
-```{r,fig.show='hide'}
+```{r,eval = T}
 str(mtcars)
 dim(mtcars)
 head(mtcars)

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6500 64-bit) (preloaded format=xelatex 2020.11.10)  16 NOV 2020 12:18
 entering extended mode
 **./RGuide_Bookdown.tex
@@ -17,10 +18,32 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \c@subparagraph=\count84
 \c@figure=\count85
 \c@table=\count86
+=======
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.10.28)  15 NOV 2020 15:43
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**RGuide_Bookdown.tex
+(./RGuide_Bookdown.tex
+LaTeX2e <2018-12-01>
+(/Users/cosettesaunders/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
+(/Users/cosettesaunders/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+>>>>>>> c2722e0e60b92a0f5495aea064c26675b4f1b50b
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
-) ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\lmodern.sty"
+) (/Users/cosettesaunders/Library/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
 Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
@@ -54,31 +77,43 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
-) ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
+)
+(/Users/cosettesaunders/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.s
+ty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
+
+(/Users/cosettesaunders/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.
+sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \@emptytoks=\toks14
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
-Package: amsmath 2017/09/02 v2.17a AMS math features
+))
+(/Users/cosettesaunders/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.st
+y
+Package: amsmath 2018/12/01 v2.17b AMS math features
 \@mathmargin=\skip43
 For additional information on amsmath, use the `?' option.
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+
+(/Users/cosettesaunders/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.st
+y
 Package: amstext 2000/06/29 v2.01 AMS text
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+
+(/Users/cosettesaunders/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks15
 \ex@=\dimen103
-)) ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+))
+(/Users/cosettesaunders/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen104
-) ("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+)
+(/Users/cosettesaunders/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
+<<<<<<< HEAD
 \inf@bad=\count87
 LaTeX Info: Redefining \frac on input line 213.
 \uproot@=\count88
@@ -96,6 +131,25 @@ LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \macc@depth=\count92
 \c@MaxMatrixCols=\count93
+=======
+\inf@bad=\count88
+LaTeX Info: Redefining \frac on input line 223.
+\uproot@=\count89
+\leftroot@=\count90
+LaTeX Info: Redefining \overline on input line 385.
+\classnum@=\count91
+\DOTSCASE@=\count92
+LaTeX Info: Redefining \ldots on input line 482.
+LaTeX Info: Redefining \dots on input line 485.
+LaTeX Info: Redefining \cdots on input line 606.
+\Mathstrutbox@=\box27
+\strutbox@=\box28
+\big@size=\dimen105
+LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
+\macc@depth=\count93
+\c@MaxMatrixCols=\count94
+>>>>>>> c2722e0e60b92a0f5495aea064c26675b4f1b50b
 \dotsspace@=\muskip10
 \c@parentequation=\count94
 \dspbrk@lvl=\count95
@@ -114,13 +168,18 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \multlinegap=\skip44
 \multlinetaggap=\skip45
 \mathdisplay@stack=\toks19
-LaTeX Info: Redefining \[ on input line 2817.
-LaTeX Info: Redefining \] on input line 2818.
-) ("C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+LaTeX Info: Redefining \[ on input line 2844.
+LaTeX Info: Redefining \] on input line 2845.
+)
+(/Users/cosettesaunders/Library/TinyTeX/texmf-dist/tex/generic/ifxetex/ifxetex.
+sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
-) ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty"
+)
+(/Users/cosettesaunders/Library/TinyTeX/texmf-dist/tex/generic/oberdiek/ifluate
+x.sty
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
+<<<<<<< HEAD
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\unicode-math\unicode-math.sty"
 Package: unicode-math 2017/11/18 v0.8i Unicode maths in XeLaTeX and LuaLaTeX
 ("C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\expl3.sty"
@@ -690,27 +749,20 @@ Package ifvtex Info: VTeX not detected.
 Package: hyperref 2017/03/14 v6.85a Hypertext links for LaTeX
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty"
 Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+=======
+) (/Users/cosettesaunders/Library/TinyTeX/texmf-dist/tex/latex/base/fixltx2e.st
+y
+Package: fixltx2e 2016/12/29 v2.1a fixes to LaTeX (obsolete)
+Applying: [2015/01/01] Old fixltx2e package on input line 46.
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty"
-Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
-Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
-Package hobsub Info: Skipping package `infwarerr' (already loaded).
-Package hobsub Info: Skipping package `ltxcmds' (already loaded).
-Package hobsub Info: Skipping package `ifluatex' (already loaded).
-Package hobsub Info: Skipping package `ifvtex' (already loaded).
-Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
-Package hobsub Info: Skipping package `ifpdf' (already loaded).
-Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
-Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-Package hobsub Info: Skipping package `pdftexcmds' (already loaded).
-Package hobsub Info: Skipping package `pdfescape' (already loaded).
-Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
+Package fixltx2e Warning: fixltx2e is not required with releases after 2015
+(fixltx2e)                All fixes are now in the LaTeX kernel.
+(fixltx2e)                See the latexrelease package for details.
+>>>>>>> c2722e0e60b92a0f5495aea064c26675b4f1b50b
+
+Already applied: [0000/00/00] Old fixltx2e package on input line 53.
 )
+<<<<<<< HEAD
 Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
 Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
 )
@@ -892,10 +944,15 @@ Package graphics Info: Driver file: xetex.def on input line 99.
 Package: grffile 2016/05/16 v1.17 Extended file name support for graphics (HO)
 
 Package grffile Warning: \Gread@QTm of xetex.def not found on input line 259.
+=======
+>>>>>>> c2722e0e60b92a0f5495aea064c26675b4f1b50b
 
+! LaTeX Error: File `unicode-math.sty' not found.
 
-Package grffile Warning: Unsupported \Gread@eps not patched on input line 303.
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
 
+<<<<<<< HEAD
 Package grffile Info: Option `multidot' is set to `true'.
 Package grffile Info: Option `extendedchars' is set to `false'.
 Package grffile Info: Option `space' is set to `true'.
@@ -1296,3 +1353,21 @@ Here is how much of TeX's memory you used:
  59i,9n,119p,10403b,436s stack positions out of 5000i,500n,10000p,200000b,50000s
 
 Output written on RGuide_Bookdown.pdf (36 pages).
+=======
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.15   \defaultfontfeatures
+                           {Ligatures=TeX,Scale=MatchLowercase}^^M 
+Here is how much of TeX's memory you used:
+ 1134 strings out of 494894
+ 13652 string characters out of 6175662
+ 72787 words of memory out of 5000000
+ 5109 multiletter control sequences out of 15000+600000
+ 3648 words of font info for 15 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 27i,0n,27p,240b,40s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+No pages of output.
+>>>>>>> c2722e0e60b92a0f5495aea064c26675b4f1b50b

@@ -113,7 +113,7 @@ t.test(extra~group, data = sleep, paired = T)
 
 <br>
 
-## Chi-squared tests *
+## Chi-squared tests **
 
 - Chi-squared tests are used for qualitative data.
 
@@ -226,7 +226,7 @@ Note: There is no shading, but we see that the boxes are slightly bigger than ex
 
 <br>
 
-### 2. Test for Homogeneity (2 variables; 2 samples) 
+### Test for Homogeneity (2 variables; 2 samples) 
 
 - The test for homogeneity looks the same as the test for independence, but instead of testing whether 2 qualitative variables on 1 sample are independent, we test whether 2 samples have the same proportions and so suggest the same population.
 
@@ -308,7 +308,7 @@ As a general rule of thumb:
 
 <br>
 
-## Regression test *
+## Regression test
 
 - Earlier, we considered a linear model.
 

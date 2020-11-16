@@ -114,7 +114,7 @@ t.test(mtcars$mpg, mu = 23.6)
 
 <br>
 
-## 1 sample Z-Test (Ext)
+## 1 sample Z-Test**
 
 - The $Z$-Test is not in base R. This is because the $Z$-Test requires us to know the population variance $\sigma$. Hence the  $t$-Test is much more common. 
 - However, we could create a function called `z.test` ourselves.

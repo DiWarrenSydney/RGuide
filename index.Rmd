@@ -5,6 +5,9 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
+    config:
+      toc:
+        collapse: section
     includes:
       in_header: header.html
 link-citations: yes

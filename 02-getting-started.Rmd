@@ -160,7 +160,7 @@ RMarkdown is a clever document/file which can save all your Rcode and comments i
 - Suppose you try and knit your .Rmd, only to face the error below:
 
 `Error in library(somepackage) : 
-  there is no package called âsomepackageâ`
+  there is no package called somepackage
   
 (Note, of course, `somepackage` is being used as a place holder here! Replace with the name of the actual package that is missing). 
  

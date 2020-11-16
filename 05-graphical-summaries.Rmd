@@ -135,7 +135,7 @@ What do you learn about the weights of cars?
 ## Mosaicplot
 
 A mosaic plot visualises 2 qualitative variables.
-```{r,results='hide'}
+```{r, eval = T}
 counts2 = table(mtcars$gear, mtcars$am)  # Produces contingency table
 plot(counts2) # Produces mosaic plot from contingency table
 ```
@@ -302,7 +302,7 @@ p + geom_point(aes(colour = cyl)) + scale_colour_gradient(low = "blue")  # Colou
 
 - Produce this scatter plot. Notice what happens when you hover over the data points.
 
-```{r,fig.show='hide',message=F, warning=F}
+```{r,eval = T,message=F, warning=F}
 library("plotly")
 p1 = plot_ly(mtcars, x = ~mpg, y = ~wt, type="scatter") 
 p1
@@ -310,7 +310,7 @@ p1
 
 - Now add another variable.
 
-```{r,fig.show='hide',message=F, warning=F}
+```{r,eval = T,message=F, warning=F}
 p2 = plot_ly(mtcars, x = ~mpg, y = ~wt, symbol = ~cyl, type="scatter") 
 p2
 p3 = plot_ly(mtcars, x = ~mpg, y = ~wt, color = ~cyl, type="scatter") 
@@ -321,7 +321,7 @@ p4
 
 - Try a boxplot.
 
-```{r,fig.show='hide',message=F, warning=F}
+```{r,eval = T,message=F, warning=F}
 library("plotly")
 p5 = plot_ly(mtcars, x = ~mpg, y = ~factor(cyl), type='box') 
 ```

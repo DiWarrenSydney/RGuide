@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 15 Tests for relationships | RGuide</title>
+  <meta name="description" content="Teach yourself R in DATA1001/DATA1901" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 15 Tests for relationships | RGuide" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Teach yourself R in DATA1001/DATA1901" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 15 Tests for relationships | RGuide" />
+  
+  <meta name="twitter:description" content="Teach yourself R in DATA1001/DATA1901" />
+  
+
+<meta name="author" content="DATA1001/DATA1901" />
+
+
+<meta name="date" content="2020-11-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="testformean.html"/>
+<link rel="next" href="morerelationships.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+<script>
+/* ========================================================================
+ * Bootstrap: transition.js v3.3.7
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      WebkitTransition : 'webkitTransitionEnd',
+      MozTransition    : 'transitionend',
+      OTransition      : 'oTransitionEnd otransitionend',
+      transition       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+
+    return false // explicit for ie8 (  ._.)
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false
+    var $el = this
+    $(this).one('bsTransitionEnd', function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    setTimeout(callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+
+    if (!$.support.transition) return
+
+    $.event.special.bsTransitionEnd = {
+      bindType: $.support.transition.end,
+      delegateType: $.support.transition.end,
+      handle: function (e) {
+        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+      }
+    }
+  })
+
+}(jQuery);
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: collapse.js v3.3.7
+ * http://getbootstrap.com/javascript/#collapse
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+/* jshint latedef: false */
+
++function ($) {
+  'use strict';
+
+  // COLLAPSE PUBLIC CLASS DEFINITION
+  // ================================
+
+  var Collapse = function (element, options) {
+    this.$element      = $(element)
+    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    this.transitioning = null
+
+    if (this.options.parent) {
+      this.$parent = this.getParent()
+    } else {
+      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+    }
+
+    if (this.options.toggle) this.toggle()
+  }
+
+  Collapse.VERSION  = '3.3.7'
+
+  Collapse.TRANSITION_DURATION = 350
+
+  Collapse.DEFAULTS = {
+    toggle: true
+  }
+
+  Collapse.prototype.dimension = function () {
+    var hasWidth = this.$element.hasClass('width')
+    return hasWidth ? 'width' : 'height'
+  }
+
+  Collapse.prototype.show = function () {
+    if (this.transitioning || this.$element.hasClass('in')) return
+
+    var activesData
+    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
+
+    if (actives && actives.length) {
+      activesData = actives.data('bs.collapse')
+      if (activesData && activesData.transitioning) return
+    }
+
+    var startEvent = $.Event('show.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    if (actives && actives.length) {
+      Plugin.call(actives, 'hide')
+      activesData || actives.data('bs.collapse', null)
+    }
+
+    var dimension = this.dimension()
+
+    this.$element
+      .removeClass('collapse')
+      .addClass('collapsing')[dimension](0)
+      .attr('aria-expanded', true)
+
+    this.$trigger
+      .removeClass('collapsed')
+      .attr('aria-expanded', true)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse in')[dimension]('')
+      this.transitioning = 0
+      this.$element
+        .trigger('shown.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+    this.$element
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
+  }
+
+  Collapse.prototype.hide = function () {
+    if (this.transitioning || !this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('hide.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var dimension = this.dimension()
+
+    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
+
+    this.$element
+      .addClass('collapsing')
+      .removeClass('collapse in')
+      .attr('aria-expanded', false)
+
+    this.$trigger
+      .addClass('collapsed')
+      .attr('aria-expanded', false)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.transitioning = 0
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse')
+        .trigger('hidden.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    this.$element
+      [dimension](0)
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+  }
+
+  Collapse.prototype.toggle = function () {
+    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+  }
+
+  Collapse.prototype.getParent = function () {
+    return $(this.options.parent)
+      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
+      .each($.proxy(function (i, element) {
+        var $element = $(element)
+        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
+      }, this))
+      .end()
+  }
+
+  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+    var isOpen = $element.hasClass('in')
+
+    $element.attr('aria-expanded', isOpen)
+    $trigger
+      .toggleClass('collapsed', !isOpen)
+      .attr('aria-expanded', isOpen)
+  }
+
+  function getTargetFromTrigger($trigger) {
+    var href
+    var target = $trigger.attr('data-target')
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+
+    return $(target)
+  }
+
+
+  // COLLAPSE PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.collapse')
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
+      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.collapse
+
+  $.fn.collapse             = Plugin
+  $.fn.collapse.Constructor = Collapse
+
+
+  // COLLAPSE NO CONFLICT
+  // ====================
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+  // COLLAPSE DATA-API
+  // =================
+
+  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
+    var $this   = $(this)
+
+    if (!$this.attr('data-target')) e.preventDefault()
+
+    var $target = getTargetFromTrigger($this)
+    var data    = $target.data('bs.collapse')
+    var option  = data ? 'toggle' : $this.data()
+
+    Plugin.call($target, option)
+  })
+
+}(jQuery);
+</script>
+<script>
+window.initializeCodeFolding = function(show) {
+
+  // handlers for show-all and hide all
+  $("#rmd-show-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('show');
+    });
+  });
+  $("#rmd-hide-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('hide');
+    });
+  });
+
+  // index for unique code element ids
+  var currentIndex = 1;
+
+  // select all R code blocks
+  var rCodeBlocks = $('pre.sourceCode, pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.js');
+  rCodeBlocks.each(function() {
+
+    // create a collapsable div to wrap the code in
+    var div = $('<div class="collapse r-code-collapse"></div>');
+    if (show)
+      div.addClass('in');
+    var id = 'rcode-643E0F36' + currentIndex++;
+    div.attr('id', id);
+    $(this).before(div);
+    $(this).detach().appendTo(div);
+
+    // add a show code button right above
+    var showCodeText = $('<span>' + (show ? 'Hide Code' : 'Show Code') + '</span>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
+    showCodeButton.append(showCodeText);
+    showCodeButton
+        .attr('data-toggle', 'collapse')
+        .attr('data-target', '#' + id)
+        .attr('aria-expanded', show)
+        .attr('aria-controls', id);
+
+    var buttonRow = $('<div class="row"></div>');
+    var buttonCol = $('<div class="col-md-12"></div>');
+
+    buttonCol.append(showCodeButton);
+    buttonRow.append(buttonCol);
+
+    div.before(buttonRow);
+
+    // update state of button on show/hide
+    div.on('hidden.bs.collapse', function () {
+      showCodeText.text('Show Code');
+    });
+    div.on('show.bs.collapse', function () {
+      showCodeText.text('Hide Code');
+    });
+  });
+
+}
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: dropdown.js v3.3.7
+ * http://getbootstrap.com/javascript/#dropdowns
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // DROPDOWN CLASS DEFINITION
+  // =========================
+
+  var backdrop = '.dropdown-backdrop'
+  var toggle   = '[data-toggle="dropdown"]'
+  var Dropdown = function (element) {
+    $(element).on('click.bs.dropdown', this.toggle)
+  }
+
+  Dropdown.VERSION = '3.3.7'
+
+  function getParent($this) {
+    var selector = $this.attr('data-target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+    }
+
+    var $parent = selector && $(selector)
+
+    return $parent && $parent.length ? $parent : $this.parent()
+  }
+
+  function clearMenus(e) {
+    if (e && e.which === 3) return
+    $(backdrop).remove()
+    $(toggle).each(function () {
+      var $this         = $(this)
+      var $parent       = getParent($this)
+      var relatedTarget = { relatedTarget: this }
+
+      if (!$parent.hasClass('open')) return
+
+      if (e && e.type == 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) return
+
+      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this.attr('aria-expanded', 'false')
+      $parent.removeClass('open').trigger($.Event('hidden.bs.dropdown', relatedTarget))
+    })
+  }
+
+  Dropdown.prototype.toggle = function (e) {
+    var $this = $(this)
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    clearMenus()
+
+    if (!isActive) {
+      if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
+        // if mobile we use a backdrop because click events don't delegate
+        $(document.createElement('div'))
+          .addClass('dropdown-backdrop')
+          .insertAfter($(this))
+          .on('click', clearMenus)
+      }
+
+      var relatedTarget = { relatedTarget: this }
+      $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this
+        .trigger('focus')
+        .attr('aria-expanded', 'true')
+
+      $parent
+        .toggleClass('open')
+        .trigger($.Event('shown.bs.dropdown', relatedTarget))
+    }
+
+    return false
+  }
+
+  Dropdown.prototype.keydown = function (e) {
+    if (!/(38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)) return
+
+    var $this = $(this)
+
+    e.preventDefault()
+    e.stopPropagation()
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    if (!isActive && e.which != 27 || isActive && e.which == 27) {
+      if (e.which == 27) $parent.find(toggle).trigger('focus')
+      return $this.trigger('click')
+    }
+
+    var desc = ' li:not(.disabled):visible a'
+    var $items = $parent.find('.dropdown-menu' + desc)
+
+    if (!$items.length) return
+
+    var index = $items.index(e.target)
+
+    if (e.which == 38 && index > 0)                 index--         // up
+    if (e.which == 40 && index < $items.length - 1) index++         // down
+    if (!~index)                                    index = 0
+
+    $items.eq(index).trigger('focus')
+  }
+
+
+  // DROPDOWN PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this = $(this)
+      var data  = $this.data('bs.dropdown')
+
+      if (!data) $this.data('bs.dropdown', (data = new Dropdown(this)))
+      if (typeof option == 'string') data[option].call($this)
+    })
+  }
+
+  var old = $.fn.dropdown
+
+  $.fn.dropdown             = Plugin
+  $.fn.dropdown.Constructor = Dropdown
+
+
+  // DROPDOWN NO CONFLICT
+  // ====================
+
+  $.fn.dropdown.noConflict = function () {
+    $.fn.dropdown = old
+    return this
+  }
+
+
+  // APPLY TO STANDARD DROPDOWN ELEMENTS
+  // ===================================
+
+  $(document)
+    .on('click.bs.dropdown.data-api', clearMenus)
+    .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+    .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
+    .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
+    .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
+
+}(jQuery);
+</script>
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+.row { display: flex; }
+.collapse { display: none; }
+.in { display:block }
+.pull-right > .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+.open > .dropdown-menu {
+    display: block;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 16px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "hide");
+});
+</script>
+
+
+<script>
+document.write('<div class="btn-group pull-right" style="position: absolute; top: 10%; right: 2%; z-index: 200"><button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-_extension-text-contrast=""><span>Show All Code</span> <span class="caret"></span></button><ul class="dropdown-menu" style="min-width: 120px;"><li><a id="rmd-show-all-code" href="#">Show All Code</a></li><li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li></ul></div>')
+</script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/styles.css" type="text/css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Aim</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R/RStudio</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#find-rstudio-on-campus"><i class="fa fa-check"></i><b>1.1</b> Find RStudio (on campus)</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#install-r-and-rstudio-on-your-own-computer"><i class="fa fa-check"></i><b>1.2</b> Install R and RStudio (on your own computer)</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#install-r"><i class="fa fa-check"></i><b>1.2.1</b> Install R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#install-rstudio"><i class="fa fa-check"></i><b>1.2.2</b> Install RStudio</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#open-rstudio"><i class="fa fa-check"></i><b>1.2.3</b> Open RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#using-rstudio-if-you-dont-have-a-computer-or-its-not-working"><i class="fa fa-check"></i><b>1.3</b> Using RStudio (if you don’t have a computer, or it’s not working)</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="gettingstarted.html"><a href="gettingstarted.html"><i class="fa fa-check"></i><b>2</b> Getting started with RStudio</a><ul>
+<li class="chapter" data-level="2.1" data-path="gettingstarted.html"><a href="gettingstarted.html#use-rstudio-as-a-calculator"><i class="fa fa-check"></i><b>2.1</b> Use RStudio as a calculator</a></li>
+<li class="chapter" data-level="2.2" data-path="gettingstarted.html"><a href="gettingstarted.html#experiment-with-data-in-r"><i class="fa fa-check"></i><b>2.2</b> Experiment with data in R</a></li>
+<li class="chapter" data-level="2.3" data-path="gettingstarted.html"><a href="gettingstarted.html#get-organised-course-folder"><i class="fa fa-check"></i><b>2.3</b> Get organised: course folder</a></li>
+<li class="chapter" data-level="2.4" data-path="gettingstarted.html"><a href="gettingstarted.html#knit-a-given-rmarkdown-file"><i class="fa fa-check"></i><b>2.4</b> Knit a given RMarkdown file</a></li>
+<li class="chapter" data-level="2.5" data-path="gettingstarted.html"><a href="gettingstarted.html#neat-workflow"><i class="fa fa-check"></i><b>2.5</b> Neat workflow</a></li>
+<li class="chapter" data-level="2.6" data-path="gettingstarted.html"><a href="gettingstarted.html#install-packages"><i class="fa fa-check"></i><b>2.6</b> Install packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="importdata.html"><a href="importdata.html"><i class="fa fa-check"></i><b>3</b> Import data into R</a><ul>
+<li class="chapter" data-level="3.1" data-path="importdata.html"><a href="importdata.html#from-the-internet"><i class="fa fa-check"></i><b>3.1</b> From the internet</a></li>
+<li class="chapter" data-level="3.2" data-path="importdata.html"><a href="importdata.html#from-your-folder"><i class="fa fa-check"></i><b>3.2</b> From your folder</a></li>
+<li class="chapter" data-level="3.3" data-path="importdata.html"><a href="importdata.html#from-a-data-subfolder"><i class="fa fa-check"></i><b>3.3</b> From a data subfolder</a></li>
+<li class="chapter" data-level="3.4" data-path="importdata.html"><a href="importdata.html#using-file.choose-and-working-directories"><i class="fa fa-check"></i><b>3.4</b> Using file.choose() and working directories</a></li>
+<li class="chapter" data-level="3.5" data-path="importdata.html"><a href="importdata.html#using-import-dataset"><i class="fa fa-check"></i><b>3.5</b> Using Import dataset</a></li>
+<li class="chapter" data-level="3.6" data-path="importdata.html"><a href="importdata.html#note-about-excel-files"><i class="fa fa-check"></i><b>3.6</b> Note about Excel files</a></li>
+<li class="chapter" data-level="3.7" data-path="importdata.html"><a href="importdata.html#more-info"><i class="fa fa-check"></i><b>3.7</b> More info</a></li>
+<li class="chapter" data-level="3.8" data-path="importdata.html"><a href="importdata.html#data-wrangling"><i class="fa fa-check"></i><b>3.8</b> Data Wrangling **</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="structure-of-data.html"><a href="structure-of-data.html"><i class="fa fa-check"></i><b>4</b> Structure of data</a><ul>
+<li class="chapter" data-level="4.1" data-path="structure-of-data.html"><a href="structure-of-data.html#classify-variables"><i class="fa fa-check"></i><b>4.1</b> Classify variables</a></li>
+<li class="chapter" data-level="4.2" data-path="structure-of-data.html"><a href="structure-of-data.html#isolate-a-variable"><i class="fa fa-check"></i><b>4.2</b> Isolate a variable</a></li>
+<li class="chapter" data-level="4.3" data-path="structure-of-data.html"><a href="structure-of-data.html#select-subset"><i class="fa fa-check"></i><b>4.3</b> Select subset</a></li>
+<li class="chapter" data-level="4.4" data-path="structure-of-data.html"><a href="structure-of-data.html#change-classification"><i class="fa fa-check"></i><b>4.4</b> Change classification</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html"><i class="fa fa-check"></i><b>5</b> Graphical Summaries</a><ul>
+<li class="chapter" data-level="5.1" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#barplot"><i class="fa fa-check"></i><b>5.1</b> Barplot</a></li>
+<li class="chapter" data-level="5.2" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#histogram"><i class="fa fa-check"></i><b>5.2</b> Histogram</a></li>
+<li class="chapter" data-level="5.3" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#boxplot"><i class="fa fa-check"></i><b>5.3</b> Boxplot</a></li>
+<li class="chapter" data-level="5.4" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#mosaicplot"><i class="fa fa-check"></i><b>5.4</b> Mosaicplot</a></li>
+<li class="chapter" data-level="5.5" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#scatterplot"><i class="fa fa-check"></i><b>5.5</b> Scatterplot</a></li>
+<li class="chapter" data-level="5.6" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#ggplot"><i class="fa fa-check"></i><b>5.6</b> ggplot</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#barplot-1"><i class="fa fa-check"></i><b>5.6.1</b> Barplot</a></li>
+<li class="chapter" data-level="5.6.2" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#histogram-1"><i class="fa fa-check"></i><b>5.6.2</b> Histogram</a></li>
+<li class="chapter" data-level="5.6.3" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#boxplot-1"><i class="fa fa-check"></i><b>5.6.3</b> Boxplot</a></li>
+<li class="chapter" data-level="5.6.4" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#scatterplot-1"><i class="fa fa-check"></i><b>5.6.4</b> Scatterplot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#plotly"><i class="fa fa-check"></i><b>5.7</b> plotly **</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="numericalsummaries.html"><a href="numericalsummaries.html"><i class="fa fa-check"></i><b>6</b> Numerical Summaries</a><ul>
+<li class="chapter" data-level="6.1" data-path="numericalsummaries.html"><a href="numericalsummaries.html#frequency-and-contingency-tables"><i class="fa fa-check"></i><b>6.1</b> Frequency and contingency tables</a></li>
+<li class="chapter" data-level="6.2" data-path="numericalsummaries.html"><a href="numericalsummaries.html#mean-and-median"><i class="fa fa-check"></i><b>6.2</b> Mean and median</a></li>
+<li class="chapter" data-level="6.3" data-path="numericalsummaries.html"><a href="numericalsummaries.html#standard-deviation-sd"><i class="fa fa-check"></i><b>6.3</b> Standard deviation (SD)</a></li>
+<li class="chapter" data-level="6.4" data-path="numericalsummaries.html"><a href="numericalsummaries.html#interquartile-range-iqr"><i class="fa fa-check"></i><b>6.4</b> Interquartile range (IQR)</a></li>
+<li class="chapter" data-level="6.5" data-path="numericalsummaries.html"><a href="numericalsummaries.html#summary"><i class="fa fa-check"></i><b>6.5</b> Summary</a></li>
+<li class="chapter" data-level="6.6" data-path="numericalsummaries.html"><a href="numericalsummaries.html#linear-correlation"><i class="fa fa-check"></i><b>6.6</b> Linear Correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="normalmodel.html"><a href="normalmodel.html"><i class="fa fa-check"></i><b>7</b> Normal model</a><ul>
+<li class="chapter" data-level="7.1" data-path="normalmodel.html"><a href="normalmodel.html#plot-curve"><i class="fa fa-check"></i><b>7.1</b> Plot curve</a></li>
+<li class="chapter" data-level="7.2" data-path="normalmodel.html"><a href="normalmodel.html#plot-area-under-curve-ext"><i class="fa fa-check"></i><b>7.2</b> Plot area under curve (Ext)</a></li>
+<li class="chapter" data-level="7.3" data-path="normalmodel.html"><a href="normalmodel.html#add-normal-to-a-histogram"><i class="fa fa-check"></i><b>7.3</b> Add normal to a histogram</a></li>
+<li class="chapter" data-level="7.4" data-path="normalmodel.html"><a href="normalmodel.html#probabilities-standard-normal"><i class="fa fa-check"></i><b>7.4</b> Probabilities: Standard normal</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="normalmodel.html"><a href="normalmodel.html#lower-tail"><i class="fa fa-check"></i><b>7.4.1</b> Lower tail</a></li>
+<li class="chapter" data-level="7.4.2" data-path="normalmodel.html"><a href="normalmodel.html#upper-tail"><i class="fa fa-check"></i><b>7.4.2</b> Upper tail</a></li>
+<li class="chapter" data-level="7.4.3" data-path="normalmodel.html"><a href="normalmodel.html#interval"><i class="fa fa-check"></i><b>7.4.3</b> Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="normalmodel.html"><a href="normalmodel.html#probabilities-general-normal"><i class="fa fa-check"></i><b>7.5</b> Probabilities: General normal</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="linearmodel.html"><a href="linearmodel.html"><i class="fa fa-check"></i><b>8</b> Linear model</a><ul>
+<li class="chapter" data-level="8.1" data-path="linearmodel.html"><a href="linearmodel.html#scatter-plot"><i class="fa fa-check"></i><b>8.1</b> Scatter plot</a></li>
+<li class="chapter" data-level="8.2" data-path="linearmodel.html"><a href="linearmodel.html#correlation-coefficient"><i class="fa fa-check"></i><b>8.2</b> Correlation coefficient</a></li>
+<li class="chapter" data-level="8.3" data-path="linearmodel.html"><a href="linearmodel.html#regression-line"><i class="fa fa-check"></i><b>8.3</b> Regression line</a></li>
+<li class="chapter" data-level="8.4" data-path="linearmodel.html"><a href="linearmodel.html#residual-plot"><i class="fa fa-check"></i><b>8.4</b> Residual plot</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="nonlinearmodel.html"><a href="nonlinearmodel.html"><i class="fa fa-check"></i><b>9</b> Non-Linear Model</a><ul>
+<li class="chapter" data-level="9.1" data-path="nonlinearmodel.html"><a href="nonlinearmodel.html#transformation"><i class="fa fa-check"></i><b>9.1</b> Transformation</a></li>
+<li class="chapter" data-level="9.2" data-path="nonlinearmodel.html"><a href="nonlinearmodel.html#fit-non-linear-model-ext"><i class="fa fa-check"></i><b>9.2</b> Fit non-linear model (Ext)</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="simulatechance.html"><a href="simulatechance.html"><i class="fa fa-check"></i><b>10</b> Simulate chance</a><ul>
+<li class="chapter" data-level="10.1" data-path="simulatechance.html"><a href="simulatechance.html#set-seed"><i class="fa fa-check"></i><b>10.1</b> Set seed</a></li>
+<li class="chapter" data-level="10.2" data-path="simulatechance.html"><a href="simulatechance.html#sample-coin"><i class="fa fa-check"></i><b>10.2</b> Sample (Coin)</a></li>
+<li class="chapter" data-level="10.3" data-path="simulatechance.html"><a href="simulatechance.html#sample-dice"><i class="fa fa-check"></i><b>10.3</b> Sample (Dice)</a></li>
+<li><a href="simulatechance.html#function-binomial-model"><span class="toc-section-number">10.4</span> Function **
+## Binomial Model *</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="boxmodel.html"><a href="boxmodel.html"><i class="fa fa-check"></i><b>11</b> Simulate chance variability (box model)</a><ul>
+<li><a href="boxmodel.html#draw-the-box-model-in-r-sample-sum-ev-se-simulate-the-sample-sum-use-normal-model-for-sample-sum-sample-mean-ev-se-use-normal-model-for-sample-mean"><span class="toc-section-number">11.1</span> Draw the box model in R **
+## Sample Sum (EV &amp; SE)
+## Simulate the Sample Sum
+## Use Normal model for Sample Sum
+## Sample Mean (EV &amp; SE)
+## Use Normal model for Sample Mean</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="samplesurveys.html"><a href="samplesurveys.html"><i class="fa fa-check"></i><b>12</b> Sample surveys</a><ul>
+<li class="chapter" data-level="12.1" data-path="samplesurveys.html"><a href="samplesurveys.html#box-model-assuming-replacement"><i class="fa fa-check"></i><b>12.1</b> Box model (assuming replacement)</a></li>
+<li class="chapter" data-level="12.2" data-path="samplesurveys.html"><a href="samplesurveys.html#bootstrapping-a-box-model"><i class="fa fa-check"></i><b>12.2</b> Bootstrapping a box model</a></li>
+<li class="chapter" data-level="12.3" data-path="samplesurveys.html"><a href="samplesurveys.html#confidence-intervals-for-population-proportion"><i class="fa fa-check"></i><b>12.3</b> Confidence Intervals for population proportion</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="testforproportion.html"><a href="testforproportion.html"><i class="fa fa-check"></i><b>13</b> Test for a proportion (using simulation)</a><ul>
+<li class="chapter" data-level="13.1" data-path="testforproportion.html"><a href="testforproportion.html#simple-balanced-box"><i class="fa fa-check"></i><b>13.1</b> Simple balanced box</a></li>
+<li class="chapter" data-level="13.2" data-path="testforproportion.html"><a href="testforproportion.html#unbalanced-box"><i class="fa fa-check"></i><b>13.2</b> Unbalanced box</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="testformean.html"><a href="testformean.html"><i class="fa fa-check"></i><b>14</b> Tests for a mean</a><ul>
+<li class="chapter" data-level="14.1" data-path="testformean.html"><a href="testformean.html#sample-t-test"><i class="fa fa-check"></i><b>14.1</b> 1 sample t-test</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="testformean.html"><a href="testformean.html#h-hypotheses"><i class="fa fa-check"></i><b>14.1.1</b> H: Hypotheses</a></li>
+<li class="chapter" data-level="14.1.2" data-path="testformean.html"><a href="testformean.html#a-check-the-assumptions"><i class="fa fa-check"></i><b>14.1.2</b> A: Check the Assumptions</a></li>
+<li class="chapter" data-level="14.1.3" data-path="testformean.html"><a href="testformean.html#t-calculate-the-test-statistic"><i class="fa fa-check"></i><b>14.1.3</b> T: Calculate the Test Statistic</a></li>
+<li class="chapter" data-level="14.1.4" data-path="testformean.html"><a href="testformean.html#p-calculate-the-p-value"><i class="fa fa-check"></i><b>14.1.4</b> P: Calculate the p-value</a></li>
+<li class="chapter" data-level="14.1.5" data-path="testformean.html"><a href="testformean.html#c-conclusion"><i class="fa fa-check"></i><b>14.1.5</b> C: Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="testformean.html"><a href="testformean.html#the-speedy-way"><i class="fa fa-check"></i><b>14.2</b> The speedy way!</a></li>
+<li class="chapter" data-level="14.3" data-path="testformean.html"><a href="testformean.html#sample-z-test"><i class="fa fa-check"></i><b>14.3</b> 1 sample Z-Test**</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="testsforrelationships.html"><a href="testsforrelationships.html"><i class="fa fa-check"></i><b>15</b> Tests for relationships</a><ul>
+<li class="chapter" data-level="15.1" data-path="testsforrelationships.html"><a href="testsforrelationships.html#more-t-tests"><i class="fa fa-check"></i><b>15.1</b> More t-tests</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sleep-data-zzzzzzz"><i class="fa fa-check"></i><b>15.1.1</b> Sleep data zzzzzzz</a></li>
+<li class="chapter" data-level="15.1.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sample-t-test-1"><i class="fa fa-check"></i><b>15.1.2</b> 2 sample t-test</a></li>
+<li class="chapter" data-level="15.1.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sample-t-test-paired-data"><i class="fa fa-check"></i><b>15.1.3</b> 1 sample t-test (paired data)</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#chi-squared-tests"><i class="fa fa-check"></i><b>15.2</b> Chi-squared tests **</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="testsforrelationships.html"><a href="testsforrelationships.html#goodness-of-fit-test-1-variable"><i class="fa fa-check"></i><b>15.2.1</b> Goodness of Fit Test (1 variable)</a></li>
+<li class="chapter" data-level="15.2.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-independence-2-variables-1-sample"><i class="fa fa-check"></i><b>15.2.2</b> Test for independence (2 variables; 1 sample)</a></li>
+<li class="chapter" data-level="15.2.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-homogeneity-2-variables-2-samples"><i class="fa fa-check"></i><b>15.2.3</b> Test for Homogeneity (2 variables; 2 samples)</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#regression-test"><i class="fa fa-check"></i><b>15.3</b> Regression test</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="morerelationships.html"><a href="morerelationships.html"><i class="fa fa-check"></i><b>16</b> More tests for relationships (Diagnostics)</a><ul>
+<li class="chapter" data-level="16.1" data-path="morerelationships.html"><a href="morerelationships.html#test-normality-for-1-populations-histogram-qq-plot-shapiro-wilks-test"><i class="fa fa-check"></i><b>16.1</b> Test normality for 1+ populations: histogram, QQ-plot, Shapiro-Wilks Test</a></li>
+<li class="chapter" data-level="16.2" data-path="morerelationships.html"><a href="morerelationships.html#test-equal-variance-of-2-populations-boxplots-f-test-variance-ratio"><i class="fa fa-check"></i><b>16.2</b> Test equal variance of 2 populations (Boxplots; F-test; variance ratio)</a></li>
+<li class="chapter" data-level="16.3" data-path="morerelationships.html"><a href="morerelationships.html#test-normality-for-2-populations-histogram-qq-plot-shapiro-wilks-test"><i class="fa fa-check"></i><b>16.3</b> Test normality for 2 populations: histogram, QQ-plot, Shapiro-Wilks Test</a></li>
+<li class="chapter" data-level="16.4" data-path="morerelationships.html"><a href="morerelationships.html#get-organised"><i class="fa fa-check"></i><b>16.4</b> Get organised</a><ul>
+<li class="chapter" data-level="16.4.1" data-path="morerelationships.html"><a href="morerelationships.html#create-a-course-folder-one-off"><i class="fa fa-check"></i><b>16.4.1</b> Create a course folder [one-off]</a></li>
+<li class="chapter" data-level="16.4.2" data-path="morerelationships.html"><a href="morerelationships.html#create-a-project-one-off"><i class="fa fa-check"></i><b>16.4.2</b> Create a project [one-off]</a></li>
+<li class="chapter" data-level="16.4.3" data-path="morerelationships.html"><a href="morerelationships.html#create-a-data-folder-one-off"><i class="fa fa-check"></i><b>16.4.3</b> Create a data folder [one-off]</a></li>
+<li class="chapter" data-level="16.4.4" data-path="morerelationships.html"><a href="morerelationships.html#create-your-own-rmarkdown-document-for-a-project-or-lab"><i class="fa fa-check"></i><b>16.4.4</b> Create your own RMarkdown document (for a Project or Lab)</a></li>
+</ul></li>
+<li class="chapter" data-level="16.5" data-path="morerelationships.html"><a href="morerelationships.html#its-easy-from-then"><i class="fa fa-check"></i><b>16.5</b> It’s easy from then!</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>17</b> FAQs</a><ul>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-am-i-getting-weird-variable-names"><i class="fa fa-check"></i>Why am I getting weird variable names?</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-do-i-produce-a-residual-plot-with-missing-values-in-data"><i class="fa fa-check"></i>How do I produce a residual plot with missing values in data?</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">RGuide</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="testsforrelationships" class="section level1">
+<h1><span class="header-section-number">Chapter 15</span> Tests for relationships</h1>
+<p><br></p>
+<div id="more-t-tests" class="section level2">
+<h2><span class="header-section-number">15.1</span> More t-tests</h2>
+<p>The choice of the t-test depends both on the design of the experiment and the nature of the data.</p>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="56%" />
+<col width="27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Context</th>
+<th>Data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 sample t-test</td>
+<td>Consider 1 population with unknown mean</td>
+<td>1 sample</td>
+</tr>
+<tr class="even">
+<td>1 sample t-test (paired data)</td>
+<td>Compare 2 dependent samples (eg Before and After treatment)</td>
+<td>1 sample of differences</td>
+</tr>
+<tr class="odd">
+<td>2 sample t-test</td>
+<td>Compare 2 populations with unknown means</td>
+<td>2 independent samples</td>
+</tr>
+</tbody>
+</table>
+<!-- TThere are two assumptions we need to consider. Firstly, whether the data is normally distributed and secondly whether the variance is equal between the two sample populations.
+
+Think about why the data must be normally distributed and why the variances need to be equal?
+--->
+<ul>
+<li>The <code>t.test</code> command in R allows you to perform different 1 and 2 sample t-tests, by specifying different arguments.
+<ul>
+<li><em>paired</em></li>
+<li><em>var.equal</em></li>
+<li><em>alternative</em> - We use this to specify if we are doing a 1 sided or 2 sided test (based on hypotheses). We will mostly focus on the 2 sided alternative.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">help</span>(t.test)</a></code></pre></div>
+<p><br></p>
+<div id="sleep-data-zzzzzzz" class="section level3">
+<h3><span class="header-section-number">15.1.1</span> Sleep data zzzzzzz</h3>
+<ul>
+<li>Let’s consider the <code>sleep</code> data provided in R.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">help</span>(sleep)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">dim</span>(sleep)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">class</span>(sleep)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">head</span>(sleep)</a></code></pre></div>
+<ul>
+<li>The dataset <code>sleep</code> represents the effect of 2 soporific drugs (“group”) on sleep time compared to a control (drug - no drug).</li>
+</ul>
+<p><br></p>
+</div>
+<div id="sample-t-test-1" class="section level3">
+<h3><span class="header-section-number">15.1.2</span> 2 sample t-test</h3>
+<ul>
+<li><p>Initially we are going to ignore the ID column (which shows patients trialed both drugs) and assume that the 2 groups are independent. ie That drug1 was administered to 10 patients and drug2 was administered to 10 different patients.</p></li>
+<li><p><strong>H: Hypotheses</strong></p>
+<ul>
+<li><p>Let <span class="math inline">\(\mu_1\)</span> = mean net sleep of study participants taking drug1, and <span class="math inline">\(\mu_2\)</span> = mean net sleep of study participants taking drug2.</p></li>
+<li><p><span class="math inline">\(H_{0}\)</span> : There is no difference between the 2 drugs: <span class="math inline">\(\mu_1=\mu_2\)</span>.</p></li>
+<li><p><span class="math inline">\(H_{1}\)</span> : There is a difference betwen the 2 drugs: <span class="math inline">\(\mu_1 \neq \mu_2\)</span>.</p></li>
+</ul></li>
+<li><p>Being a medical study we are going to consider a more conservative significance level of <span class="math inline">\(\alpha = 0.01\)</span>.</p></li>
+<li><p><strong>A: Assumptions</strong> We assume the 2 samples are independent, and the 2 populations are both Normally distributed with the same SD.</p></li>
+<li><p><strong>T &amp; P: Test statistic and P-value</strong></p></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">t.test</span>(extra<span class="op">~</span>group, <span class="dt">data =</span> sleep, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>, <span class="dt">conf.level =</span> <span class="fl">0.99</span>)</a></code></pre></div>
+<ul>
+<li><strong>C: Conclusion</strong>
+<ul>
+<li><p>Statistical conclusion: The p-value is = 0.07919 &gt; 0.01. Furthermore, 0 is contained within the confidence intervals. Therefore we retain our null hypothesis.</p></li>
+<li><p>Scientific conclusion: The data seems consistent with no difference in sleep time between patients taking drug1 and drug2.</p></li>
+</ul></li>
+</ul>
+<p><br></p>
+<ul>
+<li>Note: If we had found the spread of the 2 samples were significantly different from each other, we would have performed a 2 sample t-test for unequal variances (Welch 2 sample t-test) in this case we set the argument ‘var.equal = FALSE’</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">t.test</span>(extra<span class="op">~</span>group, <span class="dt">data =</span> sleep, <span class="dt">var.equal =</span> <span class="ot">FALSE</span>, <span class="dt">conf.level =</span> <span class="fl">0.99</span>)</a></code></pre></div>
+<ul>
+<li>In this case, we see that the result is “similar” to the equal variance test. In fact many stats guru’s argue that you can almost <a href="http://daniellakens.blogspot.com.au/2015/01/always-use-welchs-t-test-instead-of.html">always use Welch’s test</a> except when the sample size is really small.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="sample-t-test-paired-data" class="section level3">
+<h3><span class="header-section-number">15.1.3</span> 1 sample t-test (paired data)</h3>
+<ul>
+<li><p>Looking at the description of the <code>sleep</code> dataset we can see that the data is actually NOT independent.</p></li>
+<li><p>Sleep was measured in 10 patients who were given both drug1 and drug2 at different times. A <a href="https://en.wikipedia.org/wiki/Crossover_study">crossover study</a> is a typical experimental design that would generate this type of data. When we only have 2 treatments, we call this paired data.</p></li>
+<li><p>Therefore we need to perform a 1 sample t-test for paired data: a “paired t-test”. This is the same as a 1 sample t-test on the difference between the two treatments (i.e. drug1 - drug2). Therefore the assumptions for this test are equivalent to those for a 1 sample t-test (ie the data must be approximately normally distributed).</p></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">sleep_diff &lt;-<span class="st"> </span>sleep<span class="op">$</span>extra[sleep<span class="op">$</span>group <span class="op">==</span><span class="st"> </span><span class="dv">1</span>]<span class="op">-</span>sleep<span class="op">$</span>extra[sleep<span class="op">$</span>group <span class="op">==</span><span class="st"> </span><span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">qqnorm</span>(sleep_diff)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">qqline</span>(sleep_diff)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">boxplot</span>(sleep_diff)</a></code></pre></div>
+<ul>
+<li><p>The normal quantile-quantile plot and the boxplot show that there may be an outlier in the dataset.</p></li>
+<li><p>However, for the purpose of this analysis and keeping in mind that these tests are reasonably robust to non-normal data, we will go ahead and test the data.</p></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">t.test</span>(extra<span class="op">~</span>group, <span class="dt">data =</span> sleep, <span class="dt">paired =</span> T)</a></code></pre></div>
+<ul>
+<li><p>The p-value is &lt;0.05 and zero is not contained within the confidence intervals. Therefore we reject the null hypothesis and conclude that there is a significant difference in extra sleep hours between the 2 drugs. Looking at the earlier boxplot, we see that drug2 is more effective in inducing extra sleep than drug1.</p></li>
+<li><p>Note: this demonstrates how important it is to use the correct analysis as this conclusion is different to when the 2 samples were assumed to be independent.</p></li>
+</ul>
+<p><br></p>
+</div>
+</div>
+<div id="chi-squared-tests" class="section level2">
+<h2><span class="header-section-number">15.2</span> Chi-squared tests **</h2>
+<ul>
+<li><p>Chi-squared tests are used for qualitative data.</p></li>
+<li><p>Qualitative data is divided into groups, like hair colour or gender. Even height and income can be analysed as qualitative data, if the quantitative data (eg 165cm, 170cm) is grouped into intervals (eg 150-160cm, 160-170cm, 170-180cm).</p></li>
+<li><p>The Pearson’s chi-squared test is a very versatile test which compares the observed frequencies over the categories with the observed frequencies over the categories, under some model (null hypothesis).</p>
+<ul>
+<li><p>Test the goodness of fit of a model for the categories of 1 variable. (Eg: This is similar to the Shapiro-Wilks test for normality).</p></li>
+<li><p>Test for independence of 2 variables</p></li>
+<li><p>Test for homogeneity of 2 variables</p></li>
+</ul></li>
+<li><p>The test is done quickly in R using <code>chisq.test</code>.</p></li>
+</ul>
+<p><br></p>
+<div id="goodness-of-fit-test-1-variable" class="section level3">
+<h3><span class="header-section-number">15.2.1</span> Goodness of Fit Test (1 variable)</h3>
+<ul>
+<li><p>Two tomato varieties (dominant tall cut-leaf tomatoes and dwarf potato-leaf tomatoes) were genetically crossed, yielding 1006 offspring.</p></li>
+<li><p>According to genetic theory, the 4 phenotypes should occur with an approximate ratio of 9:3:3:1.</p></li>
+<li>Therefore we would expect:
+<ul>
+<li>9/16 <span class="math inline">\(\times\)</span> 1611 Tall cut-leaf plants = 906.1875</li>
+<li>3/16 <span class="math inline">\(\times\)</span> 1611 Tall potato-leaf = 302.0625</li>
+<li>3/16 <span class="math inline">\(\times\)</span> 1611 Dwarf cut-leaf = 302.0625</li>
+<li>1/16 <span class="math inline">\(\times\)</span> 1611 Dwarf potato-leaf = 100.6875</li>
+</ul></li>
+<li><strong>H: Hypotheses</strong>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(p_1=9/16\)</span>; <span class="math inline">\(p_2=3/16\)</span>; <span class="math inline">\(p_3=3/16\)</span>; <span class="math inline">\(p_4=1/16\)</span>, where <span class="math inline">\(p_{i}\)</span> = expected proportion in category <span class="math inline">\(i\)</span>.</li>
+<li><span class="math inline">\(H_1\)</span>: at least one proportion is not equal to the expected proportion.</li>
+</ul></li>
+<li><p><strong>Data</strong></p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Phenotype</th>
+<th>Observed frequency</th>
+<th>Expected frequency</th>
+<th>O-E</th>
+<th>(O-E)^2/E</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tall cut-leaf</td>
+<td>926</td>
+<td>906.1875</td>
+<td>19.8125</td>
+<td>0.4332</td>
+</tr>
+<tr class="even">
+<td>Tall potato-leaf</td>
+<td>288</td>
+<td>302.0625</td>
+<td>-14.0625</td>
+<td>0.6547</td>
+</tr>
+<tr class="odd">
+<td>Dwarf cut-leaf</td>
+<td>293</td>
+<td>302.0625</td>
+<td>-9.0625</td>
+<td>0.2719</td>
+</tr>
+<tr class="even">
+<td>Dwarf potato-leaf</td>
+<td>104</td>
+<td>100.6875</td>
+<td>3.3125</td>
+<td>0.1090</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>1611</td>
+<td>1611</td>
+<td>0</td>
+<td>1.4688</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><strong>T,P&amp;C</strong></p>
+<ul>
+<li>The test statistic is <span class="math inline">\(\chi^2\)</span>=1.4688 with degrees of freedom 4-1 = 3. The p-value is 0.69.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">pchisq</span>(<span class="fl">1.4688</span>,<span class="dv">3</span>,<span class="dt">lower.tail=</span>F)</a></code></pre></div>
+<p>Note: we are only interested in the upper tail probability. As the p-value is 0.6895, we retain the null hypothesis and conclude that the model proposed by genetic theory fits the genetic outcome well.</p>
+<ul>
+<li><strong>The speedy way</strong></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">observedfreq =<span class="st"> </span><span class="kw">c</span>(<span class="dv">926</span>,<span class="dv">288</span>,<span class="dv">293</span>,<span class="dv">104</span>)  <span class="co"># observed frequencies</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">expectedprop =<span class="st"> </span><span class="kw">c</span>(<span class="dv">9</span><span class="op">/</span><span class="dv">16</span>,<span class="dv">3</span><span class="op">/</span><span class="dv">16</span>,<span class="dv">3</span><span class="op">/</span><span class="dv">16</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">16</span>)  <span class="co"># expected proportions</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">chisq.test</span>(<span class="dt">x =</span> observedfreq,</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">           <span class="dt">p =</span> expectedprop)</a></code></pre></div>
+<p><br></p>
+</div>
+<div id="test-for-independence-2-variables-1-sample" class="section level3">
+<h3><span class="header-section-number">15.2.2</span> Test for independence (2 variables; 1 sample)</h3>
+<ul>
+<li>Is age independent of the desire to ride a bicycle?</li>
+<li>A random sample of 395 people were surveyed. Each person was asked their interest in riding a bicycle (yes/no) and their age (age group). The data that resulted from the survey is summarized in the following table:</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Observed</th>
+<th>18-24</th>
+<th>25-34</th>
+<th>35-49</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Yes</td>
+<td>60</td>
+<td>54</td>
+<td>46</td>
+</tr>
+<tr class="even">
+<td>No</td>
+<td>40</td>
+<td>44</td>
+<td>53</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>100</td>
+<td>98</td>
+<td>99</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>The research question is: Is the desire to ride a bicycle dependent on the age group?</p></li>
+<li><p><strong>H: Hypotheses</strong></p>
+<ul>
+<li><p><span class="math inline">\(H_0\)</span> = Age is independent of desire to ride a bicycle.</p></li>
+<li><p><span class="math inline">\(H_1\)</span> = Desire to ride a bicycle is dependent on age.</p></li>
+</ul></li>
+<li><p><strong>Data</strong></p></li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">Bicycle &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">60</span>,<span class="dv">54</span>,<span class="dv">46</span>,<span class="dv">41</span>,<span class="dv">40</span>,<span class="dv">44</span>,<span class="dv">53</span>,<span class="dv">57</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>, <span class="dt">dimnames =</span> <span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;18-24&quot;</span>, <span class="st">&quot;25-34&quot;</span>, <span class="st">&quot;35-49&quot;</span>, <span class="st">&quot;50-64&quot;</span>)))</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">Bicycle</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="kw">chisq.test</span>(Bicycle)</a></code></pre></div>
+<ul>
+<li><strong>T&amp;P</strong>
+<ul>
+<li><p>From the output, the test statistic is 8.0061.</p></li>
+<li><p>The p-value is 0.04589 (just less than 0.05) there is evidence against <span class="math inline">\(H_0\)</span>, so it appears the desire to ride a bicycle is dependent on age group.</p></li>
+</ul></li>
+<li><p><strong>Interpret further</strong></p>
+<ul>
+<li>We can look at the mosaic plot with shading to help interpret this.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">mosaicplot</span>(Bicycle, <span class="dt">shade =</span> <span class="ot">TRUE</span>, <span class="dt">las=</span><span class="dv">1</span>)</a></code></pre></div>
+<p>Note: There is no shading, but we see that the boxes are slightly bigger than expected for the “yes” answer in the youngest group and slightly bigger than expected for the “no” answer in the oldest group. This suggests that cyling is more popular with younger people.</p>
+<p><br></p>
+</div>
+<div id="test-for-homogeneity-2-variables-2-samples" class="section level3">
+<h3><span class="header-section-number">15.2.3</span> Test for Homogeneity (2 variables; 2 samples)</h3>
+<ul>
+<li>The test for homogeneity looks the same as the test for independence, but instead of testing whether 2 qualitative variables on 1 sample are independent, we test whether 2 samples have the same proportions and so suggest the same population.</li>
+</ul>
+<!--
+Though they use the same test, points 2 and 3 are harder to seperate: in a nutshell, the difference is in how the data was collected. If we sample a population (ENVX1002 & DATA1001 students) at random and recorded certain traits like education level versus political affiliation, we consider a test for independence. When test for homogeneity we are testing whether the distributions of frequencies of political affiliation of two independent random samples, say a random sample from 50 females and a random sample from 50 males, are the same.
+
+The hypothesis for the test for homgeneity is:
+
+$H_0$ = proportions are the same (p1= p2= p3= .).
+
+$H_1$ = at least one proportion is different the stated proportions.
+
+The hypothesis for the test for independence is:
+
+$H_0$ = there is no association between the two variables ( independent) .
+
+$H_1$ = there is an association between the two variables. 
+
+As with the t-test, the $(\chi^2)$ has some assumptions
+
+1. The data must be independent (not paired such as before and after treatment white blood cell counts in a patient). This is guarenteed if a simple random sampling design is used.
+2. The sample size should be reasonably large. Importantly, no more than 20% of the cell frequencies can be less than 5 and none can be zero. If this assumption is violated we need to either a. combine categories or, b. perform a Fisher's exact test.
+
+-->
+<ul>
+<li><p>The head surgeon at the University of Sydney medical center was concerned that trainee (resident) physicians were applying blood transfusions at a different rate than attending physicians.</p></li>
+<li><p>Therefore, she ordered a study of the 49 attending physicians and 71 residents. For each of the 120 physicians, the number of blood transfusions prescribed unnecessarily in a one-year period was recorded. The number of uneccessary blood transfusions was grouped into four groups: Frequently, Occasionally, Rarely, or Never.</p></li>
+<li><p>The contingency table is given below:</p></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Physician</th>
+<th>Frequent</th>
+<th>Occasionally</th>
+<th>Rarely</th>
+<th>Never</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Attending</td>
+<td>2</td>
+<td>3</td>
+<td>31</td>
+<td>13</td>
+<td>49</td>
+</tr>
+<tr class="even">
+<td>Resident</td>
+<td>15</td>
+<td>28</td>
+<td>23</td>
+<td>5</td>
+<td>71</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>17</td>
+<td>31</td>
+<td>54</td>
+<td>18</td>
+<td>120</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>The research question is: Are the number of unecessary blood transfusions distributed equally amongst attending physicians and resident physicians?</p></li>
+<li><strong>H</strong>
+<ul>
+<li><p><span class="math inline">\(H_0\)</span> = <span class="math inline">\(p_{resFreq}=p_{attFreq}\)</span> and <span class="math inline">\(p_{resOcc}=p_{attOcc}\)</span> and <span class="math inline">\(p_{resRar}=p_{attRar}\)</span> and <span class="math inline">\(p_{resNev}=p_{attNev}\)</span></p></li>
+<li><p><span class="math inline">\(H_1\)</span> = at least one of the proportions is not equal</p></li>
+</ul></li>
+<li><p><strong>Data,T,P&amp;C</strong></p></li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">BloodT &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">31</span>,<span class="dv">13</span>,<span class="dv">15</span>,<span class="dv">28</span>,<span class="dv">23</span>,<span class="dv">5</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>, <span class="dt">dimnames =</span> <span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;Attending&quot;</span>, <span class="st">&quot;Resident&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;Frequent&quot;</span>, <span class="st">&quot;Occasionally&quot;</span>, <span class="st">&quot;Rarely&quot;</span>, <span class="st">&quot;Never&quot;</span>)))</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">BloodT</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw">chisq.test</span>(BloodT)</a></code></pre></div>
+<p>Note: The p-value is very small, therefore we reject the null hypothesis and conclude that at least one of the proportions is not equal.</p>
+<ul>
+<li><p><strong>Interpret further</strong></p>
+<ul>
+<li>To get a “rough” idea of which of the proportions are not equal we can take a look at the mosaic plot.</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">mosaicplot</span>(BloodT, <span class="dt">shade =</span> <span class="ot">TRUE</span>, <span class="dt">las=</span><span class="dv">1</span>)</a></code></pre></div>
+<ul>
+<li><p>Note: the mosaic plot also shows the standardised residuals which are calculated as follows: <span class="math inline">\(\frac{\mbox{Observed Frequency - Expected Frequency}}{\sqrt{\mbox{Expected Frequency}}}\)</span></p></li>
+<li><p>Note: The Attending physicians have less counts than expected in the “Occasional” group and the Resident (training) physicians have more than expected in the “Occasional” group. Furthermore, the Attending physicians have more counts than expected in the “Never” group.</p></li>
+</ul></li>
+</ul>
+<p><br></p>
+<p><strong>Mosaic Plot: Residuals</strong></p>
+<p>As a general rule of thumb:</p>
+<ul>
+<li><p>If the residual is less than -2: the cell’s observed frequency is less than the expected frequency.</p></li>
+<li><p>If the residual is greater than 2: the observed frequency is greater than the expected frequency.</p></li>
+<li><p>The <code>shade = TRUE</code> argument demonstrates our rule of thumb using colours on the mosaic plot. The blue indicates more counts than expected (&gt;2) and the red indicates less counts than expected (&lt;-2).</p></li>
+</ul>
+<p><br></p>
+</div>
+</div>
+<div id="regression-test" class="section level2">
+<h2><span class="header-section-number">15.3</span> Regression test</h2>
+<ul>
+<li>Earlier, we considered a linear model.</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">L =<span class="st"> </span><span class="kw">lm</span>(mtcars<span class="op">$</span>wt<span class="op">~</span>mtcars<span class="op">$</span>mpg)</a></code></pre></div>
+<ul>
+<li><p>Now we use this output to perform a hypothesis test.</p></li>
+<li><strong>H</strong>
+<ul>
+<li><span class="math inline">\(H_0: \beta_1=0\)</span> [Or: There is not a linear trend.]</li>
+<li><span class="math inline">\(H_0: \beta_1 \neq 0\)</span> [Or: There is a linear trend.]</li>
+</ul></li>
+<li><p><strong>A</strong></p></li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>The residuals should be independent, normal, with constant variance (homoscedasicity). Check: Residual Plot</li>
+</ol>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">lm</span>(mtcars<span class="op">$</span>wt<span class="op">~</span>mtcars<span class="op">$</span>mpg)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">plot</span>(mtcars<span class="op">$</span>mpg,L<span class="op">$</span>residuals, <span class="dt">xlab =</span> <span class="st">&quot;mpg&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Residuals&quot;</span>)</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>The relationship between the dependent and independent variable should look linear. Check; Scatter Plot</li>
+</ol>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">plot</span>(mtcars<span class="op">$</span>mpg, mtcars<span class="op">$</span>wt)</a></code></pre></div>
+<ul>
+<li><strong>T,P&amp;C</strong></li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">summary</span>(L)</a></code></pre></div>
+<p>The test statistic for slope is -9.559 with p-value 1.29e-10. Hence we strongly reject <span class="math inline">\(H_{0}\)</span> and conclude that a linear model seems very appropriate for weight on mpg.</p>
+<p><br><br></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="testformean.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="morerelationships.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/15-tests-for-relationships.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["RGuide_Bookdown.pdf", "RGuide_Bookdown.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

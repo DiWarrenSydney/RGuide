@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 17 FAQs | RGuide</title>
+  <meta name="description" content="Teach yourself R in DATA1001/DATA1901" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 17 FAQs | RGuide" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Teach yourself R in DATA1001/DATA1901" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 17 FAQs | RGuide" />
+  
+  <meta name="twitter:description" content="Teach yourself R in DATA1001/DATA1901" />
+  
+
+<meta name="author" content="DATA1001/DATA1901" />
+
+
+<meta name="date" content="2020-11-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="morerelationships.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+<script>
+/* ========================================================================
+ * Bootstrap: transition.js v3.3.7
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      WebkitTransition : 'webkitTransitionEnd',
+      MozTransition    : 'transitionend',
+      OTransition      : 'oTransitionEnd otransitionend',
+      transition       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+
+    return false // explicit for ie8 (  ._.)
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false
+    var $el = this
+    $(this).one('bsTransitionEnd', function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    setTimeout(callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+
+    if (!$.support.transition) return
+
+    $.event.special.bsTransitionEnd = {
+      bindType: $.support.transition.end,
+      delegateType: $.support.transition.end,
+      handle: function (e) {
+        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+      }
+    }
+  })
+
+}(jQuery);
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: collapse.js v3.3.7
+ * http://getbootstrap.com/javascript/#collapse
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+/* jshint latedef: false */
+
++function ($) {
+  'use strict';
+
+  // COLLAPSE PUBLIC CLASS DEFINITION
+  // ================================
+
+  var Collapse = function (element, options) {
+    this.$element      = $(element)
+    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    this.transitioning = null
+
+    if (this.options.parent) {
+      this.$parent = this.getParent()
+    } else {
+      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+    }
+
+    if (this.options.toggle) this.toggle()
+  }
+
+  Collapse.VERSION  = '3.3.7'
+
+  Collapse.TRANSITION_DURATION = 350
+
+  Collapse.DEFAULTS = {
+    toggle: true
+  }
+
+  Collapse.prototype.dimension = function () {
+    var hasWidth = this.$element.hasClass('width')
+    return hasWidth ? 'width' : 'height'
+  }
+
+  Collapse.prototype.show = function () {
+    if (this.transitioning || this.$element.hasClass('in')) return
+
+    var activesData
+    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
+
+    if (actives && actives.length) {
+      activesData = actives.data('bs.collapse')
+      if (activesData && activesData.transitioning) return
+    }
+
+    var startEvent = $.Event('show.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    if (actives && actives.length) {
+      Plugin.call(actives, 'hide')
+      activesData || actives.data('bs.collapse', null)
+    }
+
+    var dimension = this.dimension()
+
+    this.$element
+      .removeClass('collapse')
+      .addClass('collapsing')[dimension](0)
+      .attr('aria-expanded', true)
+
+    this.$trigger
+      .removeClass('collapsed')
+      .attr('aria-expanded', true)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse in')[dimension]('')
+      this.transitioning = 0
+      this.$element
+        .trigger('shown.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+    this.$element
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
+  }
+
+  Collapse.prototype.hide = function () {
+    if (this.transitioning || !this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('hide.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var dimension = this.dimension()
+
+    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
+
+    this.$element
+      .addClass('collapsing')
+      .removeClass('collapse in')
+      .attr('aria-expanded', false)
+
+    this.$trigger
+      .addClass('collapsed')
+      .attr('aria-expanded', false)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.transitioning = 0
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse')
+        .trigger('hidden.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    this.$element
+      [dimension](0)
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+  }
+
+  Collapse.prototype.toggle = function () {
+    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+  }
+
+  Collapse.prototype.getParent = function () {
+    return $(this.options.parent)
+      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
+      .each($.proxy(function (i, element) {
+        var $element = $(element)
+        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
+      }, this))
+      .end()
+  }
+
+  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+    var isOpen = $element.hasClass('in')
+
+    $element.attr('aria-expanded', isOpen)
+    $trigger
+      .toggleClass('collapsed', !isOpen)
+      .attr('aria-expanded', isOpen)
+  }
+
+  function getTargetFromTrigger($trigger) {
+    var href
+    var target = $trigger.attr('data-target')
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+
+    return $(target)
+  }
+
+
+  // COLLAPSE PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.collapse')
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
+      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.collapse
+
+  $.fn.collapse             = Plugin
+  $.fn.collapse.Constructor = Collapse
+
+
+  // COLLAPSE NO CONFLICT
+  // ====================
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+  // COLLAPSE DATA-API
+  // =================
+
+  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
+    var $this   = $(this)
+
+    if (!$this.attr('data-target')) e.preventDefault()
+
+    var $target = getTargetFromTrigger($this)
+    var data    = $target.data('bs.collapse')
+    var option  = data ? 'toggle' : $this.data()
+
+    Plugin.call($target, option)
+  })
+
+}(jQuery);
+</script>
+<script>
+window.initializeCodeFolding = function(show) {
+
+  // handlers for show-all and hide all
+  $("#rmd-show-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('show');
+    });
+  });
+  $("#rmd-hide-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('hide');
+    });
+  });
+
+  // index for unique code element ids
+  var currentIndex = 1;
+
+  // select all R code blocks
+  var rCodeBlocks = $('pre.sourceCode, pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.js');
+  rCodeBlocks.each(function() {
+
+    // create a collapsable div to wrap the code in
+    var div = $('<div class="collapse r-code-collapse"></div>');
+    if (show)
+      div.addClass('in');
+    var id = 'rcode-643E0F36' + currentIndex++;
+    div.attr('id', id);
+    $(this).before(div);
+    $(this).detach().appendTo(div);
+
+    // add a show code button right above
+    var showCodeText = $('<span>' + (show ? 'Hide Code' : 'Show Code') + '</span>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
+    showCodeButton.append(showCodeText);
+    showCodeButton
+        .attr('data-toggle', 'collapse')
+        .attr('data-target', '#' + id)
+        .attr('aria-expanded', show)
+        .attr('aria-controls', id);
+
+    var buttonRow = $('<div class="row"></div>');
+    var buttonCol = $('<div class="col-md-12"></div>');
+
+    buttonCol.append(showCodeButton);
+    buttonRow.append(buttonCol);
+
+    div.before(buttonRow);
+
+    // update state of button on show/hide
+    div.on('hidden.bs.collapse', function () {
+      showCodeText.text('Show Code');
+    });
+    div.on('show.bs.collapse', function () {
+      showCodeText.text('Hide Code');
+    });
+  });
+
+}
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: dropdown.js v3.3.7
+ * http://getbootstrap.com/javascript/#dropdowns
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // DROPDOWN CLASS DEFINITION
+  // =========================
+
+  var backdrop = '.dropdown-backdrop'
+  var toggle   = '[data-toggle="dropdown"]'
+  var Dropdown = function (element) {
+    $(element).on('click.bs.dropdown', this.toggle)
+  }
+
+  Dropdown.VERSION = '3.3.7'
+
+  function getParent($this) {
+    var selector = $this.attr('data-target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+    }
+
+    var $parent = selector && $(selector)
+
+    return $parent && $parent.length ? $parent : $this.parent()
+  }
+
+  function clearMenus(e) {
+    if (e && e.which === 3) return
+    $(backdrop).remove()
+    $(toggle).each(function () {
+      var $this         = $(this)
+      var $parent       = getParent($this)
+      var relatedTarget = { relatedTarget: this }
+
+      if (!$parent.hasClass('open')) return
+
+      if (e && e.type == 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) return
+
+      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this.attr('aria-expanded', 'false')
+      $parent.removeClass('open').trigger($.Event('hidden.bs.dropdown', relatedTarget))
+    })
+  }
+
+  Dropdown.prototype.toggle = function (e) {
+    var $this = $(this)
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    clearMenus()
+
+    if (!isActive) {
+      if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
+        // if mobile we use a backdrop because click events don't delegate
+        $(document.createElement('div'))
+          .addClass('dropdown-backdrop')
+          .insertAfter($(this))
+          .on('click', clearMenus)
+      }
+
+      var relatedTarget = { relatedTarget: this }
+      $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this
+        .trigger('focus')
+        .attr('aria-expanded', 'true')
+
+      $parent
+        .toggleClass('open')
+        .trigger($.Event('shown.bs.dropdown', relatedTarget))
+    }
+
+    return false
+  }
+
+  Dropdown.prototype.keydown = function (e) {
+    if (!/(38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)) return
+
+    var $this = $(this)
+
+    e.preventDefault()
+    e.stopPropagation()
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    if (!isActive && e.which != 27 || isActive && e.which == 27) {
+      if (e.which == 27) $parent.find(toggle).trigger('focus')
+      return $this.trigger('click')
+    }
+
+    var desc = ' li:not(.disabled):visible a'
+    var $items = $parent.find('.dropdown-menu' + desc)
+
+    if (!$items.length) return
+
+    var index = $items.index(e.target)
+
+    if (e.which == 38 && index > 0)                 index--         // up
+    if (e.which == 40 && index < $items.length - 1) index++         // down
+    if (!~index)                                    index = 0
+
+    $items.eq(index).trigger('focus')
+  }
+
+
+  // DROPDOWN PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this = $(this)
+      var data  = $this.data('bs.dropdown')
+
+      if (!data) $this.data('bs.dropdown', (data = new Dropdown(this)))
+      if (typeof option == 'string') data[option].call($this)
+    })
+  }
+
+  var old = $.fn.dropdown
+
+  $.fn.dropdown             = Plugin
+  $.fn.dropdown.Constructor = Dropdown
+
+
+  // DROPDOWN NO CONFLICT
+  // ====================
+
+  $.fn.dropdown.noConflict = function () {
+    $.fn.dropdown = old
+    return this
+  }
+
+
+  // APPLY TO STANDARD DROPDOWN ELEMENTS
+  // ===================================
+
+  $(document)
+    .on('click.bs.dropdown.data-api', clearMenus)
+    .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+    .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
+    .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
+    .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
+
+}(jQuery);
+</script>
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+.row { display: flex; }
+.collapse { display: none; }
+.in { display:block }
+.pull-right > .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+.open > .dropdown-menu {
+    display: block;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 16px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "hide");
+});
+</script>
+
+
+<script>
+document.write('<div class="btn-group pull-right" style="position: absolute; top: 10%; right: 2%; z-index: 200"><button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-_extension-text-contrast=""><span>Show All Code</span> <span class="caret"></span></button><ul class="dropdown-menu" style="min-width: 120px;"><li><a id="rmd-show-all-code" href="#">Show All Code</a></li><li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li></ul></div>')
+</script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/styles.css" type="text/css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Aim</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R/RStudio</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#find-rstudio-on-campus"><i class="fa fa-check"></i><b>1.1</b> Find RStudio (on campus)</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#install-r-and-rstudio-on-your-own-computer"><i class="fa fa-check"></i><b>1.2</b> Install R and RStudio (on your own computer)</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#install-r"><i class="fa fa-check"></i><b>1.2.1</b> Install R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#install-rstudio"><i class="fa fa-check"></i><b>1.2.2</b> Install RStudio</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#open-rstudio"><i class="fa fa-check"></i><b>1.2.3</b> Open RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#using-rstudio-if-you-dont-have-a-computer-or-its-not-working"><i class="fa fa-check"></i><b>1.3</b> Using RStudio (if you don’t have a computer, or it’s not working)</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="gettingstarted.html"><a href="gettingstarted.html"><i class="fa fa-check"></i><b>2</b> Getting started with RStudio</a><ul>
+<li class="chapter" data-level="2.1" data-path="gettingstarted.html"><a href="gettingstarted.html#use-rstudio-as-a-calculator"><i class="fa fa-check"></i><b>2.1</b> Use RStudio as a calculator</a></li>
+<li class="chapter" data-level="2.2" data-path="gettingstarted.html"><a href="gettingstarted.html#experiment-with-data-in-r"><i class="fa fa-check"></i><b>2.2</b> Experiment with data in R</a></li>
+<li class="chapter" data-level="2.3" data-path="gettingstarted.html"><a href="gettingstarted.html#get-organised-course-folder"><i class="fa fa-check"></i><b>2.3</b> Get organised: course folder</a></li>
+<li class="chapter" data-level="2.4" data-path="gettingstarted.html"><a href="gettingstarted.html#knit-a-given-rmarkdown-file"><i class="fa fa-check"></i><b>2.4</b> Knit a given RMarkdown file</a></li>
+<li class="chapter" data-level="2.5" data-path="gettingstarted.html"><a href="gettingstarted.html#neat-workflow"><i class="fa fa-check"></i><b>2.5</b> Neat workflow</a></li>
+<li class="chapter" data-level="2.6" data-path="gettingstarted.html"><a href="gettingstarted.html#install-packages"><i class="fa fa-check"></i><b>2.6</b> Install packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="importdata.html"><a href="importdata.html"><i class="fa fa-check"></i><b>3</b> Import data into R</a><ul>
+<li class="chapter" data-level="3.1" data-path="importdata.html"><a href="importdata.html#from-the-internet"><i class="fa fa-check"></i><b>3.1</b> From the internet</a></li>
+<li class="chapter" data-level="3.2" data-path="importdata.html"><a href="importdata.html#from-your-folder"><i class="fa fa-check"></i><b>3.2</b> From your folder</a></li>
+<li class="chapter" data-level="3.3" data-path="importdata.html"><a href="importdata.html#from-a-data-subfolder"><i class="fa fa-check"></i><b>3.3</b> From a data subfolder</a></li>
+<li class="chapter" data-level="3.4" data-path="importdata.html"><a href="importdata.html#using-file.choose-and-working-directories"><i class="fa fa-check"></i><b>3.4</b> Using file.choose() and working directories</a></li>
+<li class="chapter" data-level="3.5" data-path="importdata.html"><a href="importdata.html#using-import-dataset"><i class="fa fa-check"></i><b>3.5</b> Using Import dataset</a></li>
+<li class="chapter" data-level="3.6" data-path="importdata.html"><a href="importdata.html#note-about-excel-files"><i class="fa fa-check"></i><b>3.6</b> Note about Excel files</a></li>
+<li class="chapter" data-level="3.7" data-path="importdata.html"><a href="importdata.html#more-info"><i class="fa fa-check"></i><b>3.7</b> More info</a></li>
+<li class="chapter" data-level="3.8" data-path="importdata.html"><a href="importdata.html#data-wrangling"><i class="fa fa-check"></i><b>3.8</b> Data Wrangling **</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="structure-of-data.html"><a href="structure-of-data.html"><i class="fa fa-check"></i><b>4</b> Structure of data</a><ul>
+<li class="chapter" data-level="4.1" data-path="structure-of-data.html"><a href="structure-of-data.html#classify-variables"><i class="fa fa-check"></i><b>4.1</b> Classify variables</a></li>
+<li class="chapter" data-level="4.2" data-path="structure-of-data.html"><a href="structure-of-data.html#isolate-a-variable"><i class="fa fa-check"></i><b>4.2</b> Isolate a variable</a></li>
+<li class="chapter" data-level="4.3" data-path="structure-of-data.html"><a href="structure-of-data.html#select-subset"><i class="fa fa-check"></i><b>4.3</b> Select subset</a></li>
+<li class="chapter" data-level="4.4" data-path="structure-of-data.html"><a href="structure-of-data.html#change-classification"><i class="fa fa-check"></i><b>4.4</b> Change classification</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html"><i class="fa fa-check"></i><b>5</b> Graphical Summaries</a><ul>
+<li class="chapter" data-level="5.1" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#barplot"><i class="fa fa-check"></i><b>5.1</b> Barplot</a></li>
+<li class="chapter" data-level="5.2" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#histogram"><i class="fa fa-check"></i><b>5.2</b> Histogram</a></li>
+<li class="chapter" data-level="5.3" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#boxplot"><i class="fa fa-check"></i><b>5.3</b> Boxplot</a></li>
+<li class="chapter" data-level="5.4" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#mosaicplot"><i class="fa fa-check"></i><b>5.4</b> Mosaicplot</a></li>
+<li class="chapter" data-level="5.5" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#scatterplot"><i class="fa fa-check"></i><b>5.5</b> Scatterplot</a></li>
+<li class="chapter" data-level="5.6" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#ggplot"><i class="fa fa-check"></i><b>5.6</b> ggplot</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#barplot-1"><i class="fa fa-check"></i><b>5.6.1</b> Barplot</a></li>
+<li class="chapter" data-level="5.6.2" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#histogram-1"><i class="fa fa-check"></i><b>5.6.2</b> Histogram</a></li>
+<li class="chapter" data-level="5.6.3" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#boxplot-1"><i class="fa fa-check"></i><b>5.6.3</b> Boxplot</a></li>
+<li class="chapter" data-level="5.6.4" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#scatterplot-1"><i class="fa fa-check"></i><b>5.6.4</b> Scatterplot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="graphicalsummaries.html"><a href="graphicalsummaries.html#plotly"><i class="fa fa-check"></i><b>5.7</b> plotly **</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="numericalsummaries.html"><a href="numericalsummaries.html"><i class="fa fa-check"></i><b>6</b> Numerical Summaries</a><ul>
+<li class="chapter" data-level="6.1" data-path="numericalsummaries.html"><a href="numericalsummaries.html#frequency-and-contingency-tables"><i class="fa fa-check"></i><b>6.1</b> Frequency and contingency tables</a></li>
+<li class="chapter" data-level="6.2" data-path="numericalsummaries.html"><a href="numericalsummaries.html#mean-and-median"><i class="fa fa-check"></i><b>6.2</b> Mean and median</a></li>
+<li class="chapter" data-level="6.3" data-path="numericalsummaries.html"><a href="numericalsummaries.html#standard-deviation-sd"><i class="fa fa-check"></i><b>6.3</b> Standard deviation (SD)</a></li>
+<li class="chapter" data-level="6.4" data-path="numericalsummaries.html"><a href="numericalsummaries.html#interquartile-range-iqr"><i class="fa fa-check"></i><b>6.4</b> Interquartile range (IQR)</a></li>
+<li class="chapter" data-level="6.5" data-path="numericalsummaries.html"><a href="numericalsummaries.html#summary"><i class="fa fa-check"></i><b>6.5</b> Summary</a></li>
+<li class="chapter" data-level="6.6" data-path="numericalsummaries.html"><a href="numericalsummaries.html#linear-correlation"><i class="fa fa-check"></i><b>6.6</b> Linear Correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="normalmodel.html"><a href="normalmodel.html"><i class="fa fa-check"></i><b>7</b> Normal model</a><ul>
+<li class="chapter" data-level="7.1" data-path="normalmodel.html"><a href="normalmodel.html#plot-curve"><i class="fa fa-check"></i><b>7.1</b> Plot curve</a></li>
+<li class="chapter" data-level="7.2" data-path="normalmodel.html"><a href="normalmodel.html#plot-area-under-curve-ext"><i class="fa fa-check"></i><b>7.2</b> Plot area under curve (Ext)</a></li>
+<li class="chapter" data-level="7.3" data-path="normalmodel.html"><a href="normalmodel.html#add-normal-to-a-histogram"><i class="fa fa-check"></i><b>7.3</b> Add normal to a histogram</a></li>
+<li class="chapter" data-level="7.4" data-path="normalmodel.html"><a href="normalmodel.html#probabilities-standard-normal"><i class="fa fa-check"></i><b>7.4</b> Probabilities: Standard normal</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="normalmodel.html"><a href="normalmodel.html#lower-tail"><i class="fa fa-check"></i><b>7.4.1</b> Lower tail</a></li>
+<li class="chapter" data-level="7.4.2" data-path="normalmodel.html"><a href="normalmodel.html#upper-tail"><i class="fa fa-check"></i><b>7.4.2</b> Upper tail</a></li>
+<li class="chapter" data-level="7.4.3" data-path="normalmodel.html"><a href="normalmodel.html#interval"><i class="fa fa-check"></i><b>7.4.3</b> Interval</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="normalmodel.html"><a href="normalmodel.html#probabilities-general-normal"><i class="fa fa-check"></i><b>7.5</b> Probabilities: General normal</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="linearmodel.html"><a href="linearmodel.html"><i class="fa fa-check"></i><b>8</b> Linear model</a><ul>
+<li class="chapter" data-level="8.1" data-path="linearmodel.html"><a href="linearmodel.html#scatter-plot"><i class="fa fa-check"></i><b>8.1</b> Scatter plot</a></li>
+<li class="chapter" data-level="8.2" data-path="linearmodel.html"><a href="linearmodel.html#correlation-coefficient"><i class="fa fa-check"></i><b>8.2</b> Correlation coefficient</a></li>
+<li class="chapter" data-level="8.3" data-path="linearmodel.html"><a href="linearmodel.html#regression-line"><i class="fa fa-check"></i><b>8.3</b> Regression line</a></li>
+<li class="chapter" data-level="8.4" data-path="linearmodel.html"><a href="linearmodel.html#residual-plot"><i class="fa fa-check"></i><b>8.4</b> Residual plot</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="nonlinearmodel.html"><a href="nonlinearmodel.html"><i class="fa fa-check"></i><b>9</b> Non-Linear Model</a><ul>
+<li class="chapter" data-level="9.1" data-path="nonlinearmodel.html"><a href="nonlinearmodel.html#transformation"><i class="fa fa-check"></i><b>9.1</b> Transformation</a></li>
+<li class="chapter" data-level="9.2" data-path="nonlinearmodel.html"><a href="nonlinearmodel.html#fit-non-linear-model-ext"><i class="fa fa-check"></i><b>9.2</b> Fit non-linear model (Ext)</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="simulatechance.html"><a href="simulatechance.html"><i class="fa fa-check"></i><b>10</b> Simulate chance</a><ul>
+<li class="chapter" data-level="10.1" data-path="simulatechance.html"><a href="simulatechance.html#set-seed"><i class="fa fa-check"></i><b>10.1</b> Set seed</a></li>
+<li class="chapter" data-level="10.2" data-path="simulatechance.html"><a href="simulatechance.html#sample-coin"><i class="fa fa-check"></i><b>10.2</b> Sample (Coin)</a></li>
+<li class="chapter" data-level="10.3" data-path="simulatechance.html"><a href="simulatechance.html#sample-dice"><i class="fa fa-check"></i><b>10.3</b> Sample (Dice)</a></li>
+<li class="chapter" data-level="10.4" data-path="simulatechance.html"><a href="simulatechance.html#function"><i class="fa fa-check"></i><b>10.4</b> Function **</a></li>
+<li class="chapter" data-level="10.5" data-path="simulatechance.html"><a href="simulatechance.html#binomial-model"><i class="fa fa-check"></i><b>10.5</b> Binomial Model *</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="boxmodel.html"><a href="boxmodel.html"><i class="fa fa-check"></i><b>11</b> Simulate chance variability (box model)</a><ul>
+<li class="chapter" data-level="11.1" data-path="boxmodel.html"><a href="boxmodel.html#draw-the-box-model-in-r-ext"><i class="fa fa-check"></i><b>11.1</b> Draw the box model in R (Ext)</a></li>
+<li class="chapter" data-level="11.2" data-path="boxmodel.html"><a href="boxmodel.html#sample-sum-ev-se"><i class="fa fa-check"></i><b>11.2</b> Sample Sum (EV &amp; SE)</a></li>
+<li class="chapter" data-level="11.3" data-path="boxmodel.html"><a href="boxmodel.html#simulate-the-sample-sum"><i class="fa fa-check"></i><b>11.3</b> Simulate the Sample Sum</a></li>
+<li class="chapter" data-level="11.4" data-path="boxmodel.html"><a href="boxmodel.html#use-normal-model-for-sample-sum"><i class="fa fa-check"></i><b>11.4</b> Use Normal model for Sample Sum</a></li>
+<li class="chapter" data-level="11.5" data-path="boxmodel.html"><a href="boxmodel.html#sample-mean-ev-se"><i class="fa fa-check"></i><b>11.5</b> Sample Mean (EV &amp; SE)</a></li>
+<li class="chapter" data-level="11.6" data-path="boxmodel.html"><a href="boxmodel.html#use-normal-model-for-sample-mean"><i class="fa fa-check"></i><b>11.6</b> Use Normal model for Sample Mean</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="samplesurveys.html"><a href="samplesurveys.html"><i class="fa fa-check"></i><b>12</b> Sample surveys</a><ul>
+<li class="chapter" data-level="12.1" data-path="samplesurveys.html"><a href="samplesurveys.html#box-model-assuming-replacement"><i class="fa fa-check"></i><b>12.1</b> Box model (assuming replacement)</a></li>
+<li class="chapter" data-level="12.2" data-path="samplesurveys.html"><a href="samplesurveys.html#bootstrapping-a-box-model"><i class="fa fa-check"></i><b>12.2</b> Bootstrapping a box model</a></li>
+<li class="chapter" data-level="12.3" data-path="samplesurveys.html"><a href="samplesurveys.html#confidence-intervals-for-population-proportion"><i class="fa fa-check"></i><b>12.3</b> Confidence Intervals for population proportion</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="testforproportion.html"><a href="testforproportion.html"><i class="fa fa-check"></i><b>13</b> Test for a proportion (using simulation)</a><ul>
+<li class="chapter" data-level="13.1" data-path="testforproportion.html"><a href="testforproportion.html#simple-balanced-box"><i class="fa fa-check"></i><b>13.1</b> Simple balanced box</a></li>
+<li class="chapter" data-level="13.2" data-path="testforproportion.html"><a href="testforproportion.html#unbalanced-box"><i class="fa fa-check"></i><b>13.2</b> Unbalanced box</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="testformean.html"><a href="testformean.html"><i class="fa fa-check"></i><b>14</b> Tests for a mean</a><ul>
+<li class="chapter" data-level="14.1" data-path="testformean.html"><a href="testformean.html#sample-t-test"><i class="fa fa-check"></i><b>14.1</b> 1 sample t-test</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="testformean.html"><a href="testformean.html#h-hypotheses"><i class="fa fa-check"></i><b>14.1.1</b> H: Hypotheses</a></li>
+<li class="chapter" data-level="14.1.2" data-path="testformean.html"><a href="testformean.html#a-check-the-assumptions"><i class="fa fa-check"></i><b>14.1.2</b> A: Check the Assumptions</a></li>
+<li class="chapter" data-level="14.1.3" data-path="testformean.html"><a href="testformean.html#t-calculate-the-test-statistic"><i class="fa fa-check"></i><b>14.1.3</b> T: Calculate the Test Statistic</a></li>
+<li class="chapter" data-level="14.1.4" data-path="testformean.html"><a href="testformean.html#p-calculate-the-p-value"><i class="fa fa-check"></i><b>14.1.4</b> P: Calculate the p-value</a></li>
+<li class="chapter" data-level="14.1.5" data-path="testformean.html"><a href="testformean.html#c-conclusion"><i class="fa fa-check"></i><b>14.1.5</b> C: Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="testformean.html"><a href="testformean.html#the-speedy-way"><i class="fa fa-check"></i><b>14.2</b> The speedy way!</a></li>
+<li class="chapter" data-level="14.3" data-path="testformean.html"><a href="testformean.html#sample-z-test-ext"><i class="fa fa-check"></i><b>14.3</b> 1 sample Z-Test (Ext)</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="testsforrelationships.html"><a href="testsforrelationships.html"><i class="fa fa-check"></i><b>15</b> Tests for relationships</a><ul>
+<li class="chapter" data-level="15.1" data-path="testsforrelationships.html"><a href="testsforrelationships.html#more-t-tests"><i class="fa fa-check"></i><b>15.1</b> More t-tests</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sleep-data-zzzzzzz"><i class="fa fa-check"></i><b>15.1.1</b> Sleep data zzzzzzz</a></li>
+<li class="chapter" data-level="15.1.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sample-t-test-1"><i class="fa fa-check"></i><b>15.1.2</b> 2 sample t-test</a></li>
+<li class="chapter" data-level="15.1.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sample-t-test-paired-data"><i class="fa fa-check"></i><b>15.1.3</b> 1 sample t-test (paired data)</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#chi-squared-tests"><i class="fa fa-check"></i><b>15.2</b> Chi-squared tests *</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="testsforrelationships.html"><a href="testsforrelationships.html#goodness-of-fit-test-1-variable"><i class="fa fa-check"></i><b>15.2.1</b> Goodness of Fit Test (1 variable)</a></li>
+<li class="chapter" data-level="15.2.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-independence-2-variables-1-sample"><i class="fa fa-check"></i><b>15.2.2</b> Test for independence (2 variables; 1 sample)</a></li>
+<li class="chapter" data-level="15.2.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-homogeneity-2-variables-2-samples"><i class="fa fa-check"></i><b>15.2.3</b> 2. Test for Homogeneity (2 variables; 2 samples)</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#regression-test"><i class="fa fa-check"></i><b>15.3</b> Regression test *</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="morerelationships.html"><a href="morerelationships.html"><i class="fa fa-check"></i><b>16</b> More tests for relationships (Diagnostics)</a><ul>
+<li class="chapter" data-level="16.1" data-path="morerelationships.html"><a href="morerelationships.html#test-normality-for-1-populations-histogram-qq-plot-shapiro-wilks-test"><i class="fa fa-check"></i><b>16.1</b> Test normality for 1+ populations: histogram, QQ-plot, Shapiro-Wilks Test</a></li>
+<li class="chapter" data-level="16.2" data-path="morerelationships.html"><a href="morerelationships.html#test-equal-variance-of-2-populations-boxplots-f-test-variance-ratio"><i class="fa fa-check"></i><b>16.2</b> Test equal variance of 2 populations (Boxplots; F-test; variance ratio)</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>17</b> FAQs</a><ul>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-am-i-getting-weird-variable-names"><i class="fa fa-check"></i>Why am I getting weird variable names?</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-do-i-produce-a-residual-plot-with-missing-values-in-data"><i class="fa fa-check"></i>How do I produce a residual plot with missing values in data?</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">RGuide</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="faq" class="section level1">
+<h1><span class="header-section-number">Chapter 17</span> FAQs</h1>
+<div id="why-am-i-getting-weird-variable-names" class="section level2 unnumbered">
+<h2>Why am I getting weird variable names?</h2>
+<div align="center">
+<p><img src="figure/FAQweirdvariablenames.jpg" width="80%" height="80%"></p>
+</div>
+<p>Unfortunately this can happen on windows computers.You can fix it with the following code</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1"><span class="kw">names</span>(smoking)[<span class="dv">1</span>] =<span class="st"> &quot;Age&quot;</span></a></code></pre></div>
+<p>This code looks at the column names, picks the first one, and then reassigns it to Age.</p>
+</div>
+<div id="how-do-i-produce-a-residual-plot-with-missing-values-in-data" class="section level2 unnumbered">
+<h2>How do I produce a residual plot with missing values in data?</h2>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb161-2" data-line-number="2"><span class="kw">help</span>(msleep)</a>
+<a class="sourceLine" id="cb161-3" data-line-number="3"><span class="kw">plot</span>(sleep<span class="op">$</span>bodywt, sleep<span class="op">$</span>brainwt)</a>
+<a class="sourceLine" id="cb161-4" data-line-number="4">L =<span class="st"> </span><span class="kw">lm</span>(sleep<span class="op">$</span>brainwt <span class="op">~</span><span class="st"> </span>sleep<span class="op">$</span>bodywt)</a>
+<a class="sourceLine" id="cb161-5" data-line-number="5"><span class="kw">summary</span>(L)</a>
+<a class="sourceLine" id="cb161-6" data-line-number="6"><span class="kw">abline</span>(L)</a>
+<a class="sourceLine" id="cb161-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb161-8" data-line-number="8"><span class="co"># Correlation (with missing values)</span></a>
+<a class="sourceLine" id="cb161-9" data-line-number="9"><span class="kw">length</span>(sleep<span class="op">$</span>bodywt) </a>
+<a class="sourceLine" id="cb161-10" data-line-number="10"><span class="kw">length</span>(sleep<span class="op">$</span>brainwt) </a>
+<a class="sourceLine" id="cb161-11" data-line-number="11"><span class="kw">cor</span>(sleep<span class="op">$</span>bodywt, sleep<span class="op">$</span>brainwt, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)  </a>
+<a class="sourceLine" id="cb161-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb161-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb161-14" data-line-number="14"><span class="co"># Residual plot (with missing values)</span></a>
+<a class="sourceLine" id="cb161-15" data-line-number="15"><span class="kw">length</span>(sleep<span class="op">$</span>bodywt) </a>
+<a class="sourceLine" id="cb161-16" data-line-number="16"><span class="kw">length</span>(L<span class="op">$</span>residuals)</a>
+<a class="sourceLine" id="cb161-17" data-line-number="17">residuals1 =<span class="st"> </span><span class="kw">resid</span>(<span class="kw">lm</span>(sleep<span class="op">$</span>brainwt <span class="op">~</span><span class="st"> </span>sleep<span class="op">$</span>bodywt, <span class="dt">na.action=</span>na.exclude)) </a>
+<a class="sourceLine" id="cb161-18" data-line-number="18"><span class="kw">length</span>(residuals1)</a>
+<a class="sourceLine" id="cb161-19" data-line-number="19"><span class="kw">plot</span>(sleep<span class="op">$</span>bodywt,residuals1)</a></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="morerelationships.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/17-faq.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["RGuide_Bookdown.pdf", "RGuide_Bookdown.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -9,7 +9,7 @@ Suppose we have a "box" (or population) containing 0 and 1, from which we draw 1
 
 <br>
 
-## Draw the box model in R (Ext)
+## Draw the box model in R **
 
 - What matters most is being able to draw a box model by hand. But below is some code for those who are interested.
 

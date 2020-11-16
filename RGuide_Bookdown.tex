@@ -1,0 +1,3599 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={RGuide},
+            pdfauthor={DATA1001/DATA1901},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{booktabs}
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+
+\title{RGuide}
+\author{DATA1001/DATA1901}
+\date{2020-11-15}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{aim}{%
+\section*{Aim}\label{aim}}
+\addcontentsline{toc}{section}{Aim}
+
+\begin{itemize}
+\tightlist
+\item
+  This is a self-study guide to R.
+\item
+  It allows you to consolidate your learning from labs, by learning new R commands through the one simple data set \texttt{mtcars}, which is already stored in R.
+\item
+  Sections marked ** are more for DATA1901, and for students who want to extend themselves.
+\end{itemize}
+
+\hypertarget{intro}{%
+\section{Introduction to R/RStudio}\label{intro}}
+
+R is an incredibly powerful open source language for statistical analysis which we will run through RStudio. If you have never coded before, it may seem hard at first, but it will soon become easier!
+
+\hypertarget{find-rstudio-on-campus}{%
+\subsection{Find RStudio (on campus)}\label{find-rstudio-on-campus}}
+
+RStudio is available across campus in all university labs and on \href{https://byod.sydney.edu.au}{BYOdevice}.
+
+\hypertarget{install-r-and-rstudio-on-your-own-computer}{%
+\subsection{Install R and RStudio (on your own computer)}\label{install-r-and-rstudio-on-your-own-computer}}
+
+\begin{itemize}
+\item
+  If you can, we recommend that you install both \href{https://cran.csiro.au/}{R} and \href{https://www.rstudio.com/products/rstudio/download/}{RStudio} onto your own computer.
+\item
+  R and RStudio are separate packages. First install R, and then install RStudio as the user interface.
+\item
+  \href{https://www.datacamp.com/community/tutorials/installing-R-windows-mac-ubuntu?utm_source=adwords_ppc\&utm_campaignid=9942305733\&utm_adgroupid=100189364546\&utm_device=c\&utm_keyword=\&utm_matchtype=b\&utm_network=g\&utm_adpostion=\&utm_creative=332602034352\&utm_targetid=aud-517318242147:dsa-929501846124\&utm_lo}{See this DataCamp blog} for extra instructions on installation.
+\end{itemize}
+
+\hypertarget{install-r}{%
+\subsubsection{Install R}\label{install-r}}
+
+\begin{itemize}
+\item
+  Go to \href{http://cran.csiro.au/}{R Project}.
+\item
+  Download the relevant version: Linux, Mac or Windows.
+\item
+  When you are finished, you should see an icon on your desktop with a large capital `R'.
+\end{itemize}
+
+\hypertarget{install-rstudio}{%
+\subsubsection{Install RStudio}\label{install-rstudio}}
+
+\begin{itemize}
+\item
+  Go to \href{https://www.rstudio.com/products/rstudio/download/}{RStudio}.
+\item
+  Download the installer for your platform.
+\item
+  When you are finished, you should see an icon on your desktop with a large RStudio.
+\end{itemize}
+
+\hypertarget{open-rstudio}{%
+\subsubsection{Open RStudio}\label{open-rstudio}}
+
+\begin{itemize}
+\tightlist
+\item
+  Click on the large RStudio icon.
+\end{itemize}
+
+\hypertarget{using-rstudio-if-you-dont-have-a-computer-or-its-not-working}{%
+\subsection{Using RStudio (if you don't have a computer, or it's not working)}\label{using-rstudio-if-you-dont-have-a-computer-or-its-not-working}}
+
+\hypertarget{use-the-ed-workspace-in-a-browser}{%
+\paragraph{Use the Ed Workspace in a browser}\label{use-the-ed-workspace-in-a-browser}}
+
+\begin{itemize}
+\tightlist
+\item
+  It's easy to run a RStudio workspace on \href{https://edstem.org/dashboard}{Ed Discussion Board}.
+\item
+  Datasets like the Australian Road Fataility data are already stored in Ed, in \texttt{\textbackslash{}course\textbackslash{}data}.
+\item
+  The only downside is that you can't import your own data into Ed (for projects).
+\end{itemize}
+
+\hypertarget{use-an-r-complier}{%
+\paragraph{Use an R complier}\label{use-an-r-complier}}
+
+\begin{itemize}
+\tightlist
+\item
+  You can run an R compiler on a browser, on a tablet such as ipad.
+\item
+  Here is 1 example: \href{https://rextester.com/l/r_online_compiler}{click here}
+\item
+  Again, you can't import your own data (for projects).
+\end{itemize}
+
+\hypertarget{use-rstudio-cloud}{%
+\paragraph{Use RStudio Cloud}\label{use-rstudio-cloud}}
+
+\begin{itemize}
+\tightlist
+\item
+  You can run RStudio in the cloud for free.
+\item
+  You can import your own data.
+\end{itemize}
+
+\hypertarget{use-rstudio-on-ipad}{%
+\paragraph{Use RStudio on ipad}\label{use-rstudio-on-ipad}}
+
+\begin{itemize}
+\tightlist
+\item
+  This is relatively new, so not recommended for most students.
+\item
+  \href{https://levelup.gitconnected.com/using-rstudio-with-an-ipad-cb9f013bb3f}{See details here.}
+\end{itemize}
+
+\hypertarget{gettingstarted}{%
+\section{Getting started with RStudio}\label{gettingstarted}}
+
+\hypertarget{use-rstudio-as-a-calculator}{%
+\subsection{Use RStudio as a calculator}\label{use-rstudio-as-a-calculator}}
+
+\begin{itemize}
+\tightlist
+\item
+  Go the console (usually LHS at the bottom, where you see the cursor \texttt{\textgreater{}}).
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  Copy the following commands into the bottom \textbf{Console}. After each command, press the Enter/Return key on your keyboard.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\OperatorTok{+}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\DecValTok{3}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{sin}\NormalTok{(}\FloatTok{0.5}\NormalTok{)}
+\NormalTok{x=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\NormalTok{x}\OperatorTok{^}\DecValTok{2}
+\KeywordTok{sum}\NormalTok{(x)}
+\KeywordTok{sum}\NormalTok{(x}\OperatorTok{^}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Alternatively, you can copy the commands into the top \textbf{Script Window}. Highlight all the commands, and press\texttt{Run}function. Note that the output is in the bottom \textbf{Console}.
+\end{itemize}
+
+\hypertarget{experiment-with-data-in-r}{%
+\subsection{Experiment with data in R}\label{experiment-with-data-in-r}}
+
+Many \href{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html}{data sets} are already loaded into R. They are good to experiment with, and are used in the \textbf{R/LQuizzes}.
+
+\begin{itemize}
+\tightlist
+\item
+  For a list of all data available, type \texttt{data()}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  For example, we're going to consider \texttt{mtcars}. To view the data, simple type its name.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mtcars}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Clearly this is not recommended for large data sets! Instead, look at the first or last rows using the \texttt{head} or \texttt{tail} functions.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(mtcars)}
+\KeywordTok{tail}\NormalTok{(mtcars, }\DataTypeTok{n=}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  You can find out about the data by using \texttt{help()}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{help}\NormalTok{(mtcars)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Or, read about the \href{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html}{mtcars data set}.
+\end{itemize}
+
+\hypertarget{get-organised-course-folder}{%
+\subsection{Get organised: course folder}\label{get-organised-course-folder}}
+
+It's very important to set up a neat file management system for the semester. This is best practise, and will make your life easier!
+
+\begin{itemize}
+\tightlist
+\item
+  Create a course folder on your Desktop. eg \texttt{DATA1001files}.
+\end{itemize}
+
+\hypertarget{knit-a-given-rmarkdown-file}{%
+\subsection{Knit a given RMarkdown file}\label{knit-a-given-rmarkdown-file}}
+
+RMarkdown is a clever document/file which can save all your Rcode and comments in one place for easy editing.
+
+\begin{itemize}
+\item
+  You have been given the file \texttt{Lab1.Rmd} on your Labs page on Canvas.
+\item
+  Download the file \texttt{Lab1.Rmd}, and store it in your new course folder \texttt{DATA1001files}.
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  Double-click on the file and notice how it automatically opens in the top LHS window of RStudio.
+\end{itemize}
+
+\begin{itemize}
+\item
+  The information at the top is called the YAML, which you can edit it: eg in \texttt{author:\ "xxx"}, replace your name for \texttt{xxx}.)
+\item
+  Render the file using \texttt{Knit}.
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  This will create \texttt{Lab1.html}, which you can open in a browser. This becomes your final report.
+\end{itemize}
+
+\begin{itemize}
+\item
+  You can create new RMarkdown files by duplicating \texttt{Lab1.Rmd} and renaming it \texttt{Project1.Rmd} etc.
+\item
+  To customise your RMarkdown file, see
+  \href{https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf}{RMarkdown Cheat Sheet}
+\end{itemize}
+
+\hypertarget{neat-workflow}{%
+\subsection{Neat workflow}\label{neat-workflow}}
+
+\begin{itemize}
+\tightlist
+\item
+  There is a handy way to streamline your workflow, so that the output of the \texttt{.Rmd} opens next to your input in the RStudio console. This makes it very easy to edit and see your results.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Open preferences
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Select R Markdown
+\item
+  Select `Viewer Pane'
+\item
+  Click `Apply'
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Now knit your \texttt{LabDemo.Rmd\textquotesingle{}}file and see what happens - neat!
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  This will remain the setup for next time you open RStudio.
+\end{itemize}
+
+\hypertarget{install-packages}{%
+\subsection{Install packages}\label{install-packages}}
+
+\textbf{What to do if a package is missing?}
+
+\begin{itemize}
+\tightlist
+\item
+  Suppose you try and knit your .Rmd, only to face the error below:
+\end{itemize}
+
+\texttt{Error\ in\ library(somepackage)\ :\ \ \ \ there\ is\ no\ package\ called\ âsomepackageâ}
+
+(Note, of course, \texttt{somepackage} is being used as a place holder here! Replace with the name of the actual package that is missing).
+
+\begin{itemize}
+\item
+  No need to fret! All we need to do is install the package \texttt{somepackage} from CRAN, which is a repository for R packages.
+\item
+  What is an R package? Good question. You can think of an R package like an app on the app store : it contains sets of functions that allow R to have extra functionality. For example, R was at the beginning, designed to be used very much like a calculator (very basic!). To be able to \texttt{knit} reports, we need new packages to enable R to extend its capabilities beyond the most basic packages downloaded with R.
+\end{itemize}
+
+\begin{itemize}
+\item
+  CRAN is very much like the App store - but for R!
+\item
+  So how do we access CRAN? Right through the command line!
+\item
+  In the console in R, you simply need to type
+\end{itemize}
+
+\texttt{install.packages("somepackage")}
+
+\begin{itemize}
+\tightlist
+\item
+  And R automatically searches and downloads for that package on CRAN. You can then try knitting your report again! Sometimes, more than one package will be missing - if this is the case - just repeat the steps above until they are all installed.
+\end{itemize}
+
+In summary:
+
+\begin{itemize}
+\tightlist
+\item
+  If want to use a certain package, use the following code. This is a 1 off step. It will now appear in the list of packages in the bottom LHS window.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"somepackage"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Then every time, you start a new .Rmd document, or session in R, you need to call up the package by using \texttt{library}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"somepackage"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{importdata}{%
+\section{Import data into R}\label{importdata}}
+
+There are so many different ways to import data into R, so you have lots of options.
+It can be confusing at first. So just experiment with the different methods below, and find what suits you!
+
+\hypertarget{from-the-internet}{%
+\subsection{From the internet}\label{from-the-internet}}
+
+You can import data directly from the web.
+
+\begin{itemize}
+\tightlist
+\item
+  If you right click on the datasets in Canvas, you'll get the url. For example, see Lab2 \texttt{Road}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{road =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"http://www.maths.usyd.edu.au/u/UG/JM/DATA1001/r/2018S1/data/AllFatalities.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  This is a super easy method, which we will use in the labs. However, it doesn't work if your data doesn't have an url (eg finding your own data for a Project).
+\end{itemize}
+
+\hypertarget{from-your-folder}{%
+\subsection{From your folder}\label{from-your-folder}}
+
+\begin{itemize}
+\item
+  Download a data set from the Canvas Lab page, for example \texttt{AllFatalities.csv} from Lab2.
+\item
+  Put the datafile into the\texttt{DATA1001files} folder where your \texttt{.Rmd}. file is located.
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  Read the data into RStudio.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Given file.csv}
+\NormalTok{road =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"AllFatalities.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{from-a-data-subfolder}{%
+\subsection{From a data subfolder}\label{from-a-data-subfolder}}
+
+\begin{itemize}
+\tightlist
+\item
+  Longer-term when you have more data files, it can be useful to create a sub folder called \texttt{data} within your \texttt{DATA1001file} folder.
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  Now you can store all your data inside \texttt{data} and then read your data straight into R.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Given file.csv}
+\NormalTok{road =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/AllFatalities.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Note: This method works well, unless your working directory is not pointed at your DATA1001files folder. ie Your computer needs to know where to get the data file from. See the next section for how to set your working directory to your DATA1001files folder, if it is currently pointing somewhere else.
+
+\hypertarget{using-file.choose-and-working-directories}{%
+\subsection{Using file.choose() and working directories}\label{using-file.choose-and-working-directories}}
+
+The \textbf{working directory} is where RStudio is pointing, ie where it is draws files from and where it save files to.
+
+\begin{itemize}
+\tightlist
+\item
+  It is generally best practise to store your data near your .Rmd file in the DATA1001files folder. In that case, if you open the .Rmd file directly from there, RStudio will set the working directory to that folder.
+\item
+  However, if you are not sure what's happening with your working directory \ldots{} here's one easy plan!.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\tightlist
+\item
+  Check where your current working directory is
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{getwd}\NormalTok{()  }\CommentTok{# This gives the current working directory}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Ask RStudio to browse the files on your computer. This will give you the file pathway (ie where the file is stored).
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{file.choose}\NormalTok{()  }\CommentTok{# Choose your file, and then R gives you the pathway to that file}
+\end{Highlighting}
+\end{Shaded}
+
+For example, for Mac users some possible paths might be:
+desktop: ``/Users/johnsmith/Desktop''
+folder on desktop: ``/Users/johnsmith/Desktop/DATA1001''
+dropbox: ``/Users/johnsmith/Dropbox''
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Set the working directory to that path.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"..."}\NormalTok{) }\CommentTok{# set the working directory to the folder where your file is saved (from the pathway in (2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Read your data in
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"2016Fatalities.csv"}\NormalTok{)  }\CommentTok{# read the data straight into R from that folder}
+\end{Highlighting}
+\end{Shaded}
+
+Note: Students often find working directories confusing at first! But once you have mastered it, it becomes straightforward.
+
+\hypertarget{using-import-dataset}{%
+\subsection{Using Import dataset}\label{using-import-dataset}}
+
+Another way to import data, is to use the ``Import Datatset'' tab in RStudio.
+
+\hypertarget{note-about-excel-files}{%
+\subsection{Note about Excel files}\label{note-about-excel-files}}
+
+\begin{itemize}
+\tightlist
+\item
+  Note: If your file is in Excel format \texttt{PBS2015.xlsx}, then you need the package \texttt{readxl} to first be installed. For example, consider this Excel data \href{http://www.maths.usyd.edu.au/u/UG/JM/DATA1001/r/current/data/PBS2015.xlsx}{here}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Given file.xlsx}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"readxl"}\NormalTok{)  }\CommentTok{# You only need to do this once in RStudio}
+\KeywordTok{library}\NormalTok{(readxl)  }\CommentTok{# You need to do this each time}
+\NormalTok{data =}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\StringTok{"data/PBS2015.xlsx"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{more-info}{%
+\subsection{More info}\label{more-info}}
+
+This free \href{https://learn.datacamp.com/courses/introduction-to-importing-data-in-r}{Data Camp course} is good!
+
+\hypertarget{data-wrangling}{%
+\subsection{Data Wrangling **}\label{data-wrangling}}
+
+Data preparation is an essential part of statistical analysis and can be very time-consuming. It can involve cleaning or tidying, cleansing scrubbing, reshaping, reforming, splitting and combining. It must be performed carefully and transparently.
+
+\begin{itemize}
+\item
+  The aim is to change Messy (or Raw or Dirty) Data into Clean Data, which is correctly and consistently formatted and ready for analysis.This can involve removing redundant or useless information, standardising information (like calendar dates), separating or combining columns, and dealing with warnings.
+\item
+  Simple data can be cleaned in Excel. Get rid of any extra formatting, so that the data looks like:
+\end{itemize}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+ID (if applicable) & Variable1 & Variable2 & Variable3\tabularnewline
+\midrule
+\endhead
+1 & 14 & 25 & 34.4\tabularnewline
+2 & 15 & 23 & 19.7\tabularnewline
+& & &\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  More complex cleaning can be done through a \href{http://tidyverse.org/}{package} like \texttt{tidyverse}. Install the package, as a one off command.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Each new session of RStudio, you will need to load the package.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  See \href{https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf}{cheat sheet} and \href{https://cran.r-project.org/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf}{article}
+\end{itemize}
+
+\hypertarget{structure-of-data}{%
+\section{Structure of data}\label{structure-of-data}}
+
+We will use \texttt{mtcars} to illustrate the structure of data.
+
+\hypertarget{classify-variables}{%
+\subsection{Classify variables}\label{classify-variables}}
+
+\begin{itemize}
+\item
+  Recall there are 2 main types of variables: qualitative and quantitative, which R calls \texttt{Factor} and \texttt{num}.
+\item
+  View the data.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mtcars}
+\KeywordTok{head}\NormalTok{(mtcars)}
+\KeywordTok{tail}\NormalTok{(mtcars, }\DataTypeTok{n=}\DecValTok{3}\NormalTok{)}
+\KeywordTok{help}\NormalTok{(mtcars)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Calculate the \texttt{dim}ensions of the data set.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dim}\NormalTok{(mtcars)}
+\end{Highlighting}
+\end{Shaded}
+
+This means that there are 32 rows (the types of cars) and 11 variables (properties of the cars).
+
+\begin{itemize}
+\tightlist
+\item
+  List the \texttt{names} of the variables.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(mtcars)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  See how R has classified the variables by viewing the \texttt{str}ucture of the data.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(mtcars)}
+\end{Highlighting}
+\end{Shaded}
+
+where `num' is a quantitative (numerical) variable and `Factor' is a qualitative (categorical) variable.
+
+\hypertarget{isolate-a-variable}{%
+\subsection{Isolate a variable}\label{isolate-a-variable}}
+
+\begin{itemize}
+\tightlist
+\item
+  Choose one variable from the data frame by using \texttt{DataName\$VariableName} and store the result in a vector.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mpg=}\StringTok{ }\NormalTok{mtcars}\OperatorTok{$}\NormalTok{mpg}
+\end{Highlighting}
+\end{Shaded}
+
+Note that RStudio has code completion, so will auto-predict your commands. When you type \texttt{mtcars\$}, the names of the all the variables will come up.
+
+\begin{itemize}
+\tightlist
+\item
+  See the \texttt{class}ification of 1 variable.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(mpg)}
+\KeywordTok{str}\NormalTok{(mpg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  See the \texttt{length} of 1 variable.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(mpg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Calculate the \texttt{sum} of a (quantitative) variable.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(mpg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  If at any command you get the answer NA, it means that you need to specify what to do with missing values.
+  See \href{https://stat.ethz.ch/R-manual/R-devel/library/base/html/sum.html}{Resource} on how to solve this.
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Sort} the data in increasing order.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sort}\NormalTok{(mpg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://stat.ethz.ch/R-manual/R-devel/library/base/html/sort.html}{Work out} how to sort the data in decreasing order.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sort}\NormalTok{(mpg, }\DataTypeTok{decreasing =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Sum the 5 lowest values of the variable.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sum}\NormalTok{(}\KeywordTok{sort}\NormalTok{(mpg)[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{select-subset}{%
+\subsection{Select subset}\label{select-subset}}
+
+\begin{itemize}
+\tightlist
+\item
+  Pick the 1st and 5th elements of the vector \texttt{mpg}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mpg[}\DecValTok{1}\NormalTok{]}
+\NormalTok{mpg[}\DecValTok{5}\NormalTok{]}
+\NormalTok{mpg[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{)]}
+\NormalTok{mtcars}\OperatorTok{$}\NormalTok{mpg[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{)]}
+\NormalTok{mtcars[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{]  }
+\NormalTok{mtcars[}\DecValTok{5}\NormalTok{,}\DecValTok{1}\NormalTok{]   }\CommentTok{#mpg is 1st column.}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{change-classification}{%
+\subsection{Change classification}\label{change-classification}}
+
+\begin{itemize}
+\tightlist
+\item
+  You may not agree with R's initial classification, and want to change it.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(mtcars)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  For example, note that the number of carburetors \texttt{carb} is classified as \texttt{num}. Reclassify \texttt{carb} as a \texttt{factor}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{carb)}
+\NormalTok{carbF =}\StringTok{ }\KeywordTok{factor}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{carb)}
+\KeywordTok{class}\NormalTok{(carbF)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  To change from a \texttt{factor} to a \texttt{num}:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ageCanVote =}\StringTok{ }\KeywordTok{factor}\NormalTok{(}\KeywordTok{setNames}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{16}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{18}\NormalTok{, }\StringTok{"Unknown"}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"Austria"}\NormalTok{, }\StringTok{"Australia"}\NormalTok{, }\StringTok{"Afghanistam"}\NormalTok{, }\StringTok{"Zambia"}\NormalTok{)))}
+\KeywordTok{as.numeric}\NormalTok{(ageCanVote)  }\CommentTok{# This is a mistake, as it converts to the rank of the factor level}
+\KeywordTok{as.numeric}\NormalTok{(}\KeywordTok{as.character}\NormalTok{(ageCanVote))  }\CommentTok{# This converts properly}
+\end{Highlighting}
+\end{Shaded}
+
+Note:
+(1) The warning message is not a problem - it is just alerting you to the introduction of NAs.
+(2) The mistake above if you just use \texttt{as\textquotesingle{}numeric()}.
+
+\hypertarget{graphicalsummaries}{%
+\section{Graphical Summaries}\label{graphicalsummaries}}
+
+The graphical summary must match up with the type of variable(s).
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Variable & Type of summary\tabularnewline
+\midrule
+\endhead
+1 Qualitative & (Single) Barplot\tabularnewline
+1 Quantitative & Histogram or (Single) Boxplot\tabularnewline
+2 Qualitative & Double Barplot, Mosaicplot\tabularnewline
+2 Quantitative & Scatterplot\tabularnewline
+1 Quantitative, 1 Qualitative & Double Boxplot\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{barplot}{%
+\subsection{Barplot}\label{barplot}}
+
+A barplot is used for qualitative variables.
+
+\begin{itemize}
+\item
+  Which variables are qualitative in \texttt{mtcars}?
+\item
+  Produce a \textbf{single} \texttt{barplot} of the gears.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear)}
+\end{Highlighting}
+\end{Shaded}
+
+Notice this is not useful! This is because R has classified \texttt{gear} as a quantitative variable.
+
+\begin{itemize}
+\tightlist
+\item
+  Instead, first summarise \texttt{gears} into a table as follows.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Produce frequency table}
+\KeywordTok{table}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear)}
+
+\CommentTok{# produce barplot (from frequency table)}
+\NormalTok{counts =}\StringTok{ }\KeywordTok{table}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear)}
+\KeywordTok{barplot}\NormalTok{(counts)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Now customise the barplot.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{help}\NormalTok{(barplot)}
+\KeywordTok{barplot}\NormalTok{(counts, }\DataTypeTok{names.arg=}\KeywordTok{c}\NormalTok{(}\StringTok{"3 Gears"}\NormalTok{,}\StringTok{"4 Gears"}\NormalTok{,}\StringTok{"5 Gears"}\NormalTok{),}\DataTypeTok{col=}\StringTok{"lightblue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Make the names of bars perpendicular to axis.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{las=}\DecValTok{2}\NormalTok{) }
+\KeywordTok{barplot}\NormalTok{(counts, }\DataTypeTok{names.arg=}\KeywordTok{c}\NormalTok{(}\StringTok{"3 Gears"}\NormalTok{,}\StringTok{"4 Gears"}\NormalTok{,}\StringTok{"5 Gears"}\NormalTok{),}\DataTypeTok{col=}\StringTok{"lightblue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Now consider 2 qualitative variables: \texttt{gear} and \texttt{cyl}. Produce a \textbf{double} barplot by \textbf{faceting} or \textbf{filtering} the barplot of \texttt{gear} by \texttt{cyl}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{counts1 =}\StringTok{ }\KeywordTok{table}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{cyl, mtcars}\OperatorTok{$}\NormalTok{gear)}
+\KeywordTok{barplot}\NormalTok{(counts1,}\DataTypeTok{names.arg=}\KeywordTok{c}\NormalTok{(}\StringTok{"3 Gears"}\NormalTok{,}\StringTok{"4 Gears"}\NormalTok{,}\StringTok{"5 Gears"}\NormalTok{),}\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"lightblue"}\NormalTok{,}\StringTok{"lightgreen"}\NormalTok{,}\StringTok{"lightyellow"}\NormalTok{),}\DataTypeTok{legend =} \KeywordTok{rownames}\NormalTok{(counts1))}
+\KeywordTok{barplot}\NormalTok{(counts1,}\DataTypeTok{names.arg=}\KeywordTok{c}\NormalTok{(}\StringTok{"3 Gears"}\NormalTok{,}\StringTok{"4 Gears"}\NormalTok{,}\StringTok{"5 Gears"}\NormalTok{),}\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"lightblue"}\NormalTok{,}\StringTok{"lightgreen"}\NormalTok{,}\StringTok{"lightyellow"}\NormalTok{),}\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"4 cyl"}\NormalTok{,}\StringTok{"6 cyl"}\NormalTok{,}\StringTok{"8 cyl"}\NormalTok{))}
+\KeywordTok{barplot}\NormalTok{(counts1, }\DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"3 Gears"}\NormalTok{, }\StringTok{"4 Gears"}\NormalTok{, }\StringTok{"5 Gears"}\NormalTok{), }\DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"lightblue"}\NormalTok{, }
+    \StringTok{"lightgreen"}\NormalTok{, }\StringTok{"lightyellow"}\NormalTok{), }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"4 cyl"}\NormalTok{, }\StringTok{"6 cyl"}\NormalTok{, }\StringTok{"8 cyl"}\NormalTok{), }\DataTypeTok{beside =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+What do you learn?
+
+\hypertarget{histogram}{%
+\subsection{Histogram}\label{histogram}}
+
+A histogram is used for quantitative variables.
+
+\begin{itemize}
+\item
+  Which variables are quantitative in \texttt{mtcars}?
+\item
+  Produce a \texttt{hist}ogram of the weights.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Produce a probability \texttt{hist}ogram of the weights. What is the difference? Why do the 2 histograms have an identical shape here?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt,}\DataTypeTok{freq=}\NormalTok{F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  In this course, we will consider the probability histogram (2nd one) which means that the total area of the histogram is 1.
+\item
+  What does the histogram tell us about weights of the cars?
+\item
+  To see what customisations for \texttt{hist} are available, use \texttt{help}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{help}\NormalTok{(hist)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Try this \texttt{hist}ogram of the weights.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt, }\DataTypeTok{br=}\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DataTypeTok{by=}\FloatTok{0.5}\NormalTok{), }\DataTypeTok{freq=}\NormalTok{F, }\DataTypeTok{col=}\StringTok{"lightgreen"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"weight of cars (1000 lbs)"}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Histogram of Weights of Cars US 1973-74"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Experiment with the customisations to see how they work.
+\item
+  Try a \texttt{hist}ogram of the gross horsepower. What do you learn?
+\item
+  Produce a \texttt{hist}ogram of mpg. What do you learn?
+\end{itemize}
+
+\hypertarget{boxplot}{%
+\subsection{Boxplot}\label{boxplot}}
+
+A boxplot is another summary for quantitative variables.
+
+\begin{itemize}
+\tightlist
+\item
+  Produce a \textbf{single} boxplot for the weights of cars.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Produce a horizontal boxplot.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt, }\DataTypeTok{horizontal =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+Which orientation do you prefer?
+
+Compare to the histogram of weights above: what different features are highlighted by a boxplot?
+
+\begin{itemize}
+\tightlist
+\item
+  Customise your boxplot.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{help}\NormalTok{(boxplot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Now consider dividing the weights (qualitative) by cylinders (qualitative). Produce a \textbf{double boxplot}, by \textbf{filtering} or \textbf{faceting} \texttt{wt} by \texttt{cyl}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt}\OperatorTok{~}\NormalTok{mtcars}\OperatorTok{$}\NormalTok{cyl)}
+\KeywordTok{boxplot}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt}\OperatorTok{~}\NormalTok{mtcars}\OperatorTok{$}\NormalTok{cyl, }\DataTypeTok{names=}\KeywordTok{c}\NormalTok{(}\StringTok{"4 cyl"}\NormalTok{, }\StringTok{"6 cyl"}\NormalTok{,}\StringTok{"8 cyl"}\NormalTok{),}\DataTypeTok{ylab=}\StringTok{"Weight of cars (1000 lbs)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+What do you learn about the weights of cars?
+\href{http://web.mit.edu/sloan-auto-lab/research/beforeh2/files/MacKenzie\%20Zoepf\%20Heywood\%20Car\%20Weight\%20Trends\%20-\%20IJVD.pdf}{Car Weight - see page 6}
+
+\begin{itemize}
+\tightlist
+\item
+  Try facetting the weights by another qualitative variable.
+\end{itemize}
+
+\hypertarget{mosaicplot}{%
+\subsection{Mosaicplot}\label{mosaicplot}}
+
+A mosaic plot visualises 2 qualitative variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{counts2 =}\StringTok{ }\KeywordTok{table}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear, mtcars}\OperatorTok{$}\NormalTok{am)  }\CommentTok{# Produces contingency table}
+\KeywordTok{plot}\NormalTok{(counts2) }\CommentTok{# Produces mosaic plot from contingency table}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{scatterplot}{%
+\subsection{Scatterplot}\label{scatterplot}}
+
+A scatter plot considers the relationship between 2 quantitative variables.
+
+\begin{itemize}
+\tightlist
+\item
+  What does this plot tell us?
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt,mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Customise your scatterplot.
+  You can change the \href{http://www.statmethods.net/advgraphs/parameters.html}{plotting symbols}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt,mtcars}\OperatorTok{$}\NormalTok{mpg, }\DataTypeTok{xlab=}\StringTok{"Car Weight"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Miles per Gallon"}\NormalTok{,}\DataTypeTok{col=}\StringTok{"darkred"}\NormalTok{,}\DataTypeTok{pch=}\DecValTok{19}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Add a line of best fit.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{abline}\NormalTok{(}\KeywordTok{lm}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg}\OperatorTok{~}\NormalTok{mtcars}\OperatorTok{$}\NormalTok{wt))}
+\end{Highlighting}
+\end{Shaded}
+
+We'll expore this further in Section 6.
+
+\begin{itemize}
+\tightlist
+\item
+  We can compare pairs of multiple quantitative variables using \texttt{plot} or \texttt{pairs}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(mtcars)}
+\KeywordTok{pairs}\NormalTok{(}\OperatorTok{~}\NormalTok{mpg}\OperatorTok{+}\NormalTok{disp}\OperatorTok{+}\NormalTok{drat}\OperatorTok{+}\NormalTok{wt,}\DataTypeTok{data=}\NormalTok{mtcars)}
+\KeywordTok{pairs}\NormalTok{(mtcars)}
+\end{Highlighting}
+\end{Shaded}
+
+Which variables seem to be related?
+
+\hypertarget{ggplot}{%
+\subsection{ggplot}\label{ggplot}}
+
+All the previous (base R) plots can be done in \texttt{ggplot}, allowing much greater customisation.
+
+\begin{itemize}
+\tightlist
+\item
+  First, download the \href{http://tidyverse.org/}{package}\texttt{ggplot} into RStudio. This is a one off command.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Each time you open RStudio, load the \texttt{ggplot2} package
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{barplot-1}{%
+\subsubsection{Barplot}\label{barplot-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Produce a \textbf{single} barplot.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# mtcars data}
+\NormalTok{p =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mtcars, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\KeywordTok{factor}\NormalTok{(cyl)))  }\CommentTok{# Select the mtcars data, and focus on cyl as factor (qualitative) on x axis}
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_bar}\NormalTok{()  }\CommentTok{# Produce a barplot}
+
+\CommentTok{# mpg data}
+\NormalTok{p1 =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mpg, }\KeywordTok{aes}\NormalTok{(class)) }\CommentTok{# Select the mpg data, and focus on class as x axis}
+\NormalTok{p1 }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_bar}\NormalTok{() }\CommentTok{# (1) Produce a barplot}
+\NormalTok{p1 }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_bar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{weight =}\NormalTok{ displ)) }\CommentTok{# (2) Produce a barplot with counts from displacement variable}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Produce a \textbf{double} barplot.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p1 }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_bar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =}\NormalTok{ drv)) }\CommentTok{# (3) Produce a (double) barplot divided by the drive variable}
+\NormalTok{p1 }\OperatorTok{+}
+\StringTok{ }\KeywordTok{geom_bar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =}\NormalTok{ drv), }\DataTypeTok{position =} \KeywordTok{position_stack}\NormalTok{(}\DataTypeTok{reverse =} \OtherTok{TRUE}\NormalTok{)) }\OperatorTok{+}
+\StringTok{ }\KeywordTok{coord_flip}\NormalTok{() }\OperatorTok{+}
+\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"top"}\NormalTok{)  }\CommentTok{# (4) Customising (3)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{histogram-1}{%
+\subsubsection{Histogram}\label{histogram-1}}
+
+Produce a \texttt{hist}ogram of the weights.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data=}\NormalTok{mtcars, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{wt))  }\CommentTok{# Select the mtcars data, and focus on wt (quantitative) on x axis}
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y=}\NormalTok{..density..),}\DataTypeTok{binwidth=}\FloatTok{0.5}\NormalTok{)  }
+\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{'Weight'}\NormalTok{)}\OperatorTok{+}\KeywordTok{ylab}\NormalTok{(}\StringTok{'Density'}\NormalTok{) }\CommentTok{# Produce a histogram with x and y axis labels}
+\end{Highlighting}
+\end{Shaded}
+
+Using \texttt{aes(y=..density..)} turns a raw histogram into a probability histogram.
+
+\hypertarget{boxplot-1}{%
+\subsubsection{Boxplot}\label{boxplot-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Produce a \textbf{single} boxplot.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data=}\NormalTok{mtcars, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\StringTok{""}\NormalTok{, }\DataTypeTok{y=}\NormalTok{wt))  }\CommentTok{# Select the mtcars data, and focus on wt (quantitative) on y axis (with no filtering on x axis)}
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{() }\CommentTok{# Produce a boxplot}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Produce a \textbf{double} boxplot.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data=}\NormalTok{mtcars, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\KeywordTok{factor}\NormalTok{(cyl),}\DataTypeTok{y=}\NormalTok{wt))  }\CommentTok{# Select the mtcars data, and focus on wt (quantitative) on y axis and cyl (qualitative) on x axis}
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{() }\CommentTok{# Produce a boxplot, of wt filtered by cyl}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{geom\_jitter} plots the points with a small amount of random noise. We use it to investigate over-plotting in small data sets.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data=}\NormalTok{mtcars, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\KeywordTok{factor}\NormalTok{(cyl),}\DataTypeTok{y=}\NormalTok{wt))}
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_jitter}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+What do the following customisations do?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data=}\NormalTok{mtcars, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\KeywordTok{factor}\NormalTok{(cyl),}\DataTypeTok{y=}\NormalTok{wt))}
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{coord_flip}\NormalTok{()}
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{notch =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{(}\DataTypeTok{outlier.colour =} \StringTok{"green"}\NormalTok{, }\DataTypeTok{outlier.size =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now consider dividing the weights by another qualitative variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =} \KeywordTok{factor}\NormalTok{(cyl)))}
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_boxplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill =} \KeywordTok{factor}\NormalTok{(am)))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{scatterplot-1}{%
+\subsubsection{Scatterplot}\label{scatterplot-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Produce a scatterplot.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(mtcars, }\KeywordTok{aes}\NormalTok{(wt, mpg)) }\CommentTok{# Select the mtcars data, and focus on wt (quantitative) on x axis and mpg (quantiative) on y axis}
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{()  }\CommentTok{# Produce a scatterplot of mpg vs wt}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =} \KeywordTok{factor}\NormalTok{(cyl)))  }\CommentTok{# Colour the points by cyl (qualitative)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Notice what these customisations do.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{shape =} \KeywordTok{factor}\NormalTok{(cyl)))  }\CommentTok{# Shape the points by cyl (qualitative)}
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{shape =} \KeywordTok{factor}\NormalTok{(cyl))) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_shape}\NormalTok{(}\DataTypeTok{solid =} \OtherTok{FALSE}\NormalTok{) }
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{size =}\NormalTok{ qsec))  }\CommentTok{# Size the points by qsec (qualitative)}
+\NormalTok{p }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =}\NormalTok{ cyl)) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_colour_gradient}\NormalTok{(}\DataTypeTok{low =} \StringTok{"blue"}\NormalTok{)  }\CommentTok{# Colour the points by cyl (quantitative)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{plotly}{%
+\subsection{plotly **}\label{plotly}}
+
+\texttt{plotly} or \texttt{plot.ly} is included in the `ggplot2 package and allows you to have offline interactive tools.
+
+\begin{itemize}
+\tightlist
+\item
+  Produce this scatter plot. Notice what happens when you hover over the data points.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"plotly"}\NormalTok{)}
+\NormalTok{p1 =}\StringTok{ }\KeywordTok{plot_ly}\NormalTok{(mtcars, }\DataTypeTok{x =} \OperatorTok{~}\NormalTok{mpg, }\DataTypeTok{y =} \OperatorTok{~}\NormalTok{wt, }\DataTypeTok{type=}\StringTok{"scatter"}\NormalTok{) }
+\NormalTok{p1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Now add another variable.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p2 =}\StringTok{ }\KeywordTok{plot_ly}\NormalTok{(mtcars, }\DataTypeTok{x =} \OperatorTok{~}\NormalTok{mpg, }\DataTypeTok{y =} \OperatorTok{~}\NormalTok{wt, }\DataTypeTok{symbol =} \OperatorTok{~}\NormalTok{cyl, }\DataTypeTok{type=}\StringTok{"scatter"}\NormalTok{) }
+\NormalTok{p2}
+\NormalTok{p3 =}\StringTok{ }\KeywordTok{plot_ly}\NormalTok{(mtcars, }\DataTypeTok{x =} \OperatorTok{~}\NormalTok{mpg, }\DataTypeTok{y =} \OperatorTok{~}\NormalTok{wt, }\DataTypeTok{color =} \OperatorTok{~}\NormalTok{cyl, }\DataTypeTok{type=}\StringTok{"scatter"}\NormalTok{) }
+\NormalTok{p3}
+\NormalTok{p4 =}\StringTok{ }\KeywordTok{plot_ly}\NormalTok{(mtcars, }\DataTypeTok{x =} \OperatorTok{~}\NormalTok{mpg, }\DataTypeTok{y =} \OperatorTok{~}\NormalTok{wt, }\DataTypeTok{color =} \OperatorTok{~}\KeywordTok{factor}\NormalTok{(cyl), }\DataTypeTok{type=}\StringTok{"scatter"}\NormalTok{) }
+\NormalTok{p4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Try a boxplot.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"plotly"}\NormalTok{)}
+\NormalTok{p5 =}\StringTok{ }\KeywordTok{plot_ly}\NormalTok{(mtcars, }\DataTypeTok{x =} \OperatorTok{~}\NormalTok{mpg, }\DataTypeTok{y =} \OperatorTok{~}\KeywordTok{factor}\NormalTok{(cyl), }\DataTypeTok{type=}\StringTok{'box'}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Here's the \href{xhttps://images.plot.ly/plotly-documentation/images/r_cheat_sheet.pdf?_ga=2.230192159.2094081876.1551756856-1656530949.1551756856}{cheatsheet}.
+\item
+  More examples \href{https://www.r-graph-gallery.com/121-manage-colors-with-plotly/}{here}.
+\item
+  Guide to \href{https://plotly-book.cpsievert.me/}{plotly}.
+\end{itemize}
+
+\hypertarget{numericalsummaries}{%
+\section{Numerical Summaries}\label{numericalsummaries}}
+
+The numerical summary must match up with the type of variable(s).
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Variable & Type of summary\tabularnewline
+\midrule
+\endhead
+1 Qualitative & frequency table, most common category\tabularnewline
+1 Quantitative & mean, median, SD, IQR etc\tabularnewline
+2 Qualitative & contingency table\tabularnewline
+2 Quantitative & correlation, linear model\tabularnewline
+1 Quantitative, 1 Qualitative & mean, median, SD, IQR etc across categories\tabularnewline
+\bottomrule
+\end{longtable}
+
+We'll keep working with the \texttt{mtcars} dataset.
+So again remind yourself what it is like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(mtcars)}
+\KeywordTok{dim}\NormalTok{(mtcars)}
+\KeywordTok{head}\NormalTok{(mtcars)}
+\KeywordTok{help}\NormalTok{(mtcars)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{frequency-and-contingency-tables}{%
+\subsection{Frequency and contingency tables}\label{frequency-and-contingency-tables}}
+
+\begin{itemize}
+\tightlist
+\item
+  A frequency table summarises \textbf{1} qualitative variable.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  A contingency table summarises \textbf{2} qualitative variable.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear, mtcars}\OperatorTok{$}\NormalTok{am)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{mean-and-median}{%
+\subsection{Mean and median}\label{mean-and-median}}
+
+\begin{itemize}
+\tightlist
+\item
+  The mean and median measure centre for quantitative variables.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear)}
+\KeywordTok{median}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{standard-deviation-sd}{%
+\subsection{Standard deviation (SD)}\label{standard-deviation-sd}}
+
+\begin{itemize}
+\item
+  The standard deviation measures spread for quantitative variables.
+\item
+  The \texttt{sd} command calculates the \textbf{sample} standard deviation. The squared SD is the variance.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sd}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear)}
+\KeywordTok{sd}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear)}\OperatorTok{^}\DecValTok{2}
+\KeywordTok{var}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  The \texttt{popsd} command calculates the \textbf{population} standard deviation, but requires the \texttt{multicon} package.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#install.packages(multicon)   # a package only needs to be installed once.}
+\KeywordTok{library}\NormalTok{(multicon)}
+\KeywordTok{popsd}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear)}
+
+\CommentTok{# Longer way}
+\NormalTok{N =}\StringTok{ }\KeywordTok{length}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear)}
+\KeywordTok{sd}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear)}\OperatorTok{*}\KeywordTok{sqrt}\NormalTok{((N}\DecValTok{-1}\NormalTok{)}\OperatorTok{/}\NormalTok{N)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Note: When we model a population by the box model {[}Section 8 and following{]}, we will require the population SD.
+\end{itemize}
+
+\hypertarget{interquartile-range-iqr}{%
+\subsection{Interquartile range (IQR)}\label{interquartile-range-iqr}}
+
+\begin{itemize}
+\tightlist
+\item
+  The quickest method is to use \texttt{IQR}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{IQR}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  There are lots of different methods of working out the quartiles. We can use the \texttt{quantile} command, and then work out the IQR.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{quantile}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear)}
+\KeywordTok{quantile}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear)[}\DecValTok{4}\NormalTok{]}\OperatorTok{-}\KeywordTok{quantile}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{gear)[}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+What is the 50\% quantile equivalent to?
+
+\hypertarget{summary}{%
+\subsection{Summary}\label{summary}}
+
+\begin{itemize}
+\tightlist
+\item
+  The numerical summaries for quantitative variables can all be produced with \texttt{summary}, which is an expanded version of the 5 number summary. Sometimes these values will vary from using \texttt{quantile} as there are different conventions for calculating quartiles.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)  }\CommentTok{# 1 variable}
+\KeywordTok{summary}\NormalTok{(mtcars)  }\CommentTok{# All variables}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  We can consider a subset of the data.
+  Here, we choose the mpg of cars which have a weight greater or equal to 3.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg[mtcars}\OperatorTok{$}\NormalTok{wt}\OperatorTok{>=}\DecValTok{3}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+Here we take all the data from mtcars dataset for a specific cylinder e.g.~6.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mtcars[ }\KeywordTok{which}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{cyl}\OperatorTok{==}\DecValTok{6}\NormalTok{), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{linear-correlation}{%
+\subsection{Linear Correlation}\label{linear-correlation}}
+
+\begin{itemize}
+\tightlist
+\item
+  We can consider the linear correlation between pairs of quantitative variables.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor}\NormalTok{(mtcars)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{normalmodel}{%
+\section{Normal model}\label{normalmodel}}
+
+\hypertarget{plot-curve}{%
+\subsection{Plot curve}\label{plot-curve}}
+
+\begin{itemize}
+\tightlist
+\item
+  To plot a normal curve, we use `dnorm' for a range of \(x\) values.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{)) }\CommentTok{# plots 2 plots on same row}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x),}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x),}\OperatorTok{-}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+When does the Normal curve start to disappear?
+
+\hypertarget{plot-area-under-curve-ext}{%
+\subsection{Plot area under curve (Ext)}\label{plot-area-under-curve-ext}}
+
+\begin{itemize}
+\tightlist
+\item
+  To plot an area under the curve, we use \texttt{polygon}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x), }\DataTypeTok{xlim =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{),}\DataTypeTok{ylab=}\StringTok{""}\NormalTok{,}\DataTypeTok{axes=}\OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \DecValTok{0}\NormalTok{)}
+\NormalTok{sequence =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{2}\NormalTok{, }\FloatTok{0.8}\NormalTok{, }\FloatTok{0.1}\NormalTok{)}
+\KeywordTok{polygon}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(sequence,}\FloatTok{0.8}\NormalTok{,}\OperatorTok{-}\DecValTok{2}\NormalTok{),}
+        \DataTypeTok{y =} \KeywordTok{c}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(}\KeywordTok{c}\NormalTok{(sequence)),}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{),}
+        \DataTypeTok{col =} \StringTok{"purple"}\NormalTok{)}
+\KeywordTok{axis}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DataTypeTok{at=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{2}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\FloatTok{0.8}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{pos=}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{add-normal-to-a-histogram}{%
+\subsection{Add normal to a histogram}\label{add-normal-to-a-histogram}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt,}\DataTypeTok{prob=}\NormalTok{T)}
+\NormalTok{m=}\KeywordTok{mean}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt)}
+\NormalTok{s=}\KeywordTok{sd}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt)}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{m, }\DataTypeTok{sd=}\NormalTok{s), }
+\DataTypeTok{col=}\StringTok{"darkgreen"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{probabilities-standard-normal}{%
+\subsection{Probabilities: Standard normal}\label{probabilities-standard-normal}}
+
+\hypertarget{lower-tail}{%
+\subsubsection{Lower tail}\label{lower-tail}}
+
+To calculate P(Z \textless{} 0.8) use \texttt{pnorm}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pnorm}\NormalTok{(}\FloatTok{0.8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{upper-tail}{%
+\subsubsection{Upper tail}\label{upper-tail}}
+
+To calculate P(Z \textgreater{} 0.8):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pnorm}\NormalTok{(}\FloatTok{0.8}\NormalTok{,}\DataTypeTok{lower.tail=}\NormalTok{F)}
+\DecValTok{1}\OperatorTok{-}\KeywordTok{pnorm}\NormalTok{(}\FloatTok{0.8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{interval}{%
+\subsubsection{Interval}\label{interval}}
+
+To calculate P(0.3 \textless{} Z \textless{} 0.7):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pnorm}\NormalTok{(}\FloatTok{0.7}\NormalTok{)}\OperatorTok{-}\KeywordTok{pnorm}\NormalTok{(}\FloatTok{0.3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{probabilities-general-normal}{%
+\subsection{Probabilities: General normal}\label{probabilities-general-normal}}
+
+If \(X \sim N(5, 4^2)\), then to calculate P(X \textless{} 8), we use \texttt{pnorm(8,mean,sd)}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pnorm}\NormalTok{(}\DecValTok{8}\NormalTok{,}\DataTypeTok{mean=}\DecValTok{5}\NormalTok{,}\DataTypeTok{sd=}\DecValTok{4}\NormalTok{)}
+\KeywordTok{pnorm}\NormalTok{(}\DecValTok{8}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{linearmodel}{%
+\section{Linear model}\label{linearmodel}}
+
+\hypertarget{scatter-plot}{%
+\subsection{Scatter plot}\label{scatter-plot}}
+
+\begin{itemize}
+\tightlist
+\item
+  To produce a scatter plot, use \texttt{plot(\textless{}x\ variable\textgreater{},\ \textless{}y\ variable\textgreater{})}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg,mtcars}\OperatorTok{$}\NormalTok{wt)}
+\KeywordTok{plot}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg,mtcars}\OperatorTok{$}\NormalTok{wt, }\DataTypeTok{xlab=}\StringTok{"mpg"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"weight"}\NormalTok{, }\DataTypeTok{main=}\StringTok{"Scatter plot of weight vs mpg"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{correlation-coefficient}{%
+\subsection{Correlation coefficient}\label{correlation-coefficient}}
+
+\begin{itemize}
+\tightlist
+\item
+  To calculate the correlation coefficient, use \texttt{cor(\textless{}x\ variable\textgreater{},\ \textless{}y\ variable\textgreater{})}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg,mtcars}\OperatorTok{$}\NormalTok{wt)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{regression-line}{%
+\subsection{Regression line}\label{regression-line}}
+
+\begin{itemize}
+\tightlist
+\item
+  To produce the regression line, use \texttt{lm(\textless{}y\ variable\textgreater{}\textasciitilde{}\textless{}x\ variable\textgreater{})}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lm}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt}\OperatorTok{~}\NormalTok{mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\CommentTok{#Or}
+\NormalTok{L=}\KeywordTok{lm}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt}\OperatorTok{~}\NormalTok{mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\NormalTok{L}\OperatorTok{$}\NormalTok{coeff}
+\CommentTok{#Or}
+\KeywordTok{lm}\NormalTok{(wt}\OperatorTok{~}\NormalTok{mpg,}\DataTypeTok{data=}\NormalTok{mtcars)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Now you can add this line to the scatter plot.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg,mtcars}\OperatorTok{$}\NormalTok{wt)}
+\KeywordTok{abline}\NormalTok{(L)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{residual-plot}{%
+\subsection{Residual plot}\label{residual-plot}}
+
+\begin{itemize}
+\item
+  The residual plot helps to detect any pattern not captured by the linear model.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    If it is a random scatter, then the linear model seems appropriate.
+  \item
+    If it shows a pattern (eg quadratic), then another model should be considered.
+  \end{itemize}
+\item
+  To produce a residual plot:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg,L}\OperatorTok{$}\NormalTok{residuals, }\DataTypeTok{xlab =} \StringTok{"mpg"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Residuals"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \DecValTok{0}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{nonlinearmodel}{%
+\section{Non-Linear Model}\label{nonlinearmodel}}
+
+If a linear model is not appropriate, as evidenced by either the scatter plot (non-linear) or residual plot (non-random), we can either try a transformation or directly fit a more complex model.
+
+\hypertarget{transformation}{%
+\subsection{Transformation}\label{transformation}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\NormalTok{mtcars}\OperatorTok{$}\NormalTok{wt}
+\NormalTok{y =}\StringTok{ }\NormalTok{mtcars}\OperatorTok{$}\NormalTok{mpg}
+\KeywordTok{plot}\NormalTok{(x,y)}
+\KeywordTok{cor}\NormalTok{(x,y)}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{log}\NormalTok{(x),}\KeywordTok{log}\NormalTok{(y))  }\CommentTok{# scatterplot of log of data}
+\KeywordTok{cor}\NormalTok{(}\KeywordTok{log}\NormalTok{(x),}\KeywordTok{log}\NormalTok{(y))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{fit-non-linear-model-ext}{%
+\subsection{Fit non-linear model (Ext)}\label{fit-non-linear-model-ext}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(x,y)}
+\CommentTok{# Set seed for fixing 1 simulation}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\CommentTok{# Simulate the x values}
+\NormalTok{simx=}\KeywordTok{seq}\NormalTok{(}\KeywordTok{min}\NormalTok{(x),}\KeywordTok{max}\NormalTok{(x),}\DataTypeTok{length.out=}\KeywordTok{length}\NormalTok{(x))}
+\CommentTok{# Model the y values y=12+ke^(-x), with a starting value of k }
+\NormalTok{model =}\StringTok{ }\KeywordTok{nls}\NormalTok{(y}\OperatorTok{~}\DecValTok{12}\OperatorTok{+}\NormalTok{k}\OperatorTok{*}\KeywordTok{exp}\NormalTok{(}\OperatorTok{-}\NormalTok{simx), }\DataTypeTok{start=}\KeywordTok{list}\NormalTok{(}\DataTypeTok{k=}\DecValTok{500}\NormalTok{))}
+\KeywordTok{summary}\NormalTok{(model)}
+\CommentTok{# Add model to scatter plot}
+\KeywordTok{lines}\NormalTok{(simx,}\KeywordTok{predict}\NormalTok{(model),}\DataTypeTok{lty=}\DecValTok{2}\NormalTok{,}\DataTypeTok{col=}\StringTok{"green"}\NormalTok{,}\DataTypeTok{lwd=}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{simulatechance}{%
+\section{Simulate chance}\label{simulatechance}}
+
+\hypertarget{set-seed}{%
+\subsection{Set seed}\label{set-seed}}
+
+Setting a seed is a way to simulate the same results each time (eg for sharing with a collaborator).
+
+\begin{itemize}
+\tightlist
+\item
+  Notice what happens below if we don't set a seed.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"H"}\NormalTok{, }\StringTok{"T"}\NormalTok{), }\DecValTok{5}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ T)}
+\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"H"}\NormalTok{, }\StringTok{"T"}\NormalTok{), }\DecValTok{5}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Now set a seed.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)  }\CommentTok{# ensures the same simulation, "1" can be whatever you choose}
+\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"H"}\NormalTok{, }\StringTok{"T"}\NormalTok{), }\DecValTok{5}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ T)}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"H"}\NormalTok{, }\StringTok{"T"}\NormalTok{), }\DecValTok{5}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{sample-coin}{%
+\subsection{Sample (Coin)}\label{sample-coin}}
+
+\begin{itemize}
+\tightlist
+\item
+  To simulate 1 fair coin toss
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{) }
+\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"H"}\NormalTok{, }\StringTok{"T"}\NormalTok{), }\DecValTok{1}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  To simulate 1 biased coin toss
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"H"}\NormalTok{, }\StringTok{"T"}\NormalTok{), }\DecValTok{1}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ T,}\DataTypeTok{prob =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.9}\NormalTok{, }\FloatTok{0.1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  To simulate 10 fair coin tosses, and summarise chances in a table:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{sample1 =}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"H"}\NormalTok{, }\StringTok{"T"}\NormalTok{), }\DecValTok{10}\NormalTok{,}\DataTypeTok{replace=}\NormalTok{T)}
+\KeywordTok{table}\NormalTok{(sample1)}\OperatorTok{/}\DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Alternatively, you could use
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\KeywordTok{replicate}\NormalTok{(}\DecValTok{10}\NormalTok{, }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"H"}\NormalTok{, }\StringTok{"T"}\NormalTok{),}\DecValTok{1}\NormalTok{,}\DataTypeTok{replace=}\NormalTok{T))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Alternatively, you could use the Binomial *,
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\KeywordTok{rbinom}\NormalTok{(}\DataTypeTok{n =} \DecValTok{10}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{sample-dice}{%
+\subsection{Sample (Dice)}\label{sample-dice}}
+
+\begin{itemize}
+\tightlist
+\item
+  To simulate 1 fair die toss
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{), }\DecValTok{1}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  To simulate 1 biased die toss
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{), }\DecValTok{1}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ T,}\DataTypeTok{prob =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.2}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.2}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  To simulate 10 fair dice tosses, and summarise chances in a table:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{), }\DecValTok{10}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ T)}
+\KeywordTok{table}\NormalTok{(}\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{), }\DecValTok{10}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ T))}\OperatorTok{/}\DecValTok{10}
+\KeywordTok{barplot}\NormalTok{(}\KeywordTok{table}\NormalTok{(}\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{), }\DecValTok{10}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ T))}\OperatorTok{/}\DecValTok{10}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"dice face"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"chance"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Alternatively, you could use
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\KeywordTok{table}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(}\DecValTok{10}\NormalTok{, }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{), }\DecValTok{10}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ T)))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{function}{%
+\subsection{Function **}\label{function}}
+
+To toss a die 10 times, and find the chance of getting a 6:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tossdie =}\StringTok{ }\ControlFlowTok{function}\NormalTok{() \{}
+\NormalTok{    rolls =}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{, }\DataTypeTok{size =} \DecValTok{10}\NormalTok{, }\DataTypeTok{replace =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{    condition =}\StringTok{ }\KeywordTok{sum}\NormalTok{(rolls }\OperatorTok{==}\StringTok{ }\DecValTok{6}\NormalTok{) }\OperatorTok{>}\StringTok{ }\DecValTok{0}
+    \KeywordTok{return}\NormalTok{(condition)}
+\NormalTok{\}}
+\CommentTok{# Simulate 10000 times}
+\NormalTok{sim =}\StringTok{ }\KeywordTok{replicate}\NormalTok{(}\DecValTok{10000}\NormalTok{, }\KeywordTok{tossdie}\NormalTok{())}
+\KeywordTok{sum}\NormalTok{(sim)}\OperatorTok{/}\KeywordTok{length}\NormalTok{(sim)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{binomial-model}{%
+\subsection{Binomial Model *}\label{binomial-model}}
+
+Suppose we have 10 trials with P(event) = 0.3.
+
+The chance of getting 4 events:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dbinom}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{10}\NormalTok{,}\FloatTok{0.3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The chance of getting less than or equal to 5 events:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pbinom}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{10}\NormalTok{,}\FloatTok{0.3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{boxmodel}{%
+\section{Simulate chance variability (box model)}\label{boxmodel}}
+
+Suppose we have a ``box'' (or population) containing 0 and 1, from which we draw 10 times creating a sample. We have formal theory which gives the expected value (EV) and standard error (SE) of both the Sample Sum (sum of the sample values and Sample Mean (mean of the sample values).
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\begin{minipage}[b]{0.20\columnwidth}\raggedright
+Focus\strut
+\end{minipage} & \begin{minipage}[b]{0.33\columnwidth}\raggedright
+EV\strut
+\end{minipage} & \begin{minipage}[b]{0.38\columnwidth}\raggedright
+SE\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+Sample Sum\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
+number of draws * mean of box\strut
+\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\raggedright
+\(\sqrt{\mbox{number of draws}}\) * SD of box\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.20\columnwidth}\raggedright
+Sample Mean\strut
+\end{minipage} & \begin{minipage}[t]{0.33\columnwidth}\raggedright
+mean of box\strut
+\end{minipage} & \begin{minipage}[t]{0.38\columnwidth}\raggedright
+\(\frac{SD}{\sqrt{\mbox{number of draws}}}\)\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{draw-the-box-model-in-r-ext}{%
+\subsection{Draw the box model in R (Ext)}\label{draw-the-box-model-in-r-ext}}
+
+\begin{itemize}
+\item
+  What matters most is being able to draw a box model by hand. But below is some code for those who are interested.
+\item
+  Install the package \texttt{DiagrammeR}. If you have trouble installing, you can just use it on the uni labs.
+\item
+  Draw a box model in R.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"DiagrammeR"}\NormalTok{)}
+
+\KeywordTok{grViz}\NormalTok{(}\StringTok{" }
+\StringTok{  digraph CFA \{}
+
+\StringTok{  # All}
+\StringTok{  node [fontname = Helvetica, fontcolor = White]}
+
+\StringTok{    # Box}
+\StringTok{    node [shape = box, style=filled, color=SteelBlue4, width=2 label='0  1'][fillcolor = SteelBlue4]}
+\StringTok{    a ; }
+
+\StringTok{    # Sample}
+\StringTok{    node [shape = circle, style=filled, color=IndianRed, width=0.5, label='-'][fillcolor = IndianRed]}
+\StringTok{    b ; }
+
+\StringTok{    # Draws}
+\StringTok{    a -> b [fontname = Helvetica,label = '10 draws',fontsize=8]}
+\StringTok{    b -> a  [fontname = Helvetica,color=grey,arrowsize = 0.5]}
+\StringTok{  \}}
+
+\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Define the box (mean, SD).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{box=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{) }\CommentTok{# Define the box}
+\NormalTok{n =}\StringTok{ }\DecValTok{10}  \CommentTok{# Define the sample size (number of draws)}
+
+\CommentTok{# mean & SD of box}
+\NormalTok{meanbox=}\KeywordTok{mean}\NormalTok{(box)}
+\KeywordTok{library}\NormalTok{(multicon)}
+\NormalTok{sdbox=}\KeywordTok{popsd}\NormalTok{(box)}
+
+\CommentTok{# Other calculations of the population SD.}
+
+\CommentTok{# (1) RMS formula}
+\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{mean}\NormalTok{((box }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(box))}\OperatorTok{^}\DecValTok{2}\NormalTok{))}
+
+\CommentTok{# (2) short cut for binary box}
+\NormalTok{(}\KeywordTok{max}\NormalTok{(box) }\OperatorTok{-}\StringTok{ }\KeywordTok{min}\NormalTok{(box)) }\OperatorTok{*}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{length}\NormalTok{(box[box }\OperatorTok{==}\StringTok{ }\KeywordTok{max}\NormalTok{(box)]) }\OperatorTok{*}\StringTok{ }\KeywordTok{length}\NormalTok{(box[box }\OperatorTok{==}\StringTok{ }
+\StringTok{    }\KeywordTok{min}\NormalTok{(box)])}\OperatorTok{/}\KeywordTok{length}\NormalTok{(box)}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{sample-sum-ev-se}{%
+\subsection{Sample Sum (EV \& SE)}\label{sample-sum-ev-se}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# EV & SE of Sample Sum}
+\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{meanbox  }\CommentTok{# EV}
+\KeywordTok{sqrt}\NormalTok{(n) }\OperatorTok{*}\StringTok{ }\NormalTok{sdbox  }\CommentTok{# SE}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{simulate-the-sample-sum}{%
+\subsection{Simulate the Sample Sum}\label{simulate-the-sample-sum}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{totals =}\StringTok{ }\KeywordTok{replicate}\NormalTok{(}\DecValTok{20}\NormalTok{, }\KeywordTok{sum}\NormalTok{(}\KeywordTok{sample}\NormalTok{(box, }\DecValTok{10}\NormalTok{, }\DataTypeTok{rep =}\NormalTok{ T)))}
+\KeywordTok{table}\NormalTok{(totals)}
+\KeywordTok{mean}\NormalTok{(totals)}
+\KeywordTok{sd}\NormalTok{(totals)}
+\KeywordTok{hist}\NormalTok{(totals)}
+\end{Highlighting}
+\end{Shaded}
+
+How do the simulations compare to the exact results?
+
+\hypertarget{use-normal-model-for-sample-sum}{%
+\subsection{Use Normal model for Sample Sum}\label{use-normal-model-for-sample-sum}}
+
+\begin{itemize}
+\item
+  What is the chance that the sample sum is between 4 and 5?
+\item
+  Draw the curve (Ext).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m =}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{meanbox}
+\NormalTok{s =}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n) }\OperatorTok{*}\StringTok{ }\NormalTok{sdbox}
+\NormalTok{threshold1 =}\StringTok{ }\DecValTok{4}
+\NormalTok{threshold2 =}\StringTok{ }\DecValTok{5}
+\NormalTok{xlimits1=}\KeywordTok{seq}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\OperatorTok{-}\DecValTok{4}\OperatorTok{*}\NormalTok{s}\OperatorTok{+}\NormalTok{m, }\DataTypeTok{digit=}\OperatorTok{-}\DecValTok{1}\NormalTok{),}\KeywordTok{round}\NormalTok{(}\DecValTok{4}\OperatorTok{*}\NormalTok{s}\OperatorTok{+}\NormalTok{m, }\DataTypeTok{digit=}\OperatorTok{-}\DecValTok{1}\NormalTok{),}\DecValTok{1}\NormalTok{)}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{m, }\DataTypeTok{sd=}\NormalTok{s), m}\DecValTok{-4}\OperatorTok{*}\NormalTok{s,m}\OperatorTok{+}\DecValTok{4}\OperatorTok{*}\NormalTok{s, }\DataTypeTok{col=}\StringTok{"indianred"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{""}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{""}\NormalTok{, }\DataTypeTok{main =}\StringTok{"P(sum is between 4 and 5)"}\NormalTok{,}\DataTypeTok{axes=}\NormalTok{F)}
+\NormalTok{sequence <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(threshold1, threshold2, }\FloatTok{0.1}\NormalTok{)}
+\KeywordTok{polygon}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(sequence,threshold2,threshold1),}
+        \DataTypeTok{y =} \KeywordTok{c}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(}\KeywordTok{c}\NormalTok{(sequence),m,s),}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{),}
+        \DataTypeTok{col =} \StringTok{"indianred"}\NormalTok{)}
+\KeywordTok{axis}\NormalTok{(}\DecValTok{1}\NormalTok{,xlimits1,}\DataTypeTok{line=}\DecValTok{1}\NormalTok{,}\DataTypeTok{col=}\StringTok{"black"}\NormalTok{,}\DataTypeTok{col.ticks=}\StringTok{"black"}\NormalTok{,}\DataTypeTok{col.axis=}\StringTok{"black"}\NormalTok{)}
+\KeywordTok{mtext}\NormalTok{(}\StringTok{"sum of box"}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DataTypeTok{line=}\DecValTok{1}\NormalTok{,}\DataTypeTok{at=}\OperatorTok{-}\DecValTok{2}\NormalTok{,}\DataTypeTok{col=}\StringTok{"black"}\NormalTok{)}
+\KeywordTok{axis}\NormalTok{(}\DecValTok{1}\NormalTok{,xlimits1,}\DataTypeTok{labels=}\KeywordTok{round}\NormalTok{((xlimits1}\OperatorTok{-}\NormalTok{m)}\OperatorTok{/}\NormalTok{s,}\DecValTok{2}\NormalTok{),}\DataTypeTok{line=}\FloatTok{3.3}\NormalTok{,}\DataTypeTok{col=}\StringTok{"indianred1"}\NormalTok{,}\DataTypeTok{col.ticks=}\StringTok{"indianred1"}\NormalTok{,}\DataTypeTok{col.axis=}\StringTok{"indianred1"}\NormalTok{)}
+\KeywordTok{mtext}\NormalTok{(}\StringTok{"Z score"}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DataTypeTok{line=}\FloatTok{3.3}\NormalTok{,}\DataTypeTok{at=}\OperatorTok{-}\DecValTok{2}\NormalTok{,}\DataTypeTok{col=}\StringTok{"indianred1"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Find the chance.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m =}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\NormalTok{meanbox  }\CommentTok{# Use EV as the mean of the Normal}
+\NormalTok{s =}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(n) }\OperatorTok{*}\StringTok{ }\NormalTok{sdbox   }\CommentTok{# Use SE as the SD of the Normal}
+\KeywordTok{pnorm}\NormalTok{(}\DecValTok{5}\NormalTok{, m, s)}\OperatorTok{-}\KeywordTok{pnorm}\NormalTok{(}\DecValTok{4}\NormalTok{, m, s)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{sample-mean-ev-se}{%
+\subsection{Sample Mean (EV \& SE)}\label{sample-mean-ev-se}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# EV & SE of Sample Mean}
+\NormalTok{meanbox  }\CommentTok{# EV}
+\NormalTok{sdbox}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(n)  }\CommentTok{# SE}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{use-normal-model-for-sample-mean}{%
+\subsection{Use Normal model for Sample Mean}\label{use-normal-model-for-sample-mean}}
+
+\begin{itemize}
+\item
+  What is the chance that the sample mean is between 0.4 and 0.6?
+\item
+  Find the chance.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m =}\StringTok{ }\NormalTok{meanbox  }\CommentTok{# Use EV as the mean of the Normal}
+\NormalTok{s =}\StringTok{ }\NormalTok{sdbox}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(n)  }\CommentTok{# Use SE as the SD of the Normal}
+\KeywordTok{pnorm}\NormalTok{(}\FloatTok{0.6}\NormalTok{, m, s)}\OperatorTok{-}\KeywordTok{pnorm}\NormalTok{(}\FloatTok{0.4}\NormalTok{, m, s)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{samplesurveys}{%
+\section{Sample surveys}\label{samplesurveys}}
+
+\begin{itemize}
+\item
+  Simulate a survey of 25 people taken from a population of size 200 with 2 types of people in the proportion 1:3.
+\item
+  This is equivalent to taking 25 draws from a box containing 50 1's and 150 0's.
+\item
+  Note: A survey is technically without replacement, but here we will approximate by the box model which assumes replacement.
+\end{itemize}
+
+\hypertarget{box-model-assuming-replacement}{%
+\subsection{Box model (assuming replacement)}\label{box-model-assuming-replacement}}
+
+\begin{itemize}
+\tightlist
+\item
+  Draw the model (Ext)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"DiagrammeR"}\NormalTok{)}
+
+\KeywordTok{grViz}\NormalTok{(}\StringTok{" }
+\StringTok{  digraph CFA \{}
+
+\StringTok{  # All}
+\StringTok{  node [fontname = Helvetica, fontcolor = White]}
+
+\StringTok{    # Box}
+\StringTok{    node [shape = box, style=filled, color=SteelBlue4, width=2 label='50x1s  150x0s'][fillcolor = SteelBlue4]}
+\StringTok{    a ; }
+
+\StringTok{    # Sample}
+\StringTok{    node [shape = circle, style=filled, color=IndianRed, width=0.5, label='-'][fillcolor = IndianRed]}
+\StringTok{    b ; }
+
+\StringTok{    # Draws}
+\StringTok{    a -> b [fontname = Helvetica,label = '25 draws',fontsize=8]}
+\StringTok{    b -> a  [fontname = Helvetica,color=grey,arrowsize = 0.5]}
+\StringTok{  \}}
+
+\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Define the box (mean, SD)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{box=}\KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{50}\NormalTok{),}\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{150}\NormalTok{))  }\CommentTok{# Define the box/population}
+\NormalTok{n =}\StringTok{ }\DecValTok{25} \CommentTok{# Number of draws (sample size)}
+
+\CommentTok{# mean & SD of box}
+\NormalTok{meanbox =}\StringTok{ }\KeywordTok{mean}\NormalTok{(box)}
+\NormalTok{sdbox =}\StringTok{ }\KeywordTok{popsd}\NormalTok{(box)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  The Sample Sum = number of 1's in the sample.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n}\OperatorTok{*}\NormalTok{meanbox  }\CommentTok{# EV}
+\KeywordTok{sqrt}\NormalTok{(n)}\OperatorTok{*}\NormalTok{sdbox  }\CommentTok{# SE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  The Sample Mean = proportion of 1's in the sample (EV \& SE)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{meanbox  }\CommentTok{# EV}
+\NormalTok{sdbox}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(n)  }\CommentTok{# SE}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{bootstrapping-a-box-model}{%
+\subsection{Bootstrapping a box model}\label{bootstrapping-a-box-model}}
+
+\begin{itemize}
+\tightlist
+\item
+  A survey of 10 people is taken from a population of size 200 with 2 types of people, resulting in 4 0's and 6 1's.
+\item
+  In practise, we don't normally know the proportions within the population, and so we can't define the ``box''.
+\item
+  So one approach is to ``bootstrap'': we substitute the proportions of 0's and 1's in the sample for the 0's and 1's in the population (box).
+\item
+  This estimate is good when the sample is reasonably large.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Bootstrap box model}
+\NormalTok{boxest0 =}\StringTok{ }\DecValTok{200}\OperatorTok{*}\DecValTok{4}\OperatorTok{/}\DecValTok{10}
+\NormalTok{boxest1 =}\StringTok{ }\DecValTok{200}\OperatorTok{*}\DecValTok{6}\OperatorTok{/}\DecValTok{10}
+\NormalTok{box =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, boxest1), }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, boxest0))}
+\NormalTok{n =}\StringTok{ }\DecValTok{10} \CommentTok{# Size of sample (= number of draws)}
+
+\CommentTok{# Mean & SD of box}
+\NormalTok{meanbox =}\StringTok{ }\KeywordTok{mean}\NormalTok{(box)  }\CommentTok{# population proportion of 1's}
+\NormalTok{sdbox =}\StringTok{ }\KeywordTok{popsd}\NormalTok{(box)}
+
+\CommentTok{# EV & SE of Sample Mean (= sample proportion of 1's)}
+\NormalTok{meanbox}
+\NormalTok{sdbox}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(n)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Note the expected value of sample proportion of 1's (0.6), is equal to the population proportion of 1s (0.6), as it should be.
+\item
+  Hence, we expect 60\% 1s in the sample with a SE of around 15 percentage points.
+\end{itemize}
+
+\hypertarget{confidence-intervals-for-population-proportion}{%
+\subsection{Confidence Intervals for population proportion}\label{confidence-intervals-for-population-proportion}}
+
+\begin{itemize}
+\item
+  A survey of 30 people is taken from a population of size 600 with 2 types of people in the proportion 1:2.
+\item
+  This is equivalent to taking 30 draws from a box containing 200 1's and 400 0's (assuming replacement).
+\item
+  Define the box (mean, SD)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{box=}\KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{200}\NormalTok{),}\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{400}\NormalTok{))  }\CommentTok{# Define the box/population}
+\NormalTok{n =}\StringTok{ }\DecValTok{30} \CommentTok{# Number of draws (sample size)}
+
+\CommentTok{# mean & SD of box}
+\NormalTok{meanbox =}\StringTok{ }\KeywordTok{mean}\NormalTok{(box)}
+\NormalTok{sdbox =}\StringTok{ }\KeywordTok{popsd}\NormalTok{(box)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  An approximate 68\% confidence interval (CI) for the population proportion is
+  \[\mbox{sample proportion} \pm 1 \times \mbox{SE for sample proportion} \]
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# EV & SE of sample proportion of 1's}
+\NormalTok{ev =}\StringTok{ }\NormalTok{meanbox}
+\NormalTok{se =}\StringTok{ }\NormalTok{sdbox}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(n)}
+
+\CommentTok{# 68% CI}
+\KeywordTok{c}\NormalTok{(ev }\OperatorTok{-}\StringTok{ }\DecValTok{1}\OperatorTok{*}\NormalTok{se,ev }\OperatorTok{+}\StringTok{ }\DecValTok{1}\OperatorTok{*}\NormalTok{se)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  An approximate 95\% confidence interval (CI) for the population percentage is
+  \[\mbox{sample proportion} \pm 2 \times \mbox{SE for sample proportion} \]
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 95% CI}
+\KeywordTok{c}\NormalTok{(ev }\OperatorTok{-}\StringTok{ }\DecValTok{2}\OperatorTok{*}\NormalTok{se,ev }\OperatorTok{+}\StringTok{ }\DecValTok{2}\OperatorTok{*}\NormalTok{se)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  An approximate 99.7\% confidence interval (CI) for the population percentage is
+  \[\mbox{sample proportion} \pm 3 \times \mbox{SE for sample proportion} \]
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# 99.7% CI}
+\KeywordTok{c}\NormalTok{(ev }\OperatorTok{-}\StringTok{ }\DecValTok{3}\OperatorTok{*}\NormalTok{se,ev }\OperatorTok{+}\StringTok{ }\DecValTok{3}\OperatorTok{*}\NormalTok{se)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{testforproportion}{%
+\section{Test for a proportion (using simulation)}\label{testforproportion}}
+
+\begin{itemize}
+\item
+  Suppose we have a sample of size \(n\) from a population with proportion \(p\) of a certain trait.
+\item
+  We want to test a null hypothesis for the value of \(p\), by modelling \(H_{0}\) by a box model (with ``1'' representing the trait) with \(n\) draws.
+\item
+  We simulate samples from the box model, and then compare our actual sample to these results - ie how common is our sample?
+\end{itemize}
+
+\hypertarget{simple-balanced-box}{%
+\subsection{Simple balanced box}\label{simple-balanced-box}}
+
+\begin{itemize}
+\item
+  We want to test \(H_{0}\): \(p = 0.5\).
+\item
+  We can produce a picture of the box model modelling \(H_{0}\) (Ext).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"DiagrammeR"}\NormalTok{)}
+  
+\NormalTok{DiagrammeR}\OperatorTok{::}\KeywordTok{grViz}\NormalTok{(}\StringTok{" }
+\StringTok{digraph rmarkdown \{}
+\StringTok{  }
+\StringTok{graph [fontsize = 16, fontname = Arial, nodesep = .1, ranksep = .8]}
+\StringTok{node [fontsize = 16, fontname = Arial, fontcolor = White]}
+\StringTok{edge [fontsize = 12, fontname = Arial, width = 2]}
+
+\StringTok{Box [shape=oval,style=filled, color=SteelBlue3,width=5, label='1    0']}
+
+\StringTok{Sample [shape=oval, style=filled, color=SteelBlue2, label='']}
+
+\StringTok{Box -> Sample [label='   n draws']}
+
+\StringTok{\}}
+\StringTok{"}\NormalTok{)}
+\KeywordTok{detach}\NormalTok{(package}\OperatorTok{:}\NormalTok{DiagrammeR)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Now simulate draws from the box, and compare to your sample. Here, suppose that \(n=20\), and choose a simulation size of 100.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+
+\CommentTok{# Define box (modelling Ho)}
+\NormalTok{box=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+
+\CommentTok{# # Simulate 100 samples of size 20 from the box}
+\NormalTok{totals =}\StringTok{ }\KeywordTok{replicate}\NormalTok{(}\DecValTok{100}\NormalTok{, }\KeywordTok{sum}\NormalTok{(}\KeywordTok{sample}\NormalTok{(box, }\DecValTok{20}\NormalTok{, }\DataTypeTok{rep =}\NormalTok{ T)))}
+\KeywordTok{table}\NormalTok{(totals)}
+\KeywordTok{hist}\NormalTok{(totals)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{unbalanced-box}{%
+\subsection{Unbalanced box}\label{unbalanced-box}}
+
+\begin{itemize}
+\item
+  We want to test \(H_{0}\): \(p = 0.2\).
+\item
+  We can produce a picture of the box model modelling \(H_{0}\) (Ext).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"DiagrammeR"}\NormalTok{)}
+  
+\NormalTok{DiagrammeR}\OperatorTok{::}\KeywordTok{grViz}\NormalTok{(}\StringTok{" }
+\StringTok{digraph rmarkdown \{}
+\StringTok{  }
+\StringTok{graph [fontsize = 16, fontname = Arial, nodesep = .1, ranksep = .8]}
+\StringTok{node [fontsize = 16, fontname = Arial, fontcolor = White]}
+\StringTok{edge [fontsize = 12, fontname = Arial, width = 2]}
+
+\StringTok{Box [shape=oval,style=filled, color=SteelBlue3,width=5, label='100p x 1    100(1-p) x 0']}
+
+\StringTok{Sample [shape=oval, style=filled, color=SteelBlue2, label='']}
+
+\StringTok{Box -> Sample [label='   n draws']}
+
+\StringTok{\}}
+\StringTok{"}\NormalTok{)}
+\KeywordTok{detach}\NormalTok{(package}\OperatorTok{:}\NormalTok{DiagrammeR)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Now simulate draws from the box, and compare to your sample. Here, suppose that \(n=30\), and choose a simulation size of 1000
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+
+\CommentTok{# Define box (modelling Ho)}
+\NormalTok{box=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+
+\CommentTok{# Simulate 1000 samples of size 30 from the box}
+\NormalTok{totals =}\StringTok{ }\KeywordTok{replicate}\NormalTok{(}\DecValTok{1000}\NormalTok{, }\KeywordTok{sum}\NormalTok{(}\KeywordTok{sample}\NormalTok{(box, }\DecValTok{30}\NormalTok{, }\DataTypeTok{prob=}\KeywordTok{c}\NormalTok{(}\FloatTok{0.8}\NormalTok{,}\FloatTok{0.2}\NormalTok{), }\DataTypeTok{rep =}\NormalTok{ T)))}
+\KeywordTok{table}\NormalTok{(totals)}
+\KeywordTok{hist}\NormalTok{(totals)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{testformean}{%
+\section{Tests for a mean}\label{testformean}}
+
+\begin{itemize}
+\item
+  Suppose we have a sample of size \(n\) from a population with unknown \(\mu\).
+\item
+  We want to test a null hypothesis for the value of \(\mu\), by modelling \(H_{0}\) by a box model with \(n\) draws.
+\end{itemize}
+
+\hypertarget{sample-t-test}{%
+\subsection{1 sample t-test}\label{sample-t-test}}
+
+In \href{https://www.washingtonpost.com/news/wonk/wp/2013/12/13/cars-in-the-u-s-are-more-fuel-efficient-than-ever-heres-how-it-happened/?utm_term=.fa2ecb3afa4d}{2013}, the average miles per gallon (mpg) for cars sold in the US was 23.6. We want to see if this is a significant difference from the \texttt{mtcars} data.
+
+\hypertarget{h-hypotheses}{%
+\subsubsection{H: Hypotheses}\label{h-hypotheses}}
+
+\begin{itemize}
+\item
+  Formally, we write \(H_0: Î¼=23.6\) vs \(H_1: Î¼ \neq 23.6\).
+\item
+  Have a quick look to see if \(H_0: Î¼=23.6\) seems to fit with data (eg right units and size etc).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)  }\CommentTok{# sample mean}
+\KeywordTok{length}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg) }\CommentTok{# size of sample }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Now we model \(H_0: Î¼=23.6\) by a box with population mean 23.6, giving the EV of the sample mean as 23.6. We compare this to the observed sample mean of 20.1.
+\end{itemize}
+
+\hypertarget{a-check-the-assumptions}{%
+\subsubsection{A: Check the Assumptions}\label{a-check-the-assumptions}}
+
+For a \(t\) test (or \(Z\) test), we need to check the assumption of normality.
+
+\begin{itemize}
+\tightlist
+\item
+  First, look at the shape of the data.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\KeywordTok{boxplot}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\end{Highlighting}
+\end{Shaded}
+
+Notice the boxplot looks symmetric, which is consistent with normality. Note the histogram shows some light right skewing.
+
+\begin{itemize}
+\tightlist
+\item
+  Next, try some more formal diagnostics.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qqnorm}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\KeywordTok{shapiro.test}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\end{Highlighting}
+\end{Shaded}
+
+Check to see if the Q-Q Plot looks linear, as this indicates normality. The Shapiro test tests the null hypothesis that the sample comes from a Normal distribution. Here the p-value is quite big (0.1229) hence we would retain \(H_0\) which suggests normality.
+
+\begin{itemize}
+\tightlist
+\item
+  Note: you can combine all 4 graphics in 2x2 window, for easy comparison.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{qqnorm}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\KeywordTok{shapiro.test}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\KeywordTok{hist}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\KeywordTok{boxplot}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{t-calculate-the-test-statistic}{%
+\subsubsection{T: Calculate the Test Statistic}\label{t-calculate-the-test-statistic}}
+
+\begin{itemize}
+\item
+  The formula for the \(t\)-test statistic is \(t_{obs} = \frac{\mbox{observed value - hypothesised value}}{\mbox{standard error}}\).
+\item
+  We use the SD of the data as an approximation of the SD of the population, so we can calculate the SE of the Sample Mean.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tobs =}\StringTok{ }\NormalTok{(}\KeywordTok{mean}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}\OperatorTok{-}\FloatTok{23.6}\NormalTok{)}\OperatorTok{/}\NormalTok{(}\KeywordTok{sd}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{32}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  The degrees of freedom of the \(T\) test statistic is \(\mbox{sample size} - 1\).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}\OperatorTok{-}\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{p-calculate-the-p-value}{%
+\subsubsection{P: Calculate the p-value}\label{p-calculate-the-p-value}}
+
+\begin{itemize}
+\tightlist
+\item
+  The p-value is the probability of getting a value of \(t_{obs}\) or more extreme in either tail of the \(T\) distribution.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2}\OperatorTok{*}\NormalTok{(}\DecValTok{1}\OperatorTok{-}\KeywordTok{pt}\NormalTok{(}\KeywordTok{abs}\NormalTok{(tobs),}\DecValTok{31}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Note the use of \texttt{abs} here, allows for test statistic to be in either tail.
+\end{itemize}
+
+\hypertarget{c-conclusion}{%
+\subsubsection{C: Conclusion}\label{c-conclusion}}
+
+\begin{itemize}
+\tightlist
+\item
+  We compare the p-value (0.002476) to the significance level (0.05), and so we reject the null hypothesis. This is the \textbf{statistical conclusion}.
+\item
+  We then write a \textbf{context specific conclusion} on cars: ie the mpg of current cars appears to have changed from the US older cars in \texttt{mtcars}.
+\end{itemize}
+
+\hypertarget{the-speedy-way}{%
+\subsection{The speedy way!}\label{the-speedy-way}}
+
+\begin{itemize}
+\tightlist
+\item
+  We can do all this quickly in R!
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg, }\DataTypeTok{mu =} \FloatTok{23.6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Match up this output with the calculations above. Note it also gives us the 95\% CI and the mean of the sample.
+\end{itemize}
+
+\hypertarget{sample-z-test-ext}{%
+\subsection{1 sample Z-Test (Ext)}\label{sample-z-test-ext}}
+
+\begin{itemize}
+\tightlist
+\item
+  The \(Z\)-Test is not in base R. This is because the \(Z\)-Test requires us to know the population variance \(\sigma\). Hence the \(t\)-Test is much more common.
+\item
+  However, we could create a function called \texttt{z.test} ourselves.
+\item
+  Assume the population variance of \texttt{mtcars\$mpg} is the same as the sample variance (this of course is only a guess).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v =}\StringTok{ }\KeywordTok{var}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\CommentTok{# This creates a function called z.test, with data, mu and var as the inputs, and zobs as the output.}
+\NormalTok{z.test =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(data, mu, var)\{}
+\NormalTok{   zobs =}\StringTok{ }\NormalTok{(}\KeywordTok{mean}\NormalTok{(data) }\OperatorTok{-}\StringTok{ }\NormalTok{mu) }\OperatorTok{/}\StringTok{ }\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(var }\OperatorTok{/}\StringTok{ }\KeywordTok{length}\NormalTok{(data)))}
+   \KeywordTok{return}\NormalTok{(zobs)}
+\NormalTok{\}}
+\CommentTok{# Run the function with inputs}
+\KeywordTok{z.test}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg,}\FloatTok{23.6}\NormalTok{,v)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Hence, the observed value of \(Z\) Test is -3.293877, which will give a tiny p-value and it is more than 3 standard deviations away from the mean.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2}\OperatorTok{*}\NormalTok{(}\DecValTok{1}\OperatorTok{-}\KeywordTok{pnorm}\NormalTok{(}\KeywordTok{abs}\NormalTok{(}\OperatorTok{-}\FloatTok{3.293877}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Hence again we conclude that the mpg of current cars appears to have changed significantly from the US older cars in \texttt{mtcars}.
+\end{itemize}
+
+\hypertarget{testsforrelationships}{%
+\section{Tests for relationships}\label{testsforrelationships}}
+
+\hypertarget{more-t-tests}{%
+\subsection{More t-tests}\label{more-t-tests}}
+
+The choice of the t-test depends both on the design of the experiment and the nature of the data.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\begin{minipage}[b]{0.15\columnwidth}\raggedright
+Type\strut
+\end{minipage} & \begin{minipage}[b]{0.51\columnwidth}\raggedright
+Context\strut
+\end{minipage} & \begin{minipage}[b]{0.25\columnwidth}\raggedright
+Data\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.15\columnwidth}\raggedright
+1 sample t-test\strut
+\end{minipage} & \begin{minipage}[t]{0.51\columnwidth}\raggedright
+Consider 1 population with unknown mean\strut
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+1 sample\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright
+1 sample t-test (paired data)\strut
+\end{minipage} & \begin{minipage}[t]{0.51\columnwidth}\raggedright
+Compare 2 dependent samples (eg Before and After treatment)\strut
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+1 sample of differences\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.15\columnwidth}\raggedright
+2 sample t-test\strut
+\end{minipage} & \begin{minipage}[t]{0.51\columnwidth}\raggedright
+Compare 2 populations with unknown means\strut
+\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
+2 independent samples\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  The \texttt{t.test} command in R allows you to perform different 1 and 2 sample t-tests, by specifying different arguments.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \emph{paired}
+  \item
+    \emph{var.equal}
+  \item
+    \emph{alternative} - We use this to specify if we are doing a 1 sided or 2 sided test (based on hypotheses). We will mostly focus on the 2 sided alternative.
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{help}\NormalTok{(t.test)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{sleep-data-zzzzzzz}{%
+\subsubsection{Sleep data zzzzzzz}\label{sleep-data-zzzzzzz}}
+
+\begin{itemize}
+\tightlist
+\item
+  Let's consider the \texttt{sleep} data provided in R.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{help}\NormalTok{(sleep)}
+\KeywordTok{dim}\NormalTok{(sleep)}
+\KeywordTok{class}\NormalTok{(sleep)}
+\KeywordTok{head}\NormalTok{(sleep)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  The dataset \texttt{sleep} represents the effect of 2 soporific drugs (``group'') on sleep time compared to a control (drug - no drug).
+\end{itemize}
+
+\hypertarget{sample-t-test-1}{%
+\subsubsection{2 sample t-test}\label{sample-t-test-1}}
+
+\begin{itemize}
+\item
+  Initially we are going to ignore the ID column (which shows patients trialed both drugs) and assume that the 2 groups are independent. ie That drug1 was administered to 10 patients and drug2 was administered to 10 different patients.
+\item
+  \textbf{H: Hypotheses}
+
+  \begin{itemize}
+  \item
+    Let \(\mu_1\) = mean net sleep of study participants taking drug1, and \(\mu_2\) = mean net sleep of study participants taking drug2.
+  \item
+    \(H_{0}\) : There is no difference between the 2 drugs: \(\mu_1=\mu_2\).
+  \item
+    \(H_{1}\) : There is a difference betwen the 2 drugs: \(\mu_1 \neq \mu_2\).
+  \end{itemize}
+\item
+  Being a medical study we are going to consider a more conservative significance level of \(\alpha = 0.01\).
+\item
+  \textbf{A: Assumptions} We assume the 2 samples are independent, and the 2 populations are both Normally distributed with the same SD.
+\item
+  \textbf{T \& P: Test statistic and P-value}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(extra}\OperatorTok{~}\NormalTok{group, }\DataTypeTok{data =}\NormalTok{ sleep, }\DataTypeTok{var.equal =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{conf.level =} \FloatTok{0.99}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{C: Conclusion}
+
+  \begin{itemize}
+  \item
+    Statistical conclusion: The p-value is = 0.07919 \textgreater{} 0.01. Furthermore, 0 is contained within the confidence intervals. Therefore we retain our null hypothesis.
+  \item
+    Scientific conclusion: The data seems consistent with no difference in sleep time between patients taking drug1 and drug2.
+  \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  Note: If we had found the spread of the 2 samples were significantly different from each other, we would have performed a 2 sample t-test for unequal variances (Welch 2 sample t-test) in this case we set the argument `var.equal = FALSE'
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(extra}\OperatorTok{~}\NormalTok{group, }\DataTypeTok{data =}\NormalTok{ sleep, }\DataTypeTok{var.equal =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{conf.level =} \FloatTok{0.99}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  In this case, we see that the result is ``similar'' to the equal variance test. In fact many stats guru's argue that you can almost \href{http://daniellakens.blogspot.com.au/2015/01/always-use-welchs-t-test-instead-of.html}{always use Welch's test} except when the sample size is really small.
+\end{itemize}
+
+\hypertarget{sample-t-test-paired-data}{%
+\subsubsection{1 sample t-test (paired data)}\label{sample-t-test-paired-data}}
+
+\begin{itemize}
+\item
+  Looking at the description of the \texttt{sleep} dataset we can see that the data is actually NOT independent.
+\item
+  Sleep was measured in 10 patients who were given both drug1 and drug2 at different times. A \href{https://en.wikipedia.org/wiki/Crossover_study}{crossover study} is a typical experimental design that would generate this type of data. When we only have 2 treatments, we call this paired data.
+\item
+  Therefore we need to perform a 1 sample t-test for paired data: a ``paired t-test''. This is the same as a 1 sample t-test on the difference between the two treatments (i.e.~drug1 - drug2). Therefore the assumptions for this test are equivalent to those for a 1 sample t-test (ie the data must be approximately normally distributed).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sleep_diff <-}\StringTok{ }\NormalTok{sleep}\OperatorTok{$}\NormalTok{extra[sleep}\OperatorTok{$}\NormalTok{group }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{]}\OperatorTok{-}\NormalTok{sleep}\OperatorTok{$}\NormalTok{extra[sleep}\OperatorTok{$}\NormalTok{group }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{]}
+\KeywordTok{qqnorm}\NormalTok{(sleep_diff)}
+\KeywordTok{qqline}\NormalTok{(sleep_diff)}
+\KeywordTok{boxplot}\NormalTok{(sleep_diff)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  The normal quantile-quantile plot and the boxplot show that there may be an outlier in the dataset.
+\item
+  However, for the purpose of this analysis and keeping in mind that these tests are reasonably robust to non-normal data, we will go ahead and test the data.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(extra}\OperatorTok{~}\NormalTok{group, }\DataTypeTok{data =}\NormalTok{ sleep, }\DataTypeTok{paired =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  The p-value is \textless{}0.05 and zero is not contained within the confidence intervals. Therefore we reject the null hypothesis and conclude that there is a significant difference in extra sleep hours between the 2 drugs. Looking at the earlier boxplot, we see that drug2 is more effective in inducing extra sleep than drug1.
+\item
+  Note: this demonstrates how important it is to use the correct analysis as this conclusion is different to when the 2 samples were assumed to be independent.
+\end{itemize}
+
+\hypertarget{chi-squared-tests}{%
+\subsection{Chi-squared tests *}\label{chi-squared-tests}}
+
+\begin{itemize}
+\item
+  Chi-squared tests are used for qualitative data.
+\item
+  Qualitative data is divided into groups, like hair colour or gender. Even height and income can be analysed as qualitative data, if the quantitative data (eg 165cm, 170cm) is grouped into intervals (eg 150-160cm, 160-170cm, 170-180cm).
+\item
+  The Pearson's chi-squared test is a very versatile test which compares the observed frequencies over the categories with the observed frequencies over the categories, under some model (null hypothesis).
+
+  \begin{itemize}
+  \item
+    Test the goodness of fit of a model for the categories of 1 variable. (Eg: This is similar to the Shapiro-Wilks test for normality).
+  \item
+    Test for independence of 2 variables
+  \item
+    Test for homogeneity of 2 variables
+  \end{itemize}
+\item
+  The test is done quickly in R using \texttt{chisq.test}.
+\end{itemize}
+
+\hypertarget{goodness-of-fit-test-1-variable}{%
+\subsubsection{Goodness of Fit Test (1 variable)}\label{goodness-of-fit-test-1-variable}}
+
+\begin{itemize}
+\item
+  Two tomato varieties (dominant tall cut-leaf tomatoes and dwarf potato-leaf tomatoes) were genetically crossed, yielding 1006 offspring.
+\item
+  According to genetic theory, the 4 phenotypes should occur with an approximate ratio of 9:3:3:1.
+\item
+  Therefore we would expect:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    9/16 \(\times\) 1611 Tall cut-leaf plants = 906.1875
+  \item
+    3/16 \(\times\) 1611 Tall potato-leaf = 302.0625
+  \item
+    3/16 \(\times\) 1611 Dwarf cut-leaf = 302.0625
+  \item
+    1/16 \(\times\) 1611 Dwarf potato-leaf = 100.6875
+  \end{itemize}
+\item
+  \textbf{H: Hypotheses}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(H_0\): \(p_1=9/16\); \(p_2=3/16\); \(p_3=3/16\); \(p_4=1/16\), where \(p_{i}\) = expected proportion in category \(i\).
+  \item
+    \(H_1\): at least one proportion is not equal to the expected proportion.
+  \end{itemize}
+\item
+  \textbf{Data}
+\end{itemize}
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+Phenotype & Observed frequency & Expected frequency & O-E & (O-E)\^{}2/E\tabularnewline
+\midrule
+\endhead
+Tall cut-leaf & 926 & 906.1875 & 19.8125 & 0.4332\tabularnewline
+Tall potato-leaf & 288 & 302.0625 & -14.0625 & 0.6547\tabularnewline
+Dwarf cut-leaf & 293 & 302.0625 & -9.0625 & 0.2719\tabularnewline
+Dwarf potato-leaf & 104 & 100.6875 & 3.3125 & 0.1090\tabularnewline
+Total & 1611 & 1611 & 0 & 1.4688\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\item
+  \textbf{T,P\&C}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The test statistic is \(\chi^2\)=1.4688 with degrees of freedom 4-1 = 3. The p-value is 0.69.
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pchisq}\NormalTok{(}\FloatTok{1.4688}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DataTypeTok{lower.tail=}\NormalTok{F)}
+\end{Highlighting}
+\end{Shaded}
+
+Note: we are only interested in the upper tail probability. As the p-value is 0.6895, we retain the null hypothesis and conclude that the model proposed by genetic theory fits the genetic outcome well.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{The speedy way}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{observedfreq =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{926}\NormalTok{,}\DecValTok{288}\NormalTok{,}\DecValTok{293}\NormalTok{,}\DecValTok{104}\NormalTok{)  }\CommentTok{# observed frequencies}
+\NormalTok{expectedprop =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{9}\OperatorTok{/}\DecValTok{16}\NormalTok{,}\DecValTok{3}\OperatorTok{/}\DecValTok{16}\NormalTok{,}\DecValTok{3}\OperatorTok{/}\DecValTok{16}\NormalTok{,}\DecValTok{1}\OperatorTok{/}\DecValTok{16}\NormalTok{)  }\CommentTok{# expected proportions}
+
+\KeywordTok{chisq.test}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ observedfreq,}
+           \DataTypeTok{p =}\NormalTok{ expectedprop)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{test-for-independence-2-variables-1-sample}{%
+\subsubsection{Test for independence (2 variables; 1 sample)}\label{test-for-independence-2-variables-1-sample}}
+
+\begin{itemize}
+\tightlist
+\item
+  Is age independent of the desire to ride a bicycle?
+\item
+  A random sample of 395 people were surveyed. Each person was asked their interest in riding a bicycle (yes/no) and their age (age group). The data that resulted from the survey is summarized in the following table:
+\end{itemize}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+Observed & 18-24 & 25-34 & 35-49\tabularnewline
+\midrule
+\endhead
+Yes & 60 & 54 & 46\tabularnewline
+No & 40 & 44 & 53\tabularnewline
+Total & 100 & 98 & 99\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\item
+  The research question is: Is the desire to ride a bicycle dependent on the age group?
+\item
+  \textbf{H: Hypotheses}
+
+  \begin{itemize}
+  \item
+    \(H_0\) = Age is independent of desire to ride a bicycle.
+  \item
+    \(H_1\) = Desire to ride a bicycle is dependent on age.
+  \end{itemize}
+\item
+  \textbf{Data}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Bicycle <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{60}\NormalTok{,}\DecValTok{54}\NormalTok{,}\DecValTok{46}\NormalTok{,}\DecValTok{41}\NormalTok{,}\DecValTok{40}\NormalTok{,}\DecValTok{44}\NormalTok{,}\DecValTok{53}\NormalTok{,}\DecValTok{57}\NormalTok{), }\DataTypeTok{nrow =} \DecValTok{2}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{4}\NormalTok{, }\DataTypeTok{byrow =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{dimnames =} \KeywordTok{list}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"Yes"}\NormalTok{, }\StringTok{"No"}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"18-24"}\NormalTok{, }\StringTok{"25-34"}\NormalTok{, }\StringTok{"35-49"}\NormalTok{, }\StringTok{"50-64"}\NormalTok{)))}
+\NormalTok{Bicycle}
+\KeywordTok{chisq.test}\NormalTok{(Bicycle)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  \textbf{T\&P}
+
+  \begin{itemize}
+  \item
+    From the output, the test statistic is 8.0061.
+  \item
+    The p-value is 0.04589 (just less than 0.05) there is evidence against \(H_0\), so it appears the desire to ride a bicycle is dependent on age group.
+  \end{itemize}
+\item
+  \textbf{Interpret further}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    We can look at the mosaic plot with shading to help interpret this.
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mosaicplot}\NormalTok{(Bicycle, }\DataTypeTok{shade =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{las=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Note: There is no shading, but we see that the boxes are slightly bigger than expected for the ``yes'' answer in the youngest group and slightly bigger than expected for the ``no'' answer in the oldest group. This suggests that cyling is more popular with younger people.
+
+\hypertarget{test-for-homogeneity-2-variables-2-samples}{%
+\subsubsection{2. Test for Homogeneity (2 variables; 2 samples)}\label{test-for-homogeneity-2-variables-2-samples}}
+
+\begin{itemize}
+\tightlist
+\item
+  The test for homogeneity looks the same as the test for independence, but instead of testing whether 2 qualitative variables on 1 sample are independent, we test whether 2 samples have the same proportions and so suggest the same population.
+\end{itemize}
+
+\begin{itemize}
+\item
+  The head surgeon at the University of Sydney medical center was concerned that trainee (resident) physicians were applying blood transfusions at a different rate than attending physicians.
+\item
+  Therefore, she ordered a study of the 49 attending physicians and 71 residents. For each of the 120 physicians, the number of blood transfusions prescribed unnecessarily in a one-year period was recorded. The number of uneccessary blood transfusions was grouped into four groups: Frequently, Occasionally, Rarely, or Never.
+\item
+  The contingency table is given below:
+\end{itemize}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+Physician & Frequent & Occasionally & Rarely & Never & Total\tabularnewline
+\midrule
+\endhead
+Attending & 2 & 3 & 31 & 13 & 49\tabularnewline
+Resident & 15 & 28 & 23 & 5 & 71\tabularnewline
+Total & 17 & 31 & 54 & 18 & 120\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\item
+  The research question is: Are the number of unecessary blood transfusions distributed equally amongst attending physicians and resident physicians?
+\item
+  \textbf{H}
+
+  \begin{itemize}
+  \item
+    \(H_0\) = \(p_{resFreq}=p_{attFreq}\) and \(p_{resOcc}=p_{attOcc}\) and \(p_{resRar}=p_{attRar}\) and \(p_{resNev}=p_{attNev}\)
+  \item
+    \(H_1\) = at least one of the proportions is not equal
+  \end{itemize}
+\item
+  \textbf{Data,T,P\&C}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BloodT <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{31}\NormalTok{,}\DecValTok{13}\NormalTok{,}\DecValTok{15}\NormalTok{,}\DecValTok{28}\NormalTok{,}\DecValTok{23}\NormalTok{,}\DecValTok{5}\NormalTok{), }\DataTypeTok{nrow =} \DecValTok{2}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{4}\NormalTok{, }\DataTypeTok{byrow =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{dimnames =} \KeywordTok{list}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"Attending"}\NormalTok{, }\StringTok{"Resident"}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"Frequent"}\NormalTok{, }\StringTok{"Occasionally"}\NormalTok{, }\StringTok{"Rarely"}\NormalTok{, }\StringTok{"Never"}\NormalTok{)))}
+\NormalTok{BloodT}
+\KeywordTok{chisq.test}\NormalTok{(BloodT)}
+\end{Highlighting}
+\end{Shaded}
+
+Note: The p-value is very small, therefore we reject the null hypothesis and conclude that at least one of the proportions is not equal.
+
+\begin{itemize}
+\item
+  \textbf{Interpret further}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    To get a ``rough'' idea of which of the proportions are not equal we can take a look at the mosaic plot.
+  \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mosaicplot}\NormalTok{(BloodT, }\DataTypeTok{shade =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{las=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+  \begin{itemize}
+  \item
+    Note: the mosaic plot also shows the standardised residuals which are calculated as follows: \(\frac{\mbox{Observed Frequency - Expected Frequency}}{\sqrt{\mbox{Expected Frequency}}}\)
+  \item
+    Note: The Attending physicians have less counts than expected in the ``Occasional'' group and the Resident (training) physicians have more than expected in the ``Occasional'' group. Furthermore, the Attending physicians have more counts than expected in the ``Never'' group.
+  \end{itemize}
+\end{itemize}
+
+\textbf{Mosaic Plot: Residuals}
+
+As a general rule of thumb:
+
+\begin{itemize}
+\item
+  If the residual is less than -2: the cell's observed frequency is less than the expected frequency.
+\item
+  If the residual is greater than 2: the observed frequency is greater than the expected frequency.
+\item
+  The \texttt{shade\ =\ TRUE} argument demonstrates our rule of thumb using colours on the mosaic plot. The blue indicates more counts than expected (\textgreater{}2) and the red indicates less counts than expected (\textless{}-2).
+\end{itemize}
+
+\hypertarget{regression-test}{%
+\subsection{Regression test *}\label{regression-test}}
+
+\begin{itemize}
+\tightlist
+\item
+  Earlier, we considered a linear model.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{L =}\StringTok{ }\KeywordTok{lm}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt}\OperatorTok{~}\NormalTok{mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Now we use this output to perform a hypothesis test.
+\item
+  \textbf{H}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(H_0: \beta_1=0\) {[}Or: There is not a linear trend.{]}
+  \item
+    \(H_0: \beta_1 \neq 0\) {[}Or: There is a linear trend.{]}
+  \end{itemize}
+\item
+  \textbf{A}
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\tightlist
+\item
+  The residuals should be independent, normal, with constant variance (homoscedasicity). Check: Residual Plot
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lm}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt}\OperatorTok{~}\NormalTok{mtcars}\OperatorTok{$}\NormalTok{mpg)}
+\KeywordTok{plot}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg,L}\OperatorTok{$}\NormalTok{residuals, }\DataTypeTok{xlab =} \StringTok{"mpg"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Residuals"}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \DecValTok{0}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  The relationship between the dependent and independent variable should look linear. Check; Scatter Plot
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{mpg, mtcars}\OperatorTok{$}\NormalTok{wt)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{T,P\&C}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(L)}
+\end{Highlighting}
+\end{Shaded}
+
+The test statistic for slope is -9.559 with p-value 1.29e-10. Hence we strongly reject \(H_{0}\) and conclude that a linear model seems very appropriate for weight on mpg.
+
+\hypertarget{morerelationships}{%
+\section{More tests for relationships (Diagnostics)}\label{morerelationships}}
+
+We can use hypothesis tests to test the assumptions of other hypothesis tests!
+
+\hypertarget{test-normality-for-1-populations-histogram-qq-plot-shapiro-wilks-test}{%
+\subsection{Test normality for 1+ populations: histogram, QQ-plot, Shapiro-Wilks Test}\label{test-normality-for-1-populations-histogram-qq-plot-shapiro-wilks-test}}
+
+Here we illustrate using the car weights.
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\tightlist
+\item
+  Check the \textbf{histogram}.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt, }\DataTypeTok{main =} \StringTok{"Histogram of Car Weights"}\NormalTok{, }\DataTypeTok{freq=}\NormalTok{F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Note: The histogram is roughly normal (roughly balanced around one mode towards the centre).
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Check the \textbf{QQ-plot}.
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  A QQ-plot is another summary for quantitative variables. Further information can be found \href{https://en.wikipedia.org/wiki/Q-Q_plot}{here}.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{help}\NormalTok{(qqnorm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qqnorm}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt, }\DataTypeTok{main =} \StringTok{"QQ-plot for Car weights"}\NormalTok{)}
+\KeywordTok{qqline}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Note: The data is reasonably evenly scattered around the theoretical quantile-quantile line which suggests that the car weights are reasonably normally distributed.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Test usin the \textbf{Shapiro-Wilks Test}
+\end{enumerate}
+
+\begin{itemize}
+\item
+  Warning! \href{https://academic.oup.com/biomet/article-abstract/52/3-4/591/336553?redirectedFrom=fulltext}{The Shapiro-Wilks normality test} is sensitive to sample size. Small samples will nearly always pass normality tests. Therefore, it is recomended to use both visual inspection and a significance test to decide whether a dataset is normally distributed.
+\item
+  \textbf{H:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(H_{0}\) : The data is \emph{normally} distributed.
+  \item
+    \(H_{1}\) : There data is \emph{not normally} distributed.
+  \item
+    We hope to retain \(H_{0}\)!
+  \end{itemize}
+\item
+  \textbf{T,P\&C:}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{shapiro.test}\NormalTok{(mtcars}\OperatorTok{$}\NormalTok{wt)}
+\end{Highlighting}
+\end{Shaded}
+
+Note: The p-value is much greater than 0.05, so strong evidence that the data is normally distributed.
+
+\hypertarget{test-equal-variance-of-2-populations-boxplots-f-test-variance-ratio}{%
+\subsection{Test equal variance of 2 populations (Boxplots; F-test; variance ratio)}\label{test-equal-variance-of-2-populations-boxplots-f-test-variance-ratio}}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\tightlist
+\item
+  Compare the \textbf{2 boxplots}.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(extra}\OperatorTok{~}\NormalTok{group, }\DataTypeTok{data =}\NormalTok{ sleep)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Note: It is clear from the boxplots that the variation in group 1 is less than group 2.
+\item
+  Boxplots are a very useful tool as they provide an indication of whether the sample means are similar or different, whether the samples are normally distributed, and whether the variances are similar between the 2 samples.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Test using the \textbf{Variance Test (Levene)}
+\end{enumerate}
+
+\begin{itemize}
+\item
+  \textbf{H:}
+
+  \begin{itemize}
+  \item
+    Let \(\sigma_1^2\) = variance of the group 1 drug.
+  \item
+    Let \(\sigma_2^2\) = variance of the group 2 drug.
+  \item
+    \(H_{0}\) : There is no difference: \(\sigma_1^2=\sigma_2^2\)
+  \item
+    \(H_{1}\) : There is a difference: \(\sigma_1^2 \neq \sigma_2^2\)
+  \item
+    We hope to retain \(H_{0}\)!
+  \end{itemize}
+\item
+  \textbf{T,P\&C}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{var.test}\NormalTok{(extra}\OperatorTok{~}\NormalTok{group, }\DataTypeTok{data =}\NormalTok{ sleep)}
+\end{Highlighting}
+\end{Shaded}
+
+Note: From the variance test, it is clear that the p-value is much greater than 0.05. Therefore we retain the null hypothesis and conclude that the variances seem to be equal.
+
+\hypertarget{faq}{%
+\section{FAQs}\label{faq}}
+
+\hypertarget{why-am-i-getting-weird-variable-names}{%
+\subsection*{Why am I getting weird variable names?}\label{why-am-i-getting-weird-variable-names}}
+\addcontentsline{toc}{subsection}{Why am I getting weird variable names?}
+
+Unfortunately this can happen on windows computers.You can fix it with the following code
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(smoking)[}\DecValTok{1}\NormalTok{] =}\StringTok{ "Age"}
+\end{Highlighting}
+\end{Shaded}
+
+This code looks at the column names, picks the first one, and then reassigns it to Age.
+
+\hypertarget{how-do-i-produce-a-residual-plot-with-missing-values-in-data}{%
+\subsection*{How do I produce a residual plot with missing values in data?}\label{how-do-i-produce-a-residual-plot-with-missing-values-in-data}}
+\addcontentsline{toc}{subsection}{How do I produce a residual plot with missing values in data?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{help}\NormalTok{(msleep)}
+\KeywordTok{plot}\NormalTok{(sleep}\OperatorTok{$}\NormalTok{bodywt, sleep}\OperatorTok{$}\NormalTok{brainwt)}
+\NormalTok{L =}\StringTok{ }\KeywordTok{lm}\NormalTok{(sleep}\OperatorTok{$}\NormalTok{brainwt }\OperatorTok{~}\StringTok{ }\NormalTok{sleep}\OperatorTok{$}\NormalTok{bodywt)}
+\KeywordTok{summary}\NormalTok{(L)}
+\KeywordTok{abline}\NormalTok{(L)}
+
+\CommentTok{# Correlation (with missing values)}
+\KeywordTok{length}\NormalTok{(sleep}\OperatorTok{$}\NormalTok{bodywt) }
+\KeywordTok{length}\NormalTok{(sleep}\OperatorTok{$}\NormalTok{brainwt) }
+\KeywordTok{cor}\NormalTok{(sleep}\OperatorTok{$}\NormalTok{bodywt, sleep}\OperatorTok{$}\NormalTok{brainwt, }\DataTypeTok{use =} \StringTok{"complete.obs"}\NormalTok{)  }
+
+
+\CommentTok{# Residual plot (with missing values)}
+\KeywordTok{length}\NormalTok{(sleep}\OperatorTok{$}\NormalTok{bodywt) }
+\KeywordTok{length}\NormalTok{(L}\OperatorTok{$}\NormalTok{residuals)}
+\NormalTok{residuals1 =}\StringTok{ }\KeywordTok{resid}\NormalTok{(}\KeywordTok{lm}\NormalTok{(sleep}\OperatorTok{$}\NormalTok{brainwt }\OperatorTok{~}\StringTok{ }\NormalTok{sleep}\OperatorTok{$}\NormalTok{bodywt, }\DataTypeTok{na.action=}\NormalTok{na.exclude)) }
+\KeywordTok{length}\NormalTok{(residuals1)}
+\KeywordTok{plot}\NormalTok{(sleep}\OperatorTok{$}\NormalTok{bodywt,residuals1)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

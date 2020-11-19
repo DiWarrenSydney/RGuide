@@ -1,5 +1,5 @@
 # Structure of data
-We will use `mtcars` to illustrate the structure of data.
+We will use `mtcars` to illustrate the structure of data. `mtcars` is a data set that is included in R which contains data about a small collection of motor cars.
 
 <br>
 
@@ -19,7 +19,7 @@ help(mtcars)
 ```{r,results='hide'}
 dim(mtcars)
 ```
-This means that there are 32 rows (the types of cars) and 11 variables (properties of the cars).
+The output tells us that there are 32 rows (the types of cars) and 11 variables (properties of the cars).
 
 <br>
 
@@ -103,12 +103,12 @@ sum(sort(mpg)[1:5])
 - Pick the 1st and 5th elements of the vector `mpg`
 
 ```{r,eval=F}
-mpg[1]
-mpg[5]
-mpg[c(1,5)]
-mtcars$mpg[c(1,5)]
-mtcars[1,1]  
-mtcars[5,1]   #mpg is 1st column.
+mpg[1]    # Choose the first value in mpg
+mpg[5]    # Choose the fifth value in mpg
+mpg[c(1,5)]       # Choose the first and fifth value
+mtcars$mpg[c(1,5)]   # Same as above
+mtcars[1,1]   # Syntax here is [row number, column number]
+mtcars[5,1]   # mpg is the 1st column of the mtcars data frame
 ```
 
 <br>

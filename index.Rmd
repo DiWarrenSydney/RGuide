@@ -14,12 +14,6 @@ link-citations: yes
 description: "Teach yourself R in DATA1001/DATA1901"
 ---
 
-# Aim {-}
-
-- This is a self-study guide to R.
-- It allows you to consolidate your learning from labs, by learning new R commands through the one simple data set `mtcars`, which is already stored in R.
-- Sections marked ** are more for DATA1901, and for students who want to extend themselves.
-
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
@@ -28,3 +22,11 @@ knitr::write_bib(c(
 ), 'packages.bib')
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
+
+# Aim {-}
+
+- This is a self-study guide to R.
+- It allows you to consolidate your learning from labs, by learning new R commands through the one simple data set `mtcars`, which is already stored in R.
+- Sections marked ** are more for DATA1901, and for students who want to extend themselves.
+
+

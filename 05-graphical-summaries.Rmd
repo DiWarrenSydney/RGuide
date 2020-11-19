@@ -178,7 +178,7 @@ Which variables seem to be related?
 
 ## ggplot
 
-All the previous (base R) plots can be done in `ggplot`, allowing much greater customisation.
+All the previous (base R) plots can be done in `ggplot`, allowing much greater customisation. The plots made using `ggplot` are often much more asthetically pleasing as well.
 
 - First, download the [package](http://tidyverse.org/)`ggplot` into RStudio. This is a one off command.
 ```{r,eval=F}
@@ -191,6 +191,8 @@ library(ggplot2)
 ```
 
 <br>
+
+To produce a plot using `ggplot` you first must use the `ggplot` function where you specify the data which you want to use for the plot. Then you can add layers to the plot by adding them with a `+`. This allows great flexibility in customising the plot to look exactly how you want. Below are examples of how to do different kinds of plots. [This](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf) is a helpful cheat sheet if you want to create a plot using `ggplot`.
 
 ### Barplot
 

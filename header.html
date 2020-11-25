@@ -535,6 +535,27 @@ window.initializeCodeFolding = function(show) {
     -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
+
+.showopt {
+  background-color: #004c93;
+  color: #FFFFFF;
+  width: 100px;
+  height: 20px;
+  text-align: center;
+  vertical-align: middle !important;
+  float: right;
+  font-family: sans-serif;
+  border-radius: 8px;
+}
+
+.showopt:hover {
+    background-color: #dfe4f2;
+    color: #004c93;
+}
+
+pre.plot {
+  background-color: white !important;
+}
 </style>
 <script>
 $(document).ready(function () {
@@ -547,3 +568,44 @@ $(document).ready(function () {
 document.write('<div class="btn-group pull-right" style="position: absolute; top: 10%; right: 2%; z-index: 200"><button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-_extension-text-contrast=""><span>Show All Code</span> <span class="caret"></span></button><ul class="dropdown-menu" style="min-width: 120px;"><li><a id="rmd-show-all-code" href="#">Show All Code</a></li><li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li></ul></div>')
 </script>
 
+<script>
+    $(document).ready(function() {
+
+      $chunks = $('.fold');
+
+      $chunks.each(function () {
+
+        // add button to source code chunks
+        if ( $(this).hasClass('s') ) {
+          $('pre.r', this).prepend("<div class=\"showopt\">Show Source</div><br style=\"line-height:22px;\"/>");
+          $('pre.r', this).children('code').attr('class', 'folded');
+        }
+
+        // add button to output chunks
+        if ( $(this).hasClass('o') ) {
+          $('pre:not(.r)', this).has('code').prepend("<div class=\"showopt\">Show Output</div><br style=\"line-height:22px;\"/>");
+          $('pre:not(.r)', this).children('code:not(r)').addClass('folded');
+
+          // add button to plots
+          $(this).find('img').wrap('<pre class=\"plot\"></pre>');
+          $('pre.plot', this).prepend("<div class=\"showopt\">Show Plot</div><br style=\"line-height:22px;\"/>");
+          $('pre.plot', this).children('img').addClass('folded');
+
+        }
+      });
+
+      // hide all chunks when document is loaded
+      $('.folded').css('display', 'none')
+
+      // function to toggle the visibility
+      $('.showopt').click(function() {
+        var label = $(this).html();
+        if (label.indexOf("Show") >= 0) {
+          $(this).html(label.replace("Show", "Hide"));
+        } else {
+          $(this).html(label.replace("Hide", "Show"));
+        }
+        $(this).siblings('code, img').slideToggle('fast', 'swing');
+      });
+    });
+</script>

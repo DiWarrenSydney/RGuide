@@ -41,7 +41,7 @@ A barplot is used for qualitative variables.
 
 - Produce a **single** `barplot` of the gears.
 ```{r,fig.show='hide'}
-barplot(mtcars$gear) # Bar plots gear variable
+barplot(mtcars$gear) 
 ```
 Notice this is not useful! This is because R has classified `gear` as a quantitative variable.
 

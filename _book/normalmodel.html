@@ -24,7 +24,7 @@
 <meta name="author" content="DATA1001/DATA1901" />
 
 
-<meta name="date" content="2020-11-15" />
+<meta name="date" content="2020-11-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,13 @@
 
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 <script>
 /* ========================================================================
@@ -767,7 +774,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.5" data-path="simulatechance.html"><a href="simulatechance.html#binomial-model"><i class="fa fa-check"></i><b>10.5</b> Binomial Model *</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="boxmodel.html"><a href="boxmodel.html"><i class="fa fa-check"></i><b>11</b> Simulate chance variability (box model)</a><ul>
-<li class="chapter" data-level="11.1" data-path="boxmodel.html"><a href="boxmodel.html#draw-the-box-model-in-r-ext"><i class="fa fa-check"></i><b>11.1</b> Draw the box model in R (Ext)</a></li>
+<li class="chapter" data-level="11.1" data-path="boxmodel.html"><a href="boxmodel.html#draw-the-box-model-in-r"><i class="fa fa-check"></i><b>11.1</b> Draw the box model in R **</a></li>
 <li class="chapter" data-level="11.2" data-path="boxmodel.html"><a href="boxmodel.html#sample-sum-ev-se"><i class="fa fa-check"></i><b>11.2</b> Sample Sum (EV &amp; SE)</a></li>
 <li class="chapter" data-level="11.3" data-path="boxmodel.html"><a href="boxmodel.html#simulate-the-sample-sum"><i class="fa fa-check"></i><b>11.3</b> Simulate the Sample Sum</a></li>
 <li class="chapter" data-level="11.4" data-path="boxmodel.html"><a href="boxmodel.html#use-normal-model-for-sample-sum"><i class="fa fa-check"></i><b>11.4</b> Use Normal model for Sample Sum</a></li>
@@ -792,7 +799,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.1.5" data-path="testformean.html"><a href="testformean.html#c-conclusion"><i class="fa fa-check"></i><b>14.1.5</b> C: Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="14.2" data-path="testformean.html"><a href="testformean.html#the-speedy-way"><i class="fa fa-check"></i><b>14.2</b> The speedy way!</a></li>
-<li class="chapter" data-level="14.3" data-path="testformean.html"><a href="testformean.html#sample-z-test-ext"><i class="fa fa-check"></i><b>14.3</b> 1 sample Z-Test (Ext)</a></li>
+<li class="chapter" data-level="14.3" data-path="testformean.html"><a href="testformean.html#sample-z-test"><i class="fa fa-check"></i><b>14.3</b> 1 sample Z-Test**</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="testsforrelationships.html"><a href="testsforrelationships.html"><i class="fa fa-check"></i><b>15</b> Tests for relationships</a><ul>
 <li class="chapter" data-level="15.1" data-path="testsforrelationships.html"><a href="testsforrelationships.html#more-t-tests"><i class="fa fa-check"></i><b>15.1</b> More t-tests</a><ul>
@@ -800,12 +807,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.1.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sample-t-test-1"><i class="fa fa-check"></i><b>15.1.2</b> 2 sample t-test</a></li>
 <li class="chapter" data-level="15.1.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sample-t-test-paired-data"><i class="fa fa-check"></i><b>15.1.3</b> 1 sample t-test (paired data)</a></li>
 </ul></li>
-<li class="chapter" data-level="15.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#chi-squared-tests"><i class="fa fa-check"></i><b>15.2</b> Chi-squared tests *</a><ul>
+<li class="chapter" data-level="15.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#chi-squared-tests"><i class="fa fa-check"></i><b>15.2</b> Chi-squared tests **</a><ul>
 <li class="chapter" data-level="15.2.1" data-path="testsforrelationships.html"><a href="testsforrelationships.html#goodness-of-fit-test-1-variable"><i class="fa fa-check"></i><b>15.2.1</b> Goodness of Fit Test (1 variable)</a></li>
 <li class="chapter" data-level="15.2.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-independence-2-variables-1-sample"><i class="fa fa-check"></i><b>15.2.2</b> Test for independence (2 variables; 1 sample)</a></li>
-<li class="chapter" data-level="15.2.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-homogeneity-2-variables-2-samples"><i class="fa fa-check"></i><b>15.2.3</b> 2. Test for Homogeneity (2 variables; 2 samples)</a></li>
+<li class="chapter" data-level="15.2.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-homogeneity-2-variables-2-samples"><i class="fa fa-check"></i><b>15.2.3</b> Test for Homogeneity (2 variables; 2 samples)</a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#regression-test"><i class="fa fa-check"></i><b>15.3</b> Regression test *</a></li>
+<li class="chapter" data-level="15.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#regression-test"><i class="fa fa-check"></i><b>15.3</b> Regression test</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="morerelationships.html"><a href="morerelationships.html"><i class="fa fa-check"></i><b>16</b> More tests for relationships (Diagnostics)</a><ul>
 <li class="chapter" data-level="16.1" data-path="morerelationships.html"><a href="morerelationships.html#test-normality-for-1-populations-histogram-qq-plot-shapiro-wilks-test"><i class="fa fa-check"></i><b>16.1</b> Test normality for 1+ populations: histogram, QQ-plot, Shapiro-Wilks Test</a></li>
@@ -843,9 +850,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>To plot a normal curve, we use `dnorm’ for a range of <span class="math inline">\(x\)</span> values.</li>
 </ul>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="co"># plots 2 plots on same row</span></a>
-<a class="sourceLine" id="cb79-2" data-line-number="2"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x),<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb79-3" data-line-number="3"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x),<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="co"># plots 2 plots on same row</span></a>
+<a class="sourceLine" id="cb87-2" data-line-number="2"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x),<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb87-3" data-line-number="3"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x),<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>)</a></code></pre></div>
 <p>When does the Normal curve start to disappear?</p>
 <p><br></p>
 </div>
@@ -854,22 +861,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>To plot an area under the curve, we use <code>polygon</code>.</li>
 </ul>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x), <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>),<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>,<span class="dt">axes=</span><span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb80-2" data-line-number="2"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb80-3" data-line-number="3">sequence =<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">2</span>, <span class="fl">0.8</span>, <span class="fl">0.1</span>)</a>
-<a class="sourceLine" id="cb80-4" data-line-number="4"><span class="kw">polygon</span>(<span class="dt">x =</span> <span class="kw">c</span>(sequence,<span class="fl">0.8</span>,<span class="op">-</span><span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb80-5" data-line-number="5">        <span class="dt">y =</span> <span class="kw">c</span>(<span class="kw">dnorm</span>(<span class="kw">c</span>(sequence)),<span class="dv">0</span>,<span class="dv">0</span>),</a>
-<a class="sourceLine" id="cb80-6" data-line-number="6">        <span class="dt">col =</span> <span class="st">&quot;purple&quot;</span>)</a>
-<a class="sourceLine" id="cb80-7" data-line-number="7"><span class="kw">axis</span>(<span class="dv">1</span>, <span class="dt">at=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.8</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">pos=</span><span class="dv">0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x), <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>),<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>,<span class="dt">axes=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb88-2" data-line-number="2"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb88-3" data-line-number="3">sequence =<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">2</span>, <span class="fl">0.8</span>, <span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb88-4" data-line-number="4"><span class="kw">polygon</span>(<span class="dt">x =</span> <span class="kw">c</span>(sequence,<span class="fl">0.8</span>,<span class="op">-</span><span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb88-5" data-line-number="5">        <span class="dt">y =</span> <span class="kw">c</span>(<span class="kw">dnorm</span>(<span class="kw">c</span>(sequence)),<span class="dv">0</span>,<span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb88-6" data-line-number="6">        <span class="dt">col =</span> <span class="st">&quot;purple&quot;</span>)</a>
+<a class="sourceLine" id="cb88-7" data-line-number="7"><span class="kw">axis</span>(<span class="dv">1</span>, <span class="dt">at=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.8</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">pos=</span><span class="dv">0</span>)</a></code></pre></div>
 <p><br></p>
 </div>
 <div id="add-normal-to-a-histogram" class="section level2">
 <h2><span class="header-section-number">7.3</span> Add normal to a histogram</h2>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="kw">hist</span>(mtcars<span class="op">$</span>wt,<span class="dt">prob=</span>T)</a>
-<a class="sourceLine" id="cb81-2" data-line-number="2">m=<span class="kw">mean</span>(mtcars<span class="op">$</span>wt)</a>
-<a class="sourceLine" id="cb81-3" data-line-number="3">s=<span class="kw">sd</span>(mtcars<span class="op">$</span>wt)</a>
-<a class="sourceLine" id="cb81-4" data-line-number="4"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dt">mean=</span>m, <span class="dt">sd=</span>s), </a>
-<a class="sourceLine" id="cb81-5" data-line-number="5"><span class="dt">col=</span><span class="st">&quot;darkgreen&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="kw">hist</span>(mtcars<span class="op">$</span>wt,<span class="dt">prob=</span>T)</a>
+<a class="sourceLine" id="cb89-2" data-line-number="2">m=<span class="kw">mean</span>(mtcars<span class="op">$</span>wt)</a>
+<a class="sourceLine" id="cb89-3" data-line-number="3">s=<span class="kw">sd</span>(mtcars<span class="op">$</span>wt)</a>
+<a class="sourceLine" id="cb89-4" data-line-number="4"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dt">mean=</span>m, <span class="dt">sd=</span>s), </a>
+<a class="sourceLine" id="cb89-5" data-line-number="5"><span class="dt">col=</span><span class="st">&quot;darkgreen&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <p><br></p>
 </div>
 <div id="probabilities-standard-normal" class="section level2">
@@ -877,28 +884,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="lower-tail" class="section level3">
 <h3><span class="header-section-number">7.4.1</span> Lower tail</h3>
 <p>To calculate P(Z &lt; 0.8) use <code>pnorm</code>.</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="fl">0.8</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="fl">0.8</span>)</a></code></pre></div>
 <p><br></p>
 </div>
 <div id="upper-tail" class="section level3">
 <h3><span class="header-section-number">7.4.2</span> Upper tail</h3>
 <p>To calculate P(Z &gt; 0.8):</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="fl">0.8</span>,<span class="dt">lower.tail=</span>F)</a>
-<a class="sourceLine" id="cb83-2" data-line-number="2"><span class="dv">1</span><span class="op">-</span><span class="kw">pnorm</span>(<span class="fl">0.8</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="fl">0.8</span>,<span class="dt">lower.tail=</span>F)</a>
+<a class="sourceLine" id="cb91-2" data-line-number="2"><span class="dv">1</span><span class="op">-</span><span class="kw">pnorm</span>(<span class="fl">0.8</span>)</a></code></pre></div>
 <p><br></p>
 </div>
 <div id="interval" class="section level3">
 <h3><span class="header-section-number">7.4.3</span> Interval</h3>
 <p>To calculate P(0.3 &lt; Z &lt; 0.7):</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="fl">0.7</span>)<span class="op">-</span><span class="kw">pnorm</span>(<span class="fl">0.3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="fl">0.7</span>)<span class="op">-</span><span class="kw">pnorm</span>(<span class="fl">0.3</span>)</a></code></pre></div>
 <p><br></p>
 </div>
 </div>
 <div id="probabilities-general-normal" class="section level2">
 <h2><span class="header-section-number">7.5</span> Probabilities: General normal</h2>
 <p>If <span class="math inline">\(X \sim N(5, 4^2)\)</span>, then to calculate P(X &lt; 8), we use <code>pnorm(8,mean,sd)</code>.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">8</span>,<span class="dt">mean=</span><span class="dv">5</span>,<span class="dt">sd=</span><span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb85-2" data-line-number="2"><span class="kw">pnorm</span>(<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">8</span>,<span class="dt">mean=</span><span class="dv">5</span>,<span class="dt">sd=</span><span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb93-2" data-line-number="2"><span class="kw">pnorm</span>(<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">4</span>)</a></code></pre></div>
 <p><br></p>
 
 </div>

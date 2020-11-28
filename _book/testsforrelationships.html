@@ -24,7 +24,7 @@
 <meta name="author" content="DATA1001/DATA1901" />
 
 
-<meta name="date" content="2020-11-16" />
+<meta name="date" content="2020-11-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,13 @@
 
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 <script>
 /* ========================================================================
@@ -763,16 +770,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="simulatechance.html"><a href="simulatechance.html#set-seed"><i class="fa fa-check"></i><b>10.1</b> Set seed</a></li>
 <li class="chapter" data-level="10.2" data-path="simulatechance.html"><a href="simulatechance.html#sample-coin"><i class="fa fa-check"></i><b>10.2</b> Sample (Coin)</a></li>
 <li class="chapter" data-level="10.3" data-path="simulatechance.html"><a href="simulatechance.html#sample-dice"><i class="fa fa-check"></i><b>10.3</b> Sample (Dice)</a></li>
-<li><a href="simulatechance.html#function-binomial-model"><span class="toc-section-number">10.4</span> Function **
-## Binomial Model *</a></li>
+<li class="chapter" data-level="10.4" data-path="simulatechance.html"><a href="simulatechance.html#function"><i class="fa fa-check"></i><b>10.4</b> Function **</a></li>
+<li class="chapter" data-level="10.5" data-path="simulatechance.html"><a href="simulatechance.html#binomial-model"><i class="fa fa-check"></i><b>10.5</b> Binomial Model *</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="boxmodel.html"><a href="boxmodel.html"><i class="fa fa-check"></i><b>11</b> Simulate chance variability (box model)</a><ul>
-<li><a href="boxmodel.html#draw-the-box-model-in-r-sample-sum-ev-se-simulate-the-sample-sum-use-normal-model-for-sample-sum-sample-mean-ev-se-use-normal-model-for-sample-mean"><span class="toc-section-number">11.1</span> Draw the box model in R **
-## Sample Sum (EV &amp; SE)
-## Simulate the Sample Sum
-## Use Normal model for Sample Sum
-## Sample Mean (EV &amp; SE)
-## Use Normal model for Sample Mean</a></li>
+<li class="chapter" data-level="11.1" data-path="boxmodel.html"><a href="boxmodel.html#draw-the-box-model-in-r"><i class="fa fa-check"></i><b>11.1</b> Draw the box model in R **</a></li>
+<li class="chapter" data-level="11.2" data-path="boxmodel.html"><a href="boxmodel.html#sample-sum-ev-se"><i class="fa fa-check"></i><b>11.2</b> Sample Sum (EV &amp; SE)</a></li>
+<li class="chapter" data-level="11.3" data-path="boxmodel.html"><a href="boxmodel.html#simulate-the-sample-sum"><i class="fa fa-check"></i><b>11.3</b> Simulate the Sample Sum</a></li>
+<li class="chapter" data-level="11.4" data-path="boxmodel.html"><a href="boxmodel.html#use-normal-model-for-sample-sum"><i class="fa fa-check"></i><b>11.4</b> Use Normal model for Sample Sum</a></li>
+<li class="chapter" data-level="11.5" data-path="boxmodel.html"><a href="boxmodel.html#sample-mean-ev-se"><i class="fa fa-check"></i><b>11.5</b> Sample Mean (EV &amp; SE)</a></li>
+<li class="chapter" data-level="11.6" data-path="boxmodel.html"><a href="boxmodel.html#use-normal-model-for-sample-mean"><i class="fa fa-check"></i><b>11.6</b> Use Normal model for Sample Mean</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="samplesurveys.html"><a href="samplesurveys.html"><i class="fa fa-check"></i><b>12</b> Sample surveys</a><ul>
 <li class="chapter" data-level="12.1" data-path="samplesurveys.html"><a href="samplesurveys.html#box-model-assuming-replacement"><i class="fa fa-check"></i><b>12.1</b> Box model (assuming replacement)</a></li>
@@ -810,14 +817,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16" data-path="morerelationships.html"><a href="morerelationships.html"><i class="fa fa-check"></i><b>16</b> More tests for relationships (Diagnostics)</a><ul>
 <li class="chapter" data-level="16.1" data-path="morerelationships.html"><a href="morerelationships.html#test-normality-for-1-populations-histogram-qq-plot-shapiro-wilks-test"><i class="fa fa-check"></i><b>16.1</b> Test normality for 1+ populations: histogram, QQ-plot, Shapiro-Wilks Test</a></li>
 <li class="chapter" data-level="16.2" data-path="morerelationships.html"><a href="morerelationships.html#test-equal-variance-of-2-populations-boxplots-f-test-variance-ratio"><i class="fa fa-check"></i><b>16.2</b> Test equal variance of 2 populations (Boxplots; F-test; variance ratio)</a></li>
-<li class="chapter" data-level="16.3" data-path="morerelationships.html"><a href="morerelationships.html#test-normality-for-2-populations-histogram-qq-plot-shapiro-wilks-test"><i class="fa fa-check"></i><b>16.3</b> Test normality for 2 populations: histogram, QQ-plot, Shapiro-Wilks Test</a></li>
-<li class="chapter" data-level="16.4" data-path="morerelationships.html"><a href="morerelationships.html#get-organised"><i class="fa fa-check"></i><b>16.4</b> Get organised</a><ul>
-<li class="chapter" data-level="16.4.1" data-path="morerelationships.html"><a href="morerelationships.html#create-a-course-folder-one-off"><i class="fa fa-check"></i><b>16.4.1</b> Create a course folder [one-off]</a></li>
-<li class="chapter" data-level="16.4.2" data-path="morerelationships.html"><a href="morerelationships.html#create-a-project-one-off"><i class="fa fa-check"></i><b>16.4.2</b> Create a project [one-off]</a></li>
-<li class="chapter" data-level="16.4.3" data-path="morerelationships.html"><a href="morerelationships.html#create-a-data-folder-one-off"><i class="fa fa-check"></i><b>16.4.3</b> Create a data folder [one-off]</a></li>
-<li class="chapter" data-level="16.4.4" data-path="morerelationships.html"><a href="morerelationships.html#create-your-own-rmarkdown-document-for-a-project-or-lab"><i class="fa fa-check"></i><b>16.4.4</b> Create your own RMarkdown document (for a Project or Lab)</a></li>
-</ul></li>
-<li class="chapter" data-level="16.5" data-path="morerelationships.html"><a href="morerelationships.html#its-easy-from-then"><i class="fa fa-check"></i><b>16.5</b> It’s easy from then!</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>17</b> FAQs</a><ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-am-i-getting-weird-variable-names"><i class="fa fa-check"></i>Why am I getting weird variable names?</a></li>
@@ -892,17 +891,17 @@ Think about why the data must be normally distributed and why the variances need
 <li><em>alternative</em> - We use this to specify if we are doing a 1 sided or 2 sided test (based on hypotheses). We will mostly focus on the 2 sided alternative.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">help</span>(t.test)</a></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1"><span class="kw">help</span>(t.test)</a></code></pre></div>
 <p><br></p>
 <div id="sleep-data-zzzzzzz" class="section level3">
 <h3><span class="header-section-number">15.1.1</span> Sleep data zzzzzzz</h3>
 <ul>
 <li>Let’s consider the <code>sleep</code> data provided in R.</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">help</span>(sleep)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">dim</span>(sleep)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">class</span>(sleep)</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">head</span>(sleep)</a></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1"><span class="kw">help</span>(sleep)</a>
+<a class="sourceLine" id="cb147-2" data-line-number="2"><span class="kw">dim</span>(sleep)</a>
+<a class="sourceLine" id="cb147-3" data-line-number="3"><span class="kw">class</span>(sleep)</a>
+<a class="sourceLine" id="cb147-4" data-line-number="4"><span class="kw">head</span>(sleep)</a></code></pre></div>
 <ul>
 <li>The dataset <code>sleep</code> represents the effect of 2 soporific drugs (“group”) on sleep time compared to a control (drug - no drug).</li>
 </ul>
@@ -922,7 +921,7 @@ Think about why the data must be normally distributed and why the variances need
 <li><p><strong>A: Assumptions</strong> We assume the 2 samples are independent, and the 2 populations are both Normally distributed with the same SD.</p></li>
 <li><p><strong>T &amp; P: Test statistic and P-value</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">t.test</span>(extra<span class="op">~</span>group, <span class="dt">data =</span> sleep, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>, <span class="dt">conf.level =</span> <span class="fl">0.99</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1"><span class="kw">t.test</span>(extra<span class="op">~</span>group, <span class="dt">data =</span> sleep, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>, <span class="dt">conf.level =</span> <span class="fl">0.99</span>)</a></code></pre></div>
 <ul>
 <li><strong>C: Conclusion</strong>
 <ul>
@@ -934,7 +933,7 @@ Think about why the data must be normally distributed and why the variances need
 <ul>
 <li>Note: If we had found the spread of the 2 samples were significantly different from each other, we would have performed a 2 sample t-test for unequal variances (Welch 2 sample t-test) in this case we set the argument ‘var.equal = FALSE’</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">t.test</span>(extra<span class="op">~</span>group, <span class="dt">data =</span> sleep, <span class="dt">var.equal =</span> <span class="ot">FALSE</span>, <span class="dt">conf.level =</span> <span class="fl">0.99</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1"><span class="kw">t.test</span>(extra<span class="op">~</span>group, <span class="dt">data =</span> sleep, <span class="dt">var.equal =</span> <span class="ot">FALSE</span>, <span class="dt">conf.level =</span> <span class="fl">0.99</span>)</a></code></pre></div>
 <ul>
 <li>In this case, we see that the result is “similar” to the equal variance test. In fact many stats guru’s argue that you can almost <a href="http://daniellakens.blogspot.com.au/2015/01/always-use-welchs-t-test-instead-of.html">always use Welch’s test</a> except when the sample size is really small.</li>
 </ul>
@@ -947,15 +946,15 @@ Think about why the data must be normally distributed and why the variances need
 <li><p>Sleep was measured in 10 patients who were given both drug1 and drug2 at different times. A <a href="https://en.wikipedia.org/wiki/Crossover_study">crossover study</a> is a typical experimental design that would generate this type of data. When we only have 2 treatments, we call this paired data.</p></li>
 <li><p>Therefore we need to perform a 1 sample t-test for paired data: a “paired t-test”. This is the same as a 1 sample t-test on the difference between the two treatments (i.e. drug1 - drug2). Therefore the assumptions for this test are equivalent to those for a 1 sample t-test (ie the data must be approximately normally distributed).</p></li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">sleep_diff &lt;-<span class="st"> </span>sleep<span class="op">$</span>extra[sleep<span class="op">$</span>group <span class="op">==</span><span class="st"> </span><span class="dv">1</span>]<span class="op">-</span>sleep<span class="op">$</span>extra[sleep<span class="op">$</span>group <span class="op">==</span><span class="st"> </span><span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">qqnorm</span>(sleep_diff)</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">qqline</span>(sleep_diff)</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">boxplot</span>(sleep_diff)</a></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1">sleep_diff &lt;-<span class="st"> </span>sleep<span class="op">$</span>extra[sleep<span class="op">$</span>group <span class="op">==</span><span class="st"> </span><span class="dv">1</span>]<span class="op">-</span>sleep<span class="op">$</span>extra[sleep<span class="op">$</span>group <span class="op">==</span><span class="st"> </span><span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb150-2" data-line-number="2"><span class="kw">qqnorm</span>(sleep_diff)</a>
+<a class="sourceLine" id="cb150-3" data-line-number="3"><span class="kw">qqline</span>(sleep_diff)</a>
+<a class="sourceLine" id="cb150-4" data-line-number="4"><span class="kw">boxplot</span>(sleep_diff)</a></code></pre></div>
 <ul>
 <li><p>The normal quantile-quantile plot and the boxplot show that there may be an outlier in the dataset.</p></li>
 <li><p>However, for the purpose of this analysis and keeping in mind that these tests are reasonably robust to non-normal data, we will go ahead and test the data.</p></li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">t.test</span>(extra<span class="op">~</span>group, <span class="dt">data =</span> sleep, <span class="dt">paired =</span> T)</a></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1"><span class="kw">t.test</span>(extra<span class="op">~</span>group, <span class="dt">data =</span> sleep, <span class="dt">paired =</span> T)</a></code></pre></div>
 <ul>
 <li><p>The p-value is &lt;0.05 and zero is not contained within the confidence intervals. Therefore we reject the null hypothesis and conclude that there is a significant difference in extra sleep hours between the 2 drugs. Looking at the earlier boxplot, we see that drug2 is more effective in inducing extra sleep than drug1.</p></li>
 <li><p>Note: this demonstrates how important it is to use the correct analysis as this conclusion is different to when the 2 samples were assumed to be independent.</p></li>
@@ -1050,16 +1049,16 @@ Think about why the data must be normally distributed and why the variances need
 <li>The test statistic is <span class="math inline">\(\chi^2\)</span>=1.4688 with degrees of freedom 4-1 = 3. The p-value is 0.69.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">pchisq</span>(<span class="fl">1.4688</span>,<span class="dv">3</span>,<span class="dt">lower.tail=</span>F)</a></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1"><span class="kw">pchisq</span>(<span class="fl">1.4688</span>,<span class="dv">3</span>,<span class="dt">lower.tail=</span>F)</a></code></pre></div>
 <p>Note: we are only interested in the upper tail probability. As the p-value is 0.6895, we retain the null hypothesis and conclude that the model proposed by genetic theory fits the genetic outcome well.</p>
 <ul>
 <li><strong>The speedy way</strong></li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">observedfreq =<span class="st"> </span><span class="kw">c</span>(<span class="dv">926</span>,<span class="dv">288</span>,<span class="dv">293</span>,<span class="dv">104</span>)  <span class="co"># observed frequencies</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">expectedprop =<span class="st"> </span><span class="kw">c</span>(<span class="dv">9</span><span class="op">/</span><span class="dv">16</span>,<span class="dv">3</span><span class="op">/</span><span class="dv">16</span>,<span class="dv">3</span><span class="op">/</span><span class="dv">16</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">16</span>)  <span class="co"># expected proportions</span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">chisq.test</span>(<span class="dt">x =</span> observedfreq,</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">           <span class="dt">p =</span> expectedprop)</a></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1">observedfreq =<span class="st"> </span><span class="kw">c</span>(<span class="dv">926</span>,<span class="dv">288</span>,<span class="dv">293</span>,<span class="dv">104</span>)  <span class="co"># observed frequencies</span></a>
+<a class="sourceLine" id="cb153-2" data-line-number="2">expectedprop =<span class="st"> </span><span class="kw">c</span>(<span class="dv">9</span><span class="op">/</span><span class="dv">16</span>,<span class="dv">3</span><span class="op">/</span><span class="dv">16</span>,<span class="dv">3</span><span class="op">/</span><span class="dv">16</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">16</span>)  <span class="co"># expected proportions</span></a>
+<a class="sourceLine" id="cb153-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb153-4" data-line-number="4"><span class="kw">chisq.test</span>(<span class="dt">x =</span> observedfreq,</a>
+<a class="sourceLine" id="cb153-5" data-line-number="5">           <span class="dt">p =</span> expectedprop)</a></code></pre></div>
 <p><br></p>
 </div>
 <div id="test-for-independence-2-variables-1-sample" class="section level3">
@@ -1107,9 +1106,9 @@ Think about why the data must be normally distributed and why the variances need
 </ul></li>
 <li><p><strong>Data</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">Bicycle &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">60</span>,<span class="dv">54</span>,<span class="dv">46</span>,<span class="dv">41</span>,<span class="dv">40</span>,<span class="dv">44</span>,<span class="dv">53</span>,<span class="dv">57</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>, <span class="dt">dimnames =</span> <span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;18-24&quot;</span>, <span class="st">&quot;25-34&quot;</span>, <span class="st">&quot;35-49&quot;</span>, <span class="st">&quot;50-64&quot;</span>)))</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">Bicycle</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="kw">chisq.test</span>(Bicycle)</a></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1">Bicycle &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">60</span>,<span class="dv">54</span>,<span class="dv">46</span>,<span class="dv">41</span>,<span class="dv">40</span>,<span class="dv">44</span>,<span class="dv">53</span>,<span class="dv">57</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>, <span class="dt">dimnames =</span> <span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;18-24&quot;</span>, <span class="st">&quot;25-34&quot;</span>, <span class="st">&quot;35-49&quot;</span>, <span class="st">&quot;50-64&quot;</span>)))</a>
+<a class="sourceLine" id="cb154-2" data-line-number="2">Bicycle</a>
+<a class="sourceLine" id="cb154-3" data-line-number="3"><span class="kw">chisq.test</span>(Bicycle)</a></code></pre></div>
 <ul>
 <li><strong>T&amp;P</strong>
 <ul>
@@ -1121,7 +1120,7 @@ Think about why the data must be normally distributed and why the variances need
 <li>We can look at the mosaic plot with shading to help interpret this.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">mosaicplot</span>(Bicycle, <span class="dt">shade =</span> <span class="ot">TRUE</span>, <span class="dt">las=</span><span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1"><span class="kw">mosaicplot</span>(Bicycle, <span class="dt">shade =</span> <span class="ot">TRUE</span>, <span class="dt">las=</span><span class="dv">1</span>)</a></code></pre></div>
 <p>Note: There is no shading, but we see that the boxes are slightly bigger than expected for the “yes” answer in the youngest group and slightly bigger than expected for the “no” answer in the oldest group. This suggests that cyling is more popular with younger people.</p>
 <p><br></p>
 </div>
@@ -1203,16 +1202,16 @@ As with the t-test, the $(\chi^2)$ has some assumptions
 </ul></li>
 <li><p><strong>Data,T,P&amp;C</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">BloodT &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">31</span>,<span class="dv">13</span>,<span class="dv">15</span>,<span class="dv">28</span>,<span class="dv">23</span>,<span class="dv">5</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>, <span class="dt">dimnames =</span> <span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;Attending&quot;</span>, <span class="st">&quot;Resident&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;Frequent&quot;</span>, <span class="st">&quot;Occasionally&quot;</span>, <span class="st">&quot;Rarely&quot;</span>, <span class="st">&quot;Never&quot;</span>)))</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">BloodT</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw">chisq.test</span>(BloodT)</a></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1">BloodT &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">31</span>,<span class="dv">13</span>,<span class="dv">15</span>,<span class="dv">28</span>,<span class="dv">23</span>,<span class="dv">5</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>, <span class="dt">dimnames =</span> <span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;Attending&quot;</span>, <span class="st">&quot;Resident&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;Frequent&quot;</span>, <span class="st">&quot;Occasionally&quot;</span>, <span class="st">&quot;Rarely&quot;</span>, <span class="st">&quot;Never&quot;</span>)))</a>
+<a class="sourceLine" id="cb156-2" data-line-number="2">BloodT</a>
+<a class="sourceLine" id="cb156-3" data-line-number="3"><span class="kw">chisq.test</span>(BloodT)</a></code></pre></div>
 <p>Note: The p-value is very small, therefore we reject the null hypothesis and conclude that at least one of the proportions is not equal.</p>
 <ul>
 <li><p><strong>Interpret further</strong></p>
 <ul>
 <li>To get a “rough” idea of which of the proportions are not equal we can take a look at the mosaic plot.</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">mosaicplot</span>(BloodT, <span class="dt">shade =</span> <span class="ot">TRUE</span>, <span class="dt">las=</span><span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1"><span class="kw">mosaicplot</span>(BloodT, <span class="dt">shade =</span> <span class="ot">TRUE</span>, <span class="dt">las=</span><span class="dv">1</span>)</a></code></pre></div>
 <ul>
 <li><p>Note: the mosaic plot also shows the standardised residuals which are calculated as follows: <span class="math inline">\(\frac{\mbox{Observed Frequency - Expected Frequency}}{\sqrt{\mbox{Expected Frequency}}}\)</span></p></li>
 <li><p>Note: The Attending physicians have less counts than expected in the “Occasional” group and the Resident (training) physicians have more than expected in the “Occasional” group. Furthermore, the Attending physicians have more counts than expected in the “Never” group.</p></li>
@@ -1234,7 +1233,7 @@ As with the t-test, the $(\chi^2)$ has some assumptions
 <ul>
 <li>Earlier, we considered a linear model.</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">L =<span class="st"> </span><span class="kw">lm</span>(mtcars<span class="op">$</span>wt<span class="op">~</span>mtcars<span class="op">$</span>mpg)</a></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1">L =<span class="st"> </span><span class="kw">lm</span>(mtcars<span class="op">$</span>wt<span class="op">~</span>mtcars<span class="op">$</span>mpg)</a></code></pre></div>
 <ul>
 <li><p>Now we use this output to perform a hypothesis test.</p></li>
 <li><strong>H</strong>
@@ -1247,17 +1246,17 @@ As with the t-test, the $(\chi^2)$ has some assumptions
 <ol style="list-style-type: decimal">
 <li>The residuals should be independent, normal, with constant variance (homoscedasicity). Check: Residual Plot</li>
 </ol>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">lm</span>(mtcars<span class="op">$</span>wt<span class="op">~</span>mtcars<span class="op">$</span>mpg)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">plot</span>(mtcars<span class="op">$</span>mpg,L<span class="op">$</span>residuals, <span class="dt">xlab =</span> <span class="st">&quot;mpg&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Residuals&quot;</span>)</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1"><span class="kw">lm</span>(mtcars<span class="op">$</span>wt<span class="op">~</span>mtcars<span class="op">$</span>mpg)</a>
+<a class="sourceLine" id="cb159-2" data-line-number="2"><span class="kw">plot</span>(mtcars<span class="op">$</span>mpg,L<span class="op">$</span>residuals, <span class="dt">xlab =</span> <span class="st">&quot;mpg&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Residuals&quot;</span>)</a>
+<a class="sourceLine" id="cb159-3" data-line-number="3"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>The relationship between the dependent and independent variable should look linear. Check; Scatter Plot</li>
 </ol>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">plot</span>(mtcars<span class="op">$</span>mpg, mtcars<span class="op">$</span>wt)</a></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1"><span class="kw">plot</span>(mtcars<span class="op">$</span>mpg, mtcars<span class="op">$</span>wt)</a></code></pre></div>
 <ul>
 <li><strong>T,P&amp;C</strong></li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">summary</span>(L)</a></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="kw">summary</span>(L)</a></code></pre></div>
 <p>The test statistic for slope is -9.559 with p-value 1.29e-10. Hence we strongly reject <span class="math inline">\(H_{0}\)</span> and conclude that a linear model seems very appropriate for weight on mpg.</p>
 <p><br><br></p>
 

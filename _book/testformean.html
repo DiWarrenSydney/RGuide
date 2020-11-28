@@ -24,7 +24,7 @@
 <meta name="author" content="DATA1001/DATA1901" />
 
 
-<meta name="date" content="2020-11-16" />
+<meta name="date" content="2020-11-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,13 @@
 
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 <script>
 /* ========================================================================
@@ -763,16 +770,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="simulatechance.html"><a href="simulatechance.html#set-seed"><i class="fa fa-check"></i><b>10.1</b> Set seed</a></li>
 <li class="chapter" data-level="10.2" data-path="simulatechance.html"><a href="simulatechance.html#sample-coin"><i class="fa fa-check"></i><b>10.2</b> Sample (Coin)</a></li>
 <li class="chapter" data-level="10.3" data-path="simulatechance.html"><a href="simulatechance.html#sample-dice"><i class="fa fa-check"></i><b>10.3</b> Sample (Dice)</a></li>
-<li><a href="simulatechance.html#function-binomial-model"><span class="toc-section-number">10.4</span> Function **
-## Binomial Model *</a></li>
+<li class="chapter" data-level="10.4" data-path="simulatechance.html"><a href="simulatechance.html#function"><i class="fa fa-check"></i><b>10.4</b> Function **</a></li>
+<li class="chapter" data-level="10.5" data-path="simulatechance.html"><a href="simulatechance.html#binomial-model"><i class="fa fa-check"></i><b>10.5</b> Binomial Model *</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="boxmodel.html"><a href="boxmodel.html"><i class="fa fa-check"></i><b>11</b> Simulate chance variability (box model)</a><ul>
-<li><a href="boxmodel.html#draw-the-box-model-in-r-sample-sum-ev-se-simulate-the-sample-sum-use-normal-model-for-sample-sum-sample-mean-ev-se-use-normal-model-for-sample-mean"><span class="toc-section-number">11.1</span> Draw the box model in R **
-## Sample Sum (EV &amp; SE)
-## Simulate the Sample Sum
-## Use Normal model for Sample Sum
-## Sample Mean (EV &amp; SE)
-## Use Normal model for Sample Mean</a></li>
+<li class="chapter" data-level="11.1" data-path="boxmodel.html"><a href="boxmodel.html#draw-the-box-model-in-r"><i class="fa fa-check"></i><b>11.1</b> Draw the box model in R **</a></li>
+<li class="chapter" data-level="11.2" data-path="boxmodel.html"><a href="boxmodel.html#sample-sum-ev-se"><i class="fa fa-check"></i><b>11.2</b> Sample Sum (EV &amp; SE)</a></li>
+<li class="chapter" data-level="11.3" data-path="boxmodel.html"><a href="boxmodel.html#simulate-the-sample-sum"><i class="fa fa-check"></i><b>11.3</b> Simulate the Sample Sum</a></li>
+<li class="chapter" data-level="11.4" data-path="boxmodel.html"><a href="boxmodel.html#use-normal-model-for-sample-sum"><i class="fa fa-check"></i><b>11.4</b> Use Normal model for Sample Sum</a></li>
+<li class="chapter" data-level="11.5" data-path="boxmodel.html"><a href="boxmodel.html#sample-mean-ev-se"><i class="fa fa-check"></i><b>11.5</b> Sample Mean (EV &amp; SE)</a></li>
+<li class="chapter" data-level="11.6" data-path="boxmodel.html"><a href="boxmodel.html#use-normal-model-for-sample-mean"><i class="fa fa-check"></i><b>11.6</b> Use Normal model for Sample Mean</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="samplesurveys.html"><a href="samplesurveys.html"><i class="fa fa-check"></i><b>12</b> Sample surveys</a><ul>
 <li class="chapter" data-level="12.1" data-path="samplesurveys.html"><a href="samplesurveys.html#box-model-assuming-replacement"><i class="fa fa-check"></i><b>12.1</b> Box model (assuming replacement)</a></li>
@@ -800,23 +807,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.1.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sample-t-test-1"><i class="fa fa-check"></i><b>15.1.2</b> 2 sample t-test</a></li>
 <li class="chapter" data-level="15.1.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sample-t-test-paired-data"><i class="fa fa-check"></i><b>15.1.3</b> 1 sample t-test (paired data)</a></li>
 </ul></li>
-<li><a href="testsforrelationships.html#chi-squared-tests-goodness-of-fit-test-1-variable-test-for-independence-2-variables-1-sample-2.-test-for-homogeneity-2-variables-2-samples-regression-test"><span class="toc-section-number">15.2</span> Chi-squared tests **
-### Goodness of Fit Test (1 variable)
-### Test for independence (2 variables; 1 sample)
-### 2. Test for Homogeneity (2 variables; 2 samples)
-## Regression test *</a></li>
+<li class="chapter" data-level="15.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#chi-squared-tests"><i class="fa fa-check"></i><b>15.2</b> Chi-squared tests **</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="testsforrelationships.html"><a href="testsforrelationships.html#goodness-of-fit-test-1-variable"><i class="fa fa-check"></i><b>15.2.1</b> Goodness of Fit Test (1 variable)</a></li>
+<li class="chapter" data-level="15.2.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-independence-2-variables-1-sample"><i class="fa fa-check"></i><b>15.2.2</b> Test for independence (2 variables; 1 sample)</a></li>
+<li class="chapter" data-level="15.2.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-homogeneity-2-variables-2-samples"><i class="fa fa-check"></i><b>15.2.3</b> Test for Homogeneity (2 variables; 2 samples)</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#regression-test"><i class="fa fa-check"></i><b>15.3</b> Regression test</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="morerelationships.html"><a href="morerelationships.html"><i class="fa fa-check"></i><b>16</b> More tests for relationships (Diagnostics)</a><ul>
 <li class="chapter" data-level="16.1" data-path="morerelationships.html"><a href="morerelationships.html#test-normality-for-1-populations-histogram-qq-plot-shapiro-wilks-test"><i class="fa fa-check"></i><b>16.1</b> Test normality for 1+ populations: histogram, QQ-plot, Shapiro-Wilks Test</a></li>
 <li class="chapter" data-level="16.2" data-path="morerelationships.html"><a href="morerelationships.html#test-equal-variance-of-2-populations-boxplots-f-test-variance-ratio"><i class="fa fa-check"></i><b>16.2</b> Test equal variance of 2 populations (Boxplots; F-test; variance ratio)</a></li>
-<li class="chapter" data-level="16.3" data-path="morerelationships.html"><a href="morerelationships.html#test-normality-for-2-populations-histogram-qq-plot-shapiro-wilks-test"><i class="fa fa-check"></i><b>16.3</b> Test normality for 2 populations: histogram, QQ-plot, Shapiro-Wilks Test</a></li>
-<li class="chapter" data-level="16.4" data-path="morerelationships.html"><a href="morerelationships.html#get-organised"><i class="fa fa-check"></i><b>16.4</b> Get organised</a><ul>
-<li class="chapter" data-level="16.4.1" data-path="morerelationships.html"><a href="morerelationships.html#create-a-course-folder-one-off"><i class="fa fa-check"></i><b>16.4.1</b> Create a course folder [one-off]</a></li>
-<li class="chapter" data-level="16.4.2" data-path="morerelationships.html"><a href="morerelationships.html#create-a-project-one-off"><i class="fa fa-check"></i><b>16.4.2</b> Create a project [one-off]</a></li>
-<li class="chapter" data-level="16.4.3" data-path="morerelationships.html"><a href="morerelationships.html#create-a-data-folder-one-off"><i class="fa fa-check"></i><b>16.4.3</b> Create a data folder [one-off]</a></li>
-<li class="chapter" data-level="16.4.4" data-path="morerelationships.html"><a href="morerelationships.html#create-your-own-rmarkdown-document-for-a-project-or-lab"><i class="fa fa-check"></i><b>16.4.4</b> Create your own RMarkdown document (for a Project or Lab)</a></li>
-</ul></li>
-<li class="chapter" data-level="16.5" data-path="morerelationships.html"><a href="morerelationships.html#its-easy-from-then"><i class="fa fa-check"></i><b>16.5</b> It’s easy from then!</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>17</b> FAQs</a><ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-am-i-getting-weird-variable-names"><i class="fa fa-check"></i>Why am I getting weird variable names?</a></li>
@@ -859,8 +859,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Formally, we write <span class="math inline">\(H_0: Î¼=23.6\)</span> vs <span class="math inline">\(H_1: Î¼ \neq 23.6\)</span>.</p></li>
 <li><p>Have a quick look to see if <span class="math inline">\(H_0: Î¼=23.6\)</span> seems to fit with data (eg right units and size etc).</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">mean</span>(mtcars<span class="op">$</span>mpg)  <span class="co"># sample mean</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">length</span>(mtcars<span class="op">$</span>mpg) <span class="co"># size of sample </span></a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1"><span class="kw">mean</span>(mtcars<span class="op">$</span>mpg)  <span class="co"># sample mean</span></a>
+<a class="sourceLine" id="cb136-2" data-line-number="2"><span class="kw">length</span>(mtcars<span class="op">$</span>mpg) <span class="co"># size of sample </span></a></code></pre></div>
 <ul>
 <li>Now we model <span class="math inline">\(H_0: Î¼=23.6\)</span> by a box with population mean 23.6, giving the EV of the sample mean as 23.6. We compare this to the observed sample mean of 20.1.</li>
 </ul>
@@ -872,25 +872,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>First, look at the shape of the data.</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">hist</span>(mtcars<span class="op">$</span>mpg)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">boxplot</span>(mtcars<span class="op">$</span>mpg)</a></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1"><span class="kw">hist</span>(mtcars<span class="op">$</span>mpg)</a>
+<a class="sourceLine" id="cb137-2" data-line-number="2"><span class="kw">boxplot</span>(mtcars<span class="op">$</span>mpg)</a></code></pre></div>
 <p>Notice the boxplot looks symmetric, which is consistent with normality. Note the histogram shows some light right skewing.</p>
 <p><br></p>
 <ul>
 <li>Next, try some more formal diagnostics.</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">qqnorm</span>(mtcars<span class="op">$</span>mpg)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">shapiro.test</span>(mtcars<span class="op">$</span>mpg)</a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1"><span class="kw">qqnorm</span>(mtcars<span class="op">$</span>mpg)</a>
+<a class="sourceLine" id="cb138-2" data-line-number="2"><span class="kw">shapiro.test</span>(mtcars<span class="op">$</span>mpg)</a></code></pre></div>
 <p>Check to see if the Q-Q Plot looks linear, as this indicates normality. The Shapiro test tests the null hypothesis that the sample comes from a Normal distribution. Here the p-value is quite big (0.1229) hence we would retain <span class="math inline">\(H_0\)</span> which suggests normality.</p>
 <p><br></p>
 <ul>
 <li>Note: you can combine all 4 graphics in 2x2 window, for easy comparison.</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">qqnorm</span>(mtcars<span class="op">$</span>mpg)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">shapiro.test</span>(mtcars<span class="op">$</span>mpg)</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">hist</span>(mtcars<span class="op">$</span>mpg)</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">boxplot</span>(mtcars<span class="op">$</span>mpg)</a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb139-2" data-line-number="2"><span class="kw">qqnorm</span>(mtcars<span class="op">$</span>mpg)</a>
+<a class="sourceLine" id="cb139-3" data-line-number="3"><span class="kw">shapiro.test</span>(mtcars<span class="op">$</span>mpg)</a>
+<a class="sourceLine" id="cb139-4" data-line-number="4"><span class="kw">hist</span>(mtcars<span class="op">$</span>mpg)</a>
+<a class="sourceLine" id="cb139-5" data-line-number="5"><span class="kw">boxplot</span>(mtcars<span class="op">$</span>mpg)</a></code></pre></div>
 <p><br></p>
 </div>
 <div id="t-calculate-the-test-statistic" class="section level3">
@@ -899,12 +899,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>The formula for the <span class="math inline">\(t\)</span>-test statistic is <span class="math inline">\(t_{obs} = \frac{\mbox{observed value - hypothesised value}}{\mbox{standard error}}\)</span>.</p></li>
 <li><p>We use the SD of the data as an approximation of the SD of the population, so we can calculate the SE of the Sample Mean.</p></li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">tobs =<span class="st"> </span>(<span class="kw">mean</span>(mtcars<span class="op">$</span>mpg)<span class="op">-</span><span class="fl">23.6</span>)<span class="op">/</span>(<span class="kw">sd</span>(mtcars<span class="op">$</span>mpg)<span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">32</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1">tobs =<span class="st"> </span>(<span class="kw">mean</span>(mtcars<span class="op">$</span>mpg)<span class="op">-</span><span class="fl">23.6</span>)<span class="op">/</span>(<span class="kw">sd</span>(mtcars<span class="op">$</span>mpg)<span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">32</span>))</a></code></pre></div>
 <p><br></p>
 <ul>
 <li>The degrees of freedom of the <span class="math inline">\(T\)</span> test statistic is <span class="math inline">\(\mbox{sample size} - 1\)</span>.</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">length</span>(mtcars<span class="op">$</span>mpg)<span class="op">-</span><span class="dv">1</span></a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1"><span class="kw">length</span>(mtcars<span class="op">$</span>mpg)<span class="op">-</span><span class="dv">1</span></a></code></pre></div>
 <p><br></p>
 </div>
 <div id="p-calculate-the-p-value" class="section level3">
@@ -912,7 +912,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>The p-value is the probability of getting a value of <span class="math inline">\(t_{obs}\)</span> or more extreme in either tail of the <span class="math inline">\(T\)</span> distribution.</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">pt</span>(<span class="kw">abs</span>(tobs),<span class="dv">31</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1"><span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">pt</span>(<span class="kw">abs</span>(tobs),<span class="dv">31</span>))</a></code></pre></div>
 <ul>
 <li>Note the use of <code>abs</code> here, allows for test statistic to be in either tail.</li>
 </ul>
@@ -932,7 +932,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>We can do all this quickly in R!</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">t.test</span>(mtcars<span class="op">$</span>mpg, <span class="dt">mu =</span> <span class="fl">23.6</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="kw">t.test</span>(mtcars<span class="op">$</span>mpg, <span class="dt">mu =</span> <span class="fl">23.6</span>)</a></code></pre></div>
 <ul>
 <li>Match up this output with the calculations above. Note it also gives us the 95% CI and the mean of the sample.</li>
 </ul>
@@ -945,18 +945,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>However, we could create a function called <code>z.test</code> ourselves.</li>
 <li>Assume the population variance of <code>mtcars$mpg</code> is the same as the sample variance (this of course is only a guess).</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">v =<span class="st"> </span><span class="kw">var</span>(mtcars<span class="op">$</span>mpg)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co"># This creates a function called z.test, with data, mu and var as the inputs, and zobs as the output.</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">z.test =<span class="st"> </span><span class="cf">function</span>(data, mu, var){</a>
-<a class="sourceLine" id="cb9-4" data-line-number="4">   zobs =<span class="st"> </span>(<span class="kw">mean</span>(data) <span class="op">-</span><span class="st"> </span>mu) <span class="op">/</span><span class="st"> </span>(<span class="kw">sqrt</span>(var <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(data)))</a>
-<a class="sourceLine" id="cb9-5" data-line-number="5">   <span class="kw">return</span>(zobs)</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6">}</a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co"># Run the function with inputs</span></a>
-<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="kw">z.test</span>(mtcars<span class="op">$</span>mpg,<span class="fl">23.6</span>,v)</a></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1">v =<span class="st"> </span><span class="kw">var</span>(mtcars<span class="op">$</span>mpg)</a>
+<a class="sourceLine" id="cb144-2" data-line-number="2"><span class="co"># This creates a function called z.test, with data, mu and var as the inputs, and zobs as the output.</span></a>
+<a class="sourceLine" id="cb144-3" data-line-number="3">z.test =<span class="st"> </span><span class="cf">function</span>(data, mu, var){</a>
+<a class="sourceLine" id="cb144-4" data-line-number="4">   zobs =<span class="st"> </span>(<span class="kw">mean</span>(data) <span class="op">-</span><span class="st"> </span>mu) <span class="op">/</span><span class="st"> </span>(<span class="kw">sqrt</span>(var <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(data)))</a>
+<a class="sourceLine" id="cb144-5" data-line-number="5">   <span class="kw">return</span>(zobs)</a>
+<a class="sourceLine" id="cb144-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb144-7" data-line-number="7"><span class="co"># Run the function with inputs</span></a>
+<a class="sourceLine" id="cb144-8" data-line-number="8"><span class="kw">z.test</span>(mtcars<span class="op">$</span>mpg,<span class="fl">23.6</span>,v)</a></code></pre></div>
 <ul>
 <li>Hence, the observed value of <span class="math inline">\(Z\)</span> Test is -3.293877, which will give a tiny p-value and it is more than 3 standard deviations away from the mean.</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">pnorm</span>(<span class="kw">abs</span>(<span class="op">-</span><span class="fl">3.293877</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1"><span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">pnorm</span>(<span class="kw">abs</span>(<span class="op">-</span><span class="fl">3.293877</span>)))</a></code></pre></div>
 <ul>
 <li>Hence again we conclude that the mpg of current cars appears to have changed significantly from the US older cars in <code>mtcars</code>.</li>
 </ul>

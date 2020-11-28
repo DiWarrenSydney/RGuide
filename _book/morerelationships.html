@@ -24,7 +24,7 @@
 <meta name="author" content="DATA1001/DATA1901" />
 
 
-<meta name="date" content="2020-11-16" />
+<meta name="date" content="2020-11-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,13 @@
 
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 <script>
 /* ========================================================================
@@ -763,16 +770,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="simulatechance.html"><a href="simulatechance.html#set-seed"><i class="fa fa-check"></i><b>10.1</b> Set seed</a></li>
 <li class="chapter" data-level="10.2" data-path="simulatechance.html"><a href="simulatechance.html#sample-coin"><i class="fa fa-check"></i><b>10.2</b> Sample (Coin)</a></li>
 <li class="chapter" data-level="10.3" data-path="simulatechance.html"><a href="simulatechance.html#sample-dice"><i class="fa fa-check"></i><b>10.3</b> Sample (Dice)</a></li>
-<li><a href="simulatechance.html#function-binomial-model"><span class="toc-section-number">10.4</span> Function **
-## Binomial Model *</a></li>
+<li class="chapter" data-level="10.4" data-path="simulatechance.html"><a href="simulatechance.html#function"><i class="fa fa-check"></i><b>10.4</b> Function **</a></li>
+<li class="chapter" data-level="10.5" data-path="simulatechance.html"><a href="simulatechance.html#binomial-model"><i class="fa fa-check"></i><b>10.5</b> Binomial Model *</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="boxmodel.html"><a href="boxmodel.html"><i class="fa fa-check"></i><b>11</b> Simulate chance variability (box model)</a><ul>
-<li><a href="boxmodel.html#draw-the-box-model-in-r-sample-sum-ev-se-simulate-the-sample-sum-use-normal-model-for-sample-sum-sample-mean-ev-se-use-normal-model-for-sample-mean"><span class="toc-section-number">11.1</span> Draw the box model in R **
-## Sample Sum (EV &amp; SE)
-## Simulate the Sample Sum
-## Use Normal model for Sample Sum
-## Sample Mean (EV &amp; SE)
-## Use Normal model for Sample Mean</a></li>
+<li class="chapter" data-level="11.1" data-path="boxmodel.html"><a href="boxmodel.html#draw-the-box-model-in-r"><i class="fa fa-check"></i><b>11.1</b> Draw the box model in R **</a></li>
+<li class="chapter" data-level="11.2" data-path="boxmodel.html"><a href="boxmodel.html#sample-sum-ev-se"><i class="fa fa-check"></i><b>11.2</b> Sample Sum (EV &amp; SE)</a></li>
+<li class="chapter" data-level="11.3" data-path="boxmodel.html"><a href="boxmodel.html#simulate-the-sample-sum"><i class="fa fa-check"></i><b>11.3</b> Simulate the Sample Sum</a></li>
+<li class="chapter" data-level="11.4" data-path="boxmodel.html"><a href="boxmodel.html#use-normal-model-for-sample-sum"><i class="fa fa-check"></i><b>11.4</b> Use Normal model for Sample Sum</a></li>
+<li class="chapter" data-level="11.5" data-path="boxmodel.html"><a href="boxmodel.html#sample-mean-ev-se"><i class="fa fa-check"></i><b>11.5</b> Sample Mean (EV &amp; SE)</a></li>
+<li class="chapter" data-level="11.6" data-path="boxmodel.html"><a href="boxmodel.html#use-normal-model-for-sample-mean"><i class="fa fa-check"></i><b>11.6</b> Use Normal model for Sample Mean</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="samplesurveys.html"><a href="samplesurveys.html"><i class="fa fa-check"></i><b>12</b> Sample surveys</a><ul>
 <li class="chapter" data-level="12.1" data-path="samplesurveys.html"><a href="samplesurveys.html#box-model-assuming-replacement"><i class="fa fa-check"></i><b>12.1</b> Box model (assuming replacement)</a></li>
@@ -800,11 +807,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.1.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sample-t-test-1"><i class="fa fa-check"></i><b>15.1.2</b> 2 sample t-test</a></li>
 <li class="chapter" data-level="15.1.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sample-t-test-paired-data"><i class="fa fa-check"></i><b>15.1.3</b> 1 sample t-test (paired data)</a></li>
 </ul></li>
-<li><a href="testsforrelationships.html#chi-squared-tests-goodness-of-fit-test-1-variable-test-for-independence-2-variables-1-sample-test-for-homogeneity-2-variables-2-samples-regression-test"><span class="toc-section-number">15.2</span> Chi-squared tests **
-### Goodness of Fit Test (1 variable)
-### Test for independence (2 variables; 1 sample)
-### Test for Homogeneity (2 variables; 2 samples)
-## Regression test</a></li>
+<li class="chapter" data-level="15.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#chi-squared-tests"><i class="fa fa-check"></i><b>15.2</b> Chi-squared tests **</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="testsforrelationships.html"><a href="testsforrelationships.html#goodness-of-fit-test-1-variable"><i class="fa fa-check"></i><b>15.2.1</b> Goodness of Fit Test (1 variable)</a></li>
+<li class="chapter" data-level="15.2.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-independence-2-variables-1-sample"><i class="fa fa-check"></i><b>15.2.2</b> Test for independence (2 variables; 1 sample)</a></li>
+<li class="chapter" data-level="15.2.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-homogeneity-2-variables-2-samples"><i class="fa fa-check"></i><b>15.2.3</b> Test for Homogeneity (2 variables; 2 samples)</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#regression-test"><i class="fa fa-check"></i><b>15.3</b> Regression test</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="morerelationships.html"><a href="morerelationships.html"><i class="fa fa-check"></i><b>16</b> More tests for relationships (Diagnostics)</a><ul>
 <li class="chapter" data-level="16.1" data-path="morerelationships.html"><a href="morerelationships.html#test-normality-for-1-populations-histogram-qq-plot-shapiro-wilks-test"><i class="fa fa-check"></i><b>16.1</b> Test normality for 1+ populations: histogram, QQ-plot, Shapiro-Wilks Test</a></li>
@@ -844,7 +852,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Check the <strong>histogram</strong>.</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">hist</span>(mtcars<span class="op">$</span>wt, <span class="dt">main =</span> <span class="st">&quot;Histogram of Car Weights&quot;</span>, <span class="dt">freq=</span>F)</a></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1"><span class="kw">hist</span>(mtcars<span class="op">$</span>wt, <span class="dt">main =</span> <span class="st">&quot;Histogram of Car Weights&quot;</span>, <span class="dt">freq=</span>F)</a></code></pre></div>
 <ul>
 <li>Note: The histogram is roughly normal (roughly balanced around one mode towards the centre).</li>
 </ul>
@@ -855,9 +863,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>A QQ-plot is another summary for quantitative variables. Further information can be found <a href="https://en.wikipedia.org/wiki/Q-Q_plot">here</a>.</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">help</span>(qqnorm)</a></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">qqnorm</span>(mtcars<span class="op">$</span>wt, <span class="dt">main =</span> <span class="st">&quot;QQ-plot for Car weights&quot;</span>)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">qqline</span>(mtcars<span class="op">$</span>wt, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="kw">help</span>(qqnorm)</a></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1"><span class="kw">qqnorm</span>(mtcars<span class="op">$</span>wt, <span class="dt">main =</span> <span class="st">&quot;QQ-plot for Car weights&quot;</span>)</a>
+<a class="sourceLine" id="cb164-2" data-line-number="2"><span class="kw">qqline</span>(mtcars<span class="op">$</span>wt, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
 <ul>
 <li>Note: The data is reasonably evenly scattered around the theoretical quantile-quantile line which suggests that the car weights are reasonably normally distributed.</li>
 </ul>
@@ -875,7 +883,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><p><strong>T,P&amp;C:</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">shapiro.test</span>(mtcars<span class="op">$</span>wt)</a></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1"><span class="kw">shapiro.test</span>(mtcars<span class="op">$</span>wt)</a></code></pre></div>
 <p>Note: The p-value is much greater than 0.05, so strong evidence that the data is normally distributed.</p>
 <p><br></p>
 </div>
@@ -884,7 +892,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Compare the <strong>2 boxplots</strong>.</li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">boxplot</span>(extra<span class="op">~</span>group, <span class="dt">data =</span> sleep)</a></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1"><span class="kw">boxplot</span>(extra<span class="op">~</span>group, <span class="dt">data =</span> sleep)</a></code></pre></div>
 <ul>
 <li><p>Note: It is clear from the boxplots that the variation in group 1 is less than group 2.</p></li>
 <li><p>Boxplots are a very useful tool as they provide an indication of whether the sample means are similar or different, whether the samples are normally distributed, and whether the variances are similar between the 2 samples.</p></li>
@@ -903,7 +911,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><p><strong>T,P&amp;C</strong></p></li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">var.test</span>(extra<span class="op">~</span>group, <span class="dt">data =</span> sleep)</a></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1"><span class="kw">var.test</span>(extra<span class="op">~</span>group, <span class="dt">data =</span> sleep)</a></code></pre></div>
 <p>Note: From the variance test, it is clear that the p-value is much greater than 0.05. Therefore we retain the null hypothesis and conclude that the variances seem to be equal.</p>
 <!--
 ## Test normality for 2 populations: histogram, QQ-plot, Shapiro-Wilks Test

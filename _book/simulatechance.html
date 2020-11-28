@@ -24,7 +24,7 @@
 <meta name="author" content="DATA1001/DATA1901" />
 
 
-<meta name="date" content="2020-11-15" />
+<meta name="date" content="2020-11-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,13 @@
 
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 <script>
 /* ========================================================================
@@ -767,7 +774,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.5" data-path="simulatechance.html"><a href="simulatechance.html#binomial-model"><i class="fa fa-check"></i><b>10.5</b> Binomial Model *</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="boxmodel.html"><a href="boxmodel.html"><i class="fa fa-check"></i><b>11</b> Simulate chance variability (box model)</a><ul>
-<li class="chapter" data-level="11.1" data-path="boxmodel.html"><a href="boxmodel.html#draw-the-box-model-in-r-ext"><i class="fa fa-check"></i><b>11.1</b> Draw the box model in R (Ext)</a></li>
+<li class="chapter" data-level="11.1" data-path="boxmodel.html"><a href="boxmodel.html#draw-the-box-model-in-r"><i class="fa fa-check"></i><b>11.1</b> Draw the box model in R **</a></li>
 <li class="chapter" data-level="11.2" data-path="boxmodel.html"><a href="boxmodel.html#sample-sum-ev-se"><i class="fa fa-check"></i><b>11.2</b> Sample Sum (EV &amp; SE)</a></li>
 <li class="chapter" data-level="11.3" data-path="boxmodel.html"><a href="boxmodel.html#simulate-the-sample-sum"><i class="fa fa-check"></i><b>11.3</b> Simulate the Sample Sum</a></li>
 <li class="chapter" data-level="11.4" data-path="boxmodel.html"><a href="boxmodel.html#use-normal-model-for-sample-sum"><i class="fa fa-check"></i><b>11.4</b> Use Normal model for Sample Sum</a></li>
@@ -792,7 +799,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.1.5" data-path="testformean.html"><a href="testformean.html#c-conclusion"><i class="fa fa-check"></i><b>14.1.5</b> C: Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="14.2" data-path="testformean.html"><a href="testformean.html#the-speedy-way"><i class="fa fa-check"></i><b>14.2</b> The speedy way!</a></li>
-<li class="chapter" data-level="14.3" data-path="testformean.html"><a href="testformean.html#sample-z-test-ext"><i class="fa fa-check"></i><b>14.3</b> 1 sample Z-Test (Ext)</a></li>
+<li class="chapter" data-level="14.3" data-path="testformean.html"><a href="testformean.html#sample-z-test"><i class="fa fa-check"></i><b>14.3</b> 1 sample Z-Test**</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="testsforrelationships.html"><a href="testsforrelationships.html"><i class="fa fa-check"></i><b>15</b> Tests for relationships</a><ul>
 <li class="chapter" data-level="15.1" data-path="testsforrelationships.html"><a href="testsforrelationships.html#more-t-tests"><i class="fa fa-check"></i><b>15.1</b> More t-tests</a><ul>
@@ -800,12 +807,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.1.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sample-t-test-1"><i class="fa fa-check"></i><b>15.1.2</b> 2 sample t-test</a></li>
 <li class="chapter" data-level="15.1.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sample-t-test-paired-data"><i class="fa fa-check"></i><b>15.1.3</b> 1 sample t-test (paired data)</a></li>
 </ul></li>
-<li class="chapter" data-level="15.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#chi-squared-tests"><i class="fa fa-check"></i><b>15.2</b> Chi-squared tests *</a><ul>
+<li class="chapter" data-level="15.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#chi-squared-tests"><i class="fa fa-check"></i><b>15.2</b> Chi-squared tests **</a><ul>
 <li class="chapter" data-level="15.2.1" data-path="testsforrelationships.html"><a href="testsforrelationships.html#goodness-of-fit-test-1-variable"><i class="fa fa-check"></i><b>15.2.1</b> Goodness of Fit Test (1 variable)</a></li>
 <li class="chapter" data-level="15.2.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-independence-2-variables-1-sample"><i class="fa fa-check"></i><b>15.2.2</b> Test for independence (2 variables; 1 sample)</a></li>
-<li class="chapter" data-level="15.2.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-homogeneity-2-variables-2-samples"><i class="fa fa-check"></i><b>15.2.3</b> 2. Test for Homogeneity (2 variables; 2 samples)</a></li>
+<li class="chapter" data-level="15.2.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-homogeneity-2-variables-2-samples"><i class="fa fa-check"></i><b>15.2.3</b> Test for Homogeneity (2 variables; 2 samples)</a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#regression-test"><i class="fa fa-check"></i><b>15.3</b> Regression test *</a></li>
+<li class="chapter" data-level="15.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#regression-test"><i class="fa fa-check"></i><b>15.3</b> Regression test</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="morerelationships.html"><a href="morerelationships.html"><i class="fa fa-check"></i><b>16</b> More tests for relationships (Diagnostics)</a><ul>
 <li class="chapter" data-level="16.1" data-path="morerelationships.html"><a href="morerelationships.html#test-normality-for-1-populations-histogram-qq-plot-shapiro-wilks-test"><i class="fa fa-check"></i><b>16.1</b> Test normality for 1+ populations: histogram, QQ-plot, Shapiro-Wilks Test</a></li>
@@ -843,90 +850,90 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Notice what happens below if we don’t set a seed.</li>
 </ul>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="dv">5</span>, <span class="dt">replace =</span> T)</a>
-<a class="sourceLine" id="cb93-2" data-line-number="2"><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="dv">5</span>, <span class="dt">replace =</span> T)</a></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1"><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="dv">5</span>, <span class="dt">replace =</span> T)</a>
+<a class="sourceLine" id="cb101-2" data-line-number="2"><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="dv">5</span>, <span class="dt">replace =</span> T)</a></code></pre></div>
 <ul>
 <li>Now set a seed.</li>
 </ul>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)  <span class="co"># ensures the same simulation, &quot;1&quot; can be whatever you choose</span></a>
-<a class="sourceLine" id="cb94-2" data-line-number="2"><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="dv">5</span>, <span class="dt">replace =</span> T)</a>
-<a class="sourceLine" id="cb94-3" data-line-number="3"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb94-4" data-line-number="4"><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="dv">5</span>, <span class="dt">replace =</span> T)</a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)  <span class="co"># ensures the same simulation, &quot;1&quot; can be whatever you choose</span></a>
+<a class="sourceLine" id="cb102-2" data-line-number="2"><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="dv">5</span>, <span class="dt">replace =</span> T)</a>
+<a class="sourceLine" id="cb102-3" data-line-number="3"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb102-4" data-line-number="4"><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="dv">5</span>, <span class="dt">replace =</span> T)</a></code></pre></div>
 </div>
 <div id="sample-coin" class="section level2">
 <h2><span class="header-section-number">10.2</span> Sample (Coin)</h2>
 <ul>
 <li>To simulate 1 fair coin toss</li>
 </ul>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>) </a>
-<a class="sourceLine" id="cb95-2" data-line-number="2"><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="dv">1</span>, <span class="dt">replace =</span> T)</a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>) </a>
+<a class="sourceLine" id="cb103-2" data-line-number="2"><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="dv">1</span>, <span class="dt">replace =</span> T)</a></code></pre></div>
 <ul>
 <li>To simulate 1 biased coin toss</li>
 </ul>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb96-2" data-line-number="2"><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="dv">1</span>, <span class="dt">replace =</span> T,<span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.9</span>, <span class="fl">0.1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb104-2" data-line-number="2"><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="dv">1</span>, <span class="dt">replace =</span> T,<span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.9</span>, <span class="fl">0.1</span>))</a></code></pre></div>
 <ul>
 <li>To simulate 10 fair coin tosses, and summarise chances in a table:</li>
 </ul>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb97-2" data-line-number="2">sample1 =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="dv">10</span>,<span class="dt">replace=</span>T)</a>
-<a class="sourceLine" id="cb97-3" data-line-number="3"><span class="kw">table</span>(sample1)<span class="op">/</span><span class="dv">10</span></a></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb105-2" data-line-number="2">sample1 =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;T&quot;</span>), <span class="dv">10</span>,<span class="dt">replace=</span>T)</a>
+<a class="sourceLine" id="cb105-3" data-line-number="3"><span class="kw">table</span>(sample1)<span class="op">/</span><span class="dv">10</span></a></code></pre></div>
 <ul>
 <li>Alternatively, you could use</li>
 </ul>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb98-2" data-line-number="2"><span class="kw">replicate</span>(<span class="dv">10</span>, <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;T&quot;</span>),<span class="dv">1</span>,<span class="dt">replace=</span>T))</a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb106-2" data-line-number="2"><span class="kw">replicate</span>(<span class="dv">10</span>, <span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;T&quot;</span>),<span class="dv">1</span>,<span class="dt">replace=</span>T))</a></code></pre></div>
 <ul>
 <li>Alternatively, you could use the Binomial *,</li>
 </ul>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb99-2" data-line-number="2"><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb107-2" data-line-number="2"><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</a></code></pre></div>
 </div>
 <div id="sample-dice" class="section level2">
 <h2><span class="header-section-number">10.3</span> Sample (Dice)</h2>
 <ul>
 <li>To simulate 1 fair die toss</li>
 </ul>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb100-2" data-line-number="2"><span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dv">1</span>, <span class="dt">replace =</span> T)</a></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb108-2" data-line-number="2"><span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dv">1</span>, <span class="dt">replace =</span> T)</a></code></pre></div>
 <ul>
 <li>To simulate 1 biased die toss</li>
 </ul>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb101-2" data-line-number="2"><span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dv">1</span>, <span class="dt">replace =</span> T,<span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.3</span>,<span class="fl">0.2</span>,<span class="fl">0.1</span>,<span class="fl">0.1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb109-2" data-line-number="2"><span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dv">1</span>, <span class="dt">replace =</span> T,<span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.1</span>,<span class="fl">0.2</span>,<span class="fl">0.3</span>,<span class="fl">0.2</span>,<span class="fl">0.1</span>,<span class="fl">0.1</span>))</a></code></pre></div>
 <ul>
 <li>To simulate 10 fair dice tosses, and summarise chances in a table:</li>
 </ul>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb102-2" data-line-number="2"><span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dv">10</span>, <span class="dt">replace =</span> T)</a>
-<a class="sourceLine" id="cb102-3" data-line-number="3"><span class="kw">table</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dv">10</span>, <span class="dt">replace =</span> T))<span class="op">/</span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb102-4" data-line-number="4"><span class="kw">barplot</span>(<span class="kw">table</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dv">10</span>, <span class="dt">replace =</span> T))<span class="op">/</span><span class="dv">10</span>, <span class="dt">xlab=</span><span class="st">&quot;dice face&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;chance&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb110-2" data-line-number="2"><span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dv">10</span>, <span class="dt">replace =</span> T)</a>
+<a class="sourceLine" id="cb110-3" data-line-number="3"><span class="kw">table</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dv">10</span>, <span class="dt">replace =</span> T))<span class="op">/</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb110-4" data-line-number="4"><span class="kw">barplot</span>(<span class="kw">table</span>(<span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dv">10</span>, <span class="dt">replace =</span> T))<span class="op">/</span><span class="dv">10</span>, <span class="dt">xlab=</span><span class="st">&quot;dice face&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;chance&quot;</span>)</a></code></pre></div>
 <ul>
 <li>Alternatively, you could use</li>
 </ul>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb103-2" data-line-number="2"><span class="kw">table</span>(<span class="kw">replicate</span>(<span class="dv">10</span>, <span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dv">10</span>, <span class="dt">replace =</span> T)))</a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb111-2" data-line-number="2"><span class="kw">table</span>(<span class="kw">replicate</span>(<span class="dv">10</span>, <span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dv">10</span>, <span class="dt">replace =</span> T)))</a></code></pre></div>
 </div>
 <div id="function" class="section level2">
 <h2><span class="header-section-number">10.4</span> Function **</h2>
 <p>To toss a die 10 times, and find the chance of getting a 6:</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">tossdie =<span class="st"> </span><span class="cf">function</span>() {</a>
-<a class="sourceLine" id="cb104-2" data-line-number="2">    rolls =<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb104-3" data-line-number="3">    condition =<span class="st"> </span><span class="kw">sum</span>(rolls <span class="op">==</span><span class="st"> </span><span class="dv">6</span>) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb104-4" data-line-number="4">    <span class="kw">return</span>(condition)</a>
-<a class="sourceLine" id="cb104-5" data-line-number="5">}</a>
-<a class="sourceLine" id="cb104-6" data-line-number="6"><span class="co"># Simulate 10000 times</span></a>
-<a class="sourceLine" id="cb104-7" data-line-number="7">sim =<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">10000</span>, <span class="kw">tossdie</span>())</a>
-<a class="sourceLine" id="cb104-8" data-line-number="8"><span class="kw">sum</span>(sim)<span class="op">/</span><span class="kw">length</span>(sim)</a></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">tossdie =<span class="st"> </span><span class="cf">function</span>() {</a>
+<a class="sourceLine" id="cb112-2" data-line-number="2">    rolls =<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">size =</span> <span class="dv">10</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb112-3" data-line-number="3">    condition =<span class="st"> </span><span class="kw">sum</span>(rolls <span class="op">==</span><span class="st"> </span><span class="dv">6</span>) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb112-4" data-line-number="4">    <span class="kw">return</span>(condition)</a>
+<a class="sourceLine" id="cb112-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb112-6" data-line-number="6"><span class="co"># Simulate 10000 times</span></a>
+<a class="sourceLine" id="cb112-7" data-line-number="7">sim =<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">10000</span>, <span class="kw">tossdie</span>())</a>
+<a class="sourceLine" id="cb112-8" data-line-number="8"><span class="kw">sum</span>(sim)<span class="op">/</span><span class="kw">length</span>(sim)</a></code></pre></div>
 <p><br></p>
 </div>
 <div id="binomial-model" class="section level2">
 <h2><span class="header-section-number">10.5</span> Binomial Model *</h2>
 <p>Suppose we have 10 trials with P(event) = 0.3.</p>
 <p>The chance of getting 4 events:</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw">dbinom</span>(<span class="dv">4</span>,<span class="dv">10</span>,<span class="fl">0.3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1"><span class="kw">dbinom</span>(<span class="dv">4</span>,<span class="dv">10</span>,<span class="fl">0.3</span>)</a></code></pre></div>
 <p>The chance of getting less than or equal to 5 events:</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="kw">pbinom</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="fl">0.3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1"><span class="kw">pbinom</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="fl">0.3</span>)</a></code></pre></div>
 <p><br><br></p>
 
 </div>

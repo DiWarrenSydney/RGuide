@@ -24,7 +24,7 @@
 <meta name="author" content="DATA1001/DATA1901" />
 
 
-<meta name="date" content="2020-11-16" />
+<meta name="date" content="2020-11-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,13 @@
 
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 <script>
 /* ========================================================================
@@ -763,11 +770,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="simulatechance.html"><a href="simulatechance.html#set-seed"><i class="fa fa-check"></i><b>10.1</b> Set seed</a></li>
 <li class="chapter" data-level="10.2" data-path="simulatechance.html"><a href="simulatechance.html#sample-coin"><i class="fa fa-check"></i><b>10.2</b> Sample (Coin)</a></li>
 <li class="chapter" data-level="10.3" data-path="simulatechance.html"><a href="simulatechance.html#sample-dice"><i class="fa fa-check"></i><b>10.3</b> Sample (Dice)</a></li>
-<li><a href="simulatechance.html#function-binomial-model"><span class="toc-section-number">10.4</span> Function **
-## Binomial Model *</a></li>
+<li class="chapter" data-level="10.4" data-path="simulatechance.html"><a href="simulatechance.html#function"><i class="fa fa-check"></i><b>10.4</b> Function **</a></li>
+<li class="chapter" data-level="10.5" data-path="simulatechance.html"><a href="simulatechance.html#binomial-model"><i class="fa fa-check"></i><b>10.5</b> Binomial Model *</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="boxmodel.html"><a href="boxmodel.html"><i class="fa fa-check"></i><b>11</b> Simulate chance variability (box model)</a><ul>
-<li class="chapter" data-level="11.1" data-path="boxmodel.html"><a href="boxmodel.html#draw-the-box-model-in-r-ext"><i class="fa fa-check"></i><b>11.1</b> Draw the box model in R (Ext)</a></li>
+<li class="chapter" data-level="11.1" data-path="boxmodel.html"><a href="boxmodel.html#draw-the-box-model-in-r"><i class="fa fa-check"></i><b>11.1</b> Draw the box model in R **</a></li>
 <li class="chapter" data-level="11.2" data-path="boxmodel.html"><a href="boxmodel.html#sample-sum-ev-se"><i class="fa fa-check"></i><b>11.2</b> Sample Sum (EV &amp; SE)</a></li>
 <li class="chapter" data-level="11.3" data-path="boxmodel.html"><a href="boxmodel.html#simulate-the-sample-sum"><i class="fa fa-check"></i><b>11.3</b> Simulate the Sample Sum</a></li>
 <li class="chapter" data-level="11.4" data-path="boxmodel.html"><a href="boxmodel.html#use-normal-model-for-sample-sum"><i class="fa fa-check"></i><b>11.4</b> Use Normal model for Sample Sum</a></li>
@@ -792,7 +799,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.1.5" data-path="testformean.html"><a href="testformean.html#c-conclusion"><i class="fa fa-check"></i><b>14.1.5</b> C: Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="14.2" data-path="testformean.html"><a href="testformean.html#the-speedy-way"><i class="fa fa-check"></i><b>14.2</b> The speedy way!</a></li>
-<li class="chapter" data-level="14.3" data-path="testformean.html"><a href="testformean.html#sample-z-test-ext"><i class="fa fa-check"></i><b>14.3</b> 1 sample Z-Test (Ext)</a></li>
+<li class="chapter" data-level="14.3" data-path="testformean.html"><a href="testformean.html#sample-z-test"><i class="fa fa-check"></i><b>14.3</b> 1 sample Z-Test**</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="testsforrelationships.html"><a href="testsforrelationships.html"><i class="fa fa-check"></i><b>15</b> Tests for relationships</a><ul>
 <li class="chapter" data-level="15.1" data-path="testsforrelationships.html"><a href="testsforrelationships.html#more-t-tests"><i class="fa fa-check"></i><b>15.1</b> More t-tests</a><ul>
@@ -800,23 +807,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.1.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sample-t-test-1"><i class="fa fa-check"></i><b>15.1.2</b> 2 sample t-test</a></li>
 <li class="chapter" data-level="15.1.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sample-t-test-paired-data"><i class="fa fa-check"></i><b>15.1.3</b> 1 sample t-test (paired data)</a></li>
 </ul></li>
-<li><a href="testsforrelationships.html#chi-squared-tests-goodness-of-fit-test-1-variable-test-for-independence-2-variables-1-sample-2.-test-for-homogeneity-2-variables-2-samples-regression-test"><span class="toc-section-number">15.2</span> Chi-squared tests <em>
-### Goodness of Fit Test (1 variable)
-### Test for independence (2 variables; 1 sample)
-### 2. Test for Homogeneity (2 variables; 2 samples)
-## Regression test </em></a></li>
+<li class="chapter" data-level="15.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#chi-squared-tests"><i class="fa fa-check"></i><b>15.2</b> Chi-squared tests **</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="testsforrelationships.html"><a href="testsforrelationships.html#goodness-of-fit-test-1-variable"><i class="fa fa-check"></i><b>15.2.1</b> Goodness of Fit Test (1 variable)</a></li>
+<li class="chapter" data-level="15.2.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-independence-2-variables-1-sample"><i class="fa fa-check"></i><b>15.2.2</b> Test for independence (2 variables; 1 sample)</a></li>
+<li class="chapter" data-level="15.2.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-homogeneity-2-variables-2-samples"><i class="fa fa-check"></i><b>15.2.3</b> Test for Homogeneity (2 variables; 2 samples)</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#regression-test"><i class="fa fa-check"></i><b>15.3</b> Regression test</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="morerelationships.html"><a href="morerelationships.html"><i class="fa fa-check"></i><b>16</b> More tests for relationships (Diagnostics)</a><ul>
 <li class="chapter" data-level="16.1" data-path="morerelationships.html"><a href="morerelationships.html#test-normality-for-1-populations-histogram-qq-plot-shapiro-wilks-test"><i class="fa fa-check"></i><b>16.1</b> Test normality for 1+ populations: histogram, QQ-plot, Shapiro-Wilks Test</a></li>
 <li class="chapter" data-level="16.2" data-path="morerelationships.html"><a href="morerelationships.html#test-equal-variance-of-2-populations-boxplots-f-test-variance-ratio"><i class="fa fa-check"></i><b>16.2</b> Test equal variance of 2 populations (Boxplots; F-test; variance ratio)</a></li>
-<li class="chapter" data-level="16.3" data-path="morerelationships.html"><a href="morerelationships.html#test-normality-for-2-populations-histogram-qq-plot-shapiro-wilks-test"><i class="fa fa-check"></i><b>16.3</b> Test normality for 2 populations: histogram, QQ-plot, Shapiro-Wilks Test</a></li>
-<li class="chapter" data-level="16.4" data-path="morerelationships.html"><a href="morerelationships.html#get-organised"><i class="fa fa-check"></i><b>16.4</b> Get organised</a><ul>
-<li class="chapter" data-level="16.4.1" data-path="morerelationships.html"><a href="morerelationships.html#create-a-course-folder-one-off"><i class="fa fa-check"></i><b>16.4.1</b> Create a course folder [one-off]</a></li>
-<li class="chapter" data-level="16.4.2" data-path="morerelationships.html"><a href="morerelationships.html#create-a-project-one-off"><i class="fa fa-check"></i><b>16.4.2</b> Create a project [one-off]</a></li>
-<li class="chapter" data-level="16.4.3" data-path="morerelationships.html"><a href="morerelationships.html#create-a-data-folder-one-off"><i class="fa fa-check"></i><b>16.4.3</b> Create a data folder [one-off]</a></li>
-<li class="chapter" data-level="16.4.4" data-path="morerelationships.html"><a href="morerelationships.html#create-your-own-rmarkdown-document-for-a-project-or-lab"><i class="fa fa-check"></i><b>16.4.4</b> Create your own RMarkdown document (for a Project or Lab)</a></li>
-</ul></li>
-<li class="chapter" data-level="16.5" data-path="morerelationships.html"><a href="morerelationships.html#its-easy-from-then"><i class="fa fa-check"></i><b>16.5</b> It’s easy from then!</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>17</b> FAQs</a><ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-am-i-getting-weird-variable-names"><i class="fa fa-check"></i>Why am I getting weird variable names?</a></li>
@@ -878,7 +878,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br>
 We’ll keep working with the <code>mtcars</code> dataset.
 So again remind yourself what it is like.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">str</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="kw">str</span>(mtcars)</a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    32 obs. of  11 variables:
 ##  $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
 ##  $ cyl : num  6 6 4 6 8 6 8 4 4 6 ...
@@ -891,9 +891,9 @@ So again remind yourself what it is like.</p>
 ##  $ am  : num  1 1 1 0 0 0 0 0 0 0 ...
 ##  $ gear: num  4 4 4 3 3 3 3 4 4 4 ...
 ##  $ carb: num  4 4 1 1 2 1 4 2 2 4 ...</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">dim</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="kw">dim</span>(mtcars)</a></code></pre></div>
 <pre><code>## [1] 32 11</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">head</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">head</span>(mtcars)</a></code></pre></div>
 <pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
 ## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
@@ -901,18 +901,18 @@ So again remind yourself what it is like.</p>
 ## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
 ## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
 ## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">help</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="kw">help</span>(mtcars)</a></code></pre></div>
 <p><br></p>
 <div id="frequency-and-contingency-tables" class="section level2">
 <h2><span class="header-section-number">6.1</span> Frequency and contingency tables</h2>
 <ul>
 <li>A frequency table summarises <strong>1</strong> qualitative variable.</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">table</span>(mtcars<span class="op">$</span>gear)</a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="kw">table</span>(mtcars<span class="op">$</span>gear)</a></code></pre></div>
 <ul>
 <li>A contingency table summarises <strong>2</strong> qualitative variable.</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">table</span>(mtcars<span class="op">$</span>gear, mtcars<span class="op">$</span>am)</a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="kw">table</span>(mtcars<span class="op">$</span>gear, mtcars<span class="op">$</span>am)</a></code></pre></div>
 <p><br></p>
 </div>
 <div id="mean-and-median" class="section level2">
@@ -921,8 +921,8 @@ So again remind yourself what it is like.</p>
 <li>The mean and median measure centre for quantitative variables.
 <br></li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">mean</span>(mtcars<span class="op">$</span>gear)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">median</span>(mtcars<span class="op">$</span>gear)</a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw">mean</span>(mtcars<span class="op">$</span>gear)</a>
+<a class="sourceLine" id="cb78-2" data-line-number="2"><span class="kw">median</span>(mtcars<span class="op">$</span>gear)</a></code></pre></div>
 <p><br></p>
 </div>
 <div id="standard-deviation-sd" class="section level2">
@@ -931,20 +931,20 @@ So again remind yourself what it is like.</p>
 <li><p>The standard deviation measures spread for quantitative variables.</p></li>
 <li><p>The <code>sd</code> command calculates the <strong>sample</strong> standard deviation. The squared SD is the variance.</p></li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">sd</span>(mtcars<span class="op">$</span>gear)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">sd</span>(mtcars<span class="op">$</span>gear)<span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw">var</span>(mtcars<span class="op">$</span>gear)</a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="kw">sd</span>(mtcars<span class="op">$</span>gear)</a>
+<a class="sourceLine" id="cb79-2" data-line-number="2"><span class="kw">sd</span>(mtcars<span class="op">$</span>gear)<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb79-3" data-line-number="3"><span class="kw">var</span>(mtcars<span class="op">$</span>gear)</a></code></pre></div>
 <ul>
 <li>The <code>popsd</code> command calculates the <strong>population</strong> standard deviation, but requires the <code>multicon</code> package.
 <br></li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co">#install.packages(multicon)   # a package only needs to be installed once.</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">library</span>(multicon)</a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="kw">popsd</span>(mtcars<span class="op">$</span>gear)</a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co"># Longer way</span></a>
-<a class="sourceLine" id="cb12-6" data-line-number="6">N =<span class="st"> </span><span class="kw">length</span>(mtcars<span class="op">$</span>gear)</a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="kw">sd</span>(mtcars<span class="op">$</span>gear)<span class="op">*</span><span class="kw">sqrt</span>((N<span class="dv">-1</span>)<span class="op">/</span>N)</a></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="co">#install.packages(multicon)   # a package only needs to be installed once.</span></a>
+<a class="sourceLine" id="cb80-2" data-line-number="2"><span class="kw">library</span>(multicon)</a>
+<a class="sourceLine" id="cb80-3" data-line-number="3"><span class="kw">popsd</span>(mtcars<span class="op">$</span>gear)</a>
+<a class="sourceLine" id="cb80-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb80-5" data-line-number="5"><span class="co"># Longer way</span></a>
+<a class="sourceLine" id="cb80-6" data-line-number="6">N =<span class="st"> </span><span class="kw">length</span>(mtcars<span class="op">$</span>gear)</a>
+<a class="sourceLine" id="cb80-7" data-line-number="7"><span class="kw">sd</span>(mtcars<span class="op">$</span>gear)<span class="op">*</span><span class="kw">sqrt</span>((N<span class="dv">-1</span>)<span class="op">/</span>N)</a></code></pre></div>
 <ul>
 <li>Note: When we model a population by the box model [Section 8 and following], we will require the population SD.</li>
 </ul>
@@ -955,12 +955,12 @@ So again remind yourself what it is like.</p>
 <ul>
 <li>The quickest method is to use <code>IQR</code>.</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">IQR</span>(mtcars<span class="op">$</span>gear)</a></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="kw">IQR</span>(mtcars<span class="op">$</span>gear)</a></code></pre></div>
 <ul>
 <li>There are lots of different methods of working out the quartiles. We can use the <code>quantile</code> command, and then work out the IQR.</li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">quantile</span>(mtcars<span class="op">$</span>gear)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">quantile</span>(mtcars<span class="op">$</span>gear)[<span class="dv">4</span>]<span class="op">-</span><span class="kw">quantile</span>(mtcars<span class="op">$</span>gear)[<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1"><span class="kw">quantile</span>(mtcars<span class="op">$</span>gear)</a>
+<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="kw">quantile</span>(mtcars<span class="op">$</span>gear)[<span class="dv">4</span>]<span class="op">-</span><span class="kw">quantile</span>(mtcars<span class="op">$</span>gear)[<span class="dv">2</span>]</a></code></pre></div>
 <p>What is the 50% quantile equivalent to?</p>
 <p><br></p>
 </div>
@@ -969,15 +969,15 @@ So again remind yourself what it is like.</p>
 <ul>
 <li>The numerical summaries for quantitative variables can all be produced with <code>summary</code>, which is an expanded version of the 5 number summary. Sometimes these values will vary from using <code>quantile</code> as there are different conventions for calculating quartiles.</li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">summary</span>(mtcars<span class="op">$</span>mpg)  <span class="co"># 1 variable</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw">summary</span>(mtcars)  <span class="co"># All variables</span></a></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1"><span class="kw">summary</span>(mtcars<span class="op">$</span>mpg)  <span class="co"># 1 variable</span></a>
+<a class="sourceLine" id="cb83-2" data-line-number="2"><span class="kw">summary</span>(mtcars)  <span class="co"># All variables</span></a></code></pre></div>
 <ul>
 <li>We can consider a subset of the data.
 Here, we choose the mpg of cars which have a weight greater or equal to 3.</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">summary</span>(mtcars<span class="op">$</span>mpg[mtcars<span class="op">$</span>wt<span class="op">&gt;=</span><span class="dv">3</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="kw">summary</span>(mtcars<span class="op">$</span>mpg[mtcars<span class="op">$</span>wt<span class="op">&gt;=</span><span class="dv">3</span>])</a></code></pre></div>
 <p>Here we take all the data from mtcars dataset for a specific cylinder e.g. 6.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">mtcars[ <span class="kw">which</span>(mtcars<span class="op">$</span>cyl<span class="op">==</span><span class="dv">6</span>), ]</a></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">mtcars[ <span class="kw">which</span>(mtcars<span class="op">$</span>cyl<span class="op">==</span><span class="dv">6</span>), ]</a></code></pre></div>
 <p><br></p>
 </div>
 <div id="linear-correlation" class="section level2">
@@ -985,7 +985,7 @@ Here, we choose the mpg of cars which have a weight greater or equal to 3.</li>
 <ul>
 <li>We can consider the linear correlation between pairs of quantitative variables.</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">cor</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">cor</span>(mtcars)</a></code></pre></div>
 <p><br><br></p>
 
 </div>
@@ -1046,6 +1046,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

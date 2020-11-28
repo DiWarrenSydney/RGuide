@@ -24,7 +24,7 @@
 <meta name="author" content="DATA1001/DATA1901" />
 
 
-<meta name="date" content="2020-11-16" />
+<meta name="date" content="2020-11-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,13 @@
 
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 <script>
 /* ========================================================================
@@ -763,8 +770,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="simulatechance.html"><a href="simulatechance.html#set-seed"><i class="fa fa-check"></i><b>10.1</b> Set seed</a></li>
 <li class="chapter" data-level="10.2" data-path="simulatechance.html"><a href="simulatechance.html#sample-coin"><i class="fa fa-check"></i><b>10.2</b> Sample (Coin)</a></li>
 <li class="chapter" data-level="10.3" data-path="simulatechance.html"><a href="simulatechance.html#sample-dice"><i class="fa fa-check"></i><b>10.3</b> Sample (Dice)</a></li>
-<li><a href="simulatechance.html#function-binomial-model"><span class="toc-section-number">10.4</span> Function **
-## Binomial Model *</a></li>
+<li class="chapter" data-level="10.4" data-path="simulatechance.html"><a href="simulatechance.html#function"><i class="fa fa-check"></i><b>10.4</b> Function **</a></li>
+<li class="chapter" data-level="10.5" data-path="simulatechance.html"><a href="simulatechance.html#binomial-model"><i class="fa fa-check"></i><b>10.5</b> Binomial Model *</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="boxmodel.html"><a href="boxmodel.html"><i class="fa fa-check"></i><b>11</b> Simulate chance variability (box model)</a><ul>
 <li class="chapter" data-level="11.1" data-path="boxmodel.html"><a href="boxmodel.html#draw-the-box-model-in-r"><i class="fa fa-check"></i><b>11.1</b> Draw the box model in R **</a></li>
@@ -792,7 +799,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.1.5" data-path="testformean.html"><a href="testformean.html#c-conclusion"><i class="fa fa-check"></i><b>14.1.5</b> C: Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="14.2" data-path="testformean.html"><a href="testformean.html#the-speedy-way"><i class="fa fa-check"></i><b>14.2</b> The speedy way!</a></li>
-<li class="chapter" data-level="14.3" data-path="testformean.html"><a href="testformean.html#sample-z-test-ext"><i class="fa fa-check"></i><b>14.3</b> 1 sample Z-Test (Ext)</a></li>
+<li class="chapter" data-level="14.3" data-path="testformean.html"><a href="testformean.html#sample-z-test"><i class="fa fa-check"></i><b>14.3</b> 1 sample Z-Test**</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="testsforrelationships.html"><a href="testsforrelationships.html"><i class="fa fa-check"></i><b>15</b> Tests for relationships</a><ul>
 <li class="chapter" data-level="15.1" data-path="testsforrelationships.html"><a href="testsforrelationships.html#more-t-tests"><i class="fa fa-check"></i><b>15.1</b> More t-tests</a><ul>
@@ -800,23 +807,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.1.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sample-t-test-1"><i class="fa fa-check"></i><b>15.1.2</b> 2 sample t-test</a></li>
 <li class="chapter" data-level="15.1.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sample-t-test-paired-data"><i class="fa fa-check"></i><b>15.1.3</b> 1 sample t-test (paired data)</a></li>
 </ul></li>
-<li><a href="testsforrelationships.html#chi-squared-tests-goodness-of-fit-test-1-variable-test-for-independence-2-variables-1-sample-2.-test-for-homogeneity-2-variables-2-samples-regression-test"><span class="toc-section-number">15.2</span> Chi-squared tests <em>
-### Goodness of Fit Test (1 variable)
-### Test for independence (2 variables; 1 sample)
-### 2. Test for Homogeneity (2 variables; 2 samples)
-## Regression test </em></a></li>
+<li class="chapter" data-level="15.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#chi-squared-tests"><i class="fa fa-check"></i><b>15.2</b> Chi-squared tests **</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="testsforrelationships.html"><a href="testsforrelationships.html#goodness-of-fit-test-1-variable"><i class="fa fa-check"></i><b>15.2.1</b> Goodness of Fit Test (1 variable)</a></li>
+<li class="chapter" data-level="15.2.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-independence-2-variables-1-sample"><i class="fa fa-check"></i><b>15.2.2</b> Test for independence (2 variables; 1 sample)</a></li>
+<li class="chapter" data-level="15.2.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-homogeneity-2-variables-2-samples"><i class="fa fa-check"></i><b>15.2.3</b> Test for Homogeneity (2 variables; 2 samples)</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#regression-test"><i class="fa fa-check"></i><b>15.3</b> Regression test</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="morerelationships.html"><a href="morerelationships.html"><i class="fa fa-check"></i><b>16</b> More tests for relationships (Diagnostics)</a><ul>
 <li class="chapter" data-level="16.1" data-path="morerelationships.html"><a href="morerelationships.html#test-normality-for-1-populations-histogram-qq-plot-shapiro-wilks-test"><i class="fa fa-check"></i><b>16.1</b> Test normality for 1+ populations: histogram, QQ-plot, Shapiro-Wilks Test</a></li>
 <li class="chapter" data-level="16.2" data-path="morerelationships.html"><a href="morerelationships.html#test-equal-variance-of-2-populations-boxplots-f-test-variance-ratio"><i class="fa fa-check"></i><b>16.2</b> Test equal variance of 2 populations (Boxplots; F-test; variance ratio)</a></li>
-<li class="chapter" data-level="16.3" data-path="morerelationships.html"><a href="morerelationships.html#test-normality-for-2-populations-histogram-qq-plot-shapiro-wilks-test"><i class="fa fa-check"></i><b>16.3</b> Test normality for 2 populations: histogram, QQ-plot, Shapiro-Wilks Test</a></li>
-<li class="chapter" data-level="16.4" data-path="morerelationships.html"><a href="morerelationships.html#get-organised"><i class="fa fa-check"></i><b>16.4</b> Get organised</a><ul>
-<li class="chapter" data-level="16.4.1" data-path="morerelationships.html"><a href="morerelationships.html#create-a-course-folder-one-off"><i class="fa fa-check"></i><b>16.4.1</b> Create a course folder [one-off]</a></li>
-<li class="chapter" data-level="16.4.2" data-path="morerelationships.html"><a href="morerelationships.html#create-a-project-one-off"><i class="fa fa-check"></i><b>16.4.2</b> Create a project [one-off]</a></li>
-<li class="chapter" data-level="16.4.3" data-path="morerelationships.html"><a href="morerelationships.html#create-a-data-folder-one-off"><i class="fa fa-check"></i><b>16.4.3</b> Create a data folder [one-off]</a></li>
-<li class="chapter" data-level="16.4.4" data-path="morerelationships.html"><a href="morerelationships.html#create-your-own-rmarkdown-document-for-a-project-or-lab"><i class="fa fa-check"></i><b>16.4.4</b> Create your own RMarkdown document (for a Project or Lab)</a></li>
-</ul></li>
-<li class="chapter" data-level="16.5" data-path="morerelationships.html"><a href="morerelationships.html#its-easy-from-then"><i class="fa fa-check"></i><b>16.5</b> It’s easy from then!</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>17</b> FAQs</a><ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-am-i-getting-weird-variable-names"><i class="fa fa-check"></i>Why am I getting weird variable names?</a></li>
@@ -879,64 +879,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Install the package <code>DiagrammeR</code>. If you have trouble installing, you can just use it on the uni labs.</p></li>
 <li><p>Draw a box model in R.</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;DiagrammeR&quot;</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">grViz</span>(<span class="st">&quot; </span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="st">  digraph CFA {</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="st">  # All</span></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="st">  node [fontname = Helvetica, fontcolor = White]</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="st">    # Box</span></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="st">    node [shape = box, style=filled, color=SteelBlue4, width=2 label=&#39;0  1&#39;][fillcolor = SteelBlue4]</span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="st">    a ; </span></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="st">    # Sample</span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="st">    node [shape = circle, style=filled, color=IndianRed, width=0.5, label=&#39;-&#39;][fillcolor = IndianRed]</span></a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="st">    b ; </span></a>
-<a class="sourceLine" id="cb1-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="st">    # Draws</span></a>
-<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="st">    a -&gt; b [fontname = Helvetica,label = &#39;10 draws&#39;,fontsize=8]</span></a>
-<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="st">    b -&gt; a  [fontname = Helvetica,color=grey,arrowsize = 0.5]</span></a>
-<a class="sourceLine" id="cb1-20" data-line-number="20"><span class="st">  }</span></a>
-<a class="sourceLine" id="cb1-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb1-22" data-line-number="22"><span class="st">&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;DiagrammeR&quot;</span>)</a>
+<a class="sourceLine" id="cb115-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb115-3" data-line-number="3"><span class="kw">grViz</span>(<span class="st">&quot; </span></a>
+<a class="sourceLine" id="cb115-4" data-line-number="4"><span class="st">  digraph CFA {</span></a>
+<a class="sourceLine" id="cb115-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb115-6" data-line-number="6"><span class="st">  # All</span></a>
+<a class="sourceLine" id="cb115-7" data-line-number="7"><span class="st">  node [fontname = Helvetica, fontcolor = White]</span></a>
+<a class="sourceLine" id="cb115-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb115-9" data-line-number="9"><span class="st">    # Box</span></a>
+<a class="sourceLine" id="cb115-10" data-line-number="10"><span class="st">    node [shape = box, style=filled, color=SteelBlue4, width=2 label=&#39;0  1&#39;][fillcolor = SteelBlue4]</span></a>
+<a class="sourceLine" id="cb115-11" data-line-number="11"><span class="st">    a ; </span></a>
+<a class="sourceLine" id="cb115-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb115-13" data-line-number="13"><span class="st">    # Sample</span></a>
+<a class="sourceLine" id="cb115-14" data-line-number="14"><span class="st">    node [shape = circle, style=filled, color=IndianRed, width=0.5, label=&#39;-&#39;][fillcolor = IndianRed]</span></a>
+<a class="sourceLine" id="cb115-15" data-line-number="15"><span class="st">    b ; </span></a>
+<a class="sourceLine" id="cb115-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb115-17" data-line-number="17"><span class="st">    # Draws</span></a>
+<a class="sourceLine" id="cb115-18" data-line-number="18"><span class="st">    a -&gt; b [fontname = Helvetica,label = &#39;10 draws&#39;,fontsize=8]</span></a>
+<a class="sourceLine" id="cb115-19" data-line-number="19"><span class="st">    b -&gt; a  [fontname = Helvetica,color=grey,arrowsize = 0.5]</span></a>
+<a class="sourceLine" id="cb115-20" data-line-number="20"><span class="st">  }</span></a>
+<a class="sourceLine" id="cb115-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb115-22" data-line-number="22"><span class="st">&quot;</span>)</a></code></pre></div>
 <ul>
 <li>Define the box (mean, SD).</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">box=<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>) <span class="co"># Define the box</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">n =<span class="st"> </span><span class="dv">10</span>  <span class="co"># Define the sample size (number of draws)</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># mean &amp; SD of box</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">meanbox=<span class="kw">mean</span>(box)</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw">library</span>(multicon)</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">sdbox=<span class="kw">popsd</span>(box)</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co"># Other calculations of the population SD.</span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co"># (1) RMS formula</span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="kw">sqrt</span>(<span class="kw">mean</span>((box <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(box))<span class="op">^</span><span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co"># (2) short cut for binary box</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15">(<span class="kw">max</span>(box) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(box)) <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(box[box <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(box)]) <span class="op">*</span><span class="st"> </span><span class="kw">length</span>(box[box <span class="op">==</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="st">    </span><span class="kw">min</span>(box)])<span class="op">/</span><span class="kw">length</span>(box)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1">box=<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>) <span class="co"># Define the box</span></a>
+<a class="sourceLine" id="cb116-2" data-line-number="2">n =<span class="st"> </span><span class="dv">10</span>  <span class="co"># Define the sample size (number of draws)</span></a>
+<a class="sourceLine" id="cb116-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb116-4" data-line-number="4"><span class="co"># mean &amp; SD of box</span></a>
+<a class="sourceLine" id="cb116-5" data-line-number="5">meanbox=<span class="kw">mean</span>(box)</a>
+<a class="sourceLine" id="cb116-6" data-line-number="6"><span class="kw">library</span>(multicon)</a>
+<a class="sourceLine" id="cb116-7" data-line-number="7">sdbox=<span class="kw">popsd</span>(box)</a>
+<a class="sourceLine" id="cb116-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb116-9" data-line-number="9"><span class="co"># Other calculations of the population SD.</span></a>
+<a class="sourceLine" id="cb116-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb116-11" data-line-number="11"><span class="co"># (1) RMS formula</span></a>
+<a class="sourceLine" id="cb116-12" data-line-number="12"><span class="kw">sqrt</span>(<span class="kw">mean</span>((box <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(box))<span class="op">^</span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb116-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb116-14" data-line-number="14"><span class="co"># (2) short cut for binary box</span></a>
+<a class="sourceLine" id="cb116-15" data-line-number="15">(<span class="kw">max</span>(box) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(box)) <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(box[box <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(box)]) <span class="op">*</span><span class="st"> </span><span class="kw">length</span>(box[box <span class="op">==</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb116-16" data-line-number="16"><span class="st">    </span><span class="kw">min</span>(box)])<span class="op">/</span><span class="kw">length</span>(box)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
 <p><br></p>
 </div>
 <div id="sample-sum-ev-se" class="section level2">
 <h2><span class="header-section-number">11.2</span> Sample Sum (EV &amp; SE)</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># EV &amp; SE of Sample Sum</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">n <span class="op">*</span><span class="st"> </span>meanbox  <span class="co"># EV</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">sqrt</span>(n) <span class="op">*</span><span class="st"> </span>sdbox  <span class="co"># SE</span></a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="co"># EV &amp; SE of Sample Sum</span></a>
+<a class="sourceLine" id="cb117-2" data-line-number="2">n <span class="op">*</span><span class="st"> </span>meanbox  <span class="co"># EV</span></a>
+<a class="sourceLine" id="cb117-3" data-line-number="3"><span class="kw">sqrt</span>(n) <span class="op">*</span><span class="st"> </span>sdbox  <span class="co"># SE</span></a></code></pre></div>
 <p><br></p>
 </div>
 <div id="simulate-the-sample-sum" class="section level2">
 <h2><span class="header-section-number">11.3</span> Simulate the Sample Sum</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">totals =<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">20</span>, <span class="kw">sum</span>(<span class="kw">sample</span>(box, <span class="dv">10</span>, <span class="dt">rep =</span> T)))</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">table</span>(totals)</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">mean</span>(totals)</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">sd</span>(totals)</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="kw">hist</span>(totals)</a></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb118-2" data-line-number="2">totals =<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">20</span>, <span class="kw">sum</span>(<span class="kw">sample</span>(box, <span class="dv">10</span>, <span class="dt">rep =</span> T)))</a>
+<a class="sourceLine" id="cb118-3" data-line-number="3"><span class="kw">table</span>(totals)</a>
+<a class="sourceLine" id="cb118-4" data-line-number="4"><span class="kw">mean</span>(totals)</a>
+<a class="sourceLine" id="cb118-5" data-line-number="5"><span class="kw">sd</span>(totals)</a>
+<a class="sourceLine" id="cb118-6" data-line-number="6"><span class="kw">hist</span>(totals)</a></code></pre></div>
 <p>How do the simulations compare to the exact results?</p>
 <p><br></p>
 </div>
@@ -946,33 +946,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>What is the chance that the sample sum is between 4 and 5?</p></li>
 <li><p>Draw the curve (Ext).</p></li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">m =<span class="st"> </span>n <span class="op">*</span><span class="st"> </span>meanbox</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">s =<span class="st"> </span><span class="kw">sqrt</span>(n) <span class="op">*</span><span class="st"> </span>sdbox</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">threshold1 =<span class="st"> </span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">threshold2 =<span class="st"> </span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">xlimits1=<span class="kw">seq</span>(<span class="kw">round</span>(<span class="op">-</span><span class="dv">4</span><span class="op">*</span>s<span class="op">+</span>m, <span class="dt">digit=</span><span class="op">-</span><span class="dv">1</span>),<span class="kw">round</span>(<span class="dv">4</span><span class="op">*</span>s<span class="op">+</span>m, <span class="dt">digit=</span><span class="op">-</span><span class="dv">1</span>),<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dt">mean=</span>m, <span class="dt">sd=</span>s), m<span class="dv">-4</span><span class="op">*</span>s,m<span class="op">+</span><span class="dv">4</span><span class="op">*</span>s, <span class="dt">col=</span><span class="st">&quot;indianred&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;&quot;</span>, <span class="dt">main =</span><span class="st">&quot;P(sum is between 4 and 5)&quot;</span>,<span class="dt">axes=</span>F)</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">sequence &lt;-<span class="st"> </span><span class="kw">seq</span>(threshold1, threshold2, <span class="fl">0.1</span>)</a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw">polygon</span>(<span class="dt">x =</span> <span class="kw">c</span>(sequence,threshold2,threshold1),</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9">        <span class="dt">y =</span> <span class="kw">c</span>(<span class="kw">dnorm</span>(<span class="kw">c</span>(sequence),m,s),<span class="dv">0</span>,<span class="dv">0</span>),</a>
-<a class="sourceLine" id="cb5-10" data-line-number="10">        <span class="dt">col =</span> <span class="st">&quot;indianred&quot;</span>)</a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="kw">axis</span>(<span class="dv">1</span>,xlimits1,<span class="dt">line=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="st">&quot;black&quot;</span>,<span class="dt">col.ticks=</span><span class="st">&quot;black&quot;</span>,<span class="dt">col.axis=</span><span class="st">&quot;black&quot;</span>)</a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="kw">mtext</span>(<span class="st">&quot;sum of box&quot;</span>,<span class="dv">1</span>,<span class="dt">line=</span><span class="dv">1</span>,<span class="dt">at=</span><span class="op">-</span><span class="dv">2</span>,<span class="dt">col=</span><span class="st">&quot;black&quot;</span>)</a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="kw">axis</span>(<span class="dv">1</span>,xlimits1,<span class="dt">labels=</span><span class="kw">round</span>((xlimits1<span class="op">-</span>m)<span class="op">/</span>s,<span class="dv">2</span>),<span class="dt">line=</span><span class="fl">3.3</span>,<span class="dt">col=</span><span class="st">&quot;indianred1&quot;</span>,<span class="dt">col.ticks=</span><span class="st">&quot;indianred1&quot;</span>,<span class="dt">col.axis=</span><span class="st">&quot;indianred1&quot;</span>)</a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="kw">mtext</span>(<span class="st">&quot;Z score&quot;</span>,<span class="dv">1</span>,<span class="dt">line=</span><span class="fl">3.3</span>,<span class="dt">at=</span><span class="op">-</span><span class="dv">2</span>,<span class="dt">col=</span><span class="st">&quot;indianred1&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1">m =<span class="st"> </span>n <span class="op">*</span><span class="st"> </span>meanbox</a>
+<a class="sourceLine" id="cb119-2" data-line-number="2">s =<span class="st"> </span><span class="kw">sqrt</span>(n) <span class="op">*</span><span class="st"> </span>sdbox</a>
+<a class="sourceLine" id="cb119-3" data-line-number="3">threshold1 =<span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb119-4" data-line-number="4">threshold2 =<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb119-5" data-line-number="5">xlimits1=<span class="kw">seq</span>(<span class="kw">round</span>(<span class="op">-</span><span class="dv">4</span><span class="op">*</span>s<span class="op">+</span>m, <span class="dt">digit=</span><span class="op">-</span><span class="dv">1</span>),<span class="kw">round</span>(<span class="dv">4</span><span class="op">*</span>s<span class="op">+</span>m, <span class="dt">digit=</span><span class="op">-</span><span class="dv">1</span>),<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb119-6" data-line-number="6"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dt">mean=</span>m, <span class="dt">sd=</span>s), m<span class="dv">-4</span><span class="op">*</span>s,m<span class="op">+</span><span class="dv">4</span><span class="op">*</span>s, <span class="dt">col=</span><span class="st">&quot;indianred&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">xlab=</span><span class="st">&quot;&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;&quot;</span>, <span class="dt">main =</span><span class="st">&quot;P(sum is between 4 and 5)&quot;</span>,<span class="dt">axes=</span>F)</a>
+<a class="sourceLine" id="cb119-7" data-line-number="7">sequence &lt;-<span class="st"> </span><span class="kw">seq</span>(threshold1, threshold2, <span class="fl">0.1</span>)</a>
+<a class="sourceLine" id="cb119-8" data-line-number="8"><span class="kw">polygon</span>(<span class="dt">x =</span> <span class="kw">c</span>(sequence,threshold2,threshold1),</a>
+<a class="sourceLine" id="cb119-9" data-line-number="9">        <span class="dt">y =</span> <span class="kw">c</span>(<span class="kw">dnorm</span>(<span class="kw">c</span>(sequence),m,s),<span class="dv">0</span>,<span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb119-10" data-line-number="10">        <span class="dt">col =</span> <span class="st">&quot;indianred&quot;</span>)</a>
+<a class="sourceLine" id="cb119-11" data-line-number="11"><span class="kw">axis</span>(<span class="dv">1</span>,xlimits1,<span class="dt">line=</span><span class="dv">1</span>,<span class="dt">col=</span><span class="st">&quot;black&quot;</span>,<span class="dt">col.ticks=</span><span class="st">&quot;black&quot;</span>,<span class="dt">col.axis=</span><span class="st">&quot;black&quot;</span>)</a>
+<a class="sourceLine" id="cb119-12" data-line-number="12"><span class="kw">mtext</span>(<span class="st">&quot;sum of box&quot;</span>,<span class="dv">1</span>,<span class="dt">line=</span><span class="dv">1</span>,<span class="dt">at=</span><span class="op">-</span><span class="dv">2</span>,<span class="dt">col=</span><span class="st">&quot;black&quot;</span>)</a>
+<a class="sourceLine" id="cb119-13" data-line-number="13"><span class="kw">axis</span>(<span class="dv">1</span>,xlimits1,<span class="dt">labels=</span><span class="kw">round</span>((xlimits1<span class="op">-</span>m)<span class="op">/</span>s,<span class="dv">2</span>),<span class="dt">line=</span><span class="fl">3.3</span>,<span class="dt">col=</span><span class="st">&quot;indianred1&quot;</span>,<span class="dt">col.ticks=</span><span class="st">&quot;indianred1&quot;</span>,<span class="dt">col.axis=</span><span class="st">&quot;indianred1&quot;</span>)</a>
+<a class="sourceLine" id="cb119-14" data-line-number="14"><span class="kw">mtext</span>(<span class="st">&quot;Z score&quot;</span>,<span class="dv">1</span>,<span class="dt">line=</span><span class="fl">3.3</span>,<span class="dt">at=</span><span class="op">-</span><span class="dv">2</span>,<span class="dt">col=</span><span class="st">&quot;indianred1&quot;</span>)</a></code></pre></div>
 <ul>
 <li>Find the chance.</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">m =<span class="st"> </span>n <span class="op">*</span><span class="st"> </span>meanbox  <span class="co"># Use EV as the mean of the Normal</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">s =<span class="st"> </span><span class="kw">sqrt</span>(n) <span class="op">*</span><span class="st"> </span>sdbox   <span class="co"># Use SE as the SD of the Normal</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">pnorm</span>(<span class="dv">5</span>, m, s)<span class="op">-</span><span class="kw">pnorm</span>(<span class="dv">4</span>, m, s)</a></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1">m =<span class="st"> </span>n <span class="op">*</span><span class="st"> </span>meanbox  <span class="co"># Use EV as the mean of the Normal</span></a>
+<a class="sourceLine" id="cb120-2" data-line-number="2">s =<span class="st"> </span><span class="kw">sqrt</span>(n) <span class="op">*</span><span class="st"> </span>sdbox   <span class="co"># Use SE as the SD of the Normal</span></a>
+<a class="sourceLine" id="cb120-3" data-line-number="3"><span class="kw">pnorm</span>(<span class="dv">5</span>, m, s)<span class="op">-</span><span class="kw">pnorm</span>(<span class="dv">4</span>, m, s)</a></code></pre></div>
 <p><br></p>
 </div>
 <div id="sample-mean-ev-se" class="section level2">
 <h2><span class="header-section-number">11.5</span> Sample Mean (EV &amp; SE)</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># EV &amp; SE of Sample Mean</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">meanbox  <span class="co"># EV</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">sdbox<span class="op">/</span><span class="kw">sqrt</span>(n)  <span class="co"># SE</span></a></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="co"># EV &amp; SE of Sample Mean</span></a>
+<a class="sourceLine" id="cb121-2" data-line-number="2">meanbox  <span class="co"># EV</span></a>
+<a class="sourceLine" id="cb121-3" data-line-number="3">sdbox<span class="op">/</span><span class="kw">sqrt</span>(n)  <span class="co"># SE</span></a></code></pre></div>
 <p><br></p>
 </div>
 <div id="use-normal-model-for-sample-mean" class="section level2">
@@ -981,9 +981,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>What is the chance that the sample mean is between 0.4 and 0.6?</p></li>
 <li><p>Find the chance.</p></li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">m =<span class="st"> </span>meanbox  <span class="co"># Use EV as the mean of the Normal</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">s =<span class="st"> </span>sdbox<span class="op">/</span><span class="kw">sqrt</span>(n)  <span class="co"># Use SE as the SD of the Normal</span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">pnorm</span>(<span class="fl">0.6</span>, m, s)<span class="op">-</span><span class="kw">pnorm</span>(<span class="fl">0.4</span>, m, s)</a></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">m =<span class="st"> </span>meanbox  <span class="co"># Use EV as the mean of the Normal</span></a>
+<a class="sourceLine" id="cb122-2" data-line-number="2">s =<span class="st"> </span>sdbox<span class="op">/</span><span class="kw">sqrt</span>(n)  <span class="co"># Use SE as the SD of the Normal</span></a>
+<a class="sourceLine" id="cb122-3" data-line-number="3"><span class="kw">pnorm</span>(<span class="fl">0.6</span>, m, s)<span class="op">-</span><span class="kw">pnorm</span>(<span class="fl">0.4</span>, m, s)</a></code></pre></div>
 <p><br><br></p>
 
 </div>

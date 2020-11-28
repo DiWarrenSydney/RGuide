@@ -12,13 +12,34 @@ The graphical summary must match up with the type of variable(s).
 
 <br>
 
+## `ggplot`
+
+There are two main methods with which to plot within R, base R and `ggplot`. This section will teach you how to be proficient in both styles!
+
+All base R plots can be done in `ggplot`, allowing much greater customisation. Base R by default is installed, however `ggplot` must be installed before use.
+
+- To use ggplot first, download the [package](http://tidyverse.org/)`ggplot` into RStudio. This is a one off command.
+```{r,eval=F}
+install.packages("ggplot2")
+```
+
+- Each time you open RStudio, load the `ggplot2` package
+```{r, message=F, warning=F}
+library(ggplot2) # Alternatively , use library(tidyverse) to load ggplot2, dplyr and many other useful packages
+```
+
+See the ggplot cheatsheet [here](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
+<br>
+
 ## Barplot 
+
+### Base R Method
 
 A barplot is used for qualitative variables.
 
 - Which variables are qualitative in `mtcars`?
 
--  Produce a **single** `barplot` of the gears.
+- Produce a **single** `barplot` of the gears.
 ```{r,fig.show='hide'}
 barplot(mtcars$gear) # Bar plots gear variable
 ```
@@ -56,13 +77,38 @@ barplot(counts1, names.arg = c("3 Gears", "4 Gears", "5 Gears"), col = c("lightb
 ```
 What do you learn?
 
-<br>
+### `ggplot` Method
+- Produce a **single** barplot.
+
+```{r,fig.show='hide'}
+# mtcars data
+p = ggplot(mtcars, aes(x=factor(cyl)))  # Select the mtcars data, and focus on cyl as factor (qualitative) on x axis
+p + geom_bar()  # Produce a barplot
+
+# mpg data
+p1 = ggplot(mpg, aes(class)) # Select the mpg data, and focus on class as x axis
+p1 + geom_bar() # (1) Produce a barplot
+p1 + geom_bar(aes(weight = displ)) # (2) Produce a barplot with counts from displacement variable
+```
+
+- Produce a **double** barplot.
+```{r,fig.show='hide'}
+p1 + geom_bar(aes(fill = drv)) # (3) Produce a (double) barplot divided by the drive variable
+p1 +
+ geom_bar(aes(fill = drv), position = position_stack(reverse = TRUE)) +
+ coord_flip() +
+ theme(legend.position = "top")  # (4) Customising (3)
+```
+
+<br><br>
 
 ## Histogram
 
 A histogram is used for quantitative variables.
 
 - Which variables are quantitative in `mtcars`?
+
+### Base R Method
 
 - Produce a `hist`ogram of the weights.
 ```{r,fig.show='hide'}
@@ -94,11 +140,24 @@ hist(mtcars$wt, br=seq(0,6,by=0.5), freq=F, col="lightgreen",xlab="weight of car
 
 - Produce a `hist`ogram of mpg. What do you learn?
 
-<br>
+### `ggplot` Method
+
+Produce a `hist`ogram of the weights.
+```{r,eval=F}  
+p = ggplot(data=mtcars, aes(x=wt))  # Select the mtcars data, and focus on wt (quantitative) on x axis
+p + geom_histogram(aes(y=..density..),binwidth=0.5)  
++ xlab('Weight')+ylab('Density') # Produce a histogram with x and y axis labels
+```
+
+Using `aes(y=..density..)` turns a raw histogram into a probability histogram.
+
+<br><br>
 
 ## Boxplot
 
 A boxplot is another summary for quantitative variables.
+
+### Base R Method
 
 - Produce a **single** boxplot for the weights of cars.
 ```{r,fig.show='hide'}
@@ -128,11 +187,49 @@ boxplot(mtcars$wt~mtcars$cyl, names=c("4 cyl", "6 cyl","8 cyl"),ylab="Weight of 
 What do you learn about the weights of cars?
 <i class="fa fa-link"></i>[Car Weight - see page 6](http://web.mit.edu/sloan-auto-lab/research/beforeh2/files/MacKenzie%20Zoepf%20Heywood%20Car%20Weight%20Trends%20-%20IJVD.pdf)
 
-- Try facetting the weights by another qualitative variable. 
+- Try faceting the weights by another qualitative variable. 
 
-<br>
+### `ggplot` Method
+
+- Produce a **single** boxplot.
+```{r,fig.show='hide'}
+p = ggplot(data=mtcars, aes(x="", y=wt))  # Select the mtcars data, and focus on wt (quantitative) on y axis (with no filtering on x axis)
+p + geom_boxplot() # Produce a boxplot
+```
+
+- Produce a **double** boxplot.
+```{r,fig.show='hide'}
+p = ggplot(data=mtcars, aes(x=factor(cyl),y=wt))  # Select the mtcars data, and focus on wt (quantitative) on y axis and cyl (qualitative) on x axis
+p + geom_boxplot() # Produce a boxplot, of wt filtered by cyl
+```
+
+
+- `geom_jitter` plots the points with a small amount of random noise. We use it to investigate over-plotting in small data sets.
+```{r,fig.show='hide'}
+p = ggplot(data=mtcars, aes(x=factor(cyl),y=wt))
+p + geom_boxplot() + geom_jitter()
+```
+
+What do the following customisations do? 
+```{r,fig.show='hide', warning=F, message=F}
+p = ggplot(data=mtcars, aes(x=factor(cyl),y=wt))
+p + geom_boxplot() + coord_flip()
+p + geom_boxplot(notch = TRUE)
+p + geom_boxplot(outlier.colour = "green", outlier.size = 3)
+```
+
+Now consider dividing the weights by another qualitative variable.
+
+```{r,fig.show='hide'}
+p + geom_boxplot(aes(fill = factor(cyl)))
+p + geom_boxplot(aes(fill = factor(am)))
+```
+
+<br><br>
 
 ## Mosaicplot
+
+### Base R Method
 
 A mosaic plot visualises 2 qualitative variables.
 ```{r, eval = T}
@@ -140,11 +237,16 @@ counts2 = table(mtcars$gear, mtcars$am)  # Produces contingency table
 plot(counts2) # Produces mosaic plot from contingency table
 ```
 
+### `ggplot` Method
+
+To create mosaic plots in `ggplot` the library `ggmosaic` can be used. See [here](https://cran.r-project.org/web/packages/ggmosaic/vignettes/ggmosaic.html) for further detail.
 <br>
 
 ## Scatterplot
 
 A scatter plot considers the relationship between 2 quantitative variables.
+
+### Base R Method
 
 - What does this plot tell us?
 
@@ -162,7 +264,7 @@ plot(mtcars$wt,mtcars$mpg, xlab="Car Weight", ylab="Miles per Gallon",col="darkr
 ```{r,eval=F}
 abline(lm(mtcars$mpg~mtcars$wt))
 ```
-We'll expore this further in Section 6.
+We'll explore this further in Section 6.
 
 - We can compare pairs of multiple quantitative variables using `plot` or `pairs`.
 ```{r,fig.show='hide'}
@@ -172,105 +274,8 @@ pairs(mtcars)
 ```
 Which variables seem to be related?
 
-<br>
+### `ggplot` Method
 
-<br><br>
-
-## ggplot
-
-All the previous (base R) plots can be done in `ggplot`, allowing much greater customisation.
-
-- First, download the [package](http://tidyverse.org/)`ggplot` into RStudio. This is a one off command.
-```{r,eval=F}
-install.packages("ggplot2")
-```
-
-- Each time you open RStudio, load the `ggplot2` package
-```{r, message=F, warning=F}
-library(ggplot2)
-```
-
-<br>
-
-### Barplot
-
-- Produce a **single** barplot.
-```{r,fig.show='hide'}
-# mtcars data
-p = ggplot(mtcars, aes(x=factor(cyl)))  # Select the mtcars data, and focus on cyl as factor (qualitative) on x axis
-p + geom_bar()  # Produce a barplot
-
-# mpg data
-p1 = ggplot(mpg, aes(class)) # Select the mpg data, and focus on class as x axis
-p1 + geom_bar() # (1) Produce a barplot
-p1 + geom_bar(aes(weight = displ)) # (2) Produce a barplot with counts from displacement variable
-```
-
-- Produce a **double** barplot.
-```{r,fig.show='hide'}
-p1 + geom_bar(aes(fill = drv)) # (3) Produce a (double) barplot divided by the drive variable
-p1 +
- geom_bar(aes(fill = drv), position = position_stack(reverse = TRUE)) +
- coord_flip() +
- theme(legend.position = "top")  # (4) Customising (3)
-```
-
-<br><br>
-
-### Histogram
-Produce a `hist`ogram of the weights.
-```{r,eval=F}  
-p = ggplot(data=mtcars, aes(x=wt))  # Select the mtcars data, and focus on wt (quantitative) on x axis
-p + geom_histogram(aes(y=..density..),binwidth=0.5)  
-+ xlab('Weight')+ylab('Density') # Produce a histogram with x and y axis labels
-```
-
-Using `aes(y=..density..)` turns a raw histogram into a probability histogram.
-
-<br>
-
-### Boxplot
-
-- Produce a **single** boxplot.
-```{r,fig.show='hide'}
-p = ggplot(data=mtcars, aes(x="", y=wt))  # Select the mtcars data, and focus on wt (quantitative) on y axis (with no filtering on x axis)
-p + geom_boxplot() # Produce a boxplot
-```
-
-- Produce a **double** boxplot.
-```{r,fig.show='hide'}
-p = ggplot(data=mtcars, aes(x=factor(cyl),y=wt))  # Select the mtcars data, and focus on wt (quantitative) on y axis and cyl (qualitative) on x axis
-p + geom_boxplot() # Produce a boxplot, of wt filtered by cyl
-```
-
-<br>
-
-- `geom_jitter` plots the points with a small amount of random noise. We use it to investigate over-plotting in small data sets.
-```{r,fig.show='hide'}
-p = ggplot(data=mtcars, aes(x=factor(cyl),y=wt))
-p + geom_boxplot() + geom_jitter()
-```
-
-<br>
-What do the following customisations do? 
-```{r,fig.show='hide', warning=F, message=F}
-p = ggplot(data=mtcars, aes(x=factor(cyl),y=wt))
-p + geom_boxplot() + coord_flip()
-p + geom_boxplot(notch = TRUE)
-p + geom_boxplot(outlier.colour = "green", outlier.size = 3)
-```
-
-<br>
-Now consider dividing the weights by another qualitative variable.
-
-```{r,fig.show='hide'}
-p + geom_boxplot(aes(fill = factor(cyl)))
-p + geom_boxplot(aes(fill = factor(am)))
-```
-
-<br>
-
-### Scatterplot
 
 - Produce a scatterplot.
 
@@ -283,7 +288,6 @@ p + geom_point()  # Produce a scatterplot of mpg vs wt
 p + geom_point(aes(colour = factor(cyl)))  # Colour the points by cyl (qualitative)
 ```
 
-<br>
 
 - Notice what these customisations do. 
 
@@ -294,7 +298,9 @@ p + geom_point(aes(size = qsec))  # Size the points by qsec (qualitative)
 p + geom_point(aes(colour = cyl)) + scale_colour_gradient(low = "blue")  # Colour the points by cyl (quantitative)
 ```
 
-<br>
+
+<br><br>
+
 
 ## plotly **
 

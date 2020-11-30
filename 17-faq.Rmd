@@ -39,6 +39,63 @@ length(residuals1)
 plot(sleep$bodywt,residuals1)
 ```
 
+## How do I select only a subset of my data set that matches a certain criteria? {-}
+
+When we have a large data set, sometimes we only want to look at a subset of it for our analysis. To do this we will use the `filter` function from the `dplyr` library. 
+
+### Filtering for a single condition {-}
+
+The below code filters the data for only the Setosa species and saves the data into a data frame called `iris_setosa`.
+
+```{r, warning=F, message=F, eval=T}
+library(tidyverse)     # The tidyverse package includes the dplyr package
+
+iris_setosa = iris %>% filter(Species == "setosa")
+```
+
+This is what the resulting data frame looks like, as you can see it only contains entries that are of the species Setosa.
+
+<details><summary>Show Data</summary>
+```{r, echo=F, eval = T}
+iris_setosa %>% 
+  kbl() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(height = "250px")
+```
+</details>
+
+### Filtering for multiple conditions {-}
+We can also use the `filter` function to filter for multiple conditions by separating the conditions with a comma. The code below selects from the `iris` data only the entries that are of the Setosa species and have a petal length greater than 1.5 and saves the results in a data frame called `iris_filtered`.
+
+```{r, eval=T}
+iris_filtered = iris %>% filter(Species == "setosa", Petal.Length > 1.5)
+```
+And this is the resulting data
+
+<details><summary>Show Data</summary>
+```{r, echo=F,eval=T}
+iris_filtered %>% 
+  kbl() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% scroll_box(height = "250px") 
+```
+</details>
+
+### Filtering for multiple values of a single variable {-}
+
+The code below filters the `iris` data for entries which are either the Setosa or Virginica species using the `%in%` keyword. This method is not limited to only two values, you may list as many values which you want to filter for as you like.
+
+```{r, eval=T}
+iris_filtered = iris %>% filter(Species %in% c("setosa", "virginica"))
+```
+<details><summary>Show Data</summary>
+```{r, echo=F}
+iris_filtered %>% 
+  kbl() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(height = "250px")
+```
+</details>
+
 ## What does %>% mean? {-}
 
 

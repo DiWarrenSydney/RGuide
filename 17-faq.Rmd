@@ -57,6 +57,7 @@ This is what the resulting data frame looks like, as you can see it only contain
 
 <details><summary>Show Data</summary>
 ```{r, echo=F, eval = T}
+library(kableExtra)
 iris_setosa %>% 
   kbl() %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 

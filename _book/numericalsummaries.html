@@ -50,15 +50,18 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 <script>
 /* ========================================================================
@@ -610,9 +613,9 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -621,14 +624,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -637,9 +642,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -831,6 +836,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>17</b> FAQs</a><ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-am-i-getting-weird-variable-names"><i class="fa fa-check"></i>Why am I getting weird variable names?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-do-i-produce-a-residual-plot-with-missing-values-in-data"><i class="fa fa-check"></i>How do I produce a residual plot with missing values in data?</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-do-i-select-only-a-subset-of-my-data-set-that-matches-a-certain-criteria"><i class="fa fa-check"></i>How do I select only a subset of my data set that matches a certain criteria?</a><ul>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#filtering-for-a-single-condition"><i class="fa fa-check"></i>Filtering for a single condition</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#filtering-for-multiple-conditions"><i class="fa fa-check"></i>Filtering for multiple conditions</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#filtering-for-multiple-values-of-a-single-variable"><i class="fa fa-check"></i>Filtering for multiple values of a single variable</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#what-does-mean"><i class="fa fa-check"></i>What does %&gt;% mean?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#what-how-do-you-select-certain-rows-of-a-dataset"><i class="fa fa-check"></i>What how do you select certain rows of a dataset?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-can-you-find-the-mean-of-different-groups-in-a-dataset"><i class="fa fa-check"></i>How can you find the mean of different groups in a dataset?</a></li>
@@ -891,7 +901,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br>
 We’ll keep working with the <code>mtcars</code> dataset.
 So again remind yourself what it is like.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="kw">str</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="numericalsummaries.html#cb69-1"></a><span class="kw">str</span>(mtcars)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    32 obs. of  11 variables:
 ##  $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
 ##  $ cyl : num  6 6 4 6 8 6 8 4 4 6 ...
@@ -904,9 +914,9 @@ So again remind yourself what it is like.</p>
 ##  $ am  : num  1 1 1 0 0 0 0 0 0 0 ...
 ##  $ gear: num  4 4 4 3 3 3 3 4 4 4 ...
 ##  $ carb: num  4 4 1 1 2 1 4 2 2 4 ...</code></pre>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="kw">dim</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="numericalsummaries.html#cb71-1"></a><span class="kw">dim</span>(mtcars)</span></code></pre></div>
 <pre><code>## [1] 32 11</code></pre>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">head</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="numericalsummaries.html#cb73-1"></a><span class="kw">head</span>(mtcars)</span></code></pre></div>
 <pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
 ## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
@@ -914,18 +924,19 @@ So again remind yourself what it is like.</p>
 ## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
 ## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
 ## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="kw">help</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="numericalsummaries.html#cb75-1"></a><span class="kw">help</span>(mtcars)</span></code></pre></div>
+<pre><code>## starting httpd help server ... done</code></pre>
 <p><br></p>
 <div id="frequency-and-contingency-tables" class="section level2">
 <h2><span class="header-section-number">6.1</span> Frequency and contingency tables</h2>
 <ul>
 <li>A frequency table summarises <strong>1</strong> qualitative variable.</li>
 </ul>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="kw">table</span>(mtcars<span class="op">$</span>gear)</a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="numericalsummaries.html#cb77-1"></a><span class="kw">table</span>(mtcars<span class="op">$</span>gear)</span></code></pre></div>
 <ul>
 <li>A contingency table summarises <strong>2</strong> qualitative variable.</li>
 </ul>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="kw">table</span>(mtcars<span class="op">$</span>gear, mtcars<span class="op">$</span>am)</a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="numericalsummaries.html#cb78-1"></a><span class="kw">table</span>(mtcars<span class="op">$</span>gear, mtcars<span class="op">$</span>am)</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="mean-and-median" class="section level2">
@@ -934,8 +945,8 @@ So again remind yourself what it is like.</p>
 <li>The mean and median measure centre for quantitative variables.
 <br></li>
 </ul>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw">mean</span>(mtcars<span class="op">$</span>gear)</a>
-<a class="sourceLine" id="cb78-2" data-line-number="2"><span class="kw">median</span>(mtcars<span class="op">$</span>gear)</a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="numericalsummaries.html#cb79-1"></a><span class="kw">mean</span>(mtcars<span class="op">$</span>gear)</span>
+<span id="cb79-2"><a href="numericalsummaries.html#cb79-2"></a><span class="kw">median</span>(mtcars<span class="op">$</span>gear)</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="standard-deviation-sd" class="section level2">
@@ -944,20 +955,20 @@ So again remind yourself what it is like.</p>
 <li><p>The standard deviation measures spread for quantitative variables.</p></li>
 <li><p>The <code>sd</code> command calculates the <strong>sample</strong> standard deviation. The squared SD is the variance.</p></li>
 </ul>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="kw">sd</span>(mtcars<span class="op">$</span>gear)</a>
-<a class="sourceLine" id="cb79-2" data-line-number="2"><span class="kw">sd</span>(mtcars<span class="op">$</span>gear)<span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb79-3" data-line-number="3"><span class="kw">var</span>(mtcars<span class="op">$</span>gear)</a></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="numericalsummaries.html#cb80-1"></a><span class="kw">sd</span>(mtcars<span class="op">$</span>gear)</span>
+<span id="cb80-2"><a href="numericalsummaries.html#cb80-2"></a><span class="kw">sd</span>(mtcars<span class="op">$</span>gear)<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb80-3"><a href="numericalsummaries.html#cb80-3"></a><span class="kw">var</span>(mtcars<span class="op">$</span>gear)</span></code></pre></div>
 <ul>
 <li>The <code>popsd</code> command calculates the <strong>population</strong> standard deviation, but requires the <code>multicon</code> package.
 <br></li>
 </ul>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="co">#install.packages(multicon)   # a package only needs to be installed once.</span></a>
-<a class="sourceLine" id="cb80-2" data-line-number="2"><span class="kw">library</span>(multicon)</a>
-<a class="sourceLine" id="cb80-3" data-line-number="3"><span class="kw">popsd</span>(mtcars<span class="op">$</span>gear)</a>
-<a class="sourceLine" id="cb80-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb80-5" data-line-number="5"><span class="co"># Longer way</span></a>
-<a class="sourceLine" id="cb80-6" data-line-number="6">N =<span class="st"> </span><span class="kw">length</span>(mtcars<span class="op">$</span>gear)</a>
-<a class="sourceLine" id="cb80-7" data-line-number="7"><span class="kw">sd</span>(mtcars<span class="op">$</span>gear)<span class="op">*</span><span class="kw">sqrt</span>((N<span class="dv">-1</span>)<span class="op">/</span>N)</a></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="numericalsummaries.html#cb81-1"></a><span class="co">#install.packages(multicon)   # a package only needs to be installed once.</span></span>
+<span id="cb81-2"><a href="numericalsummaries.html#cb81-2"></a><span class="kw">library</span>(multicon)</span>
+<span id="cb81-3"><a href="numericalsummaries.html#cb81-3"></a><span class="kw">popsd</span>(mtcars<span class="op">$</span>gear)</span>
+<span id="cb81-4"><a href="numericalsummaries.html#cb81-4"></a></span>
+<span id="cb81-5"><a href="numericalsummaries.html#cb81-5"></a><span class="co"># Longer way</span></span>
+<span id="cb81-6"><a href="numericalsummaries.html#cb81-6"></a>N =<span class="st"> </span><span class="kw">length</span>(mtcars<span class="op">$</span>gear)</span>
+<span id="cb81-7"><a href="numericalsummaries.html#cb81-7"></a><span class="kw">sd</span>(mtcars<span class="op">$</span>gear)<span class="op">*</span><span class="kw">sqrt</span>((N<span class="dv">-1</span>)<span class="op">/</span>N)</span></code></pre></div>
 <ul>
 <li>Note: When we model a population by the box model [Section 8 and following], we will require the population SD.</li>
 </ul>
@@ -968,12 +979,12 @@ So again remind yourself what it is like.</p>
 <ul>
 <li>The quickest method is to use <code>IQR</code>.</li>
 </ul>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="kw">IQR</span>(mtcars<span class="op">$</span>gear)</a></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="numericalsummaries.html#cb82-1"></a><span class="kw">IQR</span>(mtcars<span class="op">$</span>gear)</span></code></pre></div>
 <ul>
 <li>There are lots of different methods of working out the quartiles. We can use the <code>quantile</code> command, and then work out the IQR.</li>
 </ul>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1"><span class="kw">quantile</span>(mtcars<span class="op">$</span>gear)</a>
-<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="kw">quantile</span>(mtcars<span class="op">$</span>gear)[<span class="dv">4</span>]<span class="op">-</span><span class="kw">quantile</span>(mtcars<span class="op">$</span>gear)[<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="numericalsummaries.html#cb83-1"></a><span class="kw">quantile</span>(mtcars<span class="op">$</span>gear)</span>
+<span id="cb83-2"><a href="numericalsummaries.html#cb83-2"></a><span class="kw">quantile</span>(mtcars<span class="op">$</span>gear)[<span class="dv">4</span>]<span class="op">-</span><span class="kw">quantile</span>(mtcars<span class="op">$</span>gear)[<span class="dv">2</span>]</span></code></pre></div>
 <p>What is the 50% quantile equivalent to?</p>
 <p><br></p>
 </div>
@@ -982,15 +993,15 @@ So again remind yourself what it is like.</p>
 <ul>
 <li>The numerical summaries for quantitative variables can all be produced with <code>summary</code>, which is an expanded version of the 5 number summary. Sometimes these values will vary from using <code>quantile</code> as there are different conventions for calculating quartiles.</li>
 </ul>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1"><span class="kw">summary</span>(mtcars<span class="op">$</span>mpg)  <span class="co"># 1 variable</span></a>
-<a class="sourceLine" id="cb83-2" data-line-number="2"><span class="kw">summary</span>(mtcars)  <span class="co"># All variables</span></a></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="numericalsummaries.html#cb84-1"></a><span class="kw">summary</span>(mtcars<span class="op">$</span>mpg)  <span class="co"># 1 variable</span></span>
+<span id="cb84-2"><a href="numericalsummaries.html#cb84-2"></a><span class="kw">summary</span>(mtcars)  <span class="co"># All variables</span></span></code></pre></div>
 <ul>
 <li>We can consider a subset of the data.
 Here, we choose the mpg of cars which have a weight greater or equal to 3.</li>
 </ul>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="kw">summary</span>(mtcars<span class="op">$</span>mpg[mtcars<span class="op">$</span>wt<span class="op">&gt;=</span><span class="dv">3</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="numericalsummaries.html#cb85-1"></a><span class="kw">summary</span>(mtcars<span class="op">$</span>mpg[mtcars<span class="op">$</span>wt<span class="op">&gt;=</span><span class="dv">3</span>])</span></code></pre></div>
 <p>Here we take all the data from mtcars dataset for a specific cylinder e.g. 6.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">mtcars[ <span class="kw">which</span>(mtcars<span class="op">$</span>cyl<span class="op">==</span><span class="dv">6</span>), ]</a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="numericalsummaries.html#cb86-1"></a>mtcars[ <span class="kw">which</span>(mtcars<span class="op">$</span>cyl<span class="op">==</span><span class="dv">6</span>), ]</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="linear-correlation" class="section level2">
@@ -998,7 +1009,7 @@ Here, we choose the mpg of cars which have a weight greater or equal to 3.</li>
 <ul>
 <li>We can consider the linear correlation between pairs of quantitative variables.</li>
 </ul>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">cor</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="numericalsummaries.html#cb87-1"></a><span class="kw">cor</span>(mtcars)</span></code></pre></div>
 <p><br><br></p>
 
 </div>
@@ -1053,7 +1064,7 @@ gitbook.start({
 },
 "download": ["RGuide_Bookdown.pdf", "RGuide_Bookdown.epub"],
 "toc": {
-"collapse": "subsection"
+"collapse": "section"
 }
 });
 });

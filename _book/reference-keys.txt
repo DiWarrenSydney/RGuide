@@ -126,3 +126,4 @@ create-your-own-rmarkdown-document-for-a-project-or-lab
 its-easy-from-then
 base-r-method-4
 ggplot-method-4
+haow-can-you-find-the-mean-of-different-groups-in-a-dataset

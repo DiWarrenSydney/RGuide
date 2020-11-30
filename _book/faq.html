@@ -52,6 +52,13 @@
 
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 <script>
 /* ========================================================================
@@ -773,16 +780,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="simulatechance.html"><a href="simulatechance.html#set-seed"><i class="fa fa-check"></i><b>10.1</b> Set seed</a></li>
 <li class="chapter" data-level="10.2" data-path="simulatechance.html"><a href="simulatechance.html#sample-coin"><i class="fa fa-check"></i><b>10.2</b> Sample (Coin)</a></li>
 <li class="chapter" data-level="10.3" data-path="simulatechance.html"><a href="simulatechance.html#sample-dice"><i class="fa fa-check"></i><b>10.3</b> Sample (Dice)</a></li>
-<li><a href="simulatechance.html#function-binomial-model"><span class="toc-section-number">10.4</span> Function **
-## Binomial Model *</a></li>
+<li class="chapter" data-level="10.4" data-path="simulatechance.html"><a href="simulatechance.html#function"><i class="fa fa-check"></i><b>10.4</b> Function **</a></li>
+<li class="chapter" data-level="10.5" data-path="simulatechance.html"><a href="simulatechance.html#binomial-model"><i class="fa fa-check"></i><b>10.5</b> Binomial Model *</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="boxmodel.html"><a href="boxmodel.html"><i class="fa fa-check"></i><b>11</b> Simulate chance variability (box model)</a><ul>
-<li><a href="boxmodel.html#draw-the-box-model-in-r-sample-sum-ev-se-simulate-the-sample-sum-use-normal-model-for-sample-sum-sample-mean-ev-se-use-normal-model-for-sample-mean"><span class="toc-section-number">11.1</span> Draw the box model in R **
-## Sample Sum (EV &amp; SE)
-## Simulate the Sample Sum
-## Use Normal model for Sample Sum
-## Sample Mean (EV &amp; SE)
-## Use Normal model for Sample Mean</a></li>
+<li class="chapter" data-level="11.1" data-path="boxmodel.html"><a href="boxmodel.html#draw-the-box-model-in-r"><i class="fa fa-check"></i><b>11.1</b> Draw the box model in R **</a></li>
+<li class="chapter" data-level="11.2" data-path="boxmodel.html"><a href="boxmodel.html#sample-sum-ev-se"><i class="fa fa-check"></i><b>11.2</b> Sample Sum (EV &amp; SE)</a></li>
+<li class="chapter" data-level="11.3" data-path="boxmodel.html"><a href="boxmodel.html#simulate-the-sample-sum"><i class="fa fa-check"></i><b>11.3</b> Simulate the Sample Sum</a></li>
+<li class="chapter" data-level="11.4" data-path="boxmodel.html"><a href="boxmodel.html#use-normal-model-for-sample-sum"><i class="fa fa-check"></i><b>11.4</b> Use Normal model for Sample Sum</a></li>
+<li class="chapter" data-level="11.5" data-path="boxmodel.html"><a href="boxmodel.html#sample-mean-ev-se"><i class="fa fa-check"></i><b>11.5</b> Sample Mean (EV &amp; SE)</a></li>
+<li class="chapter" data-level="11.6" data-path="boxmodel.html"><a href="boxmodel.html#use-normal-model-for-sample-mean"><i class="fa fa-check"></i><b>11.6</b> Use Normal model for Sample Mean</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="samplesurveys.html"><a href="samplesurveys.html"><i class="fa fa-check"></i><b>12</b> Sample surveys</a><ul>
 <li class="chapter" data-level="12.1" data-path="samplesurveys.html"><a href="samplesurveys.html#box-model-assuming-replacement"><i class="fa fa-check"></i><b>12.1</b> Box model (assuming replacement)</a></li>
@@ -810,30 +817,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.1.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sample-t-test-1"><i class="fa fa-check"></i><b>15.1.2</b> 2 sample t-test</a></li>
 <li class="chapter" data-level="15.1.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#sample-t-test-paired-data"><i class="fa fa-check"></i><b>15.1.3</b> 1 sample t-test (paired data)</a></li>
 </ul></li>
-<li><a href="testsforrelationships.html#chi-squared-tests-goodness-of-fit-test-1-variable-test-for-independence-2-variables-1-sample-test-for-homogeneity-2-variables-2-samples-regression-test"><span class="toc-section-number">15.2</span> Chi-squared tests **
-### Goodness of Fit Test (1 variable)
-### Test for independence (2 variables; 1 sample)
-### Test for Homogeneity (2 variables; 2 samples)
-## Regression test</a></li>
+<li class="chapter" data-level="15.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#chi-squared-tests"><i class="fa fa-check"></i><b>15.2</b> Chi-squared tests **</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="testsforrelationships.html"><a href="testsforrelationships.html#goodness-of-fit-test-1-variable"><i class="fa fa-check"></i><b>15.2.1</b> Goodness of Fit Test (1 variable)</a></li>
+<li class="chapter" data-level="15.2.2" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-independence-2-variables-1-sample"><i class="fa fa-check"></i><b>15.2.2</b> Test for independence (2 variables; 1 sample)</a></li>
+<li class="chapter" data-level="15.2.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#test-for-homogeneity-2-variables-2-samples"><i class="fa fa-check"></i><b>15.2.3</b> Test for Homogeneity (2 variables; 2 samples)</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="testsforrelationships.html"><a href="testsforrelationships.html#regression-test"><i class="fa fa-check"></i><b>15.3</b> Regression test</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="morerelationships.html"><a href="morerelationships.html"><i class="fa fa-check"></i><b>16</b> More tests for relationships (Diagnostics)</a><ul>
 <li class="chapter" data-level="16.1" data-path="morerelationships.html"><a href="morerelationships.html#test-normality-for-1-populations-histogram-qq-plot-shapiro-wilks-test"><i class="fa fa-check"></i><b>16.1</b> Test normality for 1+ populations: histogram, QQ-plot, Shapiro-Wilks Test</a></li>
 <li class="chapter" data-level="16.2" data-path="morerelationships.html"><a href="morerelationships.html#test-equal-variance-of-2-populations-boxplots-f-test-variance-ratio"><i class="fa fa-check"></i><b>16.2</b> Test equal variance of 2 populations (Boxplots; F-test; variance ratio)</a></li>
-<li class="chapter" data-level="16.3" data-path="morerelationships.html"><a href="morerelationships.html#test-normality-for-2-populations-histogram-qq-plot-shapiro-wilks-test"><i class="fa fa-check"></i><b>16.3</b> Test normality for 2 populations: histogram, QQ-plot, Shapiro-Wilks Test</a></li>
-<li class="chapter" data-level="16.4" data-path="morerelationships.html"><a href="morerelationships.html#get-organised"><i class="fa fa-check"></i><b>16.4</b> Get organised</a><ul>
-<li class="chapter" data-level="16.4.1" data-path="morerelationships.html"><a href="morerelationships.html#create-a-course-folder-one-off"><i class="fa fa-check"></i><b>16.4.1</b> Create a course folder [one-off]</a></li>
-<li class="chapter" data-level="16.4.2" data-path="morerelationships.html"><a href="morerelationships.html#create-a-project-one-off"><i class="fa fa-check"></i><b>16.4.2</b> Create a project [one-off]</a></li>
-<li class="chapter" data-level="16.4.3" data-path="morerelationships.html"><a href="morerelationships.html#create-a-data-folder-one-off"><i class="fa fa-check"></i><b>16.4.3</b> Create a data folder [one-off]</a></li>
-<li class="chapter" data-level="16.4.4" data-path="morerelationships.html"><a href="morerelationships.html#create-your-own-rmarkdown-document-for-a-project-or-lab"><i class="fa fa-check"></i><b>16.4.4</b> Create your own RMarkdown document (for a Project or Lab)</a></li>
-</ul></li>
-<li class="chapter" data-level="16.5" data-path="morerelationships.html"><a href="morerelationships.html#its-easy-from-then"><i class="fa fa-check"></i><b>16.5</b> It’s easy from then!</a></li>
 </ul></li>
 <li class="chapter" data-level="17" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>17</b> FAQs</a><ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-am-i-getting-weird-variable-names"><i class="fa fa-check"></i>Why am I getting weird variable names?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-do-i-produce-a-residual-plot-with-missing-values-in-data"><i class="fa fa-check"></i>How do I produce a residual plot with missing values in data?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#what-does-mean"><i class="fa fa-check"></i>What does %&gt;% mean?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#what-how-do-you-select-certain-rows-of-a-dataset"><i class="fa fa-check"></i>What how do you select certain rows of a dataset?</a></li>
-<li class="chapter" data-level="17.1" data-path="faq.html"><a href="faq.html#haow-can-you-find-the-mean-of-different-groups-in-a-dataset"><i class="fa fa-check"></i><b>17.1</b> Haow can you find the mean of different groups in a dataset?</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-can-you-find-the-mean-of-different-groups-in-a-dataset"><i class="fa fa-check"></i>How can you find the mean of different groups in a dataset?</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -863,30 +863,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figure/FAQweirdvariablenames.jpg" width="80%" height="80%"></p>
 </div>
 <p>Unfortunately this can happen on windows computers.You can fix it with the following code</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">names</span>(smoking)[<span class="dv">1</span>] =<span class="st"> &quot;Age&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1"><span class="kw">names</span>(smoking)[<span class="dv">1</span>] =<span class="st"> &quot;Age&quot;</span></a></code></pre></div>
 <p>This code looks at the column names, picks the first one, and then reassigns it to Age.</p>
 </div>
 <div id="how-do-i-produce-a-residual-plot-with-missing-values-in-data" class="section level2 unnumbered">
 <h2>How do I produce a residual plot with missing values in data?</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">help</span>(msleep)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">plot</span>(sleep<span class="op">$</span>bodywt, sleep<span class="op">$</span>brainwt)</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">L =<span class="st"> </span><span class="kw">lm</span>(sleep<span class="op">$</span>brainwt <span class="op">~</span><span class="st"> </span>sleep<span class="op">$</span>bodywt)</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">summary</span>(L)</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw">abline</span>(L)</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co"># Correlation (with missing values)</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="kw">length</span>(sleep<span class="op">$</span>bodywt) </a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw">length</span>(sleep<span class="op">$</span>brainwt) </a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="kw">cor</span>(sleep<span class="op">$</span>bodywt, sleep<span class="op">$</span>brainwt, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)  </a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co"># Residual plot (with missing values)</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="kw">length</span>(sleep<span class="op">$</span>bodywt) </a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="kw">length</span>(L<span class="op">$</span>residuals)</a>
-<a class="sourceLine" id="cb2-17" data-line-number="17">residuals1 =<span class="st"> </span><span class="kw">resid</span>(<span class="kw">lm</span>(sleep<span class="op">$</span>brainwt <span class="op">~</span><span class="st"> </span>sleep<span class="op">$</span>bodywt, <span class="dt">na.action=</span>na.exclude)) </a>
-<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="kw">length</span>(residuals1)</a>
-<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="kw">plot</span>(sleep<span class="op">$</span>bodywt,residuals1)</a></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb169-2" data-line-number="2"><span class="kw">help</span>(msleep)</a>
+<a class="sourceLine" id="cb169-3" data-line-number="3"><span class="kw">plot</span>(sleep<span class="op">$</span>bodywt, sleep<span class="op">$</span>brainwt)</a>
+<a class="sourceLine" id="cb169-4" data-line-number="4">L =<span class="st"> </span><span class="kw">lm</span>(sleep<span class="op">$</span>brainwt <span class="op">~</span><span class="st"> </span>sleep<span class="op">$</span>bodywt)</a>
+<a class="sourceLine" id="cb169-5" data-line-number="5"><span class="kw">summary</span>(L)</a>
+<a class="sourceLine" id="cb169-6" data-line-number="6"><span class="kw">abline</span>(L)</a>
+<a class="sourceLine" id="cb169-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb169-8" data-line-number="8"><span class="co"># Correlation (with missing values)</span></a>
+<a class="sourceLine" id="cb169-9" data-line-number="9"><span class="kw">length</span>(sleep<span class="op">$</span>bodywt) </a>
+<a class="sourceLine" id="cb169-10" data-line-number="10"><span class="kw">length</span>(sleep<span class="op">$</span>brainwt) </a>
+<a class="sourceLine" id="cb169-11" data-line-number="11"><span class="kw">cor</span>(sleep<span class="op">$</span>bodywt, sleep<span class="op">$</span>brainwt, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)  </a>
+<a class="sourceLine" id="cb169-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb169-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb169-14" data-line-number="14"><span class="co"># Residual plot (with missing values)</span></a>
+<a class="sourceLine" id="cb169-15" data-line-number="15"><span class="kw">length</span>(sleep<span class="op">$</span>bodywt) </a>
+<a class="sourceLine" id="cb169-16" data-line-number="16"><span class="kw">length</span>(L<span class="op">$</span>residuals)</a>
+<a class="sourceLine" id="cb169-17" data-line-number="17">residuals1 =<span class="st"> </span><span class="kw">resid</span>(<span class="kw">lm</span>(sleep<span class="op">$</span>brainwt <span class="op">~</span><span class="st"> </span>sleep<span class="op">$</span>bodywt, <span class="dt">na.action=</span>na.exclude)) </a>
+<a class="sourceLine" id="cb169-18" data-line-number="18"><span class="kw">length</span>(residuals1)</a>
+<a class="sourceLine" id="cb169-19" data-line-number="19"><span class="kw">plot</span>(sleep<span class="op">$</span>bodywt,residuals1)</a></code></pre></div>
 </div>
 <div id="what-does-mean" class="section level2 unnumbered">
 <h2>What does %&gt;% mean?</h2>
@@ -894,8 +894,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="what-how-do-you-select-certain-rows-of-a-dataset" class="section level2 unnumbered">
 <h2>What how do you select certain rows of a dataset?</h2>
 </div>
-<div id="haow-can-you-find-the-mean-of-different-groups-in-a-dataset" class="section level2">
-<h2><span class="header-section-number">17.1</span> Haow can you find the mean of different groups in a dataset?</h2>
+<div id="how-can-you-find-the-mean-of-different-groups-in-a-dataset" class="section level2 unnumbered">
+<h2>How can you find the mean of different groups in a dataset?</h2>
 
 </div>
 </div>
@@ -955,6 +955,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

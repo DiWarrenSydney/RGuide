@@ -44,7 +44,7 @@ plot(sleep$bodywt,residuals1)
 
 ## What how do you select certain rows of a dataset? {-}
 
-## Haow can you find the mean of different groups in a dataset?
+## How can you find the mean of different groups in a dataset? {-}
 
 
 

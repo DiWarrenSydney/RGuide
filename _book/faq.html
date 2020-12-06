@@ -24,7 +24,7 @@
 <meta name="author" content="DATA1001/DATA1901" />
 
 
-<meta name="date" content="2020-11-30" />
+<meta name="date" content="2020-12-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,14 +50,13 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
@@ -613,9 +612,9 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -624,16 +623,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -642,9 +639,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -836,13 +833,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>17</b> FAQs</a><ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-am-i-getting-weird-variable-names"><i class="fa fa-check"></i>Why am I getting weird variable names?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-do-i-produce-a-residual-plot-with-missing-values-in-data"><i class="fa fa-check"></i>How do I produce a residual plot with missing values in data?</a></li>
-<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-do-i-select-only-a-subset-of-my-data-set-that-matches-a-certain-criteria"><i class="fa fa-check"></i>How do I select only a subset of my data set that matches a certain criteria?</a><ul>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-can-i-eliminate-nas-from-my-dataset"><i class="fa fa-check"></i>How can I eliminate NAs from my dataset?</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#what-does-mean"><i class="fa fa-check"></i>What does %&gt;% mean?</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#error-could-not-find-function"><i class="fa fa-check"></i>Error: … could not find function “%&gt;%”</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-do-i-select-only-a-subset-of-my-dataset-that-matches-a-certain-criteria"><i class="fa fa-check"></i>How do I select only a subset of my dataset that matches a certain criteria?</a><ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#filtering-for-a-single-condition"><i class="fa fa-check"></i>Filtering for a single condition</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#filtering-for-multiple-conditions"><i class="fa fa-check"></i>Filtering for multiple conditions</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#filtering-for-multiple-values-of-a-single-variable"><i class="fa fa-check"></i>Filtering for multiple values of a single variable</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#what-does-mean"><i class="fa fa-check"></i>What does %&gt;% mean?</a></li>
-<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#what-how-do-you-select-certain-rows-of-a-dataset"><i class="fa fa-check"></i>What how do you select certain rows of a dataset?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-can-you-find-the-mean-of-different-groups-in-a-dataset"><i class="fa fa-check"></i>How can you find the mean of different groups in a dataset?</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -867,50 +865,96 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="faq" class="section level1">
 <h1><span class="header-section-number">Chapter 17</span> FAQs</h1>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1"><span class="kw">suppressPackageStartupMessages</span>(<span class="kw">library</span>(tidyverse))</a></code></pre></div>
 <div id="why-am-i-getting-weird-variable-names" class="section level2 unnumbered">
 <h2>Why am I getting weird variable names?</h2>
 <div align="center">
 <p><img src="figure/FAQweirdvariablenames.jpg" width="80%" height="80%"></p>
 </div>
 <p>Unfortunately this can happen on windows computers.You can fix it with the following code</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="faq.html#cb169-1"></a><span class="kw">names</span>(smoking)[<span class="dv">1</span>] =<span class="st"> &quot;Age&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1"><span class="kw">names</span>(smoking)[<span class="dv">1</span>] =<span class="st"> &quot;Age&quot;</span></a></code></pre></div>
 <p>This code looks at the column names, picks the first one, and then reassigns it to Age.</p>
 </div>
 <div id="how-do-i-produce-a-residual-plot-with-missing-values-in-data" class="section level2 unnumbered">
 <h2>How do I produce a residual plot with missing values in data?</h2>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="faq.html#cb170-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb170-2"><a href="faq.html#cb170-2"></a><span class="kw">help</span>(msleep)</span>
-<span id="cb170-3"><a href="faq.html#cb170-3"></a><span class="kw">plot</span>(sleep<span class="op">$</span>bodywt, sleep<span class="op">$</span>brainwt)</span>
-<span id="cb170-4"><a href="faq.html#cb170-4"></a>L =<span class="st"> </span><span class="kw">lm</span>(sleep<span class="op">$</span>brainwt <span class="op">~</span><span class="st"> </span>sleep<span class="op">$</span>bodywt)</span>
-<span id="cb170-5"><a href="faq.html#cb170-5"></a><span class="kw">summary</span>(L)</span>
-<span id="cb170-6"><a href="faq.html#cb170-6"></a><span class="kw">abline</span>(L)</span>
-<span id="cb170-7"><a href="faq.html#cb170-7"></a></span>
-<span id="cb170-8"><a href="faq.html#cb170-8"></a><span class="co"># Correlation (with missing values)</span></span>
-<span id="cb170-9"><a href="faq.html#cb170-9"></a><span class="kw">length</span>(sleep<span class="op">$</span>bodywt) </span>
-<span id="cb170-10"><a href="faq.html#cb170-10"></a><span class="kw">length</span>(sleep<span class="op">$</span>brainwt) </span>
-<span id="cb170-11"><a href="faq.html#cb170-11"></a><span class="kw">cor</span>(sleep<span class="op">$</span>bodywt, sleep<span class="op">$</span>brainwt, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)  </span>
-<span id="cb170-12"><a href="faq.html#cb170-12"></a></span>
-<span id="cb170-13"><a href="faq.html#cb170-13"></a></span>
-<span id="cb170-14"><a href="faq.html#cb170-14"></a><span class="co"># Residual plot (with missing values)</span></span>
-<span id="cb170-15"><a href="faq.html#cb170-15"></a><span class="kw">length</span>(sleep<span class="op">$</span>bodywt) </span>
-<span id="cb170-16"><a href="faq.html#cb170-16"></a><span class="kw">length</span>(L<span class="op">$</span>residuals)</span>
-<span id="cb170-17"><a href="faq.html#cb170-17"></a>residuals1 =<span class="st"> </span><span class="kw">resid</span>(<span class="kw">lm</span>(sleep<span class="op">$</span>brainwt <span class="op">~</span><span class="st"> </span>sleep<span class="op">$</span>bodywt, <span class="dt">na.action=</span>na.exclude)) </span>
-<span id="cb170-18"><a href="faq.html#cb170-18"></a><span class="kw">length</span>(residuals1)</span>
-<span id="cb170-19"><a href="faq.html#cb170-19"></a><span class="kw">plot</span>(sleep<span class="op">$</span>bodywt,residuals1)</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb170-2" data-line-number="2"><span class="kw">help</span>(msleep)</a>
+<a class="sourceLine" id="cb170-3" data-line-number="3"><span class="kw">plot</span>(sleep<span class="op">$</span>bodywt, sleep<span class="op">$</span>brainwt)</a>
+<a class="sourceLine" id="cb170-4" data-line-number="4">L =<span class="st"> </span><span class="kw">lm</span>(sleep<span class="op">$</span>brainwt <span class="op">~</span><span class="st"> </span>sleep<span class="op">$</span>bodywt)</a>
+<a class="sourceLine" id="cb170-5" data-line-number="5"><span class="kw">summary</span>(L)</a>
+<a class="sourceLine" id="cb170-6" data-line-number="6"><span class="kw">abline</span>(L)</a>
+<a class="sourceLine" id="cb170-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb170-8" data-line-number="8"><span class="co"># Correlation (with missing values)</span></a>
+<a class="sourceLine" id="cb170-9" data-line-number="9"><span class="kw">length</span>(sleep<span class="op">$</span>bodywt) </a>
+<a class="sourceLine" id="cb170-10" data-line-number="10"><span class="kw">length</span>(sleep<span class="op">$</span>brainwt) </a>
+<a class="sourceLine" id="cb170-11" data-line-number="11"><span class="kw">cor</span>(sleep<span class="op">$</span>bodywt, sleep<span class="op">$</span>brainwt, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)  </a>
+<a class="sourceLine" id="cb170-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb170-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb170-14" data-line-number="14"><span class="co"># Residual plot (with missing values)</span></a>
+<a class="sourceLine" id="cb170-15" data-line-number="15"><span class="kw">length</span>(sleep<span class="op">$</span>bodywt) </a>
+<a class="sourceLine" id="cb170-16" data-line-number="16"><span class="kw">length</span>(L<span class="op">$</span>residuals)</a>
+<a class="sourceLine" id="cb170-17" data-line-number="17">residuals1 =<span class="st"> </span><span class="kw">resid</span>(<span class="kw">lm</span>(sleep<span class="op">$</span>brainwt <span class="op">~</span><span class="st"> </span>sleep<span class="op">$</span>bodywt, <span class="dt">na.action=</span>na.exclude)) </a>
+<a class="sourceLine" id="cb170-18" data-line-number="18"><span class="kw">length</span>(residuals1)</a>
+<a class="sourceLine" id="cb170-19" data-line-number="19"><span class="kw">plot</span>(sleep<span class="op">$</span>bodywt,residuals1)</a></code></pre></div>
 </div>
-<div id="how-do-i-select-only-a-subset-of-my-data-set-that-matches-a-certain-criteria" class="section level2 unnumbered">
-<h2>How do I select only a subset of my data set that matches a certain criteria?</h2>
+<div id="how-can-i-eliminate-nas-from-my-dataset" class="section level2 unnumbered">
+<h2>How can I eliminate NAs from my dataset?</h2>
+<p>The function <code>drop_na()</code> from the <code>dplyr</code> package (a subset of the <code>tidyverse</code>) allows you to remove rows from a dataset that contain NAs.</p>
+<p>We will use the <code>msleep</code> data set for this example.</p>
+<p>First lets find out how many NAs are in each row of the dataset:</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1"><span class="kw">dim</span>(msleep)</a>
+<a class="sourceLine" id="cb171-2" data-line-number="2"><span class="kw">colSums</span>(<span class="kw">is.na</span>(msleep))</a></code></pre></div>
+<p>By using the drop_na function we can see all rows with an NA in it was removed. This took our row count from 83 to 20 complete entries.</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1">sleep_clean =<span class="st"> </span><span class="kw">drop_na</span>(msleep)</a>
+<a class="sourceLine" id="cb172-2" data-line-number="2"><span class="kw">dim</span>(sleep_clean)</a>
+<a class="sourceLine" id="cb172-3" data-line-number="3"><span class="kw">colSums</span>(<span class="kw">is.na</span>(sleep_clean))</a></code></pre></div>
+<p>However, what if we are only interested in deleting rows where <code>brainwt</code> is NA? This could be the case with the large datasets used in the projects, with a number of redundant columns. In some cases deleting all NAs results in very few observations remaining, so we can be more selective about the rows we remove. If for example, <code>sleep_cycle</code> is used nowhere in our analysis, it would be unnecessary to remove rows when <code>sleep_cycle</code> is NA.</p>
+<p>You can selectively delete NAs from select rows using the code below:</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1"><span class="co"># delete rows where brainwt is NA</span></a>
+<a class="sourceLine" id="cb173-2" data-line-number="2"><span class="kw">drop_na</span>(msleep, brainwt)</a>
+<a class="sourceLine" id="cb173-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb173-4" data-line-number="4"><span class="co">#delete rows where brainwt, vore OR sleep rem is NA</span></a>
+<a class="sourceLine" id="cb173-5" data-line-number="5"><span class="kw">drop_na</span>(msleep, <span class="kw">c</span>(brainwt, vore,sleep_rem))</a></code></pre></div>
+</div>
+<div id="what-does-mean" class="section level2 unnumbered">
+<h2>What does %&gt;% mean?</h2>
+<p><code>%&gt;%</code> means “pipe”, and it takes the output of the previous function and puts it into (“pipes” it into) the next function. see the below code for examples:</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1"><span class="co"># Previous Notation</span></a>
+<a class="sourceLine" id="cb174-2" data-line-number="2"><span class="kw">sum</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb174-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb174-4" data-line-number="4"><span class="co"># Pipe Notation</span></a>
+<a class="sourceLine" id="cb174-5" data-line-number="5"><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">sum</span>()</a>
+<a class="sourceLine" id="cb174-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb174-7" data-line-number="7"><span class="co"># Previous Notation</span></a>
+<a class="sourceLine" id="cb174-8" data-line-number="8"><span class="kw">cos</span>(<span class="kw">sin</span>(pi))</a>
+<a class="sourceLine" id="cb174-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb174-10" data-line-number="10"><span class="co">#Pipe Notation</span></a>
+<a class="sourceLine" id="cb174-11" data-line-number="11">pi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">sin</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">cos</span>()</a></code></pre></div>
+<p>This method allows us to read code from left to right rather than inside out. The shortcut for a pipe on windows in Rstudio should be set to Ctrl + Alt + M by default (Cmd + Shift + M for macbook users).</p>
+<p>Within <code>ggplot</code> we can use this to pipe data into our <code>ggplot</code> argument like so:</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1">mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb175-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>()<span class="op">+</span></a>
+<a class="sourceLine" id="cb175-3" data-line-number="3"><span class="st">  </span><span class="kw">aes</span>(<span class="dt">x =</span> cyl, <span class="dt">group =</span> cyl, <span class="dt">y =</span> disp)<span class="op">+</span></a>
+<a class="sourceLine" id="cb175-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
+<p>For more information see <a href="https://www.datacamp.com/community/tutorials/pipe-r-tutorial">here</a></p>
+</div>
+<div id="error-could-not-find-function" class="section level2 unnumbered">
+<h2>Error: … could not find function “%&gt;%”</h2>
+<p>The pipe operator is apart of the <code>tidyverse</code>, thus if you encounter this message it means you have not loaded the <code>tidyverse</code> library in your document. Resolve by loading the library at the top of your document like so:</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+</div>
+<div id="how-do-i-select-only-a-subset-of-my-dataset-that-matches-a-certain-criteria" class="section level2 unnumbered">
+<h2>How do I select only a subset of my dataset that matches a certain criteria?</h2>
 <p>When we have a large data set, sometimes we only want to look at a subset of it for our analysis. To do this we will use the <code>filter</code> function from the <code>dplyr</code> library.</p>
 <div id="filtering-for-a-single-condition" class="section level3 unnumbered">
 <h3>Filtering for a single condition</h3>
 <p>The below code filters the data for only the Setosa species and saves the data into a data frame called <code>iris_setosa</code>.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="faq.html#cb171-1"></a><span class="kw">library</span>(tidyverse)     <span class="co"># The tidyverse package includes the dplyr package</span></span>
-<span id="cb171-2"><a href="faq.html#cb171-2"></a></span>
-<span id="cb171-3"><a href="faq.html#cb171-3"></a>iris_setosa =<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species <span class="op">==</span><span class="st"> &quot;setosa&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1"><span class="kw">library</span>(tidyverse)     <span class="co"># The tidyverse package includes the dplyr package</span></a>
+<a class="sourceLine" id="cb177-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb177-3" data-line-number="3">iris_setosa =<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species <span class="op">==</span><span class="st"> &quot;setosa&quot;</span>)</a></code></pre></div>
 <p>This is what the resulting data frame looks like, as you can see it only contains entries that are of the species Setosa.</p>
 <details>
 <p><summary>Show Data</summary></p>
-<pre><code>## Warning: package &#39;kableExtra&#39; was built under R version 3.6.3</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;kableExtra&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:dplyr&#39;:
@@ -1796,7 +1840,7 @@ setosa
 <div id="filtering-for-multiple-conditions" class="section level3 unnumbered">
 <h3>Filtering for multiple conditions</h3>
 <p>We can also use the <code>filter</code> function to filter for multiple conditions by separating the conditions with a comma. The code below selects from the <code>iris</code> data only the entries that are of the Setosa species and have a petal length greater than 1.5 and saves the results in a data frame called <code>iris_filtered</code>.</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="faq.html#cb175-1"></a>iris_filtered =<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species <span class="op">==</span><span class="st"> &quot;setosa&quot;</span>, Petal.Length <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1">iris_filtered =<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species <span class="op">==</span><span class="st"> &quot;setosa&quot;</span>, Petal.Length <span class="op">&gt;</span><span class="st"> </span><span class="fl">1.5</span>)</a></code></pre></div>
 <p>And this is the resulting data</p>
 <details>
 <summary>Show Data</summary>
@@ -2051,20 +2095,24 @@ setosa
 <div id="filtering-for-multiple-values-of-a-single-variable" class="section level3 unnumbered">
 <h3>Filtering for multiple values of a single variable</h3>
 <p>The code below filters the <code>iris</code> data for entries which are either the Setosa or Virginica species using the <code>%in%</code> keyword. This method is not limited to only two values, you may list as many values which you want to filter for as you like.</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="faq.html#cb176-1"></a>iris_filtered =<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;virginica&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1">iris_filtered =<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;setosa&quot;</span>, <span class="st">&quot;virginica&quot;</span>))</a></code></pre></div>
 <details>
 <p><summary>Show Data</summary></p>
 </details>
 </div>
 </div>
-<div id="what-does-mean" class="section level2 unnumbered">
-<h2>What does %&gt;% mean?</h2>
-</div>
-<div id="what-how-do-you-select-certain-rows-of-a-dataset" class="section level2 unnumbered">
-<h2>What how do you select certain rows of a dataset?</h2>
-</div>
 <div id="how-can-you-find-the-mean-of-different-groups-in-a-dataset" class="section level2 unnumbered">
 <h2>How can you find the mean of different groups in a dataset?</h2>
+<p>To summarise the data by group, we use a combination of the <code>group_by</code> and <code>summarise</code> function.</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1">mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb182-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(cyl) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#separates the dataset into three groups: 4, 6 and 8 according to cyl</span></a>
+<a class="sourceLine" id="cb182-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avg_disp =</span> <span class="kw">mean</span>(disp)) <span class="co"># finds the mean disp of each group and calls it avg_disp</span></a></code></pre></div>
+<p>You can expand on this methodology to find many different summary statistics! See an example below:</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1">mtcars <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb183-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(cyl) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb183-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avg_disp =</span> <span class="kw">mean</span>(disp),<span class="co"># finds the mean disp of each group and calls it avg_disp</span></a>
+<a class="sourceLine" id="cb183-4" data-line-number="4">            <span class="dt">count =</span> <span class="kw">n</span>(), <span class="co"># finds the number of rows in each cyl group</span></a>
+<a class="sourceLine" id="cb183-5" data-line-number="5">            <span class="dt">sum_mpg =</span> <span class="kw">sum</span>(mpg))  <span class="co"># finds the sum of the mpg variable within each cyl group</span></a></code></pre></div>
 
 </div>
 </div>

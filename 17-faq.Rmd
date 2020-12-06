@@ -1,5 +1,9 @@
 # FAQs {#faq}
 
+```{r messages = F, warning = F}
+suppressPackageStartupMessages(library(tidyverse))
+```
+
 ## Why am I getting weird variable names? {-}
 
 <div align="center">
@@ -38,8 +42,76 @@ residuals1 = resid(lm(sleep$brainwt ~ sleep$bodywt, na.action=na.exclude))
 length(residuals1)
 plot(sleep$bodywt,residuals1)
 ```
+## How can I eliminate NAs from my dataset? {-}
 
-## How do I select only a subset of my data set that matches a certain criteria? {-}
+The function `drop_na()` from the `dplyr` package (a subset of the `tidyverse`) allows you to remove rows from a dataset that contain NAs.
+
+We will use the `msleep` data set for this example.
+
+First lets find out how many NAs are in each row of the dataset:
+
+```{r}
+dim(msleep)
+colSums(is.na(msleep))
+```
+
+By using the drop_na function we can see all rows with an NA in it was removed. This took our row count from 83 to 20 complete entries.
+```{r}
+sleep_clean = drop_na(msleep)
+dim(sleep_clean)
+colSums(is.na(sleep_clean))
+```
+However, what if we are only interested in deleting rows where `brainwt` is NA? This could be the case with the large datasets used in the projects, with a number of redundant columns. In some cases deleting all NAs results in very few observations remaining, so we can be more selective about the rows we remove. If for example, `sleep_cycle` is used nowhere in our analysis, it would be unnecessary to remove rows when `sleep_cycle` is NA.
+
+You can selectively delete NAs from select rows using the code below:
+```{r eval = F}
+# delete rows where brainwt is NA
+drop_na(msleep, brainwt)
+
+#delete rows where brainwt, vore OR sleep rem is NA
+drop_na(msleep, c(brainwt, vore,sleep_rem))
+```
+
+
+## What does %>% mean? {-}
+
+`%>%` means "pipe", and it takes the output of the previous function and puts it into ("pipes" it into) the next function. see the below code for examples:
+
+```{r eval = F}
+# Previous Notation
+sum(c(1,2,3))
+
+# Pipe Notation
+c(1,2,3) %>% sum()
+
+# Previous Notation
+cos(sin(pi))
+
+#Pipe Notation
+pi %>% sin() %>% cos()
+```
+This method allows us to read code from left to right rather than inside out. The shortcut for a pipe on windows in Rstudio should be set to Ctrl + Alt + M by default (Cmd + Shift + M for macbook users).
+
+Within `ggplot` we can use this to pipe data into our `ggplot` argument like so:
+```{r eval = F}
+mtcars %>% 
+  ggplot()+
+  aes(x = cyl, group = cyl, y = disp)+
+  geom_boxplot()
+```
+
+For more information see [here](https://www.datacamp.com/community/tutorials/pipe-r-tutorial)
+
+## Error: ... could not find function "%>%" {-}
+
+The pipe operator is apart of the `tidyverse`, thus if you encounter this message it means you have not loaded the `tidyverse` library in your document. Resolve by loading the library at the top of your document like so:
+
+```{r eval = F}
+library(tidyverse)
+```
+
+
+## How do I select only a subset of my dataset that matches a certain criteria? {-}
 
 When we have a large data set, sometimes we only want to look at a subset of it for our analysis. To do this we will use the `filter` function from the `dplyr` library. 
 
@@ -97,12 +169,27 @@ iris_filtered %>%
 ```
 </details>
 
-## What does %>% mean? {-}
-
-
-## What how do you select certain rows of a dataset? {-}
-
 ## How can you find the mean of different groups in a dataset? {-}
+
+To summarise the data by group, we use a combination of the `group_by` and `summarise` function.
+
+```{r}
+mtcars %>% 
+  group_by(cyl) %>% #separates the dataset into three groups: 4, 6 and 8 according to cyl
+  summarise(avg_disp = mean(disp)) # finds the mean disp of each group and calls it avg_disp
+```
+
+You can expand on this methodology to find many different summary statistics! See an example below: 
+
+```{r}
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarise(avg_disp = mean(disp),# finds the mean disp of each group and calls it avg_disp
+            count = n(), # finds the number of rows in each cyl group
+            sum_mpg = sum(mpg))  # finds the sum of the mpg variable within each cyl group
+```
+
+
 
 
 

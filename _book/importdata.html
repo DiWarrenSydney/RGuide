@@ -24,7 +24,7 @@
 <meta name="author" content="DATA1001/DATA1901" />
 
 
-<meta name="date" content="2020-11-30" />
+<meta name="date" content="2020-12-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,14 +50,13 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
@@ -613,9 +612,9 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -624,16 +623,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -642,9 +639,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -836,13 +833,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17" data-path="faq.html"><a href="faq.html"><i class="fa fa-check"></i><b>17</b> FAQs</a><ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#why-am-i-getting-weird-variable-names"><i class="fa fa-check"></i>Why am I getting weird variable names?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-do-i-produce-a-residual-plot-with-missing-values-in-data"><i class="fa fa-check"></i>How do I produce a residual plot with missing values in data?</a></li>
-<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-do-i-select-only-a-subset-of-my-data-set-that-matches-a-certain-criteria"><i class="fa fa-check"></i>How do I select only a subset of my data set that matches a certain criteria?</a><ul>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-can-i-eliminate-nas-from-my-dataset"><i class="fa fa-check"></i>How can I eliminate NAs from my dataset?</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#what-does-mean"><i class="fa fa-check"></i>What does %&gt;% mean?</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#error-could-not-find-function"><i class="fa fa-check"></i>Error: … could not find function “%&gt;%”</a></li>
+<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-do-i-select-only-a-subset-of-my-dataset-that-matches-a-certain-criteria"><i class="fa fa-check"></i>How do I select only a subset of my dataset that matches a certain criteria?</a><ul>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#filtering-for-a-single-condition"><i class="fa fa-check"></i>Filtering for a single condition</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#filtering-for-multiple-conditions"><i class="fa fa-check"></i>Filtering for multiple conditions</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#filtering-for-multiple-values-of-a-single-variable"><i class="fa fa-check"></i>Filtering for multiple values of a single variable</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#what-does-mean"><i class="fa fa-check"></i>What does %&gt;% mean?</a></li>
-<li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#what-how-do-you-select-certain-rows-of-a-dataset"><i class="fa fa-check"></i>What how do you select certain rows of a dataset?</a></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-can-you-find-the-mean-of-different-groups-in-a-dataset"><i class="fa fa-check"></i>How can you find the mean of different groups in a dataset?</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -878,7 +876,7 @@ It can be confusing at first. So just experiment with the different methods belo
 <ul>
 <li>If you right click on the datasets in Canvas, you’ll get the url. For example, see Lab2 <code>Road</code>.</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="importdata.html#cb8-1"></a>road =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://www.maths.usyd.edu.au/u/UG/JM/DATA1001/r/2018S1/data/AllFatalities.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">road =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://www.maths.usyd.edu.au/u/UG/JM/DATA1001/r/2018S1/data/AllFatalities.csv&quot;</span>)</a></code></pre></div>
 <ul>
 <li>This is a super easy method, which we will use in the labs. However, it doesn’t work if your data doesn’t have an url (eg finding your own data for a Project).</li>
 </ul>
@@ -896,8 +894,8 @@ It can be confusing at first. So just experiment with the different methods belo
 <ul>
 <li>Read the data into RStudio.</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="importdata.html#cb9-1"></a><span class="co"># Given file.csv</span></span>
-<span id="cb9-2"><a href="importdata.html#cb9-2"></a>road =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;AllFatalities.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># Given file.csv</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">road =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;AllFatalities.csv&quot;</span>)</a></code></pre></div>
 <p><br></p>
 </div>
 <div id="from-a-data-subfolder" class="section level2">
@@ -914,8 +912,8 @@ It can be confusing at first. So just experiment with the different methods belo
 <ul>
 <li>Now you can store all your data inside <code>data</code> and then read your data straight into R.</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="importdata.html#cb10-1"></a><span class="co"># Given file.csv</span></span>
-<span id="cb10-2"><a href="importdata.html#cb10-2"></a>road =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/AllFatalities.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># Given file.csv</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">road =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/AllFatalities.csv&quot;</span>)</a></code></pre></div>
 <p>Note: This method works well, unless your working directory is not pointed at your DATA1001files folder. ie Your computer needs to know where to get the data file from. See the next section for how to set your working directory to your DATA1001files folder, if it is currently pointing somewhere else.</p>
 <p><br></p>
 </div>
@@ -929,11 +927,11 @@ It can be confusing at first. So just experiment with the different methods belo
 <ol style="list-style-type: decimal">
 <li>Check where your current working directory is</li>
 </ol>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="importdata.html#cb11-1"></a><span class="kw">getwd</span>()  <span class="co"># This gives the current working directory</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">getwd</span>()  <span class="co"># This gives the current working directory</span></a></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Ask RStudio to browse the files on your computer. This will give you the file pathway (ie where the file is stored).</li>
 </ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="importdata.html#cb12-1"></a><span class="kw">file.choose</span>()  <span class="co"># Choose your file, and then R gives you the pathway to that file</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">file.choose</span>()  <span class="co"># Choose your file, and then R gives you the pathway to that file</span></a></code></pre></div>
 <p>For example, for Mac users some possible paths might be:
 <br>
 desktop: “/Users/johnsmith/Desktop”
@@ -944,11 +942,11 @@ dropbox: “/Users/johnsmith/Dropbox”</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Set the working directory to that path.</li>
 </ol>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="importdata.html#cb13-1"></a><span class="kw">setwd</span>(<span class="st">&quot;...&quot;</span>) <span class="co"># set the working directory to the folder where your file is saved (from the pathway in (2)</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">setwd</span>(<span class="st">&quot;...&quot;</span>) <span class="co"># set the working directory to the folder where your file is saved (from the pathway in (2)</span></a></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Read your data in</li>
 </ol>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="importdata.html#cb14-1"></a>data =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;2016Fatalities.csv&quot;</span>)  <span class="co"># read the data straight into R from that folder</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">data =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;2016Fatalities.csv&quot;</span>)  <span class="co"># read the data straight into R from that folder</span></a></code></pre></div>
 <p>Note: Students often find working directories confusing at first! But once you have mastered it, it becomes straightforward.</p>
 <p><br></p>
 </div>
@@ -990,10 +988,10 @@ Note: The `Code Preview` at the bottom of this pop-up, shows you the direct way 
 <ul>
 <li>Note: If your file is in Excel format <code>PBS2015.xlsx</code>, then you need the package <code>readxl</code> to first be installed. For example, consider this Excel data <a href="http://www.maths.usyd.edu.au/u/UG/JM/DATA1001/r/current/data/PBS2015.xlsx">here</a>.</li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="importdata.html#cb15-1"></a><span class="co"># Given file.xlsx</span></span>
-<span id="cb15-2"><a href="importdata.html#cb15-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)  <span class="co"># You only need to do this once in RStudio</span></span>
-<span id="cb15-3"><a href="importdata.html#cb15-3"></a><span class="kw">library</span>(readxl)  <span class="co"># You need to do this each time</span></span>
-<span id="cb15-4"><a href="importdata.html#cb15-4"></a>data =<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/PBS2015.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># Given file.xlsx</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)  <span class="co"># You only need to do this once in RStudio</span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="kw">library</span>(readxl)  <span class="co"># You need to do this each time</span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">data =<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/PBS2015.xlsx&quot;</span>)</a></code></pre></div>
 <p><br></p>
 </div>
 <div id="more-info" class="section level2">
@@ -1041,11 +1039,11 @@ Note: The `Code Preview` at the bottom of this pop-up, shows you the direct way 
 <ul>
 <li>More complex cleaning can be done through a <a href="http://tidyverse.org/">package</a> like <code>tidyverse</code>. Install the package, as a one off command.</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="importdata.html#cb16-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
 <ul>
 <li>Each new session of RStudio, you will need to load the package.</li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="importdata.html#cb17-1"></a><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
 <ul>
 <li>See <a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">cheat sheet</a> and <a href="https://cran.r-project.org/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf">article</a></li>
 </ul>

@@ -1,6 +1,6 @@
 # FAQs {#faq}
 
-```{r messages = F, warning = F}
+```{r messages = F, warning = F, echo=F}
 suppressPackageStartupMessages(library(tidyverse))
 ```
 
@@ -44,7 +44,7 @@ plot(sleep$bodywt,residuals1)
 ```
 ## How can I eliminate NAs from my dataset? {-}
 
-The function `drop_na()` from the `dplyr` package (a subset of the `tidyverse`) allows you to remove rows from a dataset that contain NAs.
+The function `drop_na()` from the `dplyr` package (a subset of the `tidyverse` package) allows you to remove rows from a dataset that contain NAs.
 
 We will use the `msleep` data set for this example.
 
@@ -90,7 +90,7 @@ cos(sin(pi))
 #Pipe Notation
 pi %>% sin() %>% cos()
 ```
-This method allows us to read code from left to right rather than inside out. The shortcut for a pipe on windows in Rstudio should be set to Ctrl + Alt + M by default (Cmd + Shift + M for macbook users).
+This method allows us to read code from left to right rather than inside out. The shortcut for a pipe on windows in Rstudio should be set to Ctrl + Shift + M by default (Cmd + Shift + M for macbook users).
 
 Within `ggplot` we can use this to pipe data into our `ggplot` argument like so:
 ```{r eval = F}

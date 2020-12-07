@@ -24,7 +24,7 @@
 <meta name="author" content="DATA1001/DATA1901" />
 
 
-<meta name="date" content="2020-12-06" />
+<meta name="date" content="2020-12-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,13 +50,14 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
@@ -612,9 +613,9 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -623,14 +624,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -639,9 +642,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -688,7 +691,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">R Guide</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Aim</a></li>
@@ -843,9 +846,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-can-you-find-the-mean-of-different-groups-in-a-dataset"><i class="fa fa-check"></i>How can you find the mean of different groups in a dataset?</a></li>
 </ul></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
 </ul>
 
       </nav>
@@ -873,25 +873,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Recall there are 2 main types of variables: qualitative and quantitative, which R calls <code>Factor</code> and <code>num</code>.</p></li>
 <li><p>View the data.</p></li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">mtcars</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw">head</span>(mtcars)</a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="kw">tail</span>(mtcars, <span class="dt">n=</span><span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="kw">help</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="structure-of-data.html#cb18-1"></a>mtcars</span>
+<span id="cb18-2"><a href="structure-of-data.html#cb18-2"></a><span class="kw">head</span>(mtcars)</span>
+<span id="cb18-3"><a href="structure-of-data.html#cb18-3"></a><span class="kw">tail</span>(mtcars, <span class="dt">n=</span><span class="dv">3</span>)</span>
+<span id="cb18-4"><a href="structure-of-data.html#cb18-4"></a><span class="kw">help</span>(mtcars)</span></code></pre></div>
 <ul>
 <li>Calculate the <code>dim</code>ensions of the data set.</li>
 </ul>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">dim</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="structure-of-data.html#cb19-1"></a><span class="kw">dim</span>(mtcars)</span></code></pre></div>
 <p>This means that there are 32 rows (the types of cars) and 11 variables (properties of the cars).</p>
 <p><br></p>
 <ul>
 <li>List the <code>names</code> of the variables.</li>
 </ul>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">names</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="structure-of-data.html#cb20-1"></a><span class="kw">names</span>(mtcars)</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>See how R has classified the variables by viewing the <code>str</code>ucture of the data.</li>
 </ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">str</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="structure-of-data.html#cb21-1"></a><span class="kw">str</span>(mtcars)</span></code></pre></div>
 <p>where ‘num’ is a quantitative (numerical) variable and ‘Factor’ is a qualitative (categorical) variable.</p>
 <p><br></p>
 </div>
@@ -900,24 +900,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Choose one variable from the data frame by using <code>DataName$VariableName</code> and store the result in a vector.</li>
 </ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">mpg=<span class="st"> </span>mtcars<span class="op">$</span>mpg</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="structure-of-data.html#cb22-1"></a>mpg=<span class="st"> </span>mtcars<span class="op">$</span>mpg</span></code></pre></div>
 <p>Note that RStudio has code completion, so will auto-predict your commands. When you type <code>mtcars$</code>, the names of the all the variables will come up.</p>
 <p><br></p>
 <ul>
 <li>See the <code>class</code>ification of 1 variable.</li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">class</span>(mpg)</a>
-<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw">str</span>(mpg)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="structure-of-data.html#cb23-1"></a><span class="kw">class</span>(mpg)</span>
+<span id="cb23-2"><a href="structure-of-data.html#cb23-2"></a><span class="kw">str</span>(mpg)</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>See the <code>length</code> of 1 variable.</li>
 </ul>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">length</span>(mpg)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="structure-of-data.html#cb24-1"></a><span class="kw">length</span>(mpg)</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>Calculate the <code>sum</code> of a (quantitative) variable.</li>
 </ul>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">sum</span>(mpg)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="structure-of-data.html#cb25-1"></a><span class="kw">sum</span>(mpg)</span></code></pre></div>
 <ul>
 <li>If at any command you get the answer NA, it means that you need to specify what to do with missing values.
 See <i class="fa fa-link"></i><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/sum.html">Resource</a> on how to solve this.</li>
@@ -926,17 +926,17 @@ See <i class="fa fa-link"></i><a href="https://stat.ethz.ch/R-manual/R-devel/lib
 <ul>
 <li><code>Sort</code> the data in increasing order.</li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">sort</span>(mpg)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="structure-of-data.html#cb26-1"></a><span class="kw">sort</span>(mpg)</span></code></pre></div>
 <p><br></p>
 <ul>
 <li><a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/sort.html">Work out</a> how to sort the data in decreasing order.</li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">sort</span>(mpg, <span class="dt">decreasing =</span> T)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="structure-of-data.html#cb27-1"></a><span class="kw">sort</span>(mpg, <span class="dt">decreasing =</span> T)</span></code></pre></div>
 <p><br></p>
 <ul>
 <li>Sum the 5 lowest values of the variable.</li>
 </ul>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">sum</span>(<span class="kw">sort</span>(mpg)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="structure-of-data.html#cb28-1"></a><span class="kw">sum</span>(<span class="kw">sort</span>(mpg)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="select-subset" class="section level2">
@@ -944,12 +944,12 @@ See <i class="fa fa-link"></i><a href="https://stat.ethz.ch/R-manual/R-devel/lib
 <ul>
 <li>Pick the 1st and 5th elements of the vector <code>mpg</code></li>
 </ul>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">mpg[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2">mpg[<span class="dv">5</span>]</a>
-<a class="sourceLine" id="cb29-3" data-line-number="3">mpg[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>)]</a>
-<a class="sourceLine" id="cb29-4" data-line-number="4">mtcars<span class="op">$</span>mpg[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>)]</a>
-<a class="sourceLine" id="cb29-5" data-line-number="5">mtcars[<span class="dv">1</span>,<span class="dv">1</span>]  </a>
-<a class="sourceLine" id="cb29-6" data-line-number="6">mtcars[<span class="dv">5</span>,<span class="dv">1</span>]   <span class="co">#mpg is 1st column.</span></a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="structure-of-data.html#cb29-1"></a>mpg[<span class="dv">1</span>]</span>
+<span id="cb29-2"><a href="structure-of-data.html#cb29-2"></a>mpg[<span class="dv">5</span>]</span>
+<span id="cb29-3"><a href="structure-of-data.html#cb29-3"></a>mpg[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>)]</span>
+<span id="cb29-4"><a href="structure-of-data.html#cb29-4"></a>mtcars<span class="op">$</span>mpg[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>)]</span>
+<span id="cb29-5"><a href="structure-of-data.html#cb29-5"></a>mtcars[<span class="dv">1</span>,<span class="dv">1</span>]  </span>
+<span id="cb29-6"><a href="structure-of-data.html#cb29-6"></a>mtcars[<span class="dv">5</span>,<span class="dv">1</span>]   <span class="co">#mpg is 1st column.</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div id="change-classification" class="section level2">
@@ -957,19 +957,19 @@ See <i class="fa fa-link"></i><a href="https://stat.ethz.ch/R-manual/R-devel/lib
 <ul>
 <li>You may not agree with R’s initial classification, and want to change it.</li>
 </ul>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">str</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="structure-of-data.html#cb30-1"></a><span class="kw">str</span>(mtcars)</span></code></pre></div>
 <ul>
 <li>For example, note that the number of carburetors <code>carb</code> is classified as <code>num</code>. Reclassify <code>carb</code> as a <code>factor</code>.</li>
 </ul>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">class</span>(mtcars<span class="op">$</span>carb)</a>
-<a class="sourceLine" id="cb31-2" data-line-number="2">carbF =<span class="st"> </span><span class="kw">factor</span>(mtcars<span class="op">$</span>carb)</a>
-<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="kw">class</span>(carbF)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="structure-of-data.html#cb31-1"></a><span class="kw">class</span>(mtcars<span class="op">$</span>carb)</span>
+<span id="cb31-2"><a href="structure-of-data.html#cb31-2"></a>carbF =<span class="st"> </span><span class="kw">factor</span>(mtcars<span class="op">$</span>carb)</span>
+<span id="cb31-3"><a href="structure-of-data.html#cb31-3"></a><span class="kw">class</span>(carbF)</span></code></pre></div>
 <ul>
 <li>To change from a <code>factor</code> to a <code>num</code>:</li>
 </ul>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">ageCanVote =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">setNames</span>(<span class="kw">c</span>(<span class="dv">16</span>, <span class="dv">18</span>, <span class="dv">18</span>, <span class="st">&quot;Unknown&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;Austria&quot;</span>, <span class="st">&quot;Australia&quot;</span>, <span class="st">&quot;Afghanistam&quot;</span>, <span class="st">&quot;Zambia&quot;</span>)))</a>
-<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="kw">as.numeric</span>(ageCanVote)  <span class="co"># This is a mistake, as it converts to the rank of the factor level</span></a>
-<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(ageCanVote))  <span class="co"># This converts properly</span></a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="structure-of-data.html#cb32-1"></a>ageCanVote =<span class="st"> </span><span class="kw">factor</span>(<span class="kw">setNames</span>(<span class="kw">c</span>(<span class="dv">16</span>, <span class="dv">18</span>, <span class="dv">18</span>, <span class="st">&quot;Unknown&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;Austria&quot;</span>, <span class="st">&quot;Australia&quot;</span>, <span class="st">&quot;Afghanistam&quot;</span>, <span class="st">&quot;Zambia&quot;</span>)))</span>
+<span id="cb32-2"><a href="structure-of-data.html#cb32-2"></a><span class="kw">as.numeric</span>(ageCanVote)  <span class="co"># This is a mistake, as it converts to the rank of the factor level</span></span>
+<span id="cb32-3"><a href="structure-of-data.html#cb32-3"></a><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(ageCanVote))  <span class="co"># This converts properly</span></span></code></pre></div>
 <p>Note:
 (1) The warning message is not a problem - it is just alerting you to the introduction of NAs.
 (2) The mistake above if you just use <code>as'numeric()</code>.</p>

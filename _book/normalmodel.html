@@ -24,7 +24,7 @@
 <meta name="author" content="DATA1001/DATA1901" />
 
 
-<meta name="date" content="2020-12-06" />
+<meta name="date" content="2020-12-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,13 +50,14 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
@@ -612,9 +613,9 @@ document.write('<div class="btn-group pull-right" style="position: absolute; top
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -623,14 +624,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -639,9 +642,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -688,7 +691,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">R Guide</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Aim</a></li>
@@ -843,9 +846,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="faq.html"><a href="faq.html#how-can-you-find-the-mean-of-different-groups-in-a-dataset"><i class="fa fa-check"></i>How can you find the mean of different groups in a dataset?</a></li>
 </ul></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
 </ul>
 
       </nav>
@@ -871,9 +871,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>To plot a normal curve, we use `dnorm’ for a range of <span class="math inline">\(x\)</span> values.</li>
 </ul>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="co"># plots 2 plots on same row</span></a>
-<a class="sourceLine" id="cb87-2" data-line-number="2"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x),<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb87-3" data-line-number="3"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x),<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="normalmodel.html#cb88-1"></a><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="co"># plots 2 plots on same row</span></span>
+<span id="cb88-2"><a href="normalmodel.html#cb88-2"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x),<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb88-3"><a href="normalmodel.html#cb88-3"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x),<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>)</span></code></pre></div>
 <p>When does the Normal curve start to disappear?</p>
 <p><br></p>
 </div>
@@ -882,22 +882,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>To plot an area under the curve, we use <code>polygon</code>.</li>
 </ul>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x), <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>),<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>,<span class="dt">axes=</span><span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb88-2" data-line-number="2"><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb88-3" data-line-number="3">sequence =<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">2</span>, <span class="fl">0.8</span>, <span class="fl">0.1</span>)</a>
-<a class="sourceLine" id="cb88-4" data-line-number="4"><span class="kw">polygon</span>(<span class="dt">x =</span> <span class="kw">c</span>(sequence,<span class="fl">0.8</span>,<span class="op">-</span><span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb88-5" data-line-number="5">        <span class="dt">y =</span> <span class="kw">c</span>(<span class="kw">dnorm</span>(<span class="kw">c</span>(sequence)),<span class="dv">0</span>,<span class="dv">0</span>),</a>
-<a class="sourceLine" id="cb88-6" data-line-number="6">        <span class="dt">col =</span> <span class="st">&quot;purple&quot;</span>)</a>
-<a class="sourceLine" id="cb88-7" data-line-number="7"><span class="kw">axis</span>(<span class="dv">1</span>, <span class="dt">at=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.8</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">pos=</span><span class="dv">0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="normalmodel.html#cb89-1"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x), <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>),<span class="dt">ylab=</span><span class="st">&quot;&quot;</span>,<span class="dt">axes=</span><span class="ot">FALSE</span>)</span>
+<span id="cb89-2"><a href="normalmodel.html#cb89-2"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>)</span>
+<span id="cb89-3"><a href="normalmodel.html#cb89-3"></a>sequence =<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">2</span>, <span class="fl">0.8</span>, <span class="fl">0.1</span>)</span>
+<span id="cb89-4"><a href="normalmodel.html#cb89-4"></a><span class="kw">polygon</span>(<span class="dt">x =</span> <span class="kw">c</span>(sequence,<span class="fl">0.8</span>,<span class="op">-</span><span class="dv">2</span>),</span>
+<span id="cb89-5"><a href="normalmodel.html#cb89-5"></a>        <span class="dt">y =</span> <span class="kw">c</span>(<span class="kw">dnorm</span>(<span class="kw">c</span>(sequence)),<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb89-6"><a href="normalmodel.html#cb89-6"></a>        <span class="dt">col =</span> <span class="st">&quot;purple&quot;</span>)</span>
+<span id="cb89-7"><a href="normalmodel.html#cb89-7"></a><span class="kw">axis</span>(<span class="dv">1</span>, <span class="dt">at=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="fl">0.8</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">pos=</span><span class="dv">0</span>)</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="add-normal-to-a-histogram" class="section level2">
 <h2><span class="header-section-number">7.3</span> Add normal to a histogram</h2>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="kw">hist</span>(mtcars<span class="op">$</span>wt,<span class="dt">prob=</span>T)</a>
-<a class="sourceLine" id="cb89-2" data-line-number="2">m=<span class="kw">mean</span>(mtcars<span class="op">$</span>wt)</a>
-<a class="sourceLine" id="cb89-3" data-line-number="3">s=<span class="kw">sd</span>(mtcars<span class="op">$</span>wt)</a>
-<a class="sourceLine" id="cb89-4" data-line-number="4"><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dt">mean=</span>m, <span class="dt">sd=</span>s), </a>
-<a class="sourceLine" id="cb89-5" data-line-number="5"><span class="dt">col=</span><span class="st">&quot;darkgreen&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="normalmodel.html#cb90-1"></a><span class="kw">hist</span>(mtcars<span class="op">$</span>wt,<span class="dt">prob=</span>T)</span>
+<span id="cb90-2"><a href="normalmodel.html#cb90-2"></a>m=<span class="kw">mean</span>(mtcars<span class="op">$</span>wt)</span>
+<span id="cb90-3"><a href="normalmodel.html#cb90-3"></a>s=<span class="kw">sd</span>(mtcars<span class="op">$</span>wt)</span>
+<span id="cb90-4"><a href="normalmodel.html#cb90-4"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dt">mean=</span>m, <span class="dt">sd=</span>s), </span>
+<span id="cb90-5"><a href="normalmodel.html#cb90-5"></a><span class="dt">col=</span><span class="st">&quot;darkgreen&quot;</span>, <span class="dt">lwd=</span><span class="dv">2</span>, <span class="dt">add=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="probabilities-standard-normal" class="section level2">
@@ -905,28 +905,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="lower-tail" class="section level3">
 <h3><span class="header-section-number">7.4.1</span> Lower tail</h3>
 <p>To calculate P(Z &lt; 0.8) use <code>pnorm</code>.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="fl">0.8</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="normalmodel.html#cb91-1"></a><span class="kw">pnorm</span>(<span class="fl">0.8</span>)</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="upper-tail" class="section level3">
 <h3><span class="header-section-number">7.4.2</span> Upper tail</h3>
 <p>To calculate P(Z &gt; 0.8):</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="fl">0.8</span>,<span class="dt">lower.tail=</span>F)</a>
-<a class="sourceLine" id="cb91-2" data-line-number="2"><span class="dv">1</span><span class="op">-</span><span class="kw">pnorm</span>(<span class="fl">0.8</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="normalmodel.html#cb92-1"></a><span class="kw">pnorm</span>(<span class="fl">0.8</span>,<span class="dt">lower.tail=</span>F)</span>
+<span id="cb92-2"><a href="normalmodel.html#cb92-2"></a><span class="dv">1</span><span class="op">-</span><span class="kw">pnorm</span>(<span class="fl">0.8</span>)</span></code></pre></div>
 <p><br></p>
 </div>
 <div id="interval" class="section level3">
 <h3><span class="header-section-number">7.4.3</span> Interval</h3>
 <p>To calculate P(0.3 &lt; Z &lt; 0.7):</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="fl">0.7</span>)<span class="op">-</span><span class="kw">pnorm</span>(<span class="fl">0.3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="normalmodel.html#cb93-1"></a><span class="kw">pnorm</span>(<span class="fl">0.7</span>)<span class="op">-</span><span class="kw">pnorm</span>(<span class="fl">0.3</span>)</span></code></pre></div>
 <p><br></p>
 </div>
 </div>
 <div id="probabilities-general-normal" class="section level2">
 <h2><span class="header-section-number">7.5</span> Probabilities: General normal</h2>
 <p>If <span class="math inline">\(X \sim N(5, 4^2)\)</span>, then to calculate P(X &lt; 8), we use <code>pnorm(8,mean,sd)</code>.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">8</span>,<span class="dt">mean=</span><span class="dv">5</span>,<span class="dt">sd=</span><span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb93-2" data-line-number="2"><span class="kw">pnorm</span>(<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="normalmodel.html#cb94-1"></a><span class="kw">pnorm</span>(<span class="dv">8</span>,<span class="dt">mean=</span><span class="dv">5</span>,<span class="dt">sd=</span><span class="dv">4</span>)</span>
+<span id="cb94-2"><a href="normalmodel.html#cb94-2"></a><span class="kw">pnorm</span>(<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">4</span>)</span></code></pre></div>
 <p><br></p>
 
 </div>

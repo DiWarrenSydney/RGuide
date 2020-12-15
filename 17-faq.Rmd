@@ -50,13 +50,14 @@ We will use the `msleep` data set for this example.
 
 First lets find out how many NAs are in each row of the dataset:
 
-```{r}
+```{r, eval=T}
 dim(msleep)
 colSums(is.na(msleep))
 ```
 
 By using the drop_na function we can see all rows with an NA in it was removed. This took our row count from 83 to 20 complete entries.
-```{r}
+```{r, eval=T, warning=F, message=F}
+library(tidyverse)
 sleep_clean = drop_na(msleep)
 dim(sleep_clean)
 colSums(is.na(sleep_clean))
@@ -64,7 +65,7 @@ colSums(is.na(sleep_clean))
 However, what if we are only interested in deleting rows where `brainwt` is NA? This could be the case with the large datasets used in the projects, with a number of redundant columns. In some cases deleting all NAs results in very few observations remaining, so we can be more selective about the rows we remove. If for example, `sleep_cycle` is used nowhere in our analysis, it would be unnecessary to remove rows when `sleep_cycle` is NA.
 
 You can selectively delete NAs from select rows using the code below:
-```{r eval = F}
+```{r, eval = F}
 # delete rows where brainwt is NA
 drop_na(msleep, brainwt)
 
@@ -128,7 +129,7 @@ iris_setosa = iris %>% filter(Species == "setosa")
 This is what the resulting data frame looks like, as you can see it only contains entries that are of the species Setosa.
 
 <details><summary>Show Data</summary>
-```{r, echo=F, eval = T}
+```{r, echo=F, eval = T, warning=F, message=F}
 library(kableExtra)
 iris_setosa %>% 
   kbl() %>% 
@@ -146,7 +147,7 @@ iris_filtered = iris %>% filter(Species == "setosa", Petal.Length > 1.5)
 And this is the resulting data
 
 <details><summary>Show Data</summary>
-```{r, echo=F,eval=T}
+```{r, echo=F,eval=T, message=F, warning=F}
 iris_filtered %>% 
   kbl() %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% scroll_box(height = "250px") 
@@ -161,7 +162,7 @@ The code below filters the `iris` data for entries which are either the Setosa o
 iris_filtered = iris %>% filter(Species %in% c("setosa", "virginica"))
 ```
 <details><summary>Show Data</summary>
-```{r, echo=F}
+```{r, echo=F, waring=F, message=F, eval=T}
 iris_filtered %>% 
   kbl() %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 

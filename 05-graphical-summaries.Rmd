@@ -304,7 +304,8 @@ p + geom_point(aes(colour = cyl)) + scale_colour_gradient(low = "blue")  # Colou
 
 ## plotly **
 
-`plotly` or `plot.ly` is included in the `ggplot2 package and allows you to have offline interactive tools.
+`plotly` or `plot.ly` allows you to have offline interactive tools.
+You will first need to install the `plotly` package.
 
 - Produce this scatter plot. Notice what happens when you hover over the data points.
 
